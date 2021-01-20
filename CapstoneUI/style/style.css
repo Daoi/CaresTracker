@@ -1,0 +1,175 @@
+﻿
+.backgroundblue {
+    background-color: #157CB6;
+    overflow: auto;
+}
+
+.homepage {
+    background-color: white;
+    height: 100vh;
+    width: 90%;
+    margin-top: 5vh;
+}
+
+.textContainer {
+    background-color: lightgrey;
+    color: black;
+    height: 100%;
+    width: 100%;
+}
+.textContainerTwo {
+    background-color: lightgrey;
+    color: black;
+    height: 25%;
+    width: 100%;
+}
+.textContainerThree {
+    background-color: lightgrey;
+    color: black;
+    height: 25%;
+    width: 60%;
+    margin-left: 6em;
+}
+.btnContainer {
+    height: 25%;
+    width: 60%;
+    margin-left: 6em;
+}
+
+.managementContainer {
+    position: relative;
+    height: 50%;
+}
+
+.chwInfo {
+    background-color: lightgrey;
+    position: absolute;
+    top: 10vh;
+    right: 100px;
+    padding: 10px;
+}
+
+.sectionTitle {
+    border-style: solid;
+    border-color: blue;
+    position: relative;
+}
+
+.sectionTitleText {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.quickAccess {
+    margin-top: 4vh;
+}
+
+.white{
+    background-color: white;
+}
+
+.softblue {
+    background-color: #E2F1FF;
+}
+
+.homeBtn{
+    color: black;
+    font-weight: bold;
+    white-space: normal;
+}
+
+.footerCon {
+    background-color: #F7F7F7;
+}
+
+.helpfulLinks{
+  background-color: lightgrey;
+  position: absolute;
+  margin-left: 60vw;
+  margin-right: 10vw;
+  margin-bottom: 20vw;
+  padding: 2rem;
+
+}
+
+.loginContainer {
+    background-image: url('../img/FallAndBluePrint.jpg');
+    background-size: cover;
+    height: 100vh;
+    max-width: 100%;
+    width: 100%;
+}
+
+.forestGreen {
+    background-color: #13752a;
+}
+
+.loginCard {
+    height: auto;
+    background-color: white;
+    width: 50vw;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.chwImg {
+    width: 20vw
+}
+
+
+.residentProfile, .newResident {
+    background-color: lightgrey;
+}
+
+.residentParagraph {
+    position: relative;
+    left: 33%;
+}
+
+.eventCreator {
+    height: 100vh;
+    background-color: white;
+    margin-top: 2rem;
+    margin-bottom: 2rem
+}
+
+/*.eventControlBG{
+}*/
+
+.dataTables_filter {
+    justify-content: center;
+}
+
+/*Ids for table's search bar div*/
+#MainContent_gvInteractionList_filter, #MainContent_gvResidentList_filter, #MainContent_gvEventList_filter {
+    justify-content: center;
+    text-align: center;
+}
+
+.dataTables_filter input {
+    width: 150% !important;
+    border-color: black;
+}
+
+thead {
+    background-color: #31749B;
+    color: white;
+}
+.tableContainer {
+    background-color: white !important;
+    margin-top: 2%
+}
+
+@media only screen and (max-height: 768px) {
+    .helpfulLinks {
+        display: none;
+    }
+}
+
+.myCheckBoxList label {
+    padding-left: 5px;
+}

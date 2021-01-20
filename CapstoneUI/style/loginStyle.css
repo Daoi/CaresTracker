@@ -1,0 +1,28 @@
+﻿.loginImg{
+    margin-top: 40px;
+    max-width: 100%;
+    height: auto;
+    
+}
+
+
+.loginContainer {
+    background-image: url('../img/FallAndBluePrint.jpg');
+    background-size: cover;
+    height: 100vh;
+    max-width: 100%;
+    width: 100%;
+}
+
+.forestGreen {
+    background-color: #13752a;
+}
+
+.loginCard {
+    height: auto;
+    background-color: white;
+    width: 50vw;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
