@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CapstoneUI.EventCreator" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
-        <div class="eventCreator px-5">
+    <div class="container overflow-hidden">
+        <div class="eventCreator px-5 h-100">
             <div class="row  modal-header" style="height: 7%; padding-left: 0!important; padding-right: 0!important; font-size: large; padding-bottom: 2%">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-white">
@@ -41,7 +41,7 @@
                     <asp:ListItem>David</asp:ListItem>
                 </asp:CheckBoxList>
                 <h5>Event Description and Notes</h5>
-                <textarea id="TextArea1" cols="100" rows="6"></textarea>
+                <textarea class="w-100" id="TextArea1" rows="6"></textarea>
             </div>
             <br />
             <br />
@@ -92,7 +92,7 @@
             </asp:UpdatePanel>
             <br />
             <br />
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-lg" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-lg mb-1" />
         </div>
     </div>
 </asp:Content>
