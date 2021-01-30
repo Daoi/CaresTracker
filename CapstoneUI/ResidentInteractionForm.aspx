@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="style/InteractionFormStyle.css" rel="stylesheet" />
 
-    <div id="RIForm">
+    <div id="RIForm" class="container-fluid">
         <div id="logo">
             <h1 class="logo"></h1>
             <div class="leftbox">
@@ -96,7 +96,7 @@
                 </div>
                 <%-- Meeting Info Form End --%>
                 <%-- Resident Health Form Start --%>
-                <div id="residentHealthForm" class="residentHealth" runat="server">
+                <div id="residentHealthForm" class="residentHealth form-group" style="display:inline-grid" runat="server">
                     <h1>Resident Health</h1>
                     <%-- Symtpom List Start --%>
                     <h2>Covid-19 Possible Symptoms</h2>
@@ -194,7 +194,7 @@
                 <div id="otherForm" class="otherInfo" runat="server">
                     <h1>Other Comments</h1>
                     <h2>Next Steps:</h2>
-                    <textarea id="nextSteps" name="nextSteps" rows="5" cols="70" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
+                    <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
                 </div>
                 <%-- Other Form End --%>
             </div>

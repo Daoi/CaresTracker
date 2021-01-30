@@ -89,14 +89,35 @@
 .rightbox {
     float: right;
     width: 70%;
-    height: 100%;
+    height: 90%;
 }
 
 .residentInfo, .meetingInfo, .residentHealth, .services, .otherInfo, .housingInfo {
     transition: opacity 0.5s ease-in;
     position: absolute;
-    width: 70%;
+    width: 80%;
+    height: 90%;
     font-size: 2em;
+}
+
+@media(max-height: 768px) {
+    .residentInfo, .meetingInfo, .services, .otherInfo, .housingInfo {
+        transition: opacity 0.5s ease-in;
+        width: 80%;
+        height: 80%;
+        font-size: 1em;
+        
+    }
+
+    .residentHealth {
+        transition: opacity 0.5s ease-in;
+        height: 80%;
+        width: 80%;
+        font-size: 1em;
+        max-height: 100%;
+        overflow-y: scroll;
+        overflow-x:hidden;
+    }
 }
 
 h1 {
@@ -175,19 +196,44 @@ input {
     font-size: 1.2em;
     color: #070707;
 }
+
+
 .inputDropDown {
-    width: 75%;
-    height: 75%;
-    border-radius: 3px 4px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
-    color: #070707;
+        border-radius: 3px 4px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: .75em;
+        color: #070707;
+        width: 80%;
 }
 
-.inputCheckBox input[type="checkbox"] {
-    margin-right: 3px;
-    font-family: 'Montserrat', sans-serif;
+@media(max-width: 1024) {
+    .inputDropDown {
+        border-radius: 3px 4px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: .75em;
+        color: #070707;
+        height: 75%;
+        width: 75%;
+    }
 }
-.inputCheckBox label {
-    font-size: 1.5em;
+
+.inputTextArea {
+    height: auto;
+    width: 85% !important;
+    height: 50%;
+    font-size: .65em;
 }
+
+    .inputCheckBox {
+        display: inline-flex;
+    }
+
+        .inputCheckBox input[type="checkbox"] {
+            margin-right: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .inputCheckBox label {
+            margin-top: .3em;
+            font-size: 1.2em;
+        }
