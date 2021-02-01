@@ -58,22 +58,31 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Image imgCHW;
         
         /// <summary>
-        /// btnDeactivate control.
+        /// lblWeekInteractions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeactivate;
+        protected global::System.Web.UI.WebControls.Label lblWeekInteractions;
         
         /// <summary>
-        /// btnDelete control.
+        /// lblTotalInteractions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.WebControls.Label lblTotalInteractions;
+        
+        /// <summary>
+        /// btnViewInteractions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnViewInteractions;
         
         /// <summary>
         /// ddlRegions control.
@@ -103,30 +112,21 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// lblWeekInteractions control.
+        /// btnDeactivate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWeekInteractions;
+        protected global::System.Web.UI.WebControls.Button btnDeactivate;
         
         /// <summary>
-        /// lblTotalInteractions control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalInteractions;
-        
-        /// <summary>
-        /// btnViewInteractions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewInteractions;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
     }
 }
