@@ -21,17 +21,14 @@
         <div class="row p-5">
             <!-- Section 1 Start -->
             <div class="col">
-                <div style="font-size: larger">
-                    Name:
-                    <asp:Label ID="lblCHWName" runat="server" Text="John Doe" Style="font-weight: bold; font-size: larger"></asp:Label>
-                </div>
+                <asp:Label ID="lblCHWName" runat="server" Text="John Doe" CssClass="h3"></asp:Label>
                 <%-- CHW Picture --%>
                 <div class="chwInfo" style="width: 22vw">
                     <asp:Image ID="imgCHW" runat="server" ImageUrl="https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg" CssClass="chwImg" />
                 </div>
                 <br />
-                <div>
-                    <h5>Quick Stats</h5>
+                <div class="p-3" style="width: 22vw; background-color: lightgray">
+                    <h3>Quick Stats</h3>
                     <span>Interactions this Week: 3
                             <asp:Label ID="lblWeekInteractions" runat="server" Text=""></asp:Label></span><br />
                     <span>Total Interactions: 28
@@ -45,7 +42,6 @@
             <!-- Section 1 End -->
             <!-- Section 2 Start -->
             <div class="col">
-
                 <h3>Work Area</h3>
                 <br />
                 <div class="row">
@@ -57,7 +53,6 @@
                                 <asp:ListItem>North West Philadelphia</asp:ListItem>
                             </asp:DropDownList>
                     </div>
-
                     <div class=" col text-center">
                         CHW Supervisor
                             <asp:DropDownList ID="ddlSupervisor" CssClass="form-control" runat="server">
@@ -70,11 +65,12 @@
                 <div class="text-center">
                     <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn-primary btn" Width="107px" />
                 </div>
+                <br />
+
+                <h3>Account Management</h3>
                 <div class="mx-auto">
-                    <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate Account" CssClass="btn-primary btn-lg btn-warning mx-auto" />
-                    <br />
-                    <br />
-                    <asp:Button ID="btnDelete" runat="server" Text="Delete Account" CssClass="btn-primary btn-lg btn-danger mx-auto" />
+                    <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="btn-primary btn-lg btn-warning mr-3" />
+                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn-primary btn-lg btn-danger" />
                 </div>
                 
             </div>
