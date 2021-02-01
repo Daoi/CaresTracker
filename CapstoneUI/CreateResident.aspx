@@ -73,11 +73,11 @@
                         </div>
                     </div>
                     <div class="row-m m-3 modal-header">
-                        <div class="col">
+                        <div class="col mt-4">
                             <label>Gender: </label>
                         </div>
                         <div class="col-7" id="divrblGender">
-                            <asp:RadioButtonList ID="rblGender" RepeatDirection="Horizontal" runat="server">
+                            <asp:RadioButtonList ID="rblGender" RepeatDirection="Vertical" runat="server">
                                 <asp:ListItem>Male</asp:ListItem>
                                 <asp:ListItem>Female</asp:ListItem>
                                 <asp:ListItem>Prefer not to say</asp:ListItem>
