@@ -12,8 +12,7 @@
             <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 57%"></asp:Label>
         </div>
         <div class="jumbotron vertical-center bg-transparent">
-            <%-- Button 1 Start --%>
-            <div class="helpfulLinks mt-5" style="margin-left: 50%">
+            <div class="mt-5" style="margin-left: 50%">
                 <h2>Helpful Links</h2>
                 <p>
                     <a href="http://www.pha.phila.gov/"><span style="font-weight: bold">Philadelphia Housing Authority Website</span> </a>
@@ -27,6 +26,7 @@
                 </p>
             </div>
             <div class="container-fluid">
+                <%-- Button 1 Start --%>
                 <div id="divCreateCHW" class="row form-inline form-group" runat="server">
                     <div class="col-md-2 col-sm-1"><i class="fas fa-plus-square" style="padding-left: 10vw; margin-top: 10%; font-size: 5rem"></i></div>
                     <div class="col-md-4 quickAccess col-sm-1">
