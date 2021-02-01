@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid homepage backgroundblue">
-        <div class="row  modal-header" style="height: 7%; padding-left: 0!important; padding-right: 0!important; font-size: large">
+        <div class="row  modal-header" style="height:auto; padding-left: 0!important; padding-right: 0!important; font-size: large">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-white">
                     <li class="breadcrumb-item" style="color: deepskyblue">
