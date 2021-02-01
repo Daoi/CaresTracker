@@ -23,7 +23,7 @@
             <div class="col">
                 <asp:Label ID="lblCHWName" runat="server" Text="John Doe" CssClass="h3"></asp:Label>
                 <%-- CHW Picture --%>
-                <div class="chwInfo" style="width: 22vw">
+                <div class="chwInfo text-center" style="width: 22vw">
                     <asp:Image ID="imgCHW" runat="server" ImageUrl="https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg" CssClass="chwImg" />
                 </div>
                 <br />
