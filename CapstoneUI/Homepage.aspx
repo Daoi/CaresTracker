@@ -15,6 +15,7 @@
 
             <div class="container-fluid row">
                 <div class="col">
+                    <!-- Button 1 Start -->
                     <div id="divCreateCHW" class="row" runat="server">
                         <i class="fas fa-plus-square col-2 mr-4" style="font-size: 5rem"></i>
 
@@ -46,21 +47,18 @@
                 <div class="col-sm-2"></div>
                 <div class="col">
                     <%-- Button 4 Start --%>
-                    <div class="">
-                        <i class="fas fa-search col-2 mr-3" style="font-size: 4.5rem"></i>
-                        <div class="">
+                    <div class="row">
+                        <i class="fas fa-search col-2 mr-4" style="font-size: 5rem"></i>
+                        <div class="col align-self-center">
                             <asp:LinkButton ID="btnReviewInteractions" runat="server" Text="Review Past Interactions" OnClick="btnReviewInteractions_Click"></asp:LinkButton>
-                            <div>
-                                <p>Search for past interactions by resident name.</p>
-                            </div>
+                            <p>Search for past interactions by resident name.</p>
                         </div>
                     </div>
                     <%-- Button 4 End --%>
-                    <div class="clearfix"></div>
                     <%-- Button 5 Start --%>
-                    <div class="mt-3">
-                        <div class="float-left"><i class="fas fa-search" style="font-size: 4.5rem"></i></div>
-                        <div class="">
+                    <div class="row mt-3">
+                        <i class="fas fa-search col-2 mr-4" style="font-size: 5rem"></i>
+                        <div class="col">
                             <%-- Change this button ID probably --%>
                             <asp:LinkButton ID="btnCreateEvent" runat="server" Text="Review Past Event" OnClick="btnCreateEvent_Click"></asp:LinkButton>
                             <div>
@@ -69,16 +67,13 @@
                         </div>
                     </div>
                     <%-- Button 5 End --%>
-                    <div class="clearfix"></div>
                     <%-- Button 6 Start --%>
-                    <div class="mt-3">
-                        <div class="float-left"><i class="fas fa-search" style="font-size: 4.5rem"></i></div>
-                        <div class="">
+                    <div class="row mt-3">
+                        <i class="fas fa-search col-2 mr-4" style="font-size: 5rem"></i>
+                        <div class="col">
                             <%-- Change this button ID probably --%>
                             <asp:LinkButton ID="btnResidentLookUp" runat="server" Text="Resident Look Up" OnClick="btnResidentLookUp_Click"></asp:LinkButton>
-                            <div>
-                                <p>Search for a specific resident's profile.</p>
-                            </div>
+                            <p>Search for a specific resident's profile.</p>
                         </div>
                     </div>
                     <%-- Button 6 End --%>
