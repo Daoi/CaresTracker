@@ -2,13 +2,15 @@
 .backgroundblue {
     background-color: #157CB6;
     overflow: auto;
+    min-height: 100vh;
 }
 
 .homepage {
     background-color: white;
-    height: 100vh;
     width: 90%;
     margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding-bottom: 5%;
 }
 
 .textContainer {
@@ -43,9 +45,6 @@
 
 .chwInfo {
     background-color: lightgrey;
-    position: absolute;
-    top: 10vh;
-    right: 100px;
     padding: 10px;
 }
 
@@ -83,16 +82,6 @@
 
 .footerCon {
     background-color: #F7F7F7;
-}
-
-.helpfulLinks{
-  background-color: lightgrey;
-  position: absolute;
-  margin-left: 60vw;
-  margin-right: 10vw;
-  margin-bottom: 20vw;
-  padding: 2rem;
-
 }
 
 .loginContainer {
@@ -172,4 +161,8 @@ thead {
 
 .myCheckBoxList label {
     padding-left: 5px;
+}
+
+#divrblGender input[type="radio"]{
+    margin-left: 4px;
 }

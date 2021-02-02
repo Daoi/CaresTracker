@@ -24,7 +24,7 @@
                         <div class="col">
                             <label>First Name: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <div class="col">
                             <label>Last Name: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="col">
                             <label>Username: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div class="col">
                             <label>Password: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="col">
                             <label>Region:</label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:DropDownList ID="ddlRegion" runat="server">
                                 <asp:ListItem>Drexel</asp:ListItem>
                                 <asp:ListItem>Greater Philadelphia</asp:ListItem>
@@ -73,7 +73,7 @@
                         <div class="col">
                             <label>Supervisor:</label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:DropDownList ID="ddlSupervisor" runat="server">
                                 <asp:ListItem>Shirley Moy</asp:ListItem>
                                 <asp:ListItem>Gaye Harley</asp:ListItem>
@@ -84,7 +84,7 @@
                         <div class="col">
                             <label>Employee Image:</label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:FileUpload ID="fuCHWPicture" runat="server" />
                         </div>
                     </div>
