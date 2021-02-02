@@ -165,6 +165,7 @@
                         <asp:ListItem>Select Test Result</asp:ListItem>
                         <asp:ListItem>Positive</asp:ListItem>
                         <asp:ListItem>Negative</asp:ListItem>
+                        <asp:ListItem>No Recent Test</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
                     <h2>Testing Location</h2>
