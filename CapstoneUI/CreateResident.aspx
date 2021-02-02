@@ -2,9 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid backgroundblue">
-        <div class="container homepage mb-5">
+        <div class="container homepage">
             <div>
-                <div class="row  modal-header" style="height: 7%; font-size: large">
+                <div class="row modal-header" style="height: 7%; font-size: large">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-white">
                             <li class="breadcrumb-item" style="color: deepskyblue">
@@ -24,7 +24,7 @@
                         <div class="col">
                             <label>First Name: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <div class="col">
                             <label>Last Name: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="col">
                             <label>Date of Birth: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtDOB" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div class="col">
                             <label>Email: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="col">
                             <label>Phone-number: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         <div class="col">
                             <label>Relationship to Head of Household: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:DropDownList ID="ddlRelationshipHOH" runat="server">
                                 <asp:ListItem>Self</asp:ListItem>
                                 <asp:ListItem>Spouse</asp:ListItem>
@@ -72,12 +72,12 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div class="row m-3 modal-header">
-                        <div class="col">
+                    <div class="row-m m-3 modal-header">
+                        <div class="col mt-4">
                             <label>Gender: </label>
                         </div>
-                        <div class="col">
-                            <asp:RadioButtonList ID="rblGender" RepeatDirection="Horizontal" runat="server">
+                        <div class="col-7" id="divrblGender">
+                            <asp:RadioButtonList ID="rblGender" RepeatDirection="Vertical" runat="server">
                                 <asp:ListItem>Male</asp:ListItem>
                                 <asp:ListItem>Female</asp:ListItem>
                                 <asp:ListItem>Prefer not to say</asp:ListItem>
@@ -88,7 +88,7 @@
                         <div class="col">
                             <label>Race: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:DropDownList ID="ddlRace" RepeatDirection="Horizontal" runat="server">
                                 <asp:ListItem>American Indian or Alaska Native</asp:ListItem>
                                 <asp:ListItem>Asian</asp:ListItem>
@@ -102,7 +102,7 @@
                         <div class="col">
                             <label>Family size: </label>
                         </div>
-                        <div class="col">
+                        <div class="col-7">
                             <asp:TextBox ID="txtFamilySize" runat="server"></asp:TextBox>
                         </div>
                     </div>
