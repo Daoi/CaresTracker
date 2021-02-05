@@ -26,15 +26,8 @@
                     <asp:ListItem Value="51 to 75">51 to 75</asp:ListItem>
                     <asp:ListItem Value="76 to 100">76 to 100</asp:ListItem>
                 </asp:DropDownList><br />
-                <asp:DropDownList ID="ddlEventType" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlEventType_SelectedIndexChanged" AutoPostBack="True">
-                    <asp:ListItem Value="Select Event Type">Select Event Type</asp:ListItem>
-                    <asp:ListItem Value="divResourceTableEvent">Resource Table Event</asp:ListItem>
-                    <asp:ListItem Value="divFluShotEvent">Flu Shot Event</asp:ListItem>
-                    <asp:ListItem Value="divHealthEducationEvent">Health Education Event</asp:ListItem>
-                    <asp:ListItem Value="divOnlineEvent">Online Event</asp:ListItem>
-                </asp:DropDownList><br />
                 <h5>Select Health Workers to Host Event</h5>
-                <asp:CheckBoxList ID="cblUsers" runat="server"  CssClass="myCheckBoxList"  CellPadding="1">
+                <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="1">
                     <asp:ListItem>Alice</asp:ListItem>
                     <asp:ListItem>Bob</asp:ListItem>
                     <asp:ListItem>Charlie</asp:ListItem>
@@ -46,6 +39,13 @@
             <br />
             <br />
             <h2>Event Specific Details</h2>
+            <asp:DropDownList ID="ddlEventType" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlEventType_SelectedIndexChanged" AutoPostBack="True">
+                <asp:ListItem Value="Select Event Type">Select Event Type</asp:ListItem>
+                <asp:ListItem Value="divResourceTableEvent">Resource Table Event</asp:ListItem>
+                <asp:ListItem Value="divFluShotEvent">Flu Shot Event</asp:ListItem>
+                <asp:ListItem Value="divHealthEducationEvent">Health Education Event</asp:ListItem>
+                <asp:ListItem Value="divOnlineEvent">Online Event</asp:ListItem>
+            </asp:DropDownList><br />
             <asp:UpdatePanel ID="upEvents" runat="server" UpdateMode="Conditional">
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="ddlEventType" EventName="SelectedIndexChanged" />
