@@ -22,6 +22,7 @@ Here are some important commands you need to know:
     - this is mostly important for keeping the development branch updated -- this can be done by first switching to the development branch with `git checkout develop` then running `git pull`
 - `git checkout -b <branch-name>`: creates a new local branch using the current branch you are on as a starting point 
     - ex. `git checkout -b login-system`
+- `git merge <branch-name>`: merges the specified branch into the branch you are currently working in
 
 ### The Strategy
 Now that you know the basics, let's go over the branching strategy we'll use. This is commonly known as [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). It involves three kinds of branches: 
