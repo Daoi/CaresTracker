@@ -78,19 +78,30 @@ This is the main reason Git exists and what makes it so useful. Here's a brief s
 
 > In these cases, Git cannot automatically determine what is correct. Conflicts only affect the developer conducting the merge, the rest of the team is unaware of the conflict. Git will mark the file as being conflicted and halt the merging process. It is then the developers' responsibility to resolve the conflict.
 
-The error message from a merge conflict will look like:
+Let's use a simple example. There's a file called `filename.text` that a teammate and I are editing in our separate feature branches. He makes a change to the file, adding:
+```text
+I am Coder A and I wrote this.
+```
+He commits this to his feature branch and merges it into develop.
+
+At the same time, I committed this change to my local feature branch on the <ins>*same*</ins> line:
+```
+I, Coder B, wrote this to the same line.
+```
+
+At this point I see that there are new changes to develop, and I want to merge them into my feature branch. <ins>After checking out develop and pulling the latest changes</ins>, I head <ins>back to my feature branch</ins> to perform the merge. The error message from the merge conflict will look like:
 ```git
 git merge develop
 Auto-merging filename.txt
 CONFLICT (content): Merge conflict in filename.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ```
-Git will then add some text to the file to show you what the merge conflict is. Open it up in any text editor and you should see the added markers:
+Git will then add some text to the file to show you what the merge conflict is. Open it up in any text editor and you should see the added markers with both changes (HEAD is your change):
 ```text
 <<<<<< HEAD
-this is something I wrote in my feature branch
+I, Coder B, wrote this to the same line.
 =======
-this is something my teammate merged to develop
+I am Coder A and I wrote this.
 >>>>>> develop
 ```
 (I recommend Visual Studio Code because it has nicer UI tools to deal with changes, but normal Visual Studio works too)
@@ -99,23 +110,23 @@ You need to remove the markers and save the file to be able to continue.
 
 You can choose to keep one change:
 ```text
-this is something I wrote in my feature branch
+I am Coder A and I wrote this.
 ```
-OR
+or
 ```text
-this is something my teammate merged to develop
+I, Coder B, wrote to this to the same line.
 ```
 
-Or, you can modify both to get a combination/something completely new:
+**Or**, you can modify both to get a combination/something completely new:
 ```text
-this is something my teammate merged to develop earlier. i added this part afterward.
+We are Coders A & B. We worked on this together!
 ```
-In either case, remember to completely remove the text that Git added to mark where your HEAD and incoming branch changes were. You will have to repeat this process for all merge conflicts across files.
+In either case, remember to completely remove the text that Git added to mark where your HEAD and incoming branch changes were. You will have to repeat this process for all merge conflicts across multiple files if necessary.
 
-Once you've fixed all the conflicts *and* saved all the files using your text editor, return to your terminal and commit the change:
+Once you've <ins>fixed all the conflicts *and* saved</ins> all the files using your text editor, return to your terminal and commit the change:
 ```text
 git commit -a
 ```
 This may open up a default text editor that you'll need to save and exit from. Here are instructions for [nano](https://wiki.gentoo.org/wiki/Nano/Basics_Guide#Saving_and_exiting) and [vi](https://www.howtogeek.com/411210/how-to-exit-the-vi-or-vim-editor/).
 
-After saving the commit message, the merge process will be complete, and your branch will be ready to keep working in.
+After saving the commit message, the merge process will be complete, and your branch will be ready for a pull request or to keep working in.
