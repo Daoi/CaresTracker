@@ -70,7 +70,7 @@ git pull
 git checkout my-feature-branch
 git merge develop
 ```
-This should work fine as long as you didn't modify any lines of code that were already modified in one of the new changes you just merged in. In the next section, we'll cover how to handle these Merge Conflicts. I recommend only doing this once you're ready to create a pull request, unless you're certain you need to use the new code for your work. 
+I recommend only doing this once you're ready to create a pull request, unless you're certain you need to use the new code for your work. This should work fine as long as you didn't modify any lines of code that were already modified in one of the new changes you just merged in. In the next section, we'll cover how to handle these Merge Conflicts. 
 
 ### Handling [Merge Conflicts](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
 This is the main reason Git exists and what makes it so useful. Here's a brief summary from the linked article:
