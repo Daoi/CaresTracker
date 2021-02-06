@@ -8,6 +8,8 @@ Here are some important commands you need to know:
 - `git branch`: lists all of your local branches
 - `git checkout <branch-name>`: lets you switch to a branch
     - ex. `git checkout develop`
+- `git stash`: you cannot switch between branches if you have uncommitted changes in your local branch, so if you don't want to commit them you can "save them" by running this command
+    - if you want to get your changes back, run `git stash pop` after returning to the branch
 - `git status`: shows the files which have uncommitted changes
 - `git add <file-name>`: adds changes to the staging tree -- changes must be staged before they can be committed
 - `git commit -m 'commit message'`: commits the staged changes along with a message detailing what they are
@@ -69,3 +71,51 @@ git checkout my-feature-branch
 git merge develop
 ```
 This should work fine as long as you didn't modify any lines of code that were already modified in one of the new changes you just merged in. In the next section, we'll cover how to handle these Merge Conflicts. I recommend only doing this once you're ready to create a pull request, unless you're certain you need to use the new code for your work. 
+
+### Handling [Merge Conflicts](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
+This is the main reason Git exists and what makes it so useful. Here's a brief summary from the linked article:
+> Conflicts generally arise when two people have changed the same lines in a file.
+
+> In these cases, Git cannot automatically determine what is correct. Conflicts only affect the developer conducting the merge, the rest of the team is unaware of the conflict. Git will mark the file as being conflicted and halt the merging process. It is then the developers' responsibility to resolve the conflict.
+
+The error message from a merge conflict will look like:
+```git
+git merge develop
+Auto-merging filename.txt
+CONFLICT (content): Merge conflict in filename.txt
+Automatic merge failed; fix conflicts and then commit the result.
+```
+Git will then add some text to the file to show you what the merge conflict is. Open it up in any text editor and you should see the added markers:
+```text
+<<<<<< HEAD
+this is something I wrote in my feature branch
+=======
+this is something my teammate merged to develop
+>>>>>> develop
+```
+(I recommend Visual Studio Code because it has nicer UI tools to deal with changes, but normal Visual Studio works too)
+
+You need to remove the markers and save the file to be able to continue. 
+
+You can choose to keep one change:
+```text
+this is something I wrote in my feature branch
+```
+OR
+```text
+this is something my teammate merged to develop
+```
+
+Or, you can modify both to get a combination/something completely new:
+```text
+this is something my teammate merged to develop earlier. i added this part afterward.
+```
+In either case, remember to completely remove the text that Git added to mark where your HEAD and incoming branch changes were. You will have to repeat this process for all merge conflicts across files.
+
+Once you've fixed all the conflicts *and* saved all the files using your text editor, return to your terminal and commit the change:
+```text
+git commit -a
+```
+This may open up a default text editor that you'll need to save and exit from. Here are instructions for [nano](https://wiki.gentoo.org/wiki/Nano/Basics_Guide#Saving_and_exiting) and [vi](https://www.howtogeek.com/411210/how-to-exit-the-vi-or-vim-editor/).
+
+After saving the commit message, the merge process will be complete, and your branch will be ready to keep working in.
