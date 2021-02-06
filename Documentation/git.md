@@ -29,6 +29,10 @@ Now that you know the basics, let's go over the branching strategy we'll use. Th
 
 There is only one main branch and one develop branch, while there may be many feature branches, which branch off of develop. Each new feature should be coded in its own feature branch. 
 ```git
+# skip this command if you already have develop locally
+git fetch
+
+# continue
 # make sure to get develop's latest changes
 git checkout develop
 git pull
@@ -36,6 +40,7 @@ git pull
 # make a new branch with a name related to your feature
 git checkout -b file-upload
 ```
+
 Now you can push this new local branch to GitHub whenever you are ready.
 ```git
 # run this for the first push
@@ -51,3 +56,16 @@ First, make sure to push your latest changes. Then, go to your feature branch on
 Give the pull request a meaningful title, and leave a comment about what your new code does. On the left, side you can assign reviewers to look over your code.
 
 When you're ready, hit the "Create Pull Request" button. Now that the pull request is made, it must be reviewed by a team member to give feedback and test for bugs. Once testing is done and everything's working fine in the feature branch, the feature branch can be safely merged into **develop**. (Note: at this point everyone would need to pull from develop to get the new changes)
+
+#### What if someone else merges new changes into develop while I'm working on a feature branch?
+You won't see these changes in your feature branch because you branched off of develop *before* those changes were there. In order to get them into your feature branch, you'll need to merge develop into it:
+```git
+# get the latest changes to develop
+git checkout develop
+git pull
+
+# merge develop into your feature branch
+git checkout my-feature-branch
+git merge develop
+```
+This should work fine as long as you didn't modify any lines of code that were already modified in one of the new changes you just merged in. In the next section, we'll cover how to handle these Merge Conflicts. I recommend only doing this once you're ready to create a pull request, unless you're certain you need to use the new code for your work. 
