@@ -337,6 +337,7 @@
     <Compile Include="ResidentProfile.aspx.designer.cs">
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
