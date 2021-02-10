@@ -39,35 +39,18 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            SqlCommand comm = new SqlCommand();
-            comm.CommandType = CommandType.StoredProcedure;
-            comm.CommandText = "AddCHW";
-            comm.Parameters.AddWithValue("@theUserName", txtUsername.Text);
-            comm.Parameters.AddWithValue("@thePassword", txtPassword.Text);
-            comm.Parameters.AddWithValue("@theFirstName", txtFirstName.Text);
-            comm.Parameters.AddWithValue("@theLastName", txtLastName.Text);
-            comm.Parameters.AddWithValue("@theUserEmail", txtEmail.Text);
-            comm.Parameters.AddWithValue("@theUserPhoneNumber", txtPhoneNumber.Text);
+            CARESEntities entities = new CARESEntities();
+
+            CARESUser temp = new CARESUser();
+            temp.Username = txtUsername.Text;
+            temp.Password = txtPassword.Text;
+            temp.FirstName = txtFirstName.Text;
+            temp.LastName = txtLastName.Text;
+            temp.UserEmail = txtEmail.Text;
+            temp.UserPhoneNumber = txtPhoneNumber.Text;
+
+            entities.CARESUsers.Add(temp);
+            entities.SaveChanges();
         }
-
-        //public class CHW
-        //{
-        //    public int UserID { get; set; }
-        //    public string UserName { get; set; }
-        //    public string Password { get; set; }
-        //    public string FirstName { get; set; }
-        //    public string LastName { get; set; }
-        //    public string Email { get; set; }
-        //    public string PhoneNumber { get; set; }
-        //    public DateTime LastLogin { get; set; }
-        //    public string UserStatus { get; set; }
-        //    public string UserType { get; set; }
-        //    public int Supervisor { get; set; }
-        //    public int RegionID { get; set; }
-        //    public DateTime DateLastModified { get; set; }
-        //    public string UserLastModified { get; set; }
-
-        //    public CHW() { }
-        //}
     }
 }
