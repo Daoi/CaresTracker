@@ -52,6 +52,22 @@
                             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                         </div>
                     </div>
+                    <div class="row m-3 modal-header">
+                        <div class="col">
+                            <label>Email: </label>
+                        </div>
+                        <div class="col-7">
+                            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row m-3 modal-header">
+                        <div class="col">
+                            <label>Phone-number: </label>
+                        </div>
+                        <div class="col-7">
+                            <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <h5>Admin Information:</h5>
@@ -90,7 +106,7 @@
                     </div>
                     <div class="row m-3">
                         <div class="col">
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create CHW Profile" runat="server" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create CHW Profile" OnClick="btnSubmit_Click" runat="server" />
                         </div>
                     </div>
 
