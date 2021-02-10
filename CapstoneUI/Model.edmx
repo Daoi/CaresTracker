@@ -900,6 +900,18 @@
                 <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="CARESModel.CARESUser">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="CARESModel.Store.AddCHW" >
+                  <ScalarProperty Name="UserPhoneNumber" ParameterName="theUserPhoneNumber" />
+                  <ScalarProperty Name="UserEmail" ParameterName="theUserEmail" />
+                  <ScalarProperty Name="LastName" ParameterName="theLastName" />
+                  <ScalarProperty Name="FirstName" ParameterName="theFirstName" />
+                  <ScalarProperty Name="Password" ParameterName="thePassword" />
+                  <ScalarProperty Name="Username" ParameterName="theUserName" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="CARESModel.Event">

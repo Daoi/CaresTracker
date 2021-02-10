@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Tyler Hachadorian\Documents\GitHub\CovidTracking\CapstoneUI\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Mrah\source\repos\CaresTracker\CapstoneUI\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
