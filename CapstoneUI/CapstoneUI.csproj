@@ -404,6 +404,7 @@
     <Compile Include="ResidentProfile.aspx.designer.cs">
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Validation.cs" />
     <Compile Include="Service.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
