@@ -76,15 +76,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlNumberAttending;
         
         /// <summary>
-        /// ddlEventType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEventType;
-        
-        /// <summary>
         /// cblUsers control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList cblUsers;
+        
+        /// <summary>
+        /// ddlEventType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEventType;
         
         /// <summary>
         /// upEvents control.
