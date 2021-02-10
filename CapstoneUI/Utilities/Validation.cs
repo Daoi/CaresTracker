@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 
-namespace CapstoneUI
+namespace CapstoneUI.Utilities
 {
     /// <summary>
     /// The main Validation class.
