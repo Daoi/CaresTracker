@@ -383,5 +383,5 @@ CapstoneUI/obj/Debug/CapstoneUI.dll
 CapstoneUI/obj/Debug/CapstoneUI.pdb
 CapstoneUI/obj/Debug/CapstoneUI.csproj.CoreCompileInputs.cache
 
-# Config Files
+#Connection file
 connections.config
