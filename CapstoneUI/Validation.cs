@@ -27,8 +27,8 @@ namespace CapstoneUI
 
         public static bool IsPhoneNumber(string input)
         {
-            return Regex.IsMatch(input, @"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$
-") || Regex.IsMatch(input, @"^\d{10}$");
+            return Regex.IsMatch(input, @"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$") 
+                || Regex.IsMatch(input, @"^\d{10}$");
         }
 
         // returns true is string is only numbers
