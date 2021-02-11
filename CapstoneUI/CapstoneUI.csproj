@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Amazon.Extensions.CognitoAuthentication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Amazon.Extensions.CognitoAuthentication.2.0.3\lib\netstandard2.0\Amazon.Extensions.CognitoAuthentication.dll</HintPath>
+    </Reference>
     <Reference Include="AWSSDK.CognitoIdentity, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>..\packages\AWSSDK.CognitoIdentity.3.5.2.10\lib\net45\AWSSDK.CognitoIdentity.dll</HintPath>
     </Reference>
