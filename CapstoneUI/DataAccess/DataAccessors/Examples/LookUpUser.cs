@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace CapstoneUI.DataAccess.DataAccessors
 {
-    public class ExampleClass : DataSupport, IData
+    public class LookUpUser : DataSupport, IData
     {
         /// <summary>
         /// Important Note:
@@ -21,7 +21,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
         /// </summary>
 
         //A constructor to set some defaults that will be the same everytime we use this class(i.e. the command name and type)
-        public ExampleClass()
+        public LookUpUser()
         {
             //ConnectionString = GetConnectionString("dbConnectionString");
             CommandText = "GetUserExample";
@@ -36,12 +36,14 @@ namespace CapstoneUI.DataAccess.DataAccessors
         /// <param name="age"></param>
         /// <param name="testResult"></param>
         /// <returns></returns>
-        public DataTable LookUpUser(int age, bool testResult)
+        public DataTable RunCommand(int age, bool testResult)
         {
-            Parameters = new SqlParameter[2] { new SqlParameter("UserAge", age), new SqlParameter("TestResult", testResult) };
-            ExecuteQuery eq = new ExecuteQuery();
-            return eq.ExecuteAdapter(this);
+            Parameters = new SqlParameter[2] { new SqlParameter("UserAge", age), new SqlParameter("TestResult", testResult) }; //Add parameters required for command
+            ExecuteQuery eq = new ExecuteQuery(); //Create instance of class that handles command obj
+            return eq.ExecuteAdapter(this); //Run the command
         }
+
+
 
     }
 }
