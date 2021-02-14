@@ -51,8 +51,7 @@ namespace CapstoneUI.Utilities
         /// <returns>True for a match.</returns>
         public static bool IsPhoneNumber(string input)
         {
-            return Regex.IsMatch(input, @"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$") 
-                || Regex.IsMatch(input, @"^\d{10}$");
+            return Regex.IsMatch(input, @"^(\+\d{11})$");
         }
 
         /// <summary>
