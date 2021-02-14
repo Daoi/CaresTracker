@@ -1,5 +1,5 @@
 ﻿using System;
-
+using CapstoneUI.Utilities;
 
 namespace CapstoneUI
 {
@@ -10,11 +10,10 @@ namespace CapstoneUI
             lblUserInfo.Text = $"Welcome, {Session["UserName"].ToString()}";
             lblUserInfo.Visible = true;
             lblUserInfo.Enabled = true;
-            if((int)Session["AccountType"] == 0)
+            if ((int)Session["AccountType"] == 0)
             {
                 divCreateCHW.Visible = false;
             }
-
         }
 
         protected void btnCreateResidentProfile_Click(object sender, EventArgs e)
