@@ -367,7 +367,6 @@
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AWSCognitoManager.cs" />
-    <Compile Include="Utilities\Validation.cs" />
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
