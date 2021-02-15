@@ -24,7 +24,10 @@
                     <h1>Resident Info</h1>
                     <h2>Full Name</h2>
                     <p>
-                        <asp:TextBox ID="tbName" runat="server" placeholder="Resident Name" CssClass="inputText"></asp:TextBox>
+                        <asp:TextBox ID="tbFirstName" runat="server" placeholder="Resident First Name" CssClass="inputText"></asp:TextBox>
+                    </p>    
+                    <p>
+                        <asp:TextBox ID="tbLastName" runat="server" placeholder="Resident Last Name" CssClass="inputText"></asp:TextBox>
                     </p>
                     <h2>Age</h2>
                     <p>

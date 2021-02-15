@@ -34,8 +34,17 @@
         </asp:Panel>
         <p>
             &nbsp;</p>
-        <p>
-            &nbsp;</p>
+
+        <h2>
+            Look Up User
+        </h2>
+        <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Search" />
+        <br />
+
+                <p>
+                    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+        </p>
         <p>
             &nbsp;</p>
         <p>

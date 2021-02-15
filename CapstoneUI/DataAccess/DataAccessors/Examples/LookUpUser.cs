@@ -36,9 +36,9 @@ namespace CapstoneUI.DataAccess.DataAccessors
         /// <param name="age"></param>
         /// <param name="testResult"></param>
         /// <returns></returns>
-        public DataTable RunCommand(int age, bool testResult)
+        public DataTable RunCommand(string name)
         {
-            Parameters = new SqlParameter[2] { new SqlParameter("UserAge", age), new SqlParameter("TestResult", testResult) }; //Add parameters required for command
+            Parameters = new SqlParameter[1] { new SqlParameter("UserName", name) }; //Add parameters required for command
             ExecuteQuery eq = new ExecuteQuery(); //Create instance of class that handles command obj
             return eq.ExecuteAdapter(this); //Run the command
         }

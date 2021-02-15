@@ -94,13 +94,22 @@ namespace CapstoneUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl residentInfoForm;
         
         /// <summary>
-        /// tbName control.
+        /// tbFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbName;
+        protected global::System.Web.UI.WebControls.TextBox tbFirstName;
+        
+        /// <summary>
+        /// tbLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbLastName;
         
         /// <summary>
         /// tbAge control.
