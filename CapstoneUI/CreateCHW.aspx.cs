@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Data;
+using System.Data.SqlClient;
+
 namespace CapstoneUI
 {
     public partial class CreateCHW : System.Web.UI.Page
@@ -12,11 +15,31 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            // if (!IsPostBack)
+            // {
+            //   stored procedure to retrieve all regions
+            //   ddlRegion.DataSource = ... 
+            //   ddlRegion.DataTextField = "RegionName"
+            //   ddlRegion.DataValueField = "RegionID"
+            //   ddlRegion.DataBind()
+            //   
+            //   stored procedure to retrieve all users with type admin/supervisor
+            //   ddlSupervisor.DataSource = ...
+            //   ddlSupervisor.DataTextField = "FirstName" + " " + "LastName" 
+            //   ddlSupervisor.DataValueField = "UserID"
+            //   ddlSuperVisor.DataBind()
+            // }
+
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
             Server.Transfer("Homepage.aspx");
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -45,9 +45,6 @@
 
 .chwInfo {
     background-color: lightgrey;
-    position: absolute;
-    top: 10vh;
-    right: 100px;
     padding: 10px;
 }
 
@@ -85,16 +82,6 @@
 
 .footerCon {
     background-color: #F7F7F7;
-}
-
-.helpfulLinks{
-  background-color: lightgrey;
-  position: absolute;
-  margin-left: 60vw;
-  margin-right: 10vw;
-  margin-bottom: 20vw;
-  padding: 2rem;
-
 }
 
 .loginContainer {

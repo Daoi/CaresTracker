@@ -382,3 +382,7 @@ CapstoneUI/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 CapstoneUI/obj/Debug/CapstoneUI.dll
 CapstoneUI/obj/Debug/CapstoneUI.pdb
 CapstoneUI/obj/Debug/CapstoneUI.csproj.CoreCompileInputs.cache
+
+#Connection file
+connections.config
+CapstoneUI/appSettings.config
