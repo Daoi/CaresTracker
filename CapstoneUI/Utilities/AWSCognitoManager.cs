@@ -50,10 +50,7 @@ namespace CapstoneUI.Utilities
             this.authResult = null;
             this.userAttributes = null;
         }
-        public Dictionary<string, string> GetUserAttributes()
-        {
-            return this.userAttributes;
-        }
+        
         /// <summary>
         /// Authenticates user credentials. Saves user info and credentials to class variables.
         /// </summary>
@@ -80,18 +77,20 @@ namespace CapstoneUI.Utilities
             }
         }
 
-        private async Task<Dictionary<string, string>> GetUserDetailsAsync()
-        {
-            Dictionary<string, string> toReturn = new Dictionary<string, string>();
-            var resp = await user.GetUserDetailsAsync();
-            foreach (AttributeType item in resp.UserAttributes)
-            {
-                toReturn.Add(item.Name, item.Value);
-            }
-            return toReturn;
-        }
-
-
+        /// <summary>
+        /// Create a new user in the user pool.
+        /// Sends a verification link to provided email.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="email"></param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="phoneNumber">Must match the format: +12155555555</param>
+        /// <param name="region"></param>
+        /// <param name="supervisor"></param>
+        /// <param name="isAdmin">0: CHW, 1: Supervisors, Directors</param>
+        /// <returns></returns>
         public async Task<SignUpResponse> CreateUserAsync(string username, string password, string email,
             string firstName, string lastName, string phoneNumber, string region, string supervisor, int isAdmin = 0)
         {
@@ -156,6 +155,32 @@ namespace CapstoneUI.Utilities
 
                 return await client.SignUpAsync(signUpRequest);
             }
+        }
+
+        /// <summary>
+        /// Get the user details from the user pool during authentication.
+        /// </summary>
+        /// <returns></returns>
+        private async Task<Dictionary<string, string>> GetUserDetailsAsync()
+        {
+            Dictionary<string, string> toReturn = new Dictionary<string, string>();
+            var resp = await user.GetUserDetailsAsync();
+            foreach (AttributeType item in resp.UserAttributes)
+            {
+                toReturn.Add(item.Name, item.Value);
+            }
+            return toReturn;
+        }
+
+        /// <summary>
+        /// Use to access user attributes after sign in.
+        /// Dictionary keys match user pool attribute names.
+        /// Create public accessors to use values outside of this class.
+        /// </summary>
+        /// <returns>A dictionary mapping attribute names to values.</returns>
+        private Dictionary<string, string> GetUserAttributes()
+        {
+            return this.userAttributes;
         }
 
         /// <summary>
