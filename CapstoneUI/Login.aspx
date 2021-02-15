@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapstoneUI.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapstoneUI.WebForm1" Async="true"%>
 
 <!DOCTYPE html>
 
@@ -24,6 +24,8 @@
                     <img src="img/pha_logonew.png" class="loginImg" />
                 </div>
                 <div class="card-body">
+                    <asp:Label ID="lblError" runat="server" CssClass="h6 alert-danger"></asp:Label>
+                    <br />
                     <br />
                     <div class="form-group row justify-content-center">
                         <div class="col-md-6">
@@ -37,7 +39,7 @@
                             <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password"></asp:TextBox>
                         </div>
                     </div>
-                    <p class="card-text" style="color: deepskyblue">Forgot Password or Username?</p>
+                    <p class="card-text" style="color: deepskyblue">Forgot Username or Password?</p>
                     <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-primary btn-lg" OnClick="btnLogin_Click" />
                 </div>
                 <div class="card-footer text-muted">
