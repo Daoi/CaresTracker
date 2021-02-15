@@ -225,15 +225,16 @@ input {
 }
 
     .inputCheckBox {
-        display: inline-flex;
+        display: inline-table;
     }
 
         .inputCheckBox input[type="checkbox"] {
-            margin-right: 2px;
+            margin-right: .3em;
             font-family: 'Montserrat', sans-serif;
         }
 
         .inputCheckBox label {
             margin-top: .3em;
             font-size: 1.2em;
+            display: inline;
         }
