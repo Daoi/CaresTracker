@@ -14,7 +14,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
 
         public CHWWriter(List<string> values)
         {
-            CommandText = "AddCHW";
+            CommandText = "AddCHWTest";
             CommandType = CommandType.StoredProcedure;
             Parameters = new CHWParameters().Fill(values);
         }
