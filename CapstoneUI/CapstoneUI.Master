@@ -1,4 +1,4 @@
-﻿c<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CapstoneUI.Master.cs" Inherits="CapstoneUI.Site1" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CapstoneUI.Master.cs" Inherits="CapstoneUI.Site1" %>
 
 <!DOCTYPE html>
 
