@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -61,13 +60,8 @@
     <Reference Include="AWSSDK.SecurityToken, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>..\packages\AWSSDK.SecurityToken.3.5.1.49\lib\net45\AWSSDK.SecurityToken.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -96,6 +90,7 @@
     <Content Include="AdminInteractionList.aspx" />
     <Content Include="CHWInteractionList.aspx" />
     <Content Include="CHWManagement.aspx" />
+    <Content Include="connections.config" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -113,16 +108,6 @@
     <Content Include="img\pha_logonew.png" />
     <Content Include="ImportData.aspx" />
     <Content Include="InteractionForm.aspx" />
-    <Content Include="Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
     <Content Include="NewResident.aspx" />
     <Content Include="ResidentInteractionForm.aspx" />
     <Content Include="ResidentLookUp.aspx" />
@@ -151,14 +136,6 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Login.aspx" />
-    <EntityDeploy Include="Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Content>
-    <Content Include="connections.config" />
     <Content Include="appSettings.config">
       <SubType>Designer</SubType>
     </Content>
@@ -241,6 +218,7 @@
     <Content Include="style\InteractionFormStyle.css" />
     <Content Include="style\loginStyle.css" />
     <Content Include="style\style.css" />
+    <Content Include="TestPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -261,9 +239,6 @@
     </Compile>
     <Compile Include="AdminInteractionList.aspx.designer.cs">
       <DependentUpon>AdminInteractionList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CARESUser.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="CHWInteractionList.aspx.cs">
       <DependentUpon>CHWInteractionList.aspx</DependentUpon>
@@ -293,16 +268,18 @@
     <Compile Include="CreateResident.aspx.designer.cs">
       <DependentUpon>CreateResident.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataAccessors\Examples\CHWParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\Examples\CHWWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\Examples\LookUpUser.cs" />
+    <Compile Include="DataAccess\DataSupport.cs" />
+    <Compile Include="DataAccess\ExecuteData.cs" />
     <Compile Include="Event.aspx.cs">
       <DependentUpon>Event.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Event.aspx.designer.cs">
       <DependentUpon>Event.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Event.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EventCreator.aspx.cs">
       <DependentUpon>EventCreator.aspx</DependentUpon>
@@ -332,9 +309,6 @@
     <Compile Include="Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HousingDevelopment.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="ImportData.aspx.cs">
       <DependentUpon>ImportData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -342,33 +316,12 @@
     <Compile Include="ImportData.aspx.designer.cs">
       <DependentUpon>ImportData.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interaction.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="InteractionForm.aspx.cs">
       <DependentUpon>InteractionForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="InteractionForm.aspx.designer.cs">
       <DependentUpon>InteractionForm.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="InteractionService.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="NewResident.aspx.cs">
       <DependentUpon>NewResident.aspx</DependentUpon>
@@ -391,15 +344,6 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Region.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Residence.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resident.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ResidentInteractionForm.aspx.cs">
       <DependentUpon>ResidentInteractionForm.aspx</DependentUpon>
@@ -429,10 +373,14 @@
     </Compile>
     <Compile Include="Symptom.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Table.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -488,10 +436,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

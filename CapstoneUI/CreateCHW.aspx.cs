@@ -39,18 +39,7 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            CARESEntities entities = new CARESEntities();
 
-            CARESUser temp = new CARESUser();
-            temp.Username = txtUsername.Text;
-            temp.Password = txtPassword.Text;
-            temp.FirstName = txtFirstName.Text;
-            temp.LastName = txtLastName.Text;
-            temp.UserEmail = txtEmail.Text;
-            temp.UserPhoneNumber = txtPhoneNumber.Text;
-
-            entities.CARESUsers.Add(temp);
-            entities.SaveChanges();
         }
     }
 }
