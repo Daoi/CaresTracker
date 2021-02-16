@@ -16,9 +16,9 @@
                 </div>
                 <div class="container mt-5 mr-5 w-75 mb-5">
                     <div class="row">
-                    <div class="col">
-                        <h5>Personal Information:</h5>
-                    </div>
+                        <div class="col">
+                            <h5>Personal Information:</h5>
+                        </div>
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
@@ -106,9 +106,44 @@
                             <asp:TextBox ID="txtFamilySize" runat="server"></asp:TextBox>
                         </div>
                     </div>
+                    
+                    <%-- Conditional Housing Info --%>
+                    <h2>Housing Information</h2>
+                    <asp:DropDownList ID="ddlHousing" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
+                        <asp:ListItem Value="Select Housing Type">Select Housing Type</asp:ListItem>
+                        <asp:ListItem Value="divHouse">House</asp:ListItem>
+                        <asp:ListItem Value="divDevelopmentUnit">Development Unit</asp:ListItem>
+                    </asp:DropDownList><br />
+                    <asp:UpdatePanel ID="upHousing" runat="server" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="ddlHousing" EventName="SelectedIndexChanged" />
+                        </Triggers>
+                        <ContentTemplate>
+                            <%-- House Start --%>
+                            <div id="divHouse" runat="server" visible="false">
+                                <div class="eventControlBG">
+                                    <asp:TextBox ID="txtRegionID" placeholder="Region ID" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <asp:TextBox ID="txtAddress" placeholder="Address" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <asp:TextBox ID="txtHouseNumOccupants" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <asp:TextBox ID="txtHouseType" placeholder="House Type" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <%-- House End --%>
+                            <%-- Development Unit Start --%>
+                            <div id="divDevelopmentUnit" runat="server" visible="false">
+                                <div class="eventControlBG">
+                                    <asp:TextBox ID="txtDevNumOccupants" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <asp:TextBox ID="txtUnitNumber" placeholder="Unit Number" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <asp:TextBox ID="txtDevelopmentID" placeholder="Development ID" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <br />
+                                </div>
+                            </div>
+                            <%-- Development Unit End --%>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                     <div class="row m-3">
                         <div class="col">
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click1" />
                         </div>
                     </div>
                 </div>
