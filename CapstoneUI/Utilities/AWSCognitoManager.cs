@@ -165,6 +165,77 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
+        /// Sends a verification code to user's email.
+        /// Email must already have beeen verified.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<ForgotPasswordResponse> SendForgotPasswordCodeAsync(string username)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new ForgotPasswordRequest()
+                {
+                    Username = username,
+                    ClientId = _clientID
+                };
+
+                return await client.ForgotPasswordAsync(req);
+            }
+        }
+
+        /// <summary>
+        /// Changes the specified user's password.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password">New password</param>
+        /// <param name="code">Verification code from email</param>
+        /// <returns></returns>
+        public async Task<ConfirmForgotPasswordResponse> ChangePasswordAsync(string username, string password, string code)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new ConfirmForgotPasswordRequest()
+                {
+                    Username = username,
+                    Password = password,
+                    ConfirmationCode = code,
+                    ClientId = _clientID
+                };
+
+                return await client.ConfirmForgotPasswordAsync(req);
+            }
+        }
+
+        /// <summary>
+        /// Updates user account to show they have already logged in for the first time.
+        /// This let's the system keep track of users that have not changed their temporary password.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<UpdateUserAttributesResponse> ConfirmFirstSignInAsync()
+        {
+            using (var client = this.GetClient())
+            {
+                List<AttributeType> lst = new List<AttributeType>()
+                {
+                    new AttributeType()
+                    {
+                        Name = "custom:first_login",
+                        Value = "0"
+                    }
+                };
+
+                var req = new UpdateUserAttributesRequest()
+                {
+                    UserAttributes = lst,
+                    AccessToken = this.authResult.AccessToken
+                };
+
+                return await client.UpdateUserAttributesAsync(req);
+            }
+        }
+
+        /// <summary>
         /// Get the user details from the user pool during authentication.
         /// </summary>
         /// <returns></returns>
