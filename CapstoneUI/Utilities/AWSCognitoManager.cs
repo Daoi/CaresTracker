@@ -153,6 +153,13 @@ namespace CapstoneUI.Utilities
                 };
                 signUpRequest.UserAttributes.Add(attrIsAdmin);
 
+                var attrFirstLogin = new AttributeType
+                {
+                    Name = "custom:first_login",
+                    Value = "1"
+                };
+                signUpRequest.UserAttributes.Add(attrFirstLogin);
+
                 return await client.SignUpAsync(signUpRequest);
             }
         }
@@ -205,6 +212,14 @@ namespace CapstoneUI.Utilities
         public int IsAdmin
         {
             get { return int.Parse(this.userAttributes["custom:is_admin"]); }
+        }
+
+        /// <summary>
+        /// Use to make sure users change their temporary passwords.
+        /// </summary>
+        public bool IsFirstLogin
+        {
+            get { return int.Parse(this.userAttributes["custom:first_login"]) == 1; }
         }
 
         /// <summary>
