@@ -13,12 +13,16 @@
                 </nav>
                 <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2 px-0" Style="width: 76%"></asp:Label>
             </div>
-            <div id="eventControlBG" style="margin-top: 3%">
+            <div id="eventControlBG" >
                 <h2>Event General Details</h2>
-                <asp:TextBox ID="txtEventDate" placeholder="Event Date" runat="server" CssClass="form-control"></asp:TextBox><br />
-                <asp:TextBox ID="txtEventTimeStart" placeholder="Event Time Start" runat="server" CssClass="form-control"></asp:TextBox><br />
-                <asp:TextBox ID="txtEventTimeEnd" placeholder="Event Time End" runat="server" CssClass="form-control"></asp:TextBox><br />
+                <asp:TextBox ID="txtEventName" placeholder="Event Name" runat="server" CssClass="form-control"></asp:TextBox><br />
                 <asp:TextBox ID="txtEventLocation" placeholder="Event Location" runat="server" CssClass="form-control"></asp:TextBox><br />
+                <asp:Label ID="lblEventDate" runat="server" Text="Event Date:"></asp:Label>
+                <asp:TextBox ID="txtEventDate" placeholder="Event Date" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox><br />
+                <asp:Label ID="lblEventStartTime" runat="server" Text="Start Time:"></asp:Label>
+                <asp:TextBox ID="txtEventTimeStart" placeholder="Event Time Start" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
+                <asp:Label ID="lblEventEndTime" runat="server" Text="End Time:"></asp:Label>
+                <asp:TextBox ID="txtEventTimeEnd" placeholder="Event Time End" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
                 <asp:DropDownList ID="ddlNumberAttending" CssClass="form-control" runat="server">
                     <asp:ListItem Value="Select Attendee Range">Select Attendance Range</asp:ListItem>
                     <asp:ListItem Value="1 to 25">1 to 25</asp:ListItem>
@@ -27,14 +31,10 @@
                     <asp:ListItem Value="76 to 100">76 to 100</asp:ListItem>
                 </asp:DropDownList><br />
                 <h5>Select Health Workers to Host Event</h5>
-                <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="1">
-                    <asp:ListItem>Alice</asp:ListItem>
-                    <asp:ListItem>Bob</asp:ListItem>
-                    <asp:ListItem>Charlie</asp:ListItem>
-                    <asp:ListItem>David</asp:ListItem>
-                </asp:CheckBoxList>
-                <h5>Event Description and Notes</h5>
-                <textarea class="w-100" id="TextArea1" rows="6"></textarea>
+                <div id="userCBLDiv" class="DataboundCBLOverflow row">
+                    <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="20" RepeatColumns="4" RepeatDirection="Horizontal">
+                    </asp:CheckBoxList>
+                </div>
             </div>
             <br />
             <br />
@@ -55,7 +55,6 @@
                     <div id="divResourceTableEvent" runat="server" visible="false">
                         <div class="eventControlBG">
                             <asp:TextBox ID="txtRTETopic" placeholder="Event Topic" runat="server" CssClass="form-control"></asp:TextBox><br />
-                            <asp:TextBox ID="txtRTEDescription" placeholder="Event Description" runat="server" CssClass="form-control"></asp:TextBox><br />
                         </div>
                     </div>
                     <%-- Resource Table Event End --%>
@@ -76,7 +75,6 @@
                     <div id="divHealthEducationEvent" runat="server" visible="false">
                         <div class="eventControlBG">
                             <asp:TextBox ID="txtHEETopic" placeholder="Event Topic" runat="server" CssClass="form-control"></asp:TextBox><br />
-                            <asp:TextBox ID="txtHEEDescription" placeholder="Event Description" runat="server" CssClass="form-control"></asp:TextBox><br />
                         </div>
                     </div>
                     <%-- Health Education Event End --%>
@@ -84,12 +82,16 @@
                     <div id="divOnlineEvent" runat="server" visible="false">
                         <div class="eventControlBG">
                             <asp:TextBox ID="txtOETopic" placeholder="Event Topic" runat="server" CssClass="form-control"></asp:TextBox><br />
-                            <asp:TextBox ID="txtOEDescription" placeholder="Event Description" runat="server" CssClass="form-control"></asp:TextBox><br />
                         </div>
                     </div>
                     <%-- Online Event End --%>
                 </ContentTemplate>
             </asp:UpdatePanel>
+            <div>
+                <h5>Event Description and Notes</h5>
+                <textarea class="w-100" id="TextArea1" rows="6"></textarea>
+            </div>
+
             <br />
             <br />
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-lg mb-1" />
