@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CapstoneUI.EventCreator" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CapstoneUI.EventCreator" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container overflow-hidden">
-        <div class="eventCreator px-5 h-100">
+    <div class="container-fluid backgroundblue">
+        <div class="container homepage">
             <div class="row  modal-header" style="height: 7%; padding-left: 0!important; padding-right: 0!important; font-size: large; padding-bottom: 2%">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-white">
@@ -56,18 +56,18 @@
                         <div class="eventControlBG">
                             <asp:TextBox ID="txtRTETopic" placeholder="Event Topic" runat="server" CssClass="form-control"></asp:TextBox><br />
                         </div>
-                    </div>
-                    <%-- Resource Table Event End --%>
-                    <%-- Flu Shot Event Start --%>
-                    <div id="divFluShotEvent" runat="server" visible="false">
-                        <div class="eventControlBG">
-                            <asp:DropDownList ID="ddlFSENurse" CssClass="form-control" runat="server">
-                                <asp:ListItem>Select Healthcare Provider</asp:ListItem>
-                                <asp:ListItem>Jane Nurse</asp:ListItem>
-                                <asp:ListItem>John Nurse</asp:ListItem>
-                                <asp:ListItem>Unlisted</asp:ListItem>
-                            </asp:DropDownList>
-                            <br />
+                        <%-- Resource Table Event End --%>
+                        <%-- Flu Shot Event Start --%>
+                        <div id="divFluShotEvent" runat="server" visible="false">
+                            <div class="eventControlBG">
+                                <asp:DropDownList ID="ddlFSENurse" CssClass="form-control" runat="server">
+                                    <asp:ListItem>Select Healthcare Provider</asp:ListItem>
+                                    <asp:ListItem>Jane Nurse</asp:ListItem>
+                                    <asp:ListItem>John Nurse</asp:ListItem>
+                                    <asp:ListItem>Unlisted</asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                            </div>
                         </div>
                     </div>
                     <%-- Flu Shot Event End --%>
