@@ -89,8 +89,8 @@
                             <label>Race: </label>
                         </div>
                         <div class="col-7">
-                            <asp:DropDownList ID="ddlRace" RepeatDirection="Horizontal" runat="server">
-                                <asp:ListItem>American Indian or Alaska Native</asp:ListItem>
+                            <asp:DropDownList CssClass="w-100" ID="ddlRace" RepeatDirection="Horizontal" runat="server">
+                                <asp:ListItem>American Indian/Alaska Native</asp:ListItem>
                                 <asp:ListItem>Asian</asp:ListItem>
                                 <asp:ListItem>Black or African American</asp:ListItem>
                                 <asp:ListItem>Native Hawaiian or Other Pacific Islander</asp:ListItem>

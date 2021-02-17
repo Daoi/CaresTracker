@@ -166,3 +166,19 @@ thead {
 #divrblGender input[type="radio"]{
     margin-left: 4px;
 }
+
+.DataboundCBLOverflow{
+    display: inline-flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+    .DataboundCBLOverflow label {
+        display: inline;
+
+    }
+
+    .DataboundCBLOverflow input[type=checkbox] {
+        display: inline-table;
+        vertical-align: -.01em;
+    }
