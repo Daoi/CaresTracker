@@ -13,7 +13,7 @@
                     <asp:LinkButton ID="meetingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Meeting Information</asp:LinkButton>
                     <asp:LinkButton ID="residentHealth" CssClass="active" runat="server" OnClick="formNav_Click">Resident Health</asp:LinkButton>
                     <asp:LinkButton ID="services" CssClass="active" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
-                    <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Other</asp:LinkButton>
+                    <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan</asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"></asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnHome" CssClass="active" runat="server" OnClick="lnkBtnHome_Click"><i class="fas fa-home" style="margin-right: .5rem"></i>Return To Dashboard</asp:LinkButton>
                 </nav>
@@ -196,7 +196,7 @@
                 <%-- Services Form End --%>
                 <%-- Other Form Start --%>
                 <div id="otherForm" class="otherInfo" runat="server">
-                    <h1>Other Comments</h1>
+                    <h1>Action Plan</h1>
                     <h2>Next Steps:</h2>
                     <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
                 </div>
