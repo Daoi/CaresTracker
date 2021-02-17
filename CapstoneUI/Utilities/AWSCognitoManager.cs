@@ -82,7 +82,7 @@ namespace CapstoneUI.Utilities
         /// Sends a verification link to provided email.
         /// </summary>
         /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="password">8 characters: uppercase, lower</param>
         /// <param name="email"></param>
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
