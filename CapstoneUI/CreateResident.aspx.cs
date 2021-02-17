@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataAccess.DataAccessors;
 
 namespace CapstoneUI
 {
@@ -12,7 +14,13 @@ namespace CapstoneUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Get list of all developments
+                GetAllDevelopments GAD = new GetAllDevelopments();
+                DataTable developmentsList = GAD.ExecuteCommand();
 
+            }
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -27,21 +35,15 @@ namespace CapstoneUI
             // bool valid = Validate();
             // if(valid){...}
 
-            CARESEntities entities = new CARESEntities();
-
-            Resident temp = new Resident();
-            temp.FirstName = txtFirstName.Text;
-            temp.LastName = txtLastName.Text;
-            temp.DateOfBirth = DateTime.Parse(txtDOB.Text); // DOB input field will need to be validated beforehand to ensure that it can be parsed to DateTime
-            temp.ResidentEmail = txtEmail.Text;
-            temp.ResidentPhoneNumber = txtPhoneNumber.Text;
-            temp.RelationshipToHoH = ddlRelationshipHOH.SelectedValue;
-            temp.Gender = rblGender.SelectedValue;
-            temp.Race = ddlRace.SelectedValue;
-            temp.FamilySize = Int32.Parse(txtFamilySize.Text); //FamilySize input field will need to be validated beforehand to ensure that it can be parsed to Int
-
-            entities.Residents.Add(temp);
-            entities.SaveChanges();
+            //FirstName = txtFirstName.Text;
+            //LastName = txtLastName.Text;
+            //DateOfBirth = DateTime.Parse(txtDOB.Text); // DOB input field will need to be validated beforehand to ensure that it can be parsed to DateTime
+            //ResidentEmail = txtEmail.Text;
+            //ResidentPhoneNumber = txtPhoneNumber.Text;
+            //RelationshipToHoH = ddlRelationshipHOH.SelectedValue;
+            //Gender = rblGender.SelectedValue;
+            //Race = ddlRace.SelectedValue;
+            //FamilySize = Int32.Parse(txtFamilySize.Text); //FamilySize input field will need to be validated beforehand to ensure that it can be parsed to Int
         }
 
         protected void ddlHousing_SelectedIndexChanged(object sender, EventArgs e)

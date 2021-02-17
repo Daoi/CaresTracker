@@ -148,13 +148,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtRegionID;
         
         /// <summary>
-        /// txtAddress control.
+        /// txtHouseAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtHouseAddress;
         
         /// <summary>
         /// txtHouseNumOccupants control.
@@ -166,15 +166,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtHouseNumOccupants;
         
         /// <summary>
-        /// txtHouseType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHouseType;
-        
-        /// <summary>
         /// divDevelopmentUnit control.
         /// </summary>
         /// <remarks>
@@ -184,31 +175,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDevelopmentUnit;
         
         /// <summary>
-        /// txtDevNumOccupants control.
+        /// ddlDevelopments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDevNumOccupants;
-        
-        /// <summary>
-        /// txtUnitNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUnitNumber;
-        
-        /// <summary>
-        /// txtDevelopmentID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDevelopmentID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDevelopments;
         
         /// <summary>
         /// btnSubmit control.

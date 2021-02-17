@@ -272,8 +272,11 @@
     <Compile Include="DataAccess\DataAccessors\Examples\CHWParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\CHWWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\LookUpUser.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetAllDevelopments.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentWriter.cs" />
     <Compile Include="DataAccess\DataSupport.cs" />
     <Compile Include="DataAccess\ExecuteData.cs" />
+    <Compile Include="DataAccess\ResidentParameters.cs" />
     <Compile Include="Event.aspx.cs">
       <DependentUpon>Event.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

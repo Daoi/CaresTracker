@@ -109,7 +109,7 @@
                     
                     <%-- Conditional Housing Info --%>
                     <h2>Housing Information</h2>
-                    <asp:DropDownList ID="ddlHousing" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlHousing" CssClass="form-control mt-2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
                         <asp:ListItem Value="Select Housing Type">Select Housing Type</asp:ListItem>
                         <asp:ListItem Value="divHouse">House</asp:ListItem>
                         <asp:ListItem Value="divDevelopmentUnit">Development Unit</asp:ListItem>
@@ -123,18 +123,15 @@
                             <div id="divHouse" runat="server" visible="false">
                                 <div class="eventControlBG">
                                     <asp:TextBox ID="txtRegionID" placeholder="Region ID" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                    <asp:TextBox ID="txtAddress" placeholder="Address" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <asp:TextBox ID="txtHouseAddress" placeholder="Address" runat="server" CssClass="form-control"></asp:TextBox><br />
                                     <asp:TextBox ID="txtHouseNumOccupants" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                    <asp:TextBox ID="txtHouseType" placeholder="House Type" runat="server" CssClass="form-control"></asp:TextBox><br />
                                 </div>
                             </div>
                             <%-- House End --%>
                             <%-- Development Unit Start --%>
                             <div id="divDevelopmentUnit" runat="server" visible="false">
                                 <div class="eventControlBG">
-                                    <asp:TextBox ID="txtDevNumOccupants" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                    <asp:TextBox ID="txtUnitNumber" placeholder="Unit Number" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                    <asp:TextBox ID="txtDevelopmentID" placeholder="Development ID" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <asp:DropDownList id="ddlDevelopments" runat="server"></asp:DropDownList>
                                     <br />
                                 </div>
                             </div>
