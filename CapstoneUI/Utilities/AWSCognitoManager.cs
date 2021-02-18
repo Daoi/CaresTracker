@@ -416,7 +416,7 @@ namespace CapstoneUI.Utilities
         /// <returns>Cognito client</returns>
         private AmazonCognitoIdentityProviderClient GetClient()
         {
-            return new AmazonCognitoIdentityProviderClient(this.credentials);
+            return new AmazonCognitoIdentityProviderClient(this.credentials, RegionEndpoint.USEast1);
         }
     }
 }
