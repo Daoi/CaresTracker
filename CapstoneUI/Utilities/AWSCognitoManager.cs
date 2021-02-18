@@ -28,7 +28,12 @@ namespace CapstoneUI.Utilities
         private readonly string _clientID = ConfigurationManager.AppSettings["CLIENT_ID"];
         private readonly string _userPoolID = ConfigurationManager.AppSettings["USERPOOL_ID"];
         private readonly string _accountID = ConfigurationManager.AppSettings["ACCOUNT_ID"];
-        private readonly string _identityPoolID = ConfigurationManager.AppSettings["IDENTITYPOOL_ID"];
+
+        private readonly string _userIDPoolID = ConfigurationManager.AppSettings["USER_IDENTITYPOOL_ID"];
+        private readonly string _userAuthRole = ConfigurationManager.AppSettings["USER_AUTH_ROLE"];
+
+        private readonly string _adminIDPoolID = ConfigurationManager.AppSettings["ADMIN_IDENTITYPOOL_ID"];
+        private readonly string _adminAuthRole = ConfigurationManager.AppSettings["ADMIN_AUTH_ROLE"];
         
         /// <summary>
         /// User specific data
@@ -69,10 +74,13 @@ namespace CapstoneUI.Utilities
                 });
 
                 this.user = user;
-                this.credentials = this.user.GetCognitoAWSCredentials(_identityPoolID, RegionEndpoint.USEast1);
                 this.authResult = authResponse.AuthenticationResult;
-                
                 this.userAttributes = await this.GetUserDetailsAsync();
+
+                // get correct user permissions
+                string poolID = this.userAttributes["custom:is_admin"] == "1" ? _adminIDPoolID : _userIDPoolID;
+                this.credentials = this.user.GetCognitoAWSCredentials(poolID, RegionEndpoint.USEast1);
+
                 return authResponse;
             }
         }
