@@ -14,7 +14,7 @@
                     </nav>
                     <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2 px-0" Style="width: 70%"></asp:Label>
                 </div>
-                <div class="container mt-5 mr-5 w-75">
+                <div class="container mt-5 mr-5 w-75 needs-validation" nonvalidate>
                     <div class="row">
                         <div class="col">
                             <h5>Personal Information:</h5>
@@ -26,14 +26,22 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                            <div class="invalid-feedback">
+                                Please enter first name in the textarea.
+                            </div>
                         </div>
+                        
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
                             <label>Last Name: </label>
                         </div>
+                        
                         <div class="col-7">
                             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter last name in the textarea.
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
@@ -50,6 +58,9 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter password in the textarea.
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
