@@ -34,7 +34,8 @@ namespace CapstoneUI.Utilities
 
         private readonly string _adminIDPoolID = ConfigurationManager.AppSettings["ADMIN_IDENTITYPOOL_ID"];
         private readonly string _adminAuthRole = ConfigurationManager.AppSettings["ADMIN_AUTH_ROLE"];
-        
+        private readonly string _adminGroup = ConfigurationManager.AppSettings["ADMIN_GROUP"];
+
         /// <summary>
         /// User specific data
         /// </summary>
@@ -95,20 +96,18 @@ namespace CapstoneUI.Utilities
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
         /// <param name="phoneNumber">Must match the format: +12155555555</param>
-        /// <param name="region"></param>
-        /// <param name="supervisor"></param>
         /// <param name="isAdmin">0: CHW, 1: Supervisors, Directors</param>
         /// <returns></returns>
         public async Task<SignUpResponse> CreateUserAsync(string username, string password, string email,
-            string firstName, string lastName, string phoneNumber, string region, string supervisor, int isAdmin = 0)
+            string firstName, string lastName, string phoneNumber, int isAdmin = 0)
         {
             using (var client = this.GetClient())
             {
-                var signUpRequest = new SignUpRequest
+                var req = new SignUpRequest
                 {
                     ClientId = _clientID,
                     Username = username,
-                    Password = password,
+                    Password = password
                 };
 
                 // add attributes
@@ -117,58 +116,72 @@ namespace CapstoneUI.Utilities
                     Name = "email",
                     Value = email
                 };
-                signUpRequest.UserAttributes.Add(attrEmail);
+                req.UserAttributes.Add(attrEmail);
 
                 var attrFirstName = new AttributeType
                 {
                     Name = "name",
                     Value = firstName
                 };
-                signUpRequest.UserAttributes.Add(attrFirstName);
+                req.UserAttributes.Add(attrFirstName);
 
                 var attrLastName = new AttributeType
                 {
                     Name = "family_name",
                     Value = lastName
                 };
-                signUpRequest.UserAttributes.Add(attrLastName);
+                req.UserAttributes.Add(attrLastName);
 
                 var attrPhone = new AttributeType
                 {
                     Name = "phone_number",
                     Value = phoneNumber
                 };
-                signUpRequest.UserAttributes.Add(attrPhone);
-
-                var attrRegion = new AttributeType
-                {
-                    Name = "custom:region",
-                    Value = region
-                };
-                signUpRequest.UserAttributes.Add(attrRegion);
-
-                var attrSupervisor = new AttributeType
-                {
-                    Name = "custom:supervisor",
-                    Value = supervisor
-                };
-                signUpRequest.UserAttributes.Add(attrSupervisor);
+                req.UserAttributes.Add(attrPhone);
 
                 var attrIsAdmin = new AttributeType
                 {
                     Name = "custom:is_admin",
                     Value = isAdmin.ToString()
                 };
-                signUpRequest.UserAttributes.Add(attrIsAdmin);
+                req.UserAttributes.Add(attrIsAdmin);
 
                 var attrFirstLogin = new AttributeType
                 {
                     Name = "custom:first_login",
                     Value = "1"
                 };
-                signUpRequest.UserAttributes.Add(attrFirstLogin);
+                req.UserAttributes.Add(attrFirstLogin);
 
-                return await client.SignUpAsync(signUpRequest);
+                var resp = await client.SignUpAsync(req);
+
+                if (isAdmin == 1)
+                {
+                    await this.GrantUserAdminAsync(username);
+                }
+
+                return resp;
+            }
+        }
+
+        /// <summary>
+        /// Internal helper function to give a user admin privileges.
+        /// Used for supervisor account creation.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        private async Task<AdminAddUserToGroupResponse> GrantUserAdminAsync(string username)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new AdminAddUserToGroupRequest()
+                {
+                    UserPoolId = _userPoolID,
+                    GroupName = _adminGroup,
+                    Username = username
+                };
+
+                return await client.AdminAddUserToGroupAsync(req);
             }
         }
 
