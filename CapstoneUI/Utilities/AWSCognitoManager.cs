@@ -250,6 +250,25 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
+        /// Send a fresh email verification link to specified user.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<ResendConfirmationCodeResponse> ResendVerificationLink(string username)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new ResendConfirmationCodeRequest()
+                {
+                    Username = username,
+                    ClientId = _clientID
+                };
+
+                return await client.ResendConfirmationCodeAsync(req);
+            }
+        }
+
+        /// <summary>
         /// Disable a user account so they cannot sign in.
         /// </summary>
         /// <param name="username"></param>
