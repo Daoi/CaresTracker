@@ -96,6 +96,11 @@ namespace CapstoneUI.Utilities
         {
             using (var client = this.GetClient())
             {
+                if (await this.IsEmailUnique(email))
+                {
+                    throw new ArgumentException("This email is already in use.");
+                }
+
                 var req = new SignUpRequest
                 {
                     ClientId = _clientID,
@@ -107,7 +112,7 @@ namespace CapstoneUI.Utilities
                 var attrEmail = new AttributeType
                 {
                     Name = "email",
-                    Value = email
+                    Value = email.ToLower()
                 };
                 req.UserAttributes.Add(attrEmail);
 
@@ -158,8 +163,27 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
-        /// Internal helper function to give a user admin privileges.
-        /// Used for supervisor account creation.
+        /// Helper function to make sure user emails are unique.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        private async Task<bool> IsEmailUnique(string email)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new ListUsersRequest()
+                {
+                    UserPoolId = _userPoolID,
+                    Filter = $"email=\"{email.ToLower()}\""
+                };
+
+                return (await client.ListUsersAsync(req)).Users.Count > 0;
+            }
+        }
+
+        /// <summary>
+        /// Helper function to give a user admin privileges.
+        /// Used during supervisor account creation.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
