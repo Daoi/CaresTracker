@@ -243,6 +243,48 @@ namespace CapstoneUI.Utilities
             }
         }
 
+        public async Task<AdminDisableUserResponse> DisableUserAsync(string username)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new AdminDisableUserRequest()
+                {
+                    Username = username,
+                    UserPoolId = _userPoolID
+                };
+
+                return await client.AdminDisableUserAsync(req);
+            }
+        }
+
+        public async Task<AdminEnableUserResponse> EnableUserAsync(string username)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new AdminEnableUserRequest()
+                {
+                    Username = username,
+                    UserPoolId = _userPoolID
+                };
+
+                return await client.AdminEnableUserAsync(req);
+            }
+        }
+
+        public async Task<AdminDeleteUserResponse> DeleteUserAsync(string username)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new AdminDeleteUserRequest()
+                {
+                    Username = username,
+                    UserPoolId = _userPoolID
+                };
+
+                return await client.AdminDeleteUserAsync(req);
+            }
+        }
+
         /// <summary>
         /// Get the user details from the user pool during authentication.
         /// </summary>
