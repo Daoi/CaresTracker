@@ -18,8 +18,9 @@ namespace CapstoneUI
             {
                 // Get list of all developments
                 GetAllDevelopments GAD = new GetAllDevelopments();
-                DataTable developmentsList = GAD.ExecuteCommand();
-
+                List<string> developmentsList = GAD.ExecuteCommand();
+                ddlDevelopments.DataSource = developmentsList;
+                ddlDevelopments.DataBind();
             }
         }
 

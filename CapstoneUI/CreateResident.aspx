@@ -122,14 +122,22 @@
                             <%-- House Start --%>
                             <div id="divHouse" runat="server" visible="false">
                                 <div class="eventControlBG">
-                                    <asp:TextBox ID="txtRegionID" placeholder="Region ID" runat="server" CssClass="form-control"></asp:TextBox><br />
+                                    <h4 class="font-weight-light">Region</h4>
+                                    <asp:DropDownList id="ddlRegion" CssClass="mb-4" runat="server">
+                                        <asp:ListItem>Region1</asp:ListItem>
+                                        <asp:ListItem>Region2</asp:ListItem>
+                                        <asp:ListItem>Region3</asp:ListItem>
+                                        <asp:ListItem>Region4</asp:ListItem>
+                                    </asp:DropDownList>
                                     <asp:TextBox ID="txtHouseAddress" placeholder="Address" runat="server" CssClass="form-control"></asp:TextBox><br />
                                     <asp:TextBox ID="txtHouseNumOccupants" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
                                 </div>
                             </div>
                             <%-- House End --%>
                             <%-- Development Unit Start --%>
+                            
                             <div id="divDevelopmentUnit" runat="server" visible="false">
+                                <h4 class="font-weight-light">Development Name</h4>
                                 <div class="eventControlBG">
                                     <asp:DropDownList id="ddlDevelopments" runat="server"></asp:DropDownList>
                                     <br />
