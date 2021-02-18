@@ -27,13 +27,10 @@ namespace CapstoneUI.Utilities
         /// </summary>
         private readonly string _clientID = ConfigurationManager.AppSettings["CLIENT_ID"];
         private readonly string _userPoolID = ConfigurationManager.AppSettings["USERPOOL_ID"];
-        private readonly string _accountID = ConfigurationManager.AppSettings["ACCOUNT_ID"];
 
         private readonly string _userIDPoolID = ConfigurationManager.AppSettings["USER_IDENTITYPOOL_ID"];
-        private readonly string _userAuthRole = ConfigurationManager.AppSettings["USER_AUTH_ROLE"];
 
         private readonly string _adminIDPoolID = ConfigurationManager.AppSettings["ADMIN_IDENTITYPOOL_ID"];
-        private readonly string _adminAuthRole = ConfigurationManager.AppSettings["ADMIN_AUTH_ROLE"];
         private readonly string _adminGroup = ConfigurationManager.AppSettings["ADMIN_GROUP"];
 
         /// <summary>
@@ -42,8 +39,6 @@ namespace CapstoneUI.Utilities
         private CognitoUser user;
         Dictionary<string, string> userAttributes;
         private AWSCredentials credentials;
-        private CognitoUserPool userPool;
-        private AuthenticationResultType authResult;
 
         /// <summary>
         /// The same AWSCognitoManager throughout the application while the user is logged in.
@@ -51,10 +46,8 @@ namespace CapstoneUI.Utilities
         public AWSCognitoManager()
         {
             this.user = null;
-            this.credentials = new AnonymousAWSCredentials();
-            this.userPool = new CognitoUserPool(_userPoolID, _clientID, this.GetClient());
-            this.authResult = null;
             this.userAttributes = null;
+            this.credentials = new AnonymousAWSCredentials();
         }
         
         /// <summary>
@@ -67,7 +60,8 @@ namespace CapstoneUI.Utilities
         {
             using (var client = this.GetClient())
             {
-                var user = new CognitoUser(username, _clientID, this.userPool, client);
+                var pool = new CognitoUserPool(_userPoolID, _clientID, this.GetClient());
+                var user = new CognitoUser(username, _clientID, pool, client);
 
                 AuthFlowResponse authResponse = await user.StartWithSrpAuthAsync(new InitiateSrpAuthRequest()
                 {
@@ -75,7 +69,6 @@ namespace CapstoneUI.Utilities
                 });
 
                 this.user = user;
-                this.authResult = authResponse.AuthenticationResult;
                 this.userAttributes = await this.GetUserDetailsAsync();
 
                 // get correct user permissions
@@ -249,7 +242,7 @@ namespace CapstoneUI.Utilities
                 var req = new UpdateUserAttributesRequest()
                 {
                     UserAttributes = lst,
-                    AccessToken = this.authResult.AccessToken
+                    AccessToken = this.user.SessionTokens.AccessToken
                 };
 
                 return await client.UpdateUserAttributesAsync(req);
