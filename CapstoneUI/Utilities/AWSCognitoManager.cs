@@ -256,6 +256,11 @@ namespace CapstoneUI.Utilities
             }
         }
 
+        /// <summary>
+        /// Disable a user account so they cannot sign in.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public async Task<AdminDisableUserResponse> DisableUserAsync(string username)
         {
             using (var client = this.GetClient())
@@ -270,6 +275,11 @@ namespace CapstoneUI.Utilities
             }
         }
 
+        /// <summary>
+        /// Use to reenable a disabled account.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public async Task<AdminEnableUserResponse> EnableUserAsync(string username)
         {
             using (var client = this.GetClient())
@@ -284,6 +294,11 @@ namespace CapstoneUI.Utilities
             }
         }
 
+        /// <summary>
+        /// Delete an account from the user pool.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public async Task<AdminDeleteUserResponse> DeleteUserAsync(string username)
         {
             using (var client = this.GetClient())
@@ -343,6 +358,9 @@ namespace CapstoneUI.Utilities
             get { return this.userAttributes["name"] + ' ' + this.userAttributes["family_name"]; }
         }
 
+        /// <summary>
+        /// Use to setup admin/chw views and access throughout the application.
+        /// </summary>
         public int IsAdmin
         {
             get { return int.Parse(this.userAttributes["custom:is_admin"]); }
