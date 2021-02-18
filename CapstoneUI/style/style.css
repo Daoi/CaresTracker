@@ -199,3 +199,11 @@ thead {
         line-height: 1.2;
     }
 }
+
+.hidden {
+    display: none;
+}
+
+.error-label{
+    color: red;
+}

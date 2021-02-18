@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,22 +13,32 @@ namespace CapstoneUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Resident> temp = new List<Resident>();
-            Resident interaction = new Resident("John", "Doe", "35", "111 Philadelphia Street", "West Philadelphia", "Last Covid-19 Test Result: Negative (1/1/2021)");
-            temp.Add(interaction);
-            for (int i = 0; i < 10; i++)
+            if (!IsPostBack)
             {
-                Resident tempPatient = new Resident();
-                temp.Add(tempPatient);
+                List<Resident> temp = new List<Resident>();
+                Resident interaction = new Resident("John", "Doe", "35", "111 Philadelphia Street", "West Philadelphia", "Last Covid-19 Test Result: Negative (1/1/2021)");
+                temp.Add(interaction);
+                for (int i = 0; i < 10; i++)
+                {
+                    Resident tempPatient = new Resident();
+                    temp.Add(tempPatient);
+                }
+
+                gvResidentList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+                Button btnCreateNewResident = new Button()
+                {
+                    Text = "Create New Resident",
+                    CssClass = "btn btn-primary",
+                    CommandName = "CreateNewResident"
+                };
+
+
+                gvResidentList.DataSource = temp;
+                gvResidentList.DataBind();
             }
-
-            gvResidentList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-
-            gvResidentList.DataSource = temp;
-            gvResidentList.DataBind();
         }
 
         public class Resident
@@ -58,6 +70,13 @@ namespace CapstoneUI
         protected void lnkHome_Click(object sender, EventArgs e)
         {
             Server.Transfer("Homepage.aspx");
+        }
+
+
+        protected void NewResident_Click(object sender, EventArgs e)
+        {
+            
+            Response.Redirect($"CreateResident.aspx?name={hfSearchInput.Value}");
         }
     }
 }

@@ -50,7 +50,7 @@ namespace CapstoneUI
 
         protected void btnResidentLookUp_Click(object sender, EventArgs e)
         {
-            Server.Transfer("ResidentLookUp.aspx");
+            Response.Redirect("ResidentLookUp.aspx");
         }
     }
 }

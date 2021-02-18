@@ -20,7 +20,7 @@
 </head>
 <body>
     <form runat="server" class="backgroundblue">
-        <asp:ScriptManager ID="smMaster" runat="server"></asp:ScriptManager>
+        <asp:ScriptManager ID="smMaster" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <header>
             <nav class="navbar navbar-expand-xl navbar-light white">
 <%--                <div class="container">--%>
