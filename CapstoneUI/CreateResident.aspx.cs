@@ -18,5 +18,10 @@ namespace CapstoneUI
         {
             Server.Transfer("Homepage.aspx");
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

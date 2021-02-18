@@ -26,9 +26,7 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
-                            <div class="invalid-feedback">
-                                Please enter first name in the textarea.
-                            </div>
+                            <asp:Label ID="lblFirstName" runat="server" Text="" BorderColor ="Red"></asp:Label>
                         </div>
                         
                     </div>
@@ -39,10 +37,9 @@
                         
                         <div class="col-7">
                             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblLastName" runat="server" Text=""></asp:Label>
                         </div>
-                        <div class="invalid-feedback">
-                            Please enter last name in the textarea.
-                        </div>
+                        
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
@@ -50,6 +47,7 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
@@ -58,10 +56,9 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblPassword" runat="server" Text=""></asp:Label>
                         </div>
-                        <div class="invalid-feedback">
-                            Please enter password in the textarea.
-                        </div>
+                       
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
@@ -69,6 +66,7 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
@@ -77,6 +75,7 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblPhone" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                     <div class="row">

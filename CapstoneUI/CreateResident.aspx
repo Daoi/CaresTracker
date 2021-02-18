@@ -108,7 +108,7 @@
                     </div>
                     <div class="row m-3">
                         <div class="col">
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click" />
                         </div>
                     </div>
                 </div>

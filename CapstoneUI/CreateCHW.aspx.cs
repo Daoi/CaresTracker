@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using System.Data;
 using System.Data.SqlClient;
+using CapstoneUI.Utilities;
 
 namespace CapstoneUI
 {
@@ -39,6 +40,35 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (txtFirstName.Text == "")
+            {
+                Response.Write("<script>alert('Please enter first name')</script>");
+            }
+            else if (txtLastName.Text == "")
+            {
+                Response.Write("<script>alert('Please enter last name.')</script>");
+            }
+            else if (txtUsername.Text == "")
+            {
+                Response.Write("<script>alert('Please enter username.')</script>");
+            }
+            else if (txtPassword.Text == "")
+            {
+                Response.Write("<script>alert('Please enter password.')</script>");
+            }
+            else if (txtEmail.Text == "")
+            {
+                Response.Write("<script>alert('Please enter email.')</script>");
+            }
+            else if (txtPhoneNumber.Text == "")
+            {
+                Response.Write("<script>alert('Please enter phone number.')</script>");
+            }
+
+
+
+
+
 
         }
     }
