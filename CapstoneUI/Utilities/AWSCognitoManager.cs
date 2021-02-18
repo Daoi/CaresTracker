@@ -216,7 +216,7 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
-        /// Updates user account to show they have already logged in for the first time.
+        /// Updates current user's account to show they have already logged in for the first time.
         /// This let's the system keep track of users that have not changed their temporary password.
         /// </summary>
         /// <returns></returns>
