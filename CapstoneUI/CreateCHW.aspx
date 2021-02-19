@@ -55,7 +55,7 @@
                             <label>Password: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" runat="server" ></asp:TextBox>
                             <asp:Label ID="lblPassword" runat="server" Text=""></asp:Label>
                         </div>
                        
@@ -65,7 +65,7 @@
                             <label>Email: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
                             <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <label>Phone-number: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPhoneNumber" runat="server" TextMode="Phone"></asp:TextBox>
                             <asp:Label ID="lblPhone" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
