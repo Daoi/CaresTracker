@@ -62,7 +62,7 @@
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
-                            <label>Phone-number: </label>
+                            <label>Phone Number: </label>
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
@@ -79,23 +79,42 @@
                         </div>
                         <div class="col-7">
                             <asp:DropDownList ID="ddlRegion" runat="server">
-                                <asp:ListItem>Drexel</asp:ListItem>
-                                <asp:ListItem>Greater Philadelphia</asp:ListItem>
-                                <asp:ListItem>Temple</asp:ListItem>
+                                <asp:ListItem Value="1">Drexel</asp:ListItem>
+                                <asp:ListItem Value="2">Greater Philadelphia</asp:ListItem>
+                                <asp:ListItem Value="3">Temple</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
-                            <label>Supervisor:</label>
+                            <label>Is Supervisor:</label>
                         </div>
                         <div class="col-7">
-                            <asp:DropDownList ID="ddlSupervisor" runat="server">
-                                <asp:ListItem>Shirley Moy</asp:ListItem>
-                                <asp:ListItem>Gaye Harley</asp:ListItem>
+                            <asp:DropDownList ID="ddlIsSupervisor" AutoPostBack="true" OnSelectedIndexChanged="ddlIsSupervisor_SelectedIndexChanged" runat="server">
+                                <asp:ListItem Value="default" Selected>Select an option</asp:ListItem>
+                                <asp:ListItem Value="yes">Yes</asp:ListItem>
+                                <asp:ListItem Value="no">No</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
+                    <asp:UpdatePanel ID="upSupervisor" UpdateMode="Conditional" runat="server">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="ddlIsSupervisor" EventName="SelectedIndexChanged" />
+                        </Triggers>
+                        <ContentTemplate>
+                            <div id="divSelectSupervisor" class="row m-3 modal-header" runat="server">
+                                <div class="col">
+                                    <label>Supervisor:</label>
+                                </div>
+                                <div class="col-7">
+                                    <asp:DropDownList ID="ddlSupervisor" runat="server">
+                                        <asp:ListItem Value="3">Shirley Moy</asp:ListItem>
+                                        <asp:ListItem Value="9">Gaye Harley</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                     <div class="row m-3 modal-header">
                         <div class="col">
                             <label>Employee Image:</label>

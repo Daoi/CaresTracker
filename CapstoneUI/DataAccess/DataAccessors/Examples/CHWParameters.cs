@@ -28,8 +28,11 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
                 new SqlParameter("@theFirstName", SqlDbType.VarChar, 50),
                 new SqlParameter("@theLastName", SqlDbType.VarChar, 50),
                 new SqlParameter("@theUserEmail", SqlDbType.VarChar, 50),
-                new SqlParameter("@theUserPhoneNumber", SqlDbType.VarChar, 50)
-
+                new SqlParameter("@theUserPhoneNumber", SqlDbType.VarChar, 50),
+                new SqlParameter("@theUserStatus", SqlDbType.VarChar, 50),
+                new SqlParameter("@theUserType", SqlDbType.VarChar, 50),
+                new SqlParameter("@theSuperVisorID", SqlDbType.Int),
+                new SqlParameter("@theRegionID", SqlDbType.Int)
             };
         }
 
