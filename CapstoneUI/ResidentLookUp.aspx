@@ -41,25 +41,26 @@
             </div>
             <div style="margin-top: 2%; height: 2%; width: auto;"></div>
         </div>
-        <asp:HiddenField ID="hfSearchInput" runat="server" />
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var table = $('#MainContent_gvResidentList').DataTable();
-                table.on('draw', function () {
-                    if (table.page.info().recordsDisplay <= 0) {
-                        var search = $('.dataTables_filter input').val();
-                        $('#MainContent_lblResidentNotFound').text(`Resident with the name ${search} not found`);
-                        $('#MainContent_lblResidentNotFound').removeClass('hidden');
-                        $('#MainContent_btnCreateNewResident').removeClass('hidden');
-                        $('#MainContent_hfSearchInput').val(`${search}`);
-                    }
-                    else {
-                        $('#MainContent_lblResidentNotFound').addClass('hidden');
-                        $('#MainContent_btnCreateNewResident').addClass('hidden');
-                    }
-                });
-
+    </div>
+    <asp:HiddenField ID="hfSearchInput" runat="server" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#MainContent_gvResidentList').DataTable();
+            table.on('draw', function () {
+                if (table.page.info().recordsDisplay <= 0) {
+                    var search = $('.dataTables_filter input').val();
+                    $('#MainContent_lblResidentNotFound').text(`Resident with the name ${search} not found`);
+                    $('#MainContent_lblResidentNotFound').removeClass('hidden');
+                    $('#MainContent_btnCreateNewResident').removeClass('hidden');
+                    $('#MainContent_hfSearchInput').val(`${search}`);
+                }
+                else {
+                    $('#MainContent_lblResidentNotFound').addClass('hidden');
+                    $('#MainContent_btnCreateNewResident').addClass('hidden');
+                }
             });
 
-        </script>
+        });
+
+    </script>
 </asp:Content>
