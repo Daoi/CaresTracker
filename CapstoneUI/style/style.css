@@ -207,3 +207,7 @@ thead {
 .error-label{
     color: red;
 }
+
+.homepage-bottom-row{
+    overflow-y: scroll;
+}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CapstoneUI.Utilities;
 
 namespace CapstoneUI
@@ -14,6 +15,18 @@ namespace CapstoneUI
             {
                 divCreateCHW.Visible = false;
             }
+            //Temporary Follow Up Testing
+            FollowUp fol = new FollowUp("2/10/2021", "2/13/2021", "Vaccine Schedule", "John Doe");
+            FollowUp folb = new FollowUp("2/9/2021", "Not Completed", "Vaccine Schedule", "Bob John");
+            List<FollowUp> temp = new List<FollowUp>();
+            temp.Add(fol);
+            temp.Add(folb);
+            gvCompletedFollowUps.DataSource = temp;
+            gvOutstandingFollowUps.DataSource = temp;
+            gvCompletedFollowUps.DataBind();
+            gvOutstandingFollowUps.DataBind();
+
+
         }
 
         protected void btnCreateResidentProfile_Click(object sender, EventArgs e)
@@ -51,6 +64,23 @@ namespace CapstoneUI
         protected void btnResidentLookUp_Click(object sender, EventArgs e)
         {
             Response.Redirect("ResidentLookUp.aspx");
+        }
+
+
+        public class FollowUp
+        {
+            public string DateRequested { get; set; }
+            public string DateCompleted { get; set; }
+            public string Service { get; set; }
+            public string Resident { get; set; }
+
+            public FollowUp(string a, string b, string c, string d)
+            {
+                DateRequested = a;
+                DateCompleted = b;
+                Service = c;
+                Resident = d;
+            }
         }
     }
 }

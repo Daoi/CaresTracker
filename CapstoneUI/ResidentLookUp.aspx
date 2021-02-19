@@ -48,7 +48,7 @@
                 table.on('draw', function () {
                     if (table.page.info().recordsDisplay <= 0) {
                         var search = $('.dataTables_filter input').val();
-                        $('#MainContent_lblResidentNotFound').text(`Resident with the name ${search} not found`);
+                        $('#MainContent_lblResidentNotFound').text(`No resident could be found matching the filter: ${search}`);
                         $('#MainContent_lblResidentNotFound').removeClass('hidden');
                         $('#MainContent_btnCreateNewResident').removeClass('hidden');
                         $('#MainContent_hfSearchInput').val(`${search}`);
