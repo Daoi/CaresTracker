@@ -62,7 +62,7 @@
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
-                            <label>Phone-number: </label>
+                            <label>Phone Number: </label>
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
