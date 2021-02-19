@@ -31,6 +31,33 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Label lblPageInfo;
         
         /// <summary>
+        /// txtEventName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEventName;
+        
+        /// <summary>
+        /// txtEventLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEventLocation;
+        
+        /// <summary>
+        /// lblEventDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEventDate;
+        
+        /// <summary>
         /// txtEventDate control.
         /// </summary>
         /// <remarks>
@@ -38,6 +65,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEventDate;
+        
+        /// <summary>
+        /// lblEventStartTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEventStartTime;
         
         /// <summary>
         /// txtEventTimeStart control.
@@ -49,6 +85,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtEventTimeStart;
         
         /// <summary>
+        /// lblEventEndTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEventEndTime;
+        
+        /// <summary>
         /// txtEventTimeEnd control.
         /// </summary>
         /// <remarks>
@@ -56,15 +101,6 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEventTimeEnd;
-        
-        /// <summary>
-        /// txtEventLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEventLocation;
         
         /// <summary>
         /// ddlNumberAttending control.
@@ -121,15 +157,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtRTETopic;
         
         /// <summary>
-        /// txtRTEDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRTEDescription;
-        
-        /// <summary>
         /// divFluShotEvent control.
         /// </summary>
         /// <remarks>
@@ -166,15 +193,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtHEETopic;
         
         /// <summary>
-        /// txtHEEDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHEEDescription;
-        
-        /// <summary>
         /// divOnlineEvent control.
         /// </summary>
         /// <remarks>
@@ -191,15 +209,6 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtOETopic;
-        
-        /// <summary>
-        /// txtOEDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOEDescription;
         
         /// <summary>
         /// btnSubmit control.
