@@ -274,6 +274,7 @@ namespace CapstoneUI.Utilities
 
         /// <summary>
         /// Changes the specified user's password.
+        /// Must call SendForgotPasswordCodeAsync() first.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password">New password</param>
@@ -336,7 +337,7 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
-        /// Use to reenable a disabled account.
+        /// Reenable a disabled account.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
