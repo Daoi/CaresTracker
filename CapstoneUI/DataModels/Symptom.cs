@@ -9,6 +9,7 @@ namespace CapstoneUI.DataModels
     {
         public int SymptomID { get; set; }
         public bool IsCritical { get; set; }
+        public string Name { get; set; }
 
     }
 }
