@@ -17,6 +17,7 @@ namespace CapstoneUI.DataModels
         public string COVIDTestResult { get; set; }
         public string ActionPlan { get; set; }
         public List<Symptom> Symptoms { get; set; }
-        public List<Service> Services { get; set; }
+        public List<Service> RequestedServices { get; set; }
+        public List<Service> OfferedServices { get; set; }
     }
 }
