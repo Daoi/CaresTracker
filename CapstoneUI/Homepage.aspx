@@ -120,9 +120,9 @@
                                                 <Columns>
                                                     <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
                                                     <asp:TemplateField HeaderText="Resident">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>' ></asp:Label>
-                                                    </ItemTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make link)" />
                                                 </Columns>
@@ -132,11 +132,11 @@
                                             <asp:Label ID="lblCompletedMsg" runat="server" Text="Label"></asp:Label>
                                             <asp:GridView ID="gvCompletedFollowUps" CssClass="table" runat="server" AutoGenerateColumns="False">
                                                 <Columns>
-                                                    <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" /> 
+                                                    <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
                                                     <asp:TemplateField HeaderText="Resident">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>' ></asp:Label>
-                                                    </ItemTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make Link)" />
                                                 </Columns>

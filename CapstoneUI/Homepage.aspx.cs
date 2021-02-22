@@ -73,8 +73,7 @@ namespace CapstoneUI
                 lblCompletedMsg.Text = "You habe no completed follow ups";
             }
 
-            //Logic for splitting between completed/not completed
-            //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month
+            //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month or something
             gvCompletedFollowUps.DataSource = completed;
             gvOutstandingFollowUps.DataSource = uncompleted;
             gvCompletedFollowUps.DataBind();
