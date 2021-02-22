@@ -70,7 +70,7 @@ namespace CapstoneUI
             DataTable completed = new GetCompletedFollowUps().RunCommand(man.Username);
             if (completed.Rows.Count == 0)
             {
-                lblCompletedMsg.Text = "You habe no completed follow ups";
+                lblCompletedMsg.Text = "You have no completed follow ups.";
             }
 
             //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month or something
