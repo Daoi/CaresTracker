@@ -115,20 +115,30 @@
                                     <h4 class="card-title">Follow Ups</h4>
                                     <div class="tab-content mt-3">
                                         <div class="tab-pane active" id="outstanding" role="tabpanel">
+                                            <asp:Label ID="lblOutstandingMsg" runat="server" Text="Label"></asp:Label>
                                             <asp:GridView ID="gvOutstandingFollowUps" CssClass="table" runat="server" AutoGenerateColumns="False">
                                                 <Columns>
-                                                    <asp:BoundField DataField="DateRequested" HeaderText="Date Requested" />
-                                                    <asp:BoundField DataField="Resident" HeaderText="Resident" />
-                                                    <asp:BoundField DataField="Service" HeaderText="Service" />
+                                                    <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
+                                                    <asp:TemplateField HeaderText="Resident">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make link)" />
                                                 </Columns>
                                             </asp:GridView>
                                         </div>
                                         <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                                            <asp:Label ID="lblCompletedMsg" runat="server" Text="Label"></asp:Label>
                                             <asp:GridView ID="gvCompletedFollowUps" CssClass="table" runat="server" AutoGenerateColumns="False">
                                                 <Columns>
-                                                    <asp:BoundField DataField="DateCompleted" HeaderText="Date Completed" />
-                                                    <asp:BoundField DataField="Resident" HeaderText="Resident" />
-                                                    <asp:BoundField DataField="Service" HeaderText="Service" />
+                                                    <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" /> 
+                                                    <asp:TemplateField HeaderText="Resident">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make Link)" />
                                                 </Columns>
                                             </asp:GridView>
                                         </div>

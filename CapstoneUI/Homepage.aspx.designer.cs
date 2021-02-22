@@ -94,6 +94,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton btnResidentLookUp;
         
         /// <summary>
+        /// lblOutstandingMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOutstandingMsg;
+        
+        /// <summary>
         /// gvOutstandingFollowUps control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvOutstandingFollowUps;
+        
+        /// <summary>
+        /// lblCompletedMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCompletedMsg;
         
         /// <summary>
         /// gvCompletedFollowUps control.
