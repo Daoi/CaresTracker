@@ -14,18 +14,10 @@ namespace CapstoneUI.DataAccess.DataAccessors
             CommandType = CommandType.StoredProcedure;
         }
 
-        public List<string> ExecuteCommand()
+        public DataTable ExecuteCommand()
         {
             ExecuteQuery eq = new ExecuteQuery();
-            DataTable dataTable = eq.ExecuteAdapter(this);
-            List<string> list = new List<string>();
-
-            foreach (DataRow row in dataTable.Rows)
-            {
-                string name = row.Field<string>("DevelopmentName");
-                list.Add(name);
-            }
-            return list;
+            return eq.ExecuteAdapter(this);
         }
     }
 }

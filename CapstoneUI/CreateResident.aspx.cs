@@ -18,7 +18,13 @@ namespace CapstoneUI
             {
                 // Get list of all developments
                 GetAllDevelopments GAD = new GetAllDevelopments();
-                List<string> developmentsList = GAD.ExecuteCommand();
+                DataTable dataTable = GAD.ExecuteCommand();
+                List<string> developmentsList = new List<string>();
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    string name = row.Field<string>("DevelopmentName");
+                    developmentsList.Add(name);
+                }
                 ddlDevelopments.DataSource = developmentsList;
                 ddlDevelopments.DataBind();
             }

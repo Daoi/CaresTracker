@@ -279,8 +279,6 @@
     <Compile Include="DataAccess\ExecuteData.cs" />
     <Compile Include="DataAccess\ResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllCHW.cs" />
-    <Compile Include="DataAccess\DataSupport.cs" />
-    <Compile Include="DataAccess\ExecuteData.cs" />
     <Compile Include="DataModels\CARESUser.cs" />
     <Compile Include="Event.aspx.cs">
       <DependentUpon>Event.aspx</DependentUpon>
