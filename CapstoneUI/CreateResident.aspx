@@ -98,22 +98,21 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div class="row m-3 modal-header">
-                        <div class="col">
-                            <label>Family size: </label>
-                        </div>
-                        <div class="col-7">
-                            <asp:TextBox ID="txtFamilySize" runat="server"></asp:TextBox>
-                        </div>
-                    </div>
-                    
+
                     <%-- Conditional Housing Info --%>
                     <h2>Housing Information</h2>
-                    <asp:DropDownList ID="ddlHousing" CssClass="form-control mt-2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
-                        <asp:ListItem Value="Select Housing Type">Select Housing Type</asp:ListItem>
-                        <asp:ListItem Value="divHouse">House</asp:ListItem>
-                        <asp:ListItem Value="divDevelopmentUnit">Development Unit</asp:ListItem>
+                    <asp:DropDownList ID="ddlHousing" CssClass="form-control mt-4" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
+                        <asp:ListItem Value="None Selected">Select Housing Type</asp:ListItem>
+                        <asp:ListItem Value="divHouse">Housing Choice Voucher</asp:ListItem>
+                        <asp:ListItem Value="divDevelopmentUnit">Housing Development</asp:ListItem>
                     </asp:DropDownList><br />
+                    <%-- Universal Info Start --%>
+                    <div class="eventControlBG">
+                        <asp:TextBox ID="txtAddress" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />
+                        <asp:TextBox ID="txtNumOccupants" TextMode="Number" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
+                        <asp:TextBox ID="txtZipCode" placeholder="Zip Code" runat="server" CssClass="form-control"></asp:TextBox><br />
+                    </div>
+                    <%-- Universal Info End --%>
                     <asp:UpdatePanel ID="upHousing" runat="server" UpdateMode="Conditional">
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="ddlHousing" EventName="SelectedIndexChanged" />
@@ -123,23 +122,31 @@
                             <div id="divHouse" runat="server" visible="false">
                                 <div class="eventControlBG">
                                     <h4 class="font-weight-light">Region</h4>
-                                    <asp:DropDownList id="ddlRegion" CssClass="mb-4" runat="server">
-                                        <asp:ListItem>Region1</asp:ListItem>
-                                        <asp:ListItem>Region2</asp:ListItem>
-                                        <asp:ListItem>Region3</asp:ListItem>
-                                        <asp:ListItem>Region4</asp:ListItem>
+                                    <asp:DropDownList ID="ddlRegion" CssClass="mb-4" runat="server">
+                                        <asp:ListItem Value="1">North</asp:ListItem>
+                                        <asp:ListItem Value="2">Upper North</asp:ListItem>
+                                        <asp:ListItem Value="3">Lower North</asp:ListItem>
+                                        <asp:ListItem Value="4">Upper Northwest</asp:ListItem>
+                                        <asp:ListItem Value="5">Lower Northwest</asp:ListItem>
+                                        <asp:ListItem Value="6">Lower Northeast</asp:ListItem>
+                                        <asp:ListItem Value="7">West</asp:ListItem>
+                                        <asp:ListItem Value="8">Central</asp:ListItem>
+                                        <asp:ListItem Value="9">South</asp:ListItem>
+                                        <asp:ListItem Value="10">Lower Soutwest</asp:ListItem>
+                                        <asp:ListItem Value="11">University Southwest</asp:ListItem>
+                                        <asp:ListItem Value="12">North Delaware</asp:ListItem>
+                                        <asp:ListItem Value="13">River Wards</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:TextBox ID="txtHouseAddress" placeholder="Address" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                    <asp:TextBox ID="txtHouseNumOccupants" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
+
                                 </div>
                             </div>
                             <%-- House End --%>
                             <%-- Development Unit Start --%>
-                            
+
                             <div id="divDevelopmentUnit" runat="server" visible="false">
                                 <h4 class="font-weight-light">Development Name</h4>
                                 <div class="eventControlBG">
-                                    <asp:DropDownList id="ddlDevelopments" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlDevelopments" runat="server" CssClass="mb-4"></asp:DropDownList>
                                     <br />
                                 </div>
                             </div>
