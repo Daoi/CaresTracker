@@ -47,7 +47,6 @@ namespace CapstoneUI
             //Build House and Resident objects from user input
             House residentHouse = new House();
             residentHouse.Address = txtAddress.Text;
-            residentHouse.NumOccupants = Int32.Parse(txtNumOccupants.Text); // Requires validation to ensure input is a number
             residentHouse.ZipCode = txtZipCode.Text;
 
 

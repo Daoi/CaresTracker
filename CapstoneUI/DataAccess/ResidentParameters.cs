@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -14,24 +14,23 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
 
     public class ResidentParameters
     {
-        private SqlParameter[] Parameters;
+        private MySqlParameter[] Parameters;
         /// <summary>
         /// Create an array to store the parameters in the constructor.
         /// The constructor is called by the CHWWriter class when a new instance of it is created. 
         /// </summary>
         public ResidentParameters()
         {
-            Parameters = new SqlParameter[]
+            Parameters = new MySqlParameter[]
             {
-                new SqlParameter("@ResidenceID", SqlDbType.Int, 50),
-                new SqlParameter("@FirstName", SqlDbType.VarChar, 50),
-                new SqlParameter("@LastName", SqlDbType.VarChar, 50),
-                new SqlParameter("@DateOfBirth", SqlDbType.DateTime, 50),
-                new SqlParameter("@ResidentEmail", SqlDbType.VarChar, 50),
-                new SqlParameter("@ResidentPhoneNumber", SqlDbType.VarChar, 50),
-                new SqlParameter("@RelationshipToHoH", SqlDbType.VarChar, 50),
-                new SqlParameter("@Gender", SqlDbType.VarChar, 50),
-                new SqlParameter("@FamilySize", SqlDbType.Int, 50)
+                new MySqlParameter("@ResidenceID", MySqlDbType.Int64, 50),
+                new MySqlParameter("@FirstName", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@LastName", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@DateOfBirth", MySqlDbType.DateTime, 50),
+                new MySqlParameter("@ResidentEmail", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@ResidentPhoneNumber", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@RelationshipToHoH", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@Gender", MySqlDbType.VarChar, 50),
             };
         }
 
@@ -41,7 +40,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
         /// <param name="values">A collection of values intended to be used as SQL stored procedure parameters. It's necessary that the values
         /// match the order established in the constructor. I.e. The value for UserName needs to be first in the list. </param>
         /// <returns></returns>
-        public SqlParameter[] Fill(List<string> values)
+        public MySqlParameter[] Fill(List<string> values)
         {
             //Make sure there are a correct number of parameters provided
             if (values.Count != Parameters.Length)

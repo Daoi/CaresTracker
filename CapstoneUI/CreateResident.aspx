@@ -109,7 +109,6 @@
                     <%-- Universal Info Start --%>
                     <div class="eventControlBG">
                         <asp:TextBox ID="txtAddress" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />
-                        <asp:TextBox ID="txtNumOccupants" TextMode="Number" placeholder="Number of Occupants" runat="server" CssClass="form-control"></asp:TextBox><br />
                         <asp:TextBox ID="txtZipCode" placeholder="Zip Code" runat="server" CssClass="form-control"></asp:TextBox><br />
                     </div>
                     <%-- Universal Info End --%>
