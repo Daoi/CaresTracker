@@ -301,6 +301,8 @@
       <DependentUpon>CreateResident.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetUncompletedFollowUps.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetCompletedFollowUps.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\AddHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\CHWParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\CHWWriter.cs" />
