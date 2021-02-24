@@ -10,11 +10,8 @@ namespace CapstoneUI.DataModels
         public int HouseID { get; set; }
         public int RegionID { get; set; }
         public string Address { get; set; }
-        public int NumOccupants { get; set; }
         public string HouseType { get; set; }
         public int DevelopmentID { get; set; }
         public string ZipCode { get; set; }
-
-
     }
 }
