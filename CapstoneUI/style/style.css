@@ -211,3 +211,11 @@ thead {
 .homepage-bottom-row{
     overflow-y: scroll;
 }
+
+.followup-tracker{
+    overflow-y: scroll;
+}
+
+#MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter {
+    margin-right: 9.7em;
+}

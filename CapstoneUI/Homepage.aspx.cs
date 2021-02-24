@@ -4,6 +4,7 @@ using CapstoneUI.Utilities;
 using CapstoneUI.DataAccess;
 using System.Data;
 using CapstoneUI.DataAccess.DataAccessors;
+using System.Web.UI.WebControls;
 
 namespace CapstoneUI
 {
@@ -72,6 +73,16 @@ namespace CapstoneUI
             {
                 lblCompletedMsg.Text = "You have no completed follow ups.";
             }
+
+
+            gvCompletedFollowUps.DataBound += (object o, EventArgs ev) =>
+            {
+                gvCompletedFollowUps.HeaderRow.TableSection = TableRowSection.TableHeader;
+            };
+            gvOutstandingFollowUps.DataBound += (object o, EventArgs ev) =>
+            {
+                gvOutstandingFollowUps.HeaderRow.TableSection = TableRowSection.TableHeader;
+            };
 
             //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month or something
             gvCompletedFollowUps.DataSource = completed;

@@ -111,7 +111,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body followup-tracker">
                                     <h4 class="card-title">Follow Ups</h4>
                                     <div class="tab-content mt-3">
                                         <div class="tab-pane active" id="outstanding" role="tabpanel">
@@ -158,4 +158,18 @@
             e.preventDefault()
             $(this).tab('show')
         })</script>
+    <%-- Completed follow ups Data Table --%>
+            <script type="text/javascript">
+            $(document).ready(function () {
+                var table = $('#MainContent_gvCompletedFollowUps').DataTable();
+            });
+        </script>
+        <%-- Uncompleted follow ups Data Table --%>
+            <script type="text/javascript">
+            $(document).ready(function () {
+                var table = $('#MainContent_gvOutstandingFollowUps').DataTable();
+            });
+        </script>
+
+
 </asp:Content>
