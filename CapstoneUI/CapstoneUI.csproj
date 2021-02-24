@@ -301,12 +301,17 @@
       <DependentUpon>CreateResident.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataAccessors\Examples\AddHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\CHWParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\CHWWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\Examples\HouseParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\LookUpUser.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllCHW.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetAllDevelopments.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentWriter.cs" />
     <Compile Include="DataAccess\DataSupport.cs" />
     <Compile Include="DataAccess\ExecuteData.cs" />
+    <Compile Include="DataAccess\ResidentParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetAllCHW.cs" />
     <Compile Include="DataModels\CARESUser.cs" />
     <Compile Include="DataModels\Event.cs" />
     <Compile Include="DataModels\House.cs" />
