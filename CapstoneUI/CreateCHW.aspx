@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="CreateCHW.aspx.cs" Inherits="CapstoneUI.CreateCHW" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="CreateCHW.aspx.cs" Inherits="CapstoneUI.CreateCHW" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid backgroundblue">
