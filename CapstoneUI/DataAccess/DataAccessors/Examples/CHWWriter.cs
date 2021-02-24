@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
 
         public CHWWriter(List<string> values)
         {
-            CommandText = "AddCHWTest";
+            CommandText = "AddCHW";
             CommandType = CommandType.StoredProcedure;
             Parameters = new CHWParameters().Fill(values);
         }

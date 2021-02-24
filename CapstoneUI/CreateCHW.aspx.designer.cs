@@ -94,6 +94,33 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
         
         /// <summary>
+        /// ddlIsSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsSupervisor;
+        
+        /// <summary>
+        /// upSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upSupervisor;
+        
+        /// <summary>
+        /// divSelectSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSelectSupervisor;
+        
+        /// <summary>
         /// ddlSupervisor control.
         /// </summary>
         /// <remarks>
