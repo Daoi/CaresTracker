@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.SqlClient;
-
+using MySql.Data.MySqlClient;
 
 namespace CapstoneUI.DataAccess.DataAccessors
 {
@@ -30,7 +30,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
         public DataTable RunCommand(string name)
         {
 
-            Parameters = new SqlParameter[1] { new SqlParameter("UserName", name) }; 
+            Parameters = new MySqlParameter[1] { new MySqlParameter("Username", name) }; 
             ExecuteQuery eq = new ExecuteQuery(); 
             return eq.ExecuteAdapter(this); 
         }

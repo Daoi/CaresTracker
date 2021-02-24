@@ -63,32 +63,41 @@ namespace CapstoneUI
         public void InitializeFollowUps()
         {
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
+
+            //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month or something
+
             DataTable uncompleted = new GetUncompletedFollowUps().RunCommand(man.Username);
+
             if (uncompleted.Rows.Count == 0)
             {
-                lblOutstandingMsg.Text = "You currently have no residents whomst require a follow up.";
+                lblOutstandingMsg.Text = "You currently have no residents who require a follow up.";
             }
+            else
+            {
+                gvOutstandingFollowUps.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvOutstandingFollowUps.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+
+                gvOutstandingFollowUps.DataSource = uncompleted;
+                gvOutstandingFollowUps.DataBind();
+            }
+
             DataTable completed = new GetCompletedFollowUps().RunCommand(man.Username);
+
             if (completed.Rows.Count == 0)
             {
                 lblCompletedMsg.Text = "You have no completed follow ups.";
             }
-
-
-            gvCompletedFollowUps.DataBound += (object o, EventArgs ev) =>
+            else
             {
-                gvCompletedFollowUps.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-            gvOutstandingFollowUps.DataBound += (object o, EventArgs ev) =>
-            {
-                gvOutstandingFollowUps.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-
-            //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month or something
-            gvCompletedFollowUps.DataSource = completed;
-            gvOutstandingFollowUps.DataSource = uncompleted;
-            gvCompletedFollowUps.DataBind();
-            gvOutstandingFollowUps.DataBind();
+                gvCompletedFollowUps.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvCompletedFollowUps.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+                gvCompletedFollowUps.DataSource = completed;
+                gvCompletedFollowUps.DataBind();
+            }
         }
     }
 }
