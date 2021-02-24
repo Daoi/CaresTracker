@@ -1,21 +1,18 @@
-﻿using CapstoneUI.DataAccess.DataAccessors.Examples;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using System.Data;
 
 namespace CapstoneUI.DataAccess.DataAccessors
 {
-    public class CHWWriter : DataSupport, IData
+    public class ResidentWriter : DataSupport, IData
     {
 
-        public CHWWriter(List<string> values)
+        public ResidentWriter(List<string> values)
         {
-            CommandText = "AddCHW";
+            CommandText = "AddResident";
             CommandType = CommandType.StoredProcedure;
-            Parameters = new CHWParameters().Fill(values);
         }
 
         public int ExecuteCommand()

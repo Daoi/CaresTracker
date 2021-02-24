@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace CapstoneUI.DataAccess
 {
@@ -19,14 +20,14 @@ namespace CapstoneUI.DataAccess
         public DataTable ExecuteAdapter(IData cmdInfo)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection(cmdInfo.ConnectionString))
+            using (MySqlConnection cn = new MySqlConnection(cmdInfo.ConnectionString))
             {
                 cn.Open();
-                using (SqlCommand cmd = new SqlCommand(cmdInfo.CommandText, cn))
+                using (MySqlCommand cmd = new MySqlCommand(cmdInfo.CommandText, cn))
                 {
                     ConfigureCommand(cmd, cmdInfo);
 
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                     {
                         cmdInfo.Count = da.Fill(dt);
                     }
@@ -43,10 +44,10 @@ namespace CapstoneUI.DataAccess
         /// <returns>Count of rows affected</returns>
         public int ExecuteNonQuery(IData cmdInfo)
         {
-            using (SqlConnection cn = new SqlConnection(cmdInfo.ConnectionString))
+            using (MySqlConnection cn = new MySqlConnection(cmdInfo.ConnectionString))
             {
                 cn.Open();
-                using (SqlCommand cmd = new SqlCommand(cmdInfo.CommandText, cn))
+                using (MySqlCommand cmd = new MySqlCommand(cmdInfo.CommandText, cn))
                 {
                     ConfigureCommand(cmd, cmdInfo);
 
@@ -64,10 +65,10 @@ namespace CapstoneUI.DataAccess
         public object ExecuteScalar(IData cmdInfo)
         {
             object dataObj = null;
-            using (SqlConnection cn = new SqlConnection(cmdInfo.ConnectionString))
+            using (MySqlConnection cn = new MySqlConnection(cmdInfo.ConnectionString))
             {
                 cn.Open();
-                using (SqlCommand cmd = new SqlCommand(cmdInfo.CommandText, cn))
+                using (MySqlCommand cmd = new MySqlCommand(cmdInfo.CommandText, cn))
                 {
                     ConfigureCommand(cmd, cmdInfo);
 
@@ -89,7 +90,7 @@ namespace CapstoneUI.DataAccess
         /// </summary>
         /// <param name="cmd">The SQL Command to be run</param>
         /// <param name="cmdInfo">The class that implements IData used to construct the SQL command</param>
-        protected void ConfigureCommand(SqlCommand cmd, IData cmdInfo)
+        protected void ConfigureCommand(MySqlCommand cmd, IData cmdInfo)
         {
             if (cmdInfo.Timeout.HasValue)
             {
