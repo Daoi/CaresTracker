@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CapstoneUI.DataAccess.DataAccessors;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,29 +11,47 @@ namespace CapstoneUI
 {
     public partial class CHWList : System.Web.UI.Page
     {
+        DataTable CHWDataSet;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            gvCHWList.DataBound += (object o, EventArgs ev) =>
+            {
+                gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
+            };
+            CHWDataSet = new GetAllCHW().RunCommand();
+            gvCHWList.DataSource = CHWDataSet;
+            gvCHWList.DataBind();
         }
 
         public class CHW
         {
-            public string FirsttName { get; set; }
-            public string LastName { get; set; }
-            public string Password { get; set; }
-            public string PhoneNumber { get; set; }
-            public string Email { get; set; }
+            public int UserID { get; set; }
             public string Username { get; set; }
-            public EventInteraction() { }
-            public EventInteraction(string eventname, string eventdescription, string eventtype,
-                string eventlocation, String eventstartdatetime, string eventenddatetime)
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string UserPhoneNumber { get; set; }
+            public string UserEmail { get; set; }
+            public DateTime LastLogin { get; set; }
+            public string UserStatus { get; set; }
+            public int Supervisor { get; set; }
+            public int RegionID { get; set; }
+
+            
+            public CHW() { }
+            public CHW(int userid, string username, string firstname, string lastname,
+                string userphonenumber, string useremail, DateTime lastlogin, string userstatus, int supervisor, int regionid)
             {
-                EventName = eventname;
-                EventDescription = eventdescription;
-                EventType = eventtype;
-                EventLocation = eventlocation;
-                EventStartDateTime = eventstartdatetime;
-                EventEndDateTime = eventenddatetime;
+                UserID = userid;
+                Username = username;
+                FirstName = firstname;
+                LastName = lastname;
+                UserPhoneNumber = userphonenumber;
+                UserEmail = useremail;
+                LastLogin = lastlogin;
+                UserStatus = userstatus;
+                Supervisor = supervisor;
+                RegionID = regionid;
             }
         }
 
