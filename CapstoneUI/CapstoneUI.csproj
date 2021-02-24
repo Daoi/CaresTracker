@@ -270,8 +270,10 @@
       <DependentUpon>CreateResident.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataAccessors\Examples\AddHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\CHWParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\CHWWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\Examples\HouseParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\LookUpUser.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllDevelopments.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentWriter.cs" />
