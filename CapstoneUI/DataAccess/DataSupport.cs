@@ -1,7 +1,8 @@
 ﻿using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web.Configuration;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace CapstoneUI.DataAccess
 {
@@ -31,7 +32,7 @@ namespace CapstoneUI.DataAccess
         /// <summary>
         /// An array of SqlParameters. Leave null if no parameters.
         /// </summary>
-        public SqlParameter[] Parameters { get; set; }
+        public MySqlParameter[] Parameters { get; set; }
 
         /// <summary>
         /// ConnectionString. Set using GetConnectionString().
