@@ -22,12 +22,15 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
         {
             Parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@theUserName", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@thePassword", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@theFirstName", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@theLastName", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@theUserEmail", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@theUserPhoneNumber", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@UserName", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@FirstName", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@LastName", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@UserEmail", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@UserPhoneNumber", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@UserType", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@RegionID", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@SignedInUserName", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@SuperVisorID", MySqlDbType.VarChar, 50)             
             };
         }
 

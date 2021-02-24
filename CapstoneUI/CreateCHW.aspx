@@ -108,8 +108,6 @@
                                 </div>
                                 <div class="col-7">
                                     <asp:DropDownList ID="ddlSupervisor" runat="server">
-                                        <asp:ListItem Value="3">Shirley Moy</asp:ListItem>
-                                        <asp:ListItem Value="9">Gaye Harley</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
