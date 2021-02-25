@@ -45,8 +45,13 @@ namespace CapstoneUI
 
             try
             {
+                // confirm user and change password
                 var signUpResponse = await man.ConfirmSignUpAsync(txtUsername.Text, txtTemporaryPassword.Text, txtNewPassword.Text);
-                //check if response is OK
+
+                // I haven't run into a scenario in which the previous method fails and doesn't throw an error, but just in case...
+                if (signUpResponse == null) { lblError.Text = "An unknown error occurred. Please try again later."; }
+
+                // automatically sign user in
                 var authResponse = await man.SignInAsync(txtUsername.Text, txtNewPassword.Text);
 
                 if (authResponse != null)
