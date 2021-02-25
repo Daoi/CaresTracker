@@ -46,14 +46,6 @@
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
-                            <label>Password: </label>
-                        </div>
-                        <div class="col-7">
-                            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row m-3 modal-header">
-                        <div class="col">
                             <label>Email: </label>
                         </div>
                         <div class="col-7">
