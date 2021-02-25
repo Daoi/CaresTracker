@@ -220,6 +220,7 @@
     <Content Include="style\loginStyle.css" />
     <Content Include="style\style.css" />
     <Content Include="TestPage.aspx" />
+    <Content Include="Verify.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -387,6 +388,13 @@
       <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Validation.cs" />
+    <Compile Include="Verify.aspx.cs">
+      <DependentUpon>Verify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Verify.aspx.designer.cs">
+      <DependentUpon>Verify.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
