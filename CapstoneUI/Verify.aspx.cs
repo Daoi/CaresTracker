@@ -30,6 +30,12 @@ namespace CapstoneUI
                 return;
             }
 
+            if (!Validation.IsValidPassword(txtNewPassword.Text))
+            {
+                lblError.Text = "The new password does not fit the requirements.";
+                return;
+            }
+
             // AWS Cognito Login
             AWSCognitoManager man = new AWSCognitoManager();
 

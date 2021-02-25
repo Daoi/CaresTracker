@@ -105,5 +105,19 @@ namespace CapstoneUI.Utilities
         {
             return input == "";
         }
+
+        /// <summary>
+        /// Checks if a string matches our password requirements.
+        /// At least 8 characters long
+        /// At least one lowercase letter
+        /// At least one uppercase letter
+        /// At least one number
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool IsValidPassword(string input)
+        {
+            return Regex.IsMatch(input, @"^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*");
+        }
     }
 }
