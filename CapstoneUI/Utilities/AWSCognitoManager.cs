@@ -86,13 +86,9 @@ namespace CapstoneUI.Utilities
         /// <param name="username"></param>
         /// <param name="password">8 characters: uppercase, lower</param>
         /// <param name="email"></param>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="phoneNumber">Must match the format: +12155555555</param>
         /// <param name="isAdmin">0: CHW, 1: Supervisors, Directors</param>
         /// <returns></returns>
-        public async Task<AdminCreateUserResponse> CreateUserAsync(string username, string email,
-            string firstName, string lastName, string phoneNumber, int isAdmin = 0)
+        public async Task<AdminCreateUserResponse> CreateUserAsync(string username, string email, int isAdmin = 0)
         {
             using (var client = this.GetClient())
             {
@@ -115,27 +111,6 @@ namespace CapstoneUI.Utilities
                     Value = email.ToLower()
                 };
                 req.UserAttributes.Add(attrEmail);
-
-                var attrFirstName = new AttributeType
-                {
-                    Name = "name",
-                    Value = firstName
-                };
-                req.UserAttributes.Add(attrFirstName);
-
-                var attrLastName = new AttributeType
-                {
-                    Name = "family_name",
-                    Value = lastName
-                };
-                req.UserAttributes.Add(attrLastName);
-
-                var attrPhone = new AttributeType
-                {
-                    Name = "phone_number",
-                    Value = phoneNumber
-                };
-                req.UserAttributes.Add(attrPhone);
 
                 var attrIsAdmin = new AttributeType
                 {
@@ -407,16 +382,6 @@ namespace CapstoneUI.Utilities
         public string Username
         {
             get { return this.user.Username; }
-        }
-
-        public string UserFirstName
-        {
-            get { return this.userAttributes["name"]; }
-        }
-
-        public string FullName
-        {
-            get { return this.userAttributes["name"] + ' ' + this.userAttributes["family_name"]; }
         }
 
         /// <summary>
