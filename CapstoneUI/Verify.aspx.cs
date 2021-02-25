@@ -12,7 +12,11 @@ namespace CapstoneUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // try to autofill username from email link
+            if (Request.QueryString["username"] != null)
+            {
+                txtUsername.Text = Request.QueryString["username"];
+            }
         }
 
         protected async void btnConfirm_Click(object sender, EventArgs e)
