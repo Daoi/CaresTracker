@@ -191,3 +191,40 @@ thead {
         display: inline-table;
         vertical-align: -.01em;
     }
+
+/*Landscape*/
+@media (max-height: 768px) {
+    .btn-responsive {
+        padding: .3em .2em;
+        font-size: 90%;
+        line-height: 1.5;
+    }
+}
+/*Portrait*/
+@media (min-width: 769px) and (max-width: 992px) {
+    .btn-responsive {
+        padding: .5em .1em;
+        font-size: 90%;
+        line-height: 1.2;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.error-label{
+    color: red;
+}
+
+.homepage-bottom-row{
+    overflow-y: scroll;
+}
+
+.followup-tracker{
+    overflow-y: scroll;
+}
+
+#MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter {
+    margin-right: 9.7em;
+}

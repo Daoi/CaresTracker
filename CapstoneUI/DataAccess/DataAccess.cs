@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace CapstoneUI.DataAccess
 {
@@ -18,7 +18,7 @@ namespace CapstoneUI.DataAccess
         /// <summary>
         /// Array of System.Data.SqlClient SqlParameters
         /// </summary>
-        SqlParameter[] Parameters { get; set; }
+        MySqlParameter[] Parameters { get; set; }
         /// <summary>
         /// System.Data CommandType
         /// </summary>
