@@ -39,7 +39,7 @@ namespace CapstoneUI
                     Session["CognitoManager"] = man;
                     Session["AccountType"] = man.IsAdmin;
                     Session["LoginStatus"] = true;
-                    Session["UserName"] = man.UserFirstName;
+                    Session["UserName"] = man.Username;
                     Response.Redirect("./Homepage.aspx", false);
                 }
                 else
