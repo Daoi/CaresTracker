@@ -59,7 +59,7 @@ namespace CapstoneUI
             {
                 if (ddlIsSupervisor.SelectedValue == "yes")
                 {
-                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 0);
+                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 1);
 
                     if (res != null)
                     {
@@ -78,7 +78,7 @@ namespace CapstoneUI
                 }
                 else
                 {
-                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 1);
+                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 0);
 
                     if (res != null)
                     {
