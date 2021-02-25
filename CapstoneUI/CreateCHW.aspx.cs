@@ -6,7 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapstoneUI.Utilities;
-
+using CapstoneUI.DataAccess.DataAccessors;
+using System.Data;
 
 namespace CapstoneUI
 {
@@ -17,6 +18,20 @@ namespace CapstoneUI
             if (!IsPostBack)
             {
                 divSelectSupervisor.Visible = false;
+                GetAllCHW chws = new GetAllCHW();
+                DataTable ds = chws.RunCommand();
+                for(int i = ds.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow record = ds.Rows[i];
+                    if (record["UserType"].ToString() != "A")
+                    {
+                        ds.Rows[i].Delete();
+                    }
+                }
+                ddlSupervisor.DataSource = ds;
+                ddlSupervisor.DataTextField = "FirstName";
+                ddlSupervisor.DataValueField = "UserID";
+                ddlSupervisor.DataBind();
             }
         }
 
@@ -28,7 +43,15 @@ namespace CapstoneUI
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
             //validation
+            List<string> values = new List<string>();
+            values.Add(txtUsername.Text);
+            values.Add(txtFirstName.Text);
+            values.Add(txtLastName.Text);
+            values.Add(txtEmail.Text);
+
             string phoneNumber = "+1" + txtPhoneNumber.Text;
+            values.Add(phoneNumber);
+            string signedInUserName = Session["UserName"].ToString();
 
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
 
@@ -40,6 +63,12 @@ namespace CapstoneUI
 
                     if (res != null)
                     {
+                        values.Add("A");
+                        values.Add(ddlRegion.SelectedValue);
+                        values.Add(signedInUserName);
+                        values.Add(null);
+                        CHWWriter newCHW = new CHWWriter(values);
+                        newCHW.ExecuteCommand();
                         Response.Write("<script>alert('Admin/Supervisor inserted successfully.')</script>");
                     }
                     else
@@ -53,6 +82,12 @@ namespace CapstoneUI
 
                     if (res != null)
                     {
+                        values.Add("C");
+                        values.Add(ddlRegion.SelectedValue);
+                        values.Add(signedInUserName);
+                        values.Add(ddlSupervisor.SelectedValue);
+                        CHWWriter newCHW = new CHWWriter(values);
+                        newCHW.ExecuteCommand();
                         Response.Write("<script>alert('CHW inserted successfully.')</script>");
                     }
                     else
