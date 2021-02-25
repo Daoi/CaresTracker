@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using System.Data;
-using System.Data.SqlClient;
+using CapstoneUI.Utilities;
 using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataAccess.DataAccessors.Examples;
+using System.Data;
 
 namespace CapstoneUI
 {
@@ -19,6 +18,20 @@ namespace CapstoneUI
             if (!IsPostBack)
             {
                 divSelectSupervisor.Visible = false;
+                GetAllCHW chws = new GetAllCHW();
+                DataTable ds = chws.RunCommand();
+                for(int i = ds.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow record = ds.Rows[i];
+                    if (record["UserType"].ToString() != "A")
+                    {
+                        ds.Rows[i].Delete();
+                    }
+                }
+                ddlSupervisor.DataSource = ds;
+                ddlSupervisor.DataTextField = "FirstName";
+                ddlSupervisor.DataValueField = "UserID";
+                ddlSupervisor.DataBind();
             }
         }
 
@@ -27,36 +40,63 @@ namespace CapstoneUI
             Server.Transfer("Homepage.aspx");
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected async void btnSubmit_Click(object sender, EventArgs e)
         {
+            //validation
+            List<string> values = new List<string>();
+            values.Add(txtUsername.Text);
+            values.Add(txtFirstName.Text);
+            values.Add(txtLastName.Text);
+            values.Add(txtEmail.Text);
+
+            string phoneNumber = "+1" + txtPhoneNumber.Text;
+            values.Add(phoneNumber);
+            string signedInUserName = Session["UserName"].ToString();
+
+            AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
+
             try
             {
-                List<string> values = new List<string>();
-                values.Add(txtUsername.Text);
-                values.Add(txtPassword.Text);
-                values.Add(txtFirstName.Text);
-                values.Add(txtLastName.Text);
-                values.Add(txtEmail.Text);
-                values.Add(txtPhoneNumber.Text);
-                values.Add("Active");
-
                 if (ddlIsSupervisor.SelectedValue == "yes")
                 {
-                    values.Add("A");
-                    values.Add(null);
+                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 0);
+
+                    if (res != null)
+                    {
+                        values.Add("A");
+                        values.Add(ddlRegion.SelectedValue);
+                        values.Add(signedInUserName);
+                        values.Add(null);
+                        CHWWriter newCHW = new CHWWriter(values);
+                        newCHW.ExecuteCommand();
+                        Response.Write("<script>alert('Admin/Supervisor inserted successfully.')</script>");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
+                    }
                 }
                 else
                 {
-                    values.Add("C");
-                    values.Add(ddlSupervisor.SelectedValue);
-                }
-                values.Add(ddlRegion.SelectedValue);
+                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 1);
 
-                CHWWriter newCHW = new CHWWriter(values);
-                newCHW.ExecuteCommand();
-                Response.Write("<script>alert('CHW inserted successfully')</script>");
+                    if (res != null)
+                    {
+                        values.Add("C");
+                        values.Add(ddlRegion.SelectedValue);
+                        values.Add(signedInUserName);
+                        values.Add(ddlSupervisor.SelectedValue);
+                        CHWWriter newCHW = new CHWWriter(values);
+                        newCHW.ExecuteCommand();
+                        Response.Write("<script>alert('CHW inserted successfully.')</script>");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
+                    }
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Response.Write("<script>alert(" + ex.ToString() + ")</script>");
             }
