@@ -32,8 +32,9 @@
                         <h6 class="text-body fw-bold">Include one number</h6>
                     </div>
                     <div class="col">
-                        <asp:Label ID="lblError" runat="server" CssClass="h6 alert-danger"></asp:Label>
                         <asp:Label ID="lblInstructions" runat="server" CssClass="h6 text-dark" Text="Enter your credentials and new password."></asp:Label>
+                        <br />
+                        <asp:Label ID="lblError" runat="server" CssClass="h6 alert-danger"></asp:Label>
                         <br />
                         <br />
                         <div class="form-group row justify-content-center">
