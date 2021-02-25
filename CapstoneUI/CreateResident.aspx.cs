@@ -21,13 +21,11 @@ namespace CapstoneUI
                 // Get list of all developments
                 GetAllDevelopments GAD = new GetAllDevelopments();
                 DataTable dataTable = GAD.ExecuteCommand();
-                List<string> developmentsList = new List<string>();
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    string name = row.Field<string>("DevelopmentName");
-                    developmentsList.Add(name);
-                }
-                ddlDevelopments.DataSource = developmentsList;
+
+                // Bind to drop down list
+                ddlDevelopments.DataSource = dataTable;
+                ddlDevelopments.DataValueField = "DevelopmentID";
+                ddlDevelopments.DataTextField = "DevelopmentName";
                 ddlDevelopments.DataBind();
             }
         }
@@ -39,16 +37,17 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
+            bool houseResult = false;
+            bool residentResult = false;
             // VALIDATION NEEDED
 
             // bool valid = Validate();
             // if(valid){...}
 
-            //Build House and Resident objects from user input
+            //Build House object
             House residentHouse = new House();
             residentHouse.Address = txtAddress.Text;
             residentHouse.ZipCode = txtZipCode.Text;
-
 
             if (ddlHousing.SelectedIndex == 1)
             {
@@ -58,9 +57,16 @@ namespace CapstoneUI
             else
             {
                 residentHouse.HouseType = "Development";
-                //residentHouse.DevelopmentID = ...
+                residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
+            }
+            // Write new House to the database
+            AddHouse AH = new AddHouse(residentHouse);
+            if(AH.ExecuteCommand() == 1)
+            {
+                houseResult = true;
             }
 
+            // Build Resident object
             Resident newResident = new Resident();
 
             newResident.FirstName = txtFirstName.Text;
@@ -71,22 +77,38 @@ namespace CapstoneUI
             newResident.RelationshipToHoH = ddlRelationshipHOH.SelectedValue;
             newResident.Gender = rblGender.SelectedValue;
             newResident.Race = ddlRace.SelectedValue;
+            // Retrieve HouseID of House that was just created
+            GetHouse GH = new GetHouse();
+            DataTable dataTable = GH.RunCommand(txtAddress.Text);
+            newResident.HouseID =dataTable.Rows[0].Field<int>("HouseID");
 
-
-            // Write new resident House to the database
-            AddHouse AH = new AddHouse(residentHouse);
-            if (AH.ExecuteCommand() == 1)
+            // Add new Resident
+            ResidentWriter RW = new ResidentWriter(newResident);
+            if(RW.ExecuteCommand() == 1)
             {
-                Response.Write("<script>alert('House inserted successfully')</script>");
+                residentResult = true;
+            }
+            
+
+            // Hide alert labels then show which is appropriate
+            lblFail.Visible = false;
+            lblSuccess.Visible = false;
+            if (residentResult == true && houseResult == true )
+            {
+                lblSuccess.Visible = true;
             }
             else
             {
-                Response.Write("<script>alert('Insert failed!')</script>");
+                lblFail.Visible = true;
             }
+
+
         }
 
+        // Show/hide divs depending on which housing option is selected
         protected void ddlHousing_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             List<HtmlGenericControl> housingDivs = new List<HtmlGenericControl>() { divHouse, divDevelopmentUnit };
             DropDownList ddl = (DropDownList)sender;
             string selectedId = ddl.SelectedValue;

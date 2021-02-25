@@ -99,19 +99,19 @@
                         </div>
                     </div>
 
-                    <%-- Conditional Housing Info --%>
+                    <%-- Universal Info End --%>
                     <h2>Housing Information</h2>
                     <asp:DropDownList ID="ddlHousing" CssClass="form-control mt-4" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
                         <asp:ListItem Value="None Selected">Select Housing Type</asp:ListItem>
                         <asp:ListItem Value="divHouse">Housing Choice Voucher</asp:ListItem>
                         <asp:ListItem Value="divDevelopmentUnit">Housing Development</asp:ListItem>
                     </asp:DropDownList><br />
-                    <%-- Universal Info Start --%>
+                    <%-- House Start --%>
                     <div class="eventControlBG">
                         <asp:TextBox ID="txtAddress" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />
                         <asp:TextBox ID="txtZipCode" placeholder="Zip Code" runat="server" CssClass="form-control"></asp:TextBox><br />
                     </div>
-                    <%-- Universal Info End --%>
+                    <%-- House End --%>
                     <asp:UpdatePanel ID="upHousing" runat="server" UpdateMode="Conditional">
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="ddlHousing" EventName="SelectedIndexChanged" />
@@ -155,6 +155,16 @@
                     <div class="row m-3">
                         <div class="col">
                             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click1" />
+                        </div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col">
+                            <asp:Label runat="server" class="alert alert-success" id="lblSuccess" role="alert" visible="false">
+                                The resident and their housing information were successfully added!
+                            </asp:Label>
+                            <asp:Label runat="server" class="alert alert-danger" id="lblFail" role="alert" visible="false">
+                                Could not add resident to the database
+                            </asp:Label>
                         </div>
                     </div>
                 </div>
