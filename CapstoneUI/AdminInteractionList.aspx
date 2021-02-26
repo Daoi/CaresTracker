@@ -32,11 +32,15 @@
                 </div>
             </div>
         </div>
+        <asp:HiddenField ID="hfResidentDetails" runat="server" />
         <div style="margin-top: 2%; height: 2%; width: auto;"></div>
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#MainContent_gvInteractionList').DataTable();
+            var table = $('#MainContent_gvInteractionList').DataTable();;
+            var hv = $('#MainContent_hfResidentDetails').val();
+            table.search(hv).draw();
+
         });
     </script>
 </asp:Content>

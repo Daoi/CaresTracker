@@ -1,16 +1,30 @@
-﻿using System;
+﻿using CapstoneUI.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace CapstoneUI
 {
     public partial class AdminInteractionList : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack)
+            {
+                if (HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
+                {
+                    Resident res = Session["NewResident"] as Resident;
+                    hfResidentDetails.Value = $"{res.FirstName} {res.LastName} {res.Home.Address}";
+
+                }
+            }
+
             List<Interaction> temp = new List<Interaction>();
             Interaction interaction = new Interaction("John", " Doe", "Jane Deer", "1/1/2021", "Phone", "Office", "Resident wanted more information on laundary services.");
             temp.Add(interaction);
@@ -30,6 +44,7 @@ namespace CapstoneUI
 
             gvInteractionList.DataSource = temp;
             gvInteractionList.DataBind();
+
         }
 
 
@@ -63,7 +78,8 @@ namespace CapstoneUI
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
+
     }
 }

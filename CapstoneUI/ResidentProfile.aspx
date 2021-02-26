@@ -7,7 +7,7 @@
             <div class="col-md-2 border-right">
                 <div class="row mt-3 justify-content-center">
                     <div class="col-sm-auto">
-                        <asp:Button ID="btnReviewPastInteractions" CssClass="btn-responsive btn-primary" runat="server" Text="Past Interactions" />
+                        <asp:Button ID="btnReviewPastInteractions" CssClass="btn-responsive btn-primary" runat="server" Text="Past Interactions" OnClick="btnReviewPastInteractions_Click" />
                     </div>
                 </div>
                 <div class="row mt-3 justify-content-center">
