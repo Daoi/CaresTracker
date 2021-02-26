@@ -13,9 +13,9 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
             // try to autofill username from email link
-            if (Request.QueryString["username"] != null)
+            if (!IsPostBack && Request.QueryString["usr"] != null)
             {
-                txtUsername.Text = Request.QueryString["username"];
+                txtUsername.Text = Request.QueryString["usr"];
             }
         }
 
