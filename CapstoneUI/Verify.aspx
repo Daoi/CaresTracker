@@ -16,7 +16,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="loginContainer d-flex ">
-            <div class="card-mb3 text-center mx-auto verifyCard my-auto ">
+            <div class="card mb-3 text-center mx-auto verifyCard my-auto ">
                 <div class="card-header forestGreen">
                     PHA and Lenfest North Covid-19 Tracker
                 </div>
