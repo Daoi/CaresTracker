@@ -94,7 +94,7 @@ namespace CapstoneUI
             };
             
             //Store new resident in Session to use to redirect/populate resident profile
-            Session["NewResident"] = newResident;
+            Session["Resident"] = newResident;
             // Write new resident House to the database
             AddHouse AH = new AddHouse(residentHouse);
             if (AH.ExecuteCommand() == 1)

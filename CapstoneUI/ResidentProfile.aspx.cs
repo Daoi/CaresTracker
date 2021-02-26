@@ -13,25 +13,21 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if(Session["NewResident"] != null)
+            if(Session["Resident"] != null)
             {
-                currentRes = (Resident)Session["NewResident"];
+                currentRes = (Resident)Session["Resident"];
             }
 
-            if (!IsPostBack && Session["NewResident"] != null)
+            if (!IsPostBack && Session["Resident"] != null)
             {
                 InitializeProfileValues();
             }
         }
 
-        protected void btnResidentInteractions_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("CHWInteractionList.aspx");
-        }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
 
         public void InitializeProfileValues()
@@ -53,7 +49,10 @@ namespace CapstoneUI
 
 
             interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.FirstName, currentRes.LastName, currentRes.DateOfBirth);
+
+            //Total rows returned = recorded interactions
             lblRecordedInteractions.Text = $"Interactions recorded: {interactions.Rows.Count}";
+           
             //Get all the rows that meet the requirements of needing a follow up and count them;
             int followUpsRequired = interactions.Rows.Cast<DataRow>()
                 .Where(r => r.Field<bool>("RequiresFollowUp") == true 
@@ -68,6 +67,11 @@ namespace CapstoneUI
         protected void btnReviewPastInteractions_Click(object sender, EventArgs e)
         {
             Server.Transfer("AdminInteractionList.aspx");
+        }
+
+        protected void btnCreateNewInteraction_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("ResidentInteractionForm.aspx");
         }
     }
 }

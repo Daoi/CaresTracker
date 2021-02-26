@@ -40,7 +40,6 @@
             var table = $('#MainContent_gvInteractionList').DataTable();;
             var hv = $('#MainContent_hfResidentDetails').val();
             table.search(hv).draw();
-
         });
     </script>
 </asp:Content>

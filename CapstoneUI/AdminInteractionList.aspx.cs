@@ -21,7 +21,6 @@ namespace CapstoneUI
                 {
                     Resident res = Session["NewResident"] as Resident;
                     hfResidentDetails.Value = $"{res.FirstName} {res.LastName} {res.Home.Address}";
-
                 }
             }
 
@@ -52,7 +51,6 @@ namespace CapstoneUI
         {
             public string ResidentFirstName { get; set; }
             public string ResidentLastName { get; set; }
-
             public string CHWName { get; set; }
             public string DateOfInteraction { get; set; }
             public string MethodOfContact { get; set; }
@@ -73,7 +71,8 @@ namespace CapstoneUI
 
         protected void gvInteractionList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Server.Transfer("ResidentInteractionForm.aspx");
+            Server.Transfer("ResidentInteractionForm.aspx"); 
+            
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
