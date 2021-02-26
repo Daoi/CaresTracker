@@ -19,7 +19,7 @@ namespace CapstoneUI
             {
                 if (HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
                 {
-                    Resident res = Session["NewResident"] as Resident;
+                    Resident res = Session["Resident"] as Resident;
                     hfResidentDetails.Value = $"{res.FirstName} {res.LastName} {res.Home.Address}";
                 }
             }
