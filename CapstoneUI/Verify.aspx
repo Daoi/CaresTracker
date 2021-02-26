@@ -20,6 +20,7 @@
                 <div class="card-header forestGreen">
                     PHA and Lenfest North Covid-19 Tracker
                 </div>
+                <br />
                 <div>
                     <img src="img/pha_logonew.png" class="loginImg" />
                 </div>
@@ -32,21 +33,14 @@
                         <h6 class="text-body fw-bold">Include one number</h6>
                     </div>
                     <div class="col">
-                        <asp:Label ID="lblInstructions" runat="server" CssClass="h6 text-dark" Text="Enter your credentials and new password."></asp:Label>
+                        <asp:Label ID="lblUsername" CssClass="text-black-50" runat="server"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblInstructions" runat="server" CssClass="h6 text-dark" Text="Set your new password below."></asp:Label>
                         <br />
                         <asp:Label ID="lblError" runat="server" CssClass="h6 alert-danger"></asp:Label>
                         <br />
                         <br />
-                        <div class="form-group row justify-content-center">
-                            <div class="col-md-9">
-                                <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-group row justify-content-center">
-                            <div class="col-md-9">
-                                <asp:TextBox ID="txtTemporaryPassword" TextMode="Password" runat="server" CssClass="form-control" placeholder="Temporary Password"></asp:TextBox>
-                            </div>
-                        </div>
+                                
                         <div class="form-group row justify-content-center">
                             <div class="col-md-9">
                                 <asp:TextBox ID="txtNewPassword" TextMode="Password" runat="server" CssClass="form-control" placeholder="New Password"></asp:TextBox>
