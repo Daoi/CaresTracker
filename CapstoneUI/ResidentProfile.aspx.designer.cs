@@ -175,24 +175,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlHoH;
         
         /// <summary>
-        /// lblFamilySize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFamilySize;
-        
-        /// <summary>
-        /// tbFamilySize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFamilySize;
-        
-        /// <summary>
         /// lblRace control.
         /// </summary>
         /// <remarks>
@@ -272,23 +254,5 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbRegionId;
-        
-        /// <summary>
-        /// lblNumberOfOccupants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumberOfOccupants;
-        
-        /// <summary>
-        /// tbNumberOfOccupants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNumberOfOccupants;
     }
 }
