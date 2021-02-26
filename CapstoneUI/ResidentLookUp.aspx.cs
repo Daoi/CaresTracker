@@ -76,7 +76,7 @@ namespace CapstoneUI
         protected void NewResident_Click(object sender, EventArgs e)
         {
             
-            Response.Redirect($"CreateResident.aspx?name={hfSearchInput.Value}");
+            Response.Redirect($"CreateResident.aspx");
         }
     }
 }

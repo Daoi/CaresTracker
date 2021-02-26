@@ -86,13 +86,9 @@ namespace CapstoneUI.Utilities
         /// <param name="username"></param>
         /// <param name="password">8 characters: uppercase, lower</param>
         /// <param name="email"></param>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="phoneNumber">Must match the format: +12155555555</param>
         /// <param name="isAdmin">0: CHW, 1: Supervisors, Directors</param>
         /// <returns></returns>
-        public async Task<SignUpResponse> CreateUserAsync(string username, string password, string email,
-            string firstName, string lastName, string phoneNumber, int isAdmin = 0)
+        public async Task<AdminCreateUserResponse> CreateUserAsync(string username, string email, int isAdmin = 0)
         {
             using (var client = this.GetClient())
             {
@@ -101,11 +97,11 @@ namespace CapstoneUI.Utilities
                     throw new ArgumentException("This email is already in use.");
                 }
 
-                var req = new SignUpRequest
+                var req = new AdminCreateUserRequest
                 {
-                    ClientId = _clientID,
+                    UserPoolId = _userPoolID,
                     Username = username,
-                    Password = password
+                    DesiredDeliveryMediums = new List<string>() { "EMAIL" },
                 };
 
                 // add attributes
@@ -116,27 +112,6 @@ namespace CapstoneUI.Utilities
                 };
                 req.UserAttributes.Add(attrEmail);
 
-                var attrFirstName = new AttributeType
-                {
-                    Name = "name",
-                    Value = firstName
-                };
-                req.UserAttributes.Add(attrFirstName);
-
-                var attrLastName = new AttributeType
-                {
-                    Name = "family_name",
-                    Value = lastName
-                };
-                req.UserAttributes.Add(attrLastName);
-
-                var attrPhone = new AttributeType
-                {
-                    Name = "phone_number",
-                    Value = phoneNumber
-                };
-                req.UserAttributes.Add(attrPhone);
-
                 var attrIsAdmin = new AttributeType
                 {
                     Name = "custom:is_admin",
@@ -144,19 +119,29 @@ namespace CapstoneUI.Utilities
                 };
                 req.UserAttributes.Add(attrIsAdmin);
 
-                var attrFirstLogin = new AttributeType
-                {
-                    Name = "custom:first_login",
-                    Value = "1"
-                };
-                req.UserAttributes.Add(attrFirstLogin);
-
-                var resp = await client.SignUpAsync(req);
+                var resp = await client.AdminCreateUserAsync(req);
 
                 if (isAdmin == 1)
                 {
                     await this.GrantUserAdminAsync(username);
                 }
+
+                // manually verify email to enable sending messages
+                var req2 = new AdminUpdateUserAttributesRequest()
+                {
+                    UserPoolId = _userPoolID,
+                    Username = username,
+                    UserAttributes = new List<AttributeType>()
+                    {
+                        new AttributeType()
+                        {
+                            Name = "email_verified",
+                            Value = "true"
+                        }
+                    }
+                };
+
+                var resp2 = await client.AdminUpdateUserAttributesAsync(req2);
 
                 return resp;
             }
@@ -203,6 +188,46 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
+        /// Confirms user on first sign in and changes their default password.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="code">Temporary password sent in email.</param>
+        /// <param name="newPassword">New password chosen by user.</param>
+        /// <returns></returns>
+        public async Task<RespondToAuthChallengeResponse> ConfirmSignUpAsync(string username, string code, string newPassword)
+        {
+            using (var client = this.GetClient())
+            {
+                var req = new InitiateAuthRequest()
+                {
+                    ClientId = _clientID,
+                    AuthFlow = "USER_PASSWORD_AUTH",
+                    AuthParameters = new Dictionary<string, string>()
+                    {
+                        { "USERNAME", username },
+                        { "PASSWORD", code }
+                    }
+                };
+
+                var resp = await client.InitiateAuthAsync(req);
+
+                var req2 = new RespondToAuthChallengeRequest()
+                {
+                    ChallengeName = resp.ChallengeName,
+                    ClientId = _clientID,
+                    Session = resp.Session,
+                    ChallengeResponses = new Dictionary<string, string>()
+                    {
+                        { "USERNAME", username },
+                        { "NEW_PASSWORD", newPassword }
+                    }
+                };
+
+                return await client.RespondToAuthChallengeAsync(req2);
+            }
+        }
+
+        /// <summary>
         /// Sends a verification code to user's email.
         /// Email must already have beeen verified.
         /// </summary>
@@ -224,6 +249,7 @@ namespace CapstoneUI.Utilities
 
         /// <summary>
         /// Changes the specified user's password.
+        /// Must call SendForgotPasswordCodeAsync() first.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password">New password</param>
@@ -246,49 +272,23 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
-        /// Updates current user's account to show they have already logged in for the first time.
-        /// This let's the system keep track of users that have not changed their temporary password.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<UpdateUserAttributesResponse> ConfirmFirstSignInAsync()
-        {
-            using (var client = this.GetClient())
-            {
-                List<AttributeType> lst = new List<AttributeType>()
-                {
-                    new AttributeType()
-                    {
-                        Name = "custom:first_login",
-                        Value = "0"
-                    }
-                };
-
-                var req = new UpdateUserAttributesRequest()
-                {
-                    UserAttributes = lst,
-                    AccessToken = this.user.SessionTokens.AccessToken
-                };
-
-                return await client.UpdateUserAttributesAsync(req);
-            }
-        }
-
-        /// <summary>
-        /// Send a fresh email verification link to specified user.
+        /// Send a fresh temporary password in case user lets it expire.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public async Task<ResendConfirmationCodeResponse> ResendVerificationLink(string username)
+        public async Task<AdminCreateUserResponse> ResendTemporaryPassword(string username)
         {
             using (var client = this.GetClient())
             {
-                var req = new ResendConfirmationCodeRequest()
+                var req = new AdminCreateUserRequest
                 {
+                    UserPoolId = _userPoolID,
                     Username = username,
-                    ClientId = _clientID
+                    DesiredDeliveryMediums = new List<string>() { "EMAIL" },
+                    MessageAction = "RESEND"
                 };
 
-                return await client.ResendConfirmationCodeAsync(req);
+                return await client.AdminCreateUserAsync(req);
             }
         }
 
@@ -312,7 +312,7 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
-        /// Use to reenable a disabled account.
+        /// Reenable a disabled account.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -384,30 +384,12 @@ namespace CapstoneUI.Utilities
             get { return this.user.Username; }
         }
 
-        public string UserFirstName
-        {
-            get { return this.userAttributes["name"]; }
-        }
-
-        public string FullName
-        {
-            get { return this.userAttributes["name"] + ' ' + this.userAttributes["family_name"]; }
-        }
-
         /// <summary>
         /// Use to setup admin/chw views and access throughout the application.
         /// </summary>
         public int IsAdmin
         {
             get { return int.Parse(this.userAttributes["custom:is_admin"]); }
-        }
-
-        /// <summary>
-        /// Use to make sure users change their temporary passwords.
-        /// </summary>
-        public bool IsFirstLogin
-        {
-            get { return int.Parse(this.userAttributes["custom:first_login"]) == 1; }
         }
 
         /// <summary>

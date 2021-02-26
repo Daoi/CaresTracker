@@ -105,6 +105,15 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.verifyCard {
+    height: auto;
+    background-color: white;
+    width: 65vw;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .chwImg {
     width: 20vw
 }
@@ -206,4 +215,16 @@ thead {
 
 .error-label{
     color: red;
+}
+
+.homepage-bottom-row{
+    overflow-y: scroll;
+}
+
+.followup-tracker{
+    overflow-y: scroll;
+}
+
+#MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter {
+    margin-right: 9.7em;
 }

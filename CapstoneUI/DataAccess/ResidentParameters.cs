@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -11,26 +12,25 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
     /// Seperating them out makes it easy to change them if the DB is changed/helps with organization
     /// </summary>
 
-    public class CHWParameters
+    public class ResidentParameters
     {
         private MySqlParameter[] Parameters;
         /// <summary>
         /// Create an array to store the parameters in the constructor.
         /// The constructor is called by the CHWWriter class when a new instance of it is created. 
         /// </summary>
-        public CHWParameters()
+        public ResidentParameters()
         {
             Parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@UserName", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@ResidenceID", MySqlDbType.Int64, 50),
                 new MySqlParameter("@FirstName", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@LastName", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@UserEmail", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@UserPhoneNumber", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@UserType", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@RegionID", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@SignedInUserName", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@SuperVisorID", MySqlDbType.VarChar, 50)             
+                new MySqlParameter("@DateOfBirth", MySqlDbType.DateTime, 50),
+                new MySqlParameter("@ResidentEmail", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@ResidentPhoneNumber", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@RelationshipToHoH", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@Gender", MySqlDbType.VarChar, 50),
             };
         }
 
@@ -43,12 +43,12 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
         public MySqlParameter[] Fill(List<string> values)
         {
             //Make sure there are a correct number of parameters provided
-            if(values.Count != Parameters.Length)
+            if (values.Count != Parameters.Length)
             {
                 throw new IndexOutOfRangeException($"Parameter count error. Provided: {values.Count} Allowed: {Parameters.Length}");
             }
             //Add the parameters
-            for(int i = 0; i < Parameters.Length; i++)
+            for (int i = 0; i < Parameters.Length; i++)
             {
                 Parameters[i].Value = values[i];
             }
