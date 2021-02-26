@@ -36,7 +36,7 @@
                     <br />
                     <div class="form-group row justify-content-center">
                         <div class="col-md-6">
-                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Password"></asp:TextBox>
                         </div>
                     </div>
                     <p class="card-text" style="color: deepskyblue">Forgot Username or Password?</p>
