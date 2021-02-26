@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -30,6 +31,22 @@ namespace CapstoneUI.DataModels
             Username = dataRow[1].ToString();
             FirstName = dataRow[2].ToString();
             LastName = dataRow[3].ToString();
+            FullName = $"{FirstName} {LastName}";
+        }
+
+        public CARESUser(DataRow dataRow)
+        {
+            UserID = int.Parse(dataRow["UserID"].ToString());
+            Username = dataRow["Username"].ToString();
+            FirstName = dataRow["FirstName"].ToString();
+            LastName = dataRow["LastName"].ToString();
+            UserEmail = dataRow["UserEmail"].ToString();
+            UserPhoneNumber = dataRow["UserPhoneNumber"].ToString();
+            LastLogin = dataRow["LastLogin"].ToString();
+            UserStatus = dataRow["UserStatus"].ToString();
+            UserType = dataRow["UserType"].ToString();
+            Supervisor = dataRow["Supervisor"].ToString();
+            RegionID = int.Parse(dataRow["RegionID"].ToString());
             FullName = $"{FirstName} {LastName}";
         }
 
