@@ -7,12 +7,12 @@
             <div class="col-md-2 border-right">
                 <div class="row mt-3 justify-content-center">
                     <div class="col-sm-auto">
-                        <asp:Button ID="btnReviewPastInteractions" CssClass="btn-responsive btn-primary" runat="server" Text="Past Interactions" />
+                        <asp:Button ID="btnReviewPastInteractions" CssClass="btn-responsive btn-primary" runat="server" Text="Past Interactions" OnClick="btnReviewPastInteractions_Click" />
                     </div>
                 </div>
                 <div class="row mt-3 justify-content-center">
                     <div class="col-sm-auto">
-                        <asp:Button ID="btnCreateNewInteraction" CssClass="btn-responsive btn-primary" runat="server" Text="New Interaction" />
+                        <asp:Button ID="btnCreateNewInteraction" CssClass="btn-responsive btn-primary" runat="server" Text="New Interaction" OnClick="btnCreateNewInteraction_Click" />
                     </div>
                 </div>
                 <div class="row mt-3 justify-content-center">
@@ -75,7 +75,6 @@
                             </asp:DropDownList>
                         </div>
                         <div class="col-md-6">
-                            <asp:Label ID="lblFamilySize" CssClass="labels" runat="server" Text="Family Size"></asp:Label><asp:TextBox ID="tbFamilySize" placeholder="Family Size" CssClass="form-control" TextMode="Number" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -111,9 +110,6 @@
                         </div>
                         <div class="col-md-12">
                             <asp:Label ID="lblRegionId" CssClass="labels" runat="server" Text="Region Id"></asp:Label><asp:TextBox ID="tbRegionId" placeholder="Region Id" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
-                        <div class="col-md-12">
-                            <asp:Label ID="lblNumberOfOccupants" CssClass="labels" runat="server" Text="# of Occupants"></asp:Label><asp:TextBox ID="tbNumberOfOccupants" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
                 </div>

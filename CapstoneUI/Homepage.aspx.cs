@@ -25,34 +25,34 @@ namespace CapstoneUI
 
         protected void btnCreateResidentProfile_Click(object sender, EventArgs e)
         {
-            Server.Transfer("CreateResident.aspx");
+            Response.Redirect("CreateResident.aspx");
         }
 
         protected void btnReviewInteractions_Click(object sender, EventArgs e)
         {
             if ((int)Session["AccountType"] == 0)
             {
-                Server.Transfer("CHWInteractionList.aspx");
+                Response.Redirect("CHWInteractionList.aspx");
             }
             else
             {
-                Server.Transfer("AdminInteractionList.aspx");
+                Response.Redirect("AdminInteractionList.aspx");
             }
         }
 
         protected void btnCreateEvent_Click(object sender, EventArgs e)
         {
-            Server.Transfer("EventList.aspx");
+            Response.Redirect("EventList.aspx");
         }
 
         protected void btnCHWCreateAccount_Click(object sender, EventArgs e)
         {
-            Server.Transfer("CreateCHW.aspx");
+            Response.Redirect("CreateCHW.aspx");
         }
 
         protected void btnCreateEvent_Click1(object sender, EventArgs e)
         {
-            Server.Transfer("EventCreator.aspx");
+            Response.Redirect("EventCreator.aspx");
         }
 
         protected void btnResidentLookUp_Click(object sender, EventArgs e)
