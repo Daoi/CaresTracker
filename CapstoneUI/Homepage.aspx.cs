@@ -5,17 +5,22 @@ using CapstoneUI.DataAccess;
 using System.Data;
 using CapstoneUI.DataAccess.DataAccessors;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
     public partial class h : System.Web.UI.Page
     {
+        CARESUser user;
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUserInfo.Text = $"Welcome, {Session["UserName"].ToString()}";
+            user = Session["User"] as CARESUser;
+
+            lblUserInfo.Text = $"Welcome, {user.FirstName}";
             lblUserInfo.Visible = true;
             lblUserInfo.Enabled = true;
-            if ((int)Session["AccountType"] == 0)
+
+            if (user.UserType == "C")
             {
                 divCreateCHW.Visible = false;
             }
@@ -30,14 +35,7 @@ namespace CapstoneUI
 
         protected void btnReviewInteractions_Click(object sender, EventArgs e)
         {
-            if ((int)Session["AccountType"] == 0)
-            {
-                Response.Redirect("CHWInteractionList.aspx");
-            }
-            else
-            {
-                Response.Redirect("AdminInteractionList.aspx");
-            }
+            Response.Redirect("AdminInteractionList.aspx");
         }
 
         protected void btnCreateEvent_Click(object sender, EventArgs e)

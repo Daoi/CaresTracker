@@ -309,7 +309,9 @@
     <Compile Include="DataAccess\DataAccessors\Examples\HouseParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\LookUpUser.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllDevelopments.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetUser.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\UpdateLastLogin.cs" />
     <Compile Include="DataAccess\DataSupport.cs" />
     <Compile Include="DataAccess\ExecuteData.cs" />
     <Compile Include="DataAccess\ResidentParameters.cs" />
