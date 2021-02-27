@@ -12,6 +12,5 @@ namespace CapstoneUI.DataModels
         public int NumUnits { get; set; }
         public string SiteType { get; set; }
         public string OfficeAddress { get; set; }
-        public string OfficePhone { get; set; }
     }
 }

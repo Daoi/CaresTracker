@@ -32,7 +32,7 @@
                 </asp:DropDownList><br />
                 <h5>Select Health Workers to Host Event</h5>
                 <div id="userCBLDiv" class="DataboundCBLOverflow row">
-                    <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="20" RepeatColumns="4" RepeatDirection="Horizontal">
+                    <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal">
                     </asp:CheckBoxList>
                 </div>
             </div>

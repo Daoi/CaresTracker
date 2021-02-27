@@ -15,7 +15,7 @@
                     <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Resident List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
-                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowCommand="gvResidentList_RowCommand">
+                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowCommand="gvResidentList_RowCommand" ShowFooter="True">
                         <Columns>
                             <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Resident">
                                 <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
@@ -28,14 +28,39 @@
                             <asp:BoundField DataField="Notes" HeaderText="Notes" />
                         </Columns>
                     </asp:GridView>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <asp:Label ID="lblResidentNotFound" CssClass="hidden error-label" runat="server" Text=""></asp:Label>
+                            <asp:Button ID="btnCreateNewResident" CssClass="hidden btn btn-primary" runat="server" Text="Create New Resident" OnClick="NewResident_Click" />
+
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div style="margin-top: 2%; height: 2%; width: auto;"></div>
         </div>
-        <div style="margin-top: 2%; height: 2%; width: auto;"></div>
     </div>
+    <asp:HiddenField ID="hfSearchInput" runat="server" />
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#MainContent_gvResidentList').DataTable();
+            var table = $('#MainContent_gvResidentList').DataTable();
+            table.on('draw', function () {
+                if (table.page.info().recordsDisplay <= 0) {
+                    var search = $('.dataTables_filter input').val();
+                    $('#MainContent_lblResidentNotFound').text(`Resident with the name ${search} not found`);
+                    $('#MainContent_lblResidentNotFound').removeClass('hidden');
+                    $('#MainContent_btnCreateNewResident').removeClass('hidden');
+                    $('#MainContent_hfSearchInput').val(`${search}`);
+                }
+                else {
+                    $('#MainContent_lblResidentNotFound').addClass('hidden');
+                    $('#MainContent_btnCreateNewResident').addClass('hidden');
+                }
+            });
+
         });
+
     </script>
 </asp:Content>

@@ -14,6 +14,7 @@ namespace CapstoneUI
 {
     public partial class CreateResident : System.Web.UI.Page
     {
+        DataTable developmentDT;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,13 +22,18 @@ namespace CapstoneUI
                 // Get list of all developments
                 GetAllDevelopments GAD = new GetAllDevelopments();
                 DataTable dataTable = GAD.ExecuteCommand();
-
                 // Bind to drop down list
                 ddlDevelopments.DataSource = dataTable;
                 ddlDevelopments.DataValueField = "DevelopmentID";
                 ddlDevelopments.DataTextField = "DevelopmentName";
+                Session["DevelopmentDT"] = developmentDT;
+
                 ddlDevelopments.DataBind();
             }
+
+            if (Session["DevelopmentDT"] != null)
+                developmentDT = (DataTable)Session["DevelopmentDT"];
+
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -65,10 +71,9 @@ namespace CapstoneUI
             {
                 houseResult = true;
             }
-
+            HousingDevelopment newHd = new HousingDevelopment();
             // Build Resident object
             Resident newResident = new Resident();
-
             newResident.FirstName = txtFirstName.Text;
             newResident.LastName = txtLastName.Text;
             newResident.DateOfBirth = txtDOB.Text; // DOB input field will need to be validated beforehand to ensure that it can be parsed to DateTime
@@ -93,7 +98,28 @@ namespace CapstoneUI
             // Hide alert labels then show which is appropriate
             lblFail.Visible = false;
             lblSuccess.Visible = false;
+            newResident.Home = residentHouse;
+
+
+            //Get the row matching the currently selected Housing Development Name
+            DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                .First(r => r.Field<string>("DevelopmentName")
+                .Equals(ddlDevelopments.Text));
+
+            newResident.HousingDevelopment = new HousingDevelopment()
+            {
+                DevelopmentName = hdRecord["DevelopmentName"].ToString(),
+                DevelopmentID = int.Parse(hdRecord["DevelopmentID"].ToString()),
+                NumUnits = int.Parse(hdRecord["NumUnits"].ToString()),
+                SiteType = hdRecord["SiteType"].ToString(),
+                OfficeAddress = hdRecord["OfficeAddress"].ToString(),
+            };
+            
+            //Store new resident in Session to use to redirect/populate resident profile
+            Session["Resident"] = newResident;
+
             if (residentResult == true && houseResult == true )
+
             {
                 lblSuccess.Visible = true;
             }
@@ -102,7 +128,7 @@ namespace CapstoneUI
                 lblFail.Visible = true;
             }
 
-
+            Response.Redirect("ResidentProfile.aspx");
         }
 
         // Show/hide divs depending on which housing option is selected

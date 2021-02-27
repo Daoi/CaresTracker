@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 
 
@@ -36,10 +38,16 @@ namespace CapstoneUI
                 if (authResponse != null)
                 {
                     lblError.Text = "";
+
+                    // get user data from db
+                    GetUser accessor = new GetUser();
+                    Session["User"] = new CARESUser(accessor.RunCommand(txtUsername.Text).Rows[0]);
                     Session["CognitoManager"] = man;
-                    Session["AccountType"] = man.IsAdmin;
-                    Session["LoginStatus"] = true;
-                    Session["UserName"] = man.UserFirstName;
+
+                    // record login
+                    UpdateLastLogin updater = new UpdateLastLogin();
+                    updater.ExecuteCommand(txtUsername.Text, DateTime.Now.ToString());
+
                     Response.Redirect("./Homepage.aspx", false);
                 }
                 else

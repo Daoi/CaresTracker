@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="CreateCHW.aspx.cs" Inherits="CapstoneUI.CreateCHW" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="CreateCHW.aspx.cs" Inherits="CapstoneUI.CreateCHW" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid backgroundblue">
@@ -42,14 +42,6 @@
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row m-3 modal-header">
-                        <div class="col">
-                            <label>Password: </label>
-                        </div>
-                        <div class="col-7">
-                            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
@@ -108,8 +100,6 @@
                                 </div>
                                 <div class="col-7">
                                     <asp:DropDownList ID="ddlSupervisor" runat="server">
-                                        <asp:ListItem Value="3">Shirley Moy</asp:ListItem>
-                                        <asp:ListItem Value="9">Gaye Harley</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
