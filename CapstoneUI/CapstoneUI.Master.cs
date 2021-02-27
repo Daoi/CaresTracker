@@ -1,33 +1,27 @@
-﻿using System;
+﻿using CapstoneUI.DataModels;
+using System;
 using System.Web;
 
 namespace CapstoneUI
 {
-    enum AcctType
-    {
-        CHW,
-        Admin
-    }
     public partial class Site1 : System.Web.UI.MasterPage
     {
-
-
-        bool loggedIn;
-        int userType;
-        protected void Page_Load(object sender, EventArgs e)
+        CARESUser user;
+        protected void Page_Init(object sender, EventArgs e)
         {
-
-            if (Session["AccountType"] == null || Session["LoginStatus"] == null)
+            if (Session["User"] == null)
             {
-                Server.Transfer("~/Login.aspx");
+                Response.Redirect("~/Login.aspx");
             }
             else
             {
-                userType = (int)Session["AccountType"];
-                loggedIn = (bool)Session["LoginStatus"];
+                user = Session["User"] as CARESUser;
             }
+        }
 
-            if (loggedIn)
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (user.UserType == "C")
             {
                 lnkImport.Visible = true;
                 lnkImport.Enabled = true;
@@ -35,7 +29,7 @@ namespace CapstoneUI
                 lnkInteractionForm.Visible = true;
 
             }
-            else
+            else if (user.UserType == "A")
             {
                 lnkImport.Visible = true;
                 lnkManagement.Visible = true;
