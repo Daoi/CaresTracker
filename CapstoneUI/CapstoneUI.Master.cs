@@ -49,7 +49,7 @@ namespace CapstoneUI
         protected void lnkBtnLogout_Click(object sender, EventArgs e)
         {
             Session.Abandon();
-            Server.Transfer("~/Login.aspx");
+            Response.Redirect("~/Login.aspx");
         }
 
     }
