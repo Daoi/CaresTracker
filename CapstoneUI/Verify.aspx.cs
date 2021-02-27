@@ -71,6 +71,11 @@ namespace CapstoneUI
                     GetUser accessor = new GetUser();
                     Session["User"] = new CARESUser(accessor.RunCommand(usr).Rows[0]);
                     Session["CognitoManager"] = man;
+
+                    // record login
+                    UpdateLastLogin updater = new UpdateLastLogin();
+                    updater.ExecuteCommand(usr, DateTime.Now.ToString());
+
                     Response.Redirect("./Homepage.aspx", false);
                 }
                 else
