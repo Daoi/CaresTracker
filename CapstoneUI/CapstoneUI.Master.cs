@@ -29,43 +29,27 @@ namespace CapstoneUI
 
             if (loggedIn)
             {
-                if (userType == (int) AcctType.CHW )
-                {
-                    lnkLogin.Visible = false;
-                    lnkRegister.Visible = false;
-                    lnkImport.Visible = true;
-                    lnkImport.Enabled = true;
-                    lnkInteractionForm.Enabled = true;
-                    lnkInteractionForm.Visible = true;
+                lnkImport.Visible = true;
+                lnkImport.Enabled = true;
+                lnkInteractionForm.Enabled = true;
+                lnkInteractionForm.Visible = true;
 
-                }
-                else if (userType == (int)AcctType.Admin)
-                {
-                    lnkLogin.Visible = false;
-                    lnkRegister.Visible = false;
-                    lnkImport.Visible = true;
-                    lnkManagement.Visible = true;
-                    lnkData.Visible = true;
-                    lnkImport.Enabled = true;
-                    lnkManagement.Enabled = true;
-                    lnkData.Enabled = true;
-                    lnkInteractionForm.Enabled = true;
-                    lnkInteractionForm.Visible = true;
-
-                }
-
-                //Change this
-                //lblUserInfo.Text = $"Welcome, {Session["UserName"].ToString()}";
-                //lblUserInfo.Visible = true;
-                //lblUserInfo.Enabled = true;
-                lnkBtnLogout.Visible = true;
-                lnkBtnLogout.Enabled = true;
             }
             else
             {
-                Server.Transfer("~/Login.aspx");
+                lnkImport.Visible = true;
+                lnkManagement.Visible = true;
+                lnkData.Visible = true;
+                lnkImport.Enabled = true;
+                lnkManagement.Enabled = true;
+                lnkData.Enabled = true;
+                lnkInteractionForm.Enabled = true;
+                lnkInteractionForm.Visible = true;
+
             }
 
+            lnkBtnLogout.Visible = true;
+            lnkBtnLogout.Enabled = true;
         }
 
         protected void lnkBtnLogout_Click(object sender, EventArgs e)
