@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapstoneUI.Utilities;
+using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
@@ -64,10 +66,11 @@ namespace CapstoneUI
                 if (authResponse != null)
                 {
                     lblError.Text = "";
+
+                    // get user data from db
+                    GetUser accessor = new GetUser();
+                    Session["User"] = new CARESUser(accessor.RunCommand(usr).Rows[0]);
                     Session["CognitoManager"] = man;
-                    Session["AccountType"] = man.IsAdmin;
-                    Session["LoginStatus"] = true;
-                    Session["UserName"] = man.Username;
                     Response.Redirect("./Homepage.aspx", false);
                 }
                 else
