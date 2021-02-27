@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using CapstoneUI.Utilities;
 using CapstoneUI.DataAccess.DataAccessors;
 using System.Data;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
@@ -51,7 +52,7 @@ namespace CapstoneUI
 
             string phoneNumber = "+1" + txtPhoneNumber.Text;
             values.Add(phoneNumber);
-            string signedInUserName = Session["UserName"].ToString();
+            string signedInUserName = ((CARESUser)Session["User"]).Username;
 
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
 
