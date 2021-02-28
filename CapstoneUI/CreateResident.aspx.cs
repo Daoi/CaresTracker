@@ -38,7 +38,7 @@ namespace CapstoneUI
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+           Response.Redirect("Homepage.aspx");
         }
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace CapstoneUI
             Resident newResident = new Resident();
             newResident.FirstName = txtFirstName.Text;
             newResident.LastName = txtLastName.Text;
-            newResident.DateOfBirth = txtDOB.Text; // DOB input field will need to be validated beforehand to ensure that it can be parsed to DateTime
+            newResident.DateOfBirth = txtDOB.Text;
             newResident.ResidentEmail = txtEmail.Text;
             newResident.ResidentPhoneNumber = txtPhoneNumber.Text;
             newResident.RelationshipToHoH = ddlRelationshipHOH.SelectedValue;
@@ -118,7 +118,7 @@ namespace CapstoneUI
                 //Get the row matching the currently selected Housing Development Name
                 DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
                     .First(r => r.Field<string>("DevelopmentName")
-                    .Equals(ddlDevelopments.Text));
+                    .Equals(ddlDevelopments.SelectedItem.ToString()));
 
                 newResident.HousingDevelopment = new HousingDevelopment()
                 {
