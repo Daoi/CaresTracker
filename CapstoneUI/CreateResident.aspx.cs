@@ -21,9 +21,9 @@ namespace CapstoneUI
             {
                 // Get list of all developments
                 GetAllDevelopments GAD = new GetAllDevelopments();
-                DataTable dataTable = GAD.ExecuteCommand();
+                DataTable developmentDT = GAD.ExecuteCommand();
                 // Bind to drop down list
-                ddlDevelopments.DataSource = dataTable;
+                ddlDevelopments.DataSource = developmentDT;
                 ddlDevelopments.DataValueField = "DevelopmentID";
                 ddlDevelopments.DataTextField = "DevelopmentName";
                 Session["DevelopmentDT"] = developmentDT;
@@ -67,11 +67,13 @@ namespace CapstoneUI
             }
             // Write new House to the database
             AddHouse AH = new AddHouse(residentHouse);
-            if(AH.ExecuteCommand() == 1)
+            if (AH.ExecuteCommand() == 1)
             {
                 houseResult = true;
             }
+
             HousingDevelopment newHd = new HousingDevelopment();
+
             // Build Resident object
             Resident newResident = new Resident();
             newResident.FirstName = txtFirstName.Text;
@@ -85,40 +87,22 @@ namespace CapstoneUI
             // Retrieve HouseID of House that was just created
             GetHouse GH = new GetHouse();
             DataTable dataTable = GH.RunCommand(txtAddress.Text);
-            newResident.HouseID =dataTable.Rows[0].Field<int>("HouseID");
+            newResident.HouseID = dataTable.Rows[0].Field<int>("HouseID");
 
             // Add new Resident
             ResidentWriter RW = new ResidentWriter(newResident);
-            if(RW.ExecuteCommand() == 1)
+            if (RW.ExecuteCommand() == 1)
             {
                 residentResult = true;
             }
-            
+
 
             // Hide alert labels then show which is appropriate
             lblFail.Visible = false;
             lblSuccess.Visible = false;
             newResident.Home = residentHouse;
 
-
-            //Get the row matching the currently selected Housing Development Name
-            DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
-                .First(r => r.Field<string>("DevelopmentName")
-                .Equals(ddlDevelopments.Text));
-
-            newResident.HousingDevelopment = new HousingDevelopment()
-            {
-                DevelopmentName = hdRecord["DevelopmentName"].ToString(),
-                DevelopmentID = int.Parse(hdRecord["DevelopmentID"].ToString()),
-                NumUnits = int.Parse(hdRecord["NumUnits"].ToString()),
-                SiteType = hdRecord["SiteType"].ToString(),
-                OfficeAddress = hdRecord["OfficeAddress"].ToString(),
-            };
-            
-            //Store new resident in Session to use to redirect/populate resident profile
-            Session["Resident"] = newResident;
-
-            if (residentResult == true && houseResult == true )
+            if (residentResult == true && houseResult == true)
 
             {
                 lblSuccess.Visible = true;
@@ -127,6 +111,28 @@ namespace CapstoneUI
             {
                 lblFail.Visible = true;
             }
+
+            // Create Development object if development is selected house type
+            if (residentHouse.HouseType == "Development")
+            {
+                //Get the row matching the currently selected Housing Development Name
+                DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                    .First(r => r.Field<string>("DevelopmentName")
+                    .Equals(ddlDevelopments.Text));
+
+                newResident.HousingDevelopment = new HousingDevelopment()
+                {
+                    DevelopmentName = hdRecord["DevelopmentName"].ToString(),
+                    DevelopmentID = int.Parse(hdRecord["DevelopmentID"].ToString()),
+                    NumUnits = int.Parse(hdRecord["NumUnits"].ToString()),
+                    SiteType = hdRecord["SiteType"].ToString(),
+                    OfficeAddress = hdRecord["OfficeAddress"].ToString(),
+                };
+            }
+            //Store new resident in Session to use to redirect/populate resident profile
+            Session["Resident"] = newResident;
+
+
 
             Response.Redirect("ResidentProfile.aspx");
         }

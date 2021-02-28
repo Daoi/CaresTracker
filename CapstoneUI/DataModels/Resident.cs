@@ -20,6 +20,7 @@ namespace CapstoneUI.DataModels
         public List<Vaccination> VaccineInfo { get; set; }
         public HousingDevelopment HousingDevelopment { get; set; }
         public int HouseID { get; set; }
+        public House Home { get; set; }
 
 
 
