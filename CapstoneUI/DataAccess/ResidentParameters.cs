@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CapstoneUI.DataModels;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +24,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
         {
             Parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@ResidenceID", MySqlDbType.Int64, 50),
+                new MySqlParameter("@HouseID", MySqlDbType.Int64, 50),
                 new MySqlParameter("@FirstName", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@LastName", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@DateOfBirth", MySqlDbType.DateTime, 50),
@@ -31,6 +32,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
                 new MySqlParameter("@ResidentPhoneNumber", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@RelationshipToHoH", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@Gender", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@Race", MySqlDbType.VarChar, 50)
             };
         }
 
@@ -40,19 +42,19 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
         /// <param name="values">A collection of values intended to be used as SQL stored procedure parameters. It's necessary that the values
         /// match the order established in the constructor. I.e. The value for UserName needs to be first in the list. </param>
         /// <returns></returns>
-        public MySqlParameter[] Fill(List<string> values)
+        public MySqlParameter[] Fill(Resident resident)
         {
-            //Make sure there are a correct number of parameters provided
-            if (values.Count != Parameters.Length)
-            {
-                throw new IndexOutOfRangeException($"Parameter count error. Provided: {values.Count} Allowed: {Parameters.Length}");
-            }
-            //Add the parameters
-            for (int i = 0; i < Parameters.Length; i++)
-            {
-                Parameters[i].Value = values[i];
-            }
-
+            // Add the parameters
+            // Done manually for now, couldn't figure out how to pass in house object and iterate through the object to fill in parameters
+            Parameters[0].Value = resident.HouseID;
+            Parameters[1].Value = resident.FirstName;
+            Parameters[2].Value = resident.LastName;
+            Parameters[3].Value = resident.DateOfBirth;
+            Parameters[4].Value = resident.ResidentEmail;
+            Parameters[5].Value = resident.ResidentPhoneNumber;
+            Parameters[6].Value = resident.RelationshipToHoH;
+            Parameters[7].Value = resident.Gender;
+            Parameters[8].Value = resident.Race;
             return Parameters;
 
         }

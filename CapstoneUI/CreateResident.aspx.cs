@@ -21,15 +21,13 @@ namespace CapstoneUI
             {
                 // Get list of all developments
                 GetAllDevelopments GAD = new GetAllDevelopments();
-                developmentDT = GAD.ExecuteCommand();
+                DataTable developmentDT = GAD.ExecuteCommand();
+                // Bind to drop down list
+                ddlDevelopments.DataSource = developmentDT;
+                ddlDevelopments.DataValueField = "DevelopmentID";
+                ddlDevelopments.DataTextField = "DevelopmentName";
                 Session["DevelopmentDT"] = developmentDT;
-                List<string> developmentsList = new List<string>();
-                foreach (DataRow row in developmentDT.Rows)
-                {
-                    string name = row.Field<string>("DevelopmentName");
-                    developmentsList.Add(name);
-                }
-                ddlDevelopments.DataSource = developmentsList;
+
                 ddlDevelopments.DataBind();
             }
 
@@ -45,16 +43,17 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
+            bool houseResult = false;
+            bool residentResult = false;
             // VALIDATION NEEDED
 
             // bool valid = Validate();
             // if(valid){...}
 
-            //Build House and Resident objects from user input
+            //Build House object
             House residentHouse = new House();
             residentHouse.Address = txtAddress.Text;
             residentHouse.ZipCode = txtZipCode.Text;
-
 
             if (ddlHousing.SelectedIndex == 1)
             {
@@ -64,9 +63,18 @@ namespace CapstoneUI
             else
             {
                 residentHouse.HouseType = "Development";
-                //residentHouse.DevelopmentID = ...
+                residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
             }
+            // Write new House to the database
+            AddHouse AH = new AddHouse(residentHouse);
+            if (AH.ExecuteCommand() == 1)
+            {
+                houseResult = true;
+            }
+
             HousingDevelopment newHd = new HousingDevelopment();
+
+            // Build Resident object
             Resident newResident = new Resident();
             newResident.FirstName = txtFirstName.Text;
             newResident.LastName = txtLastName.Text;
@@ -76,40 +84,63 @@ namespace CapstoneUI
             newResident.RelationshipToHoH = ddlRelationshipHOH.SelectedValue;
             newResident.Gender = rblGender.SelectedValue;
             newResident.Race = ddlRace.SelectedValue;
+            // Retrieve HouseID of House that was just created
+            GetHouse GH = new GetHouse();
+            DataTable dataTable = GH.RunCommand(txtAddress.Text);
+            newResident.HouseID = dataTable.Rows[0].Field<int>("HouseID");
+
+            // Add new Resident
+            ResidentWriter RW = new ResidentWriter(newResident);
+            if (RW.ExecuteCommand() == 1)
+            {
+                residentResult = true;
+            }
+
+
+            // Hide alert labels then show which is appropriate
+            lblFail.Visible = false;
+            lblSuccess.Visible = false;
             newResident.Home = residentHouse;
 
+            if (residentResult == true && houseResult == true)
 
-            //Get the row matching the currently selected Housing Development Name
-            DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
-                .First(r => r.Field<string>("DevelopmentName")
-                .Equals(ddlDevelopments.Text));
-
-            newResident.HousingDevelopment = new HousingDevelopment()
             {
-                DevelopmentName = hdRecord["DevelopmentName"].ToString(),
-                DevelopmentID = int.Parse(hdRecord["DevelopmentID"].ToString()),
-                NumUnits = int.Parse(hdRecord["NumUnits"].ToString()),
-                SiteType = hdRecord["SiteType"].ToString(),
-                OfficeAddress = hdRecord["OfficeAddress"].ToString(),
-            };
-            
-            //Store new resident in Session to use to redirect/populate resident profile
-            Session["Resident"] = newResident;
-            // Write new resident House to the database
-            AddHouse AH = new AddHouse(residentHouse);
-            if (AH.ExecuteCommand() == 1)
-            {
-                Response.Write("<script>alert('House inserted successfully')</script>");
+                lblSuccess.Visible = true;
             }
             else
             {
-                Response.Write("<script>alert('Insert failed!')</script>");
+                lblFail.Visible = true;
             }
+
+            // Create Development object if development is selected house type
+            if (residentHouse.HouseType == "Development")
+            {
+                //Get the row matching the currently selected Housing Development Name
+                DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                    .First(r => r.Field<string>("DevelopmentName")
+                    .Equals(ddlDevelopments.Text));
+
+                newResident.HousingDevelopment = new HousingDevelopment()
+                {
+                    DevelopmentName = hdRecord["DevelopmentName"].ToString(),
+                    DevelopmentID = int.Parse(hdRecord["DevelopmentID"].ToString()),
+                    NumUnits = int.Parse(hdRecord["NumUnits"].ToString()),
+                    SiteType = hdRecord["SiteType"].ToString(),
+                    OfficeAddress = hdRecord["OfficeAddress"].ToString(),
+                };
+            }
+            //Store new resident in Session to use to redirect/populate resident profile
+            Session["Resident"] = newResident;
+
+
+
             Response.Redirect("ResidentProfile.aspx");
         }
 
+        // Show/hide divs depending on which housing option is selected
         protected void ddlHousing_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             List<HtmlGenericControl> housingDivs = new List<HtmlGenericControl>() { divHouse, divDevelopmentUnit };
             DropDownList ddl = (DropDownList)sender;
             string selectedId = ddl.SelectedValue;
