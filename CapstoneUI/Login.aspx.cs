@@ -14,10 +14,10 @@ namespace CapstoneUI
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        AWSCognitoManager man; // for Cognito API calls
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
+            man = new AWSCognitoManager();
         }
 
         protected async void btnLogin_Click(object sender, EventArgs e)
@@ -27,9 +27,6 @@ namespace CapstoneUI
                 lblError.Text = "Enter your Username and Password.";
                 return;
             }
-
-            // AWS Cognito Login
-            AWSCognitoManager man = new AWSCognitoManager();
 
             try
             {
