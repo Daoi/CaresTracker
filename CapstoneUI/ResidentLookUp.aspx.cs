@@ -68,5 +68,6 @@ namespace CapstoneUI
             Session["Resident"] = res;
             Response.Redirect("ResidentProfile.aspx");
         }
+
     }
 }
