@@ -12,7 +12,6 @@ namespace CapstoneUI
         DataTable interactions;
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if(Session["Resident"] != null)
             {
                 currentRes = (Resident)Session["Resident"];

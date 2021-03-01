@@ -301,6 +301,7 @@
     </Compile>
     <Compile Include="DataAccess\DataAccess.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByResidentAttributes.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetAllResident.cs" />
     <Compile Include="DataAccess\DataAccessors\GetUncompletedFollowUps.cs" />
     <Compile Include="DataAccess\DataAccessors\GetCompletedFollowUps.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\AddHouse.cs" />
