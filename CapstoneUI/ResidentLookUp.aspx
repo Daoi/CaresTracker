@@ -29,7 +29,6 @@
                         <div class="col-md-8 mb-3">
                             <asp:Label ID="lblResidentNotFound" CssClass="hidden error-label" runat="server" Text=""></asp:Label>
                             <asp:Button ID="btnCreateNewResident" CssClass="hidden btn btn-primary" runat="server" Text="Create New Resident" OnClick="NewResident_Click" />
-
                         </div>
                         <div class="col-md-4">
                         </div>

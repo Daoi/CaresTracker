@@ -14,14 +14,21 @@ namespace CapstoneUI
 {
     public partial class ResidentLookUp : Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                GetAllResident residents = new GetAllResident();
-                DataTable ds = residents.RunCommand();
-                gvResidentList.DataSource = ds;
-                gvResidentList.DataBind();
+                List<Resident> residents = new List<Resident>();
+                GetAllResident getAllResident = new GetAllResident();
+                DataTable ds = getAllResident.RunCommand();
+                for(int i = 0; i < ds.Rows.Count; i++)
+                {
+                    DataRow record = ds.Rows[i];
+                    Resident temp = new Resident(record);
+                    residents.Add(temp);
+                }
+                gvResidentList.DataSource = residents;
 
                 gvResidentList.DataBound += (object o, EventArgs ev) =>
                 {
@@ -34,30 +41,7 @@ namespace CapstoneUI
                     CommandName = "CreateNewResident"
                 };
 
-
-                //gvResidentList.DataSource = temp;
                 gvResidentList.DataBind();
-            }
-        }
-
-        public class Resident
-        {
-            public string ResidentFirstName { get; set; }
-            public string ResidentLastName { get; set; }
-
-            public string ResidentAge { get; set; }
-            public string ResidentAddress { get; set; }
-            public string ResidentRegion { get; set; }
-            public string Notes { get; set; }
-            public Resident() { }
-            public Resident(string firstName, string lastName, string age, string address, string location, string notes)
-            {
-                ResidentFirstName = firstName;
-                ResidentLastName = lastName;
-                ResidentAge = age;
-                ResidentAddress = address;
-                ResidentRegion = location;
-                Notes = notes;
             }
         }
 

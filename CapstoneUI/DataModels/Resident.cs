@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,19 @@ namespace CapstoneUI.DataModels
         public int HouseID { get; set; }
         public House Home { get; set; }
 
+        public Resident() { }
 
+        public Resident(DataRow dataRow)
+        {
+            FirstName = dataRow["FirstName"].ToString();
+            LastName = dataRow["LastName"].ToString();
+            DateOfBirth = dataRow["DateOfBirth"].ToString();
+            ResidentEmail = dataRow["ResidentEmail"].ToString();
+            ResidentPhoneNumber = dataRow["ResidentPhoneNumber"].ToString();
+            RelationshipToHoH = dataRow["RelationshipToHOH"].ToString();
+            Gender = dataRow["Gender"].ToString();
+            Race = dataRow["Race"].ToString();
+        }
 
     }
 }
