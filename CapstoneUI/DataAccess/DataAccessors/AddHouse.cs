@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using CapstoneUI.DataModels;
 
-namespace CapstoneUI.DataAccess.DataAccessors.Examples
+namespace CapstoneUI.DataAccess.DataAccessors
 {
     public class AddHouse : DataSupport, IData
     {

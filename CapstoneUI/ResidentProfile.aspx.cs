@@ -48,18 +48,25 @@ namespace CapstoneUI
 
 
             interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.FirstName, currentRes.LastName, currentRes.DateOfBirth);
+            if (interactions.Rows.Count > 0)
+            {
+                //Total rows returned = recorded interactions
+                lblRecordedInteractions.Text = $"Interactions recorded: {interactions.Rows.Count}";
 
-            //Total rows returned = recorded interactions
-            lblRecordedInteractions.Text = $"Interactions recorded: {interactions.Rows.Count}";
-           
-            //Get all the rows that meet the requirements of needing a follow up and count them;
-            int followUpsRequired = interactions.Rows.Cast<DataRow>()
-                .Where(r => r.Field<bool>("RequiresFollowUp") == true 
-                && string.IsNullOrEmpty(r.Field<string>("FollowUpCompleted")))
-                .ToList().Count;
+                //Get all the rows that meet the requirements of needing a follow up and count them;
+                int followUpsRequired = interactions.Rows.Cast<DataRow>()
+                    .Where(r => (bool)r["RequiresFollowUp"]
+                    && string.IsNullOrEmpty(r["FollowUpCompleted"].ToString()))
+                    .ToList().Count;
 
-            lblRequestedServices.Text = $"Follow ups requested: {followUpsRequired}";
 
+                lblRequestedServices.Text = $"Follow ups requested: {followUpsRequired}";
+            }
+            else
+            {
+                lblRequestedServices.Text = $"Follow ups requested: N/A";
+                lblRecordedInteractions.Text = $"Interactions recorded: {interactions.Rows.Count}";
+            }
 
         }
 

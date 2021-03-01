@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.Examples
+namespace CapstoneUI.DataAccess.DataAccessors
 {
     /// <summary>
     /// Class to handle creating/filling the parameters for the CHW creation SQL Command

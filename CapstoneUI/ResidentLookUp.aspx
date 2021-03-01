@@ -15,11 +15,13 @@
                     <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Resident List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
-                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowCommand="gvResidentList_RowCommand" ShowFooter="True">
+                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
                         <Columns>
-                            <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Resident">
-                                <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
-                            </asp:ButtonField>
+                            <asp:TemplateField HeaderText="View Resident Profile">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View This Resident" OnClick="btnViewResident_Click" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="FirstName" HeaderText="Resident First Name" />
                             <asp:BoundField DataField="LastName" HeaderText="Resident Last Name" />
                             <asp:BoundField DataField="DateOfBirth" HeaderText="Resident Date of Birth" />
