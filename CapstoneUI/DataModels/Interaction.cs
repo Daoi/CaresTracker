@@ -19,5 +19,7 @@ namespace CapstoneUI.DataModels
         public List<Symptom> Symptoms { get; set; }
         public List<Service> RequestedServices { get; set; }
         public List<Service> OfferedServices { get; set; }
+
+        public Interaction() { }
     }
 }

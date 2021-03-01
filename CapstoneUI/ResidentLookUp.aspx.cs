@@ -19,7 +19,6 @@ namespace CapstoneUI
         {
             if (!IsPostBack)
             {
-                List<Resident> residents = new List<Resident>();
                 GetAllResident getAllResident = new GetAllResident();
                 DataTable ds = getAllResident.RunCommand();
 

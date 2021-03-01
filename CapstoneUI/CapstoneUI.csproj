@@ -300,10 +300,13 @@
       <DependentUpon>CreateResident.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetAllInteractions.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByResidentAttributes.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllResident.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetCHWByID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetDevelopmentByID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetHouseByID.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetResidentByID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetUncompletedFollowUps.cs" />
     <Compile Include="DataAccess\DataAccessors\GetCompletedFollowUps.cs" />
     <Compile Include="DataAccess\DataAccessors\AddHouse.cs" />

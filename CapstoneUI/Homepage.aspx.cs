@@ -35,7 +35,14 @@ namespace CapstoneUI
 
         protected void btnReviewInteractions_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdminInteractionList.aspx");
+            if(user.UserType == "A")
+            {
+                Response.Redirect("AdminInteractionList.aspx");
+            }
+            else
+            {
+                Response.Redirect("CHWInteractionList.aspx");
+            }
         }
 
         protected void btnCreateEvent_Click(object sender, EventArgs e)

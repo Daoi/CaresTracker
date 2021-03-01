@@ -20,12 +20,20 @@
                             <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Interaction">
                                 <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
                             </asp:ButtonField>
-                            <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
-                            <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
-                            <asp:BoundField DataField="DateOfInteraction" HeaderText="Date of Interaction" />
+                            <asp:TemplateField HeaderText="Resident First Name">
+                                <ItemTemplate>
+                                    <asp:Label Text='<%# ResidentName(Eval("ResidentID"))[0]%>' runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Resident Last Name">
+                                <ItemTemplate>
+                                    <asp:Label Text='<%# ResidentName(Eval("ResidentID"))[1]%>' runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="DateOfContact" HeaderText="Date of Interaction" />
                             <asp:BoundField DataField="MethodOfContact" HeaderText="Method of Contact" />
-                            <asp:BoundField DataField="Location" HeaderText="Location" />
-                            <asp:BoundField DataField="Notes" HeaderText="Notes" />
+                            <asp:BoundField DataField="LocationOfContact" HeaderText="Location" />
+                            <asp:BoundField DataField="ActionPlan" HeaderText="Notes" />
                         </Columns>
                     </asp:GridView>
                 </div>

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
@@ -11,23 +14,43 @@ namespace CapstoneUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Interaction> temp = new List<Interaction>();
-            Interaction interaction = new Interaction("John", "Doe", "1/1/2021", "Phone", "Office", "Resident wanted more information on laundary services.");
-            temp.Add(interaction);
-            for (int i = 0; i < 10; i++)
+            if (!IsPostBack)
             {
-                Interaction tempInteraction = new Interaction();
-                temp.Add(tempInteraction);
+                CARESUser user = Session["User"] as CARESUser;
+                GetAllInteractions getAllInteractions = new GetAllInteractions();
+                DataTable ds = getAllInteractions.ExecuteCommand();
+                for (int i = ds.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow record = ds.Rows[i];
+                    if (int.Parse(record["HealthWorkerID"].ToString()) != user.UserID)
+                    {
+                        ds.Rows[i].Delete();
+                    }
+                }
+                gvInteractionList.DataSource = ds;
             }
 
-            //Adds table head tag to visual studio html output so gridview format will work DataTables
-            gvInteractionList.DataBound += (object o, EventArgs ev) =>
+            if (gvInteractionList.Rows.Count != 0)
             {
-                gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
+                //Adds table head tag to visual studio html output so gridview format will work DataTables
+                gvInteractionList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+            }
 
-            gvInteractionList.DataSource = temp;
             gvInteractionList.DataBind();
+        }
+
+        public List<string> ResidentName(object resident)
+        {
+            List<string> name = new List<string>();
+            int id = (int)resident;
+            GetResidentByID res = new GetResidentByID();
+            DataRow row = res.RunCommand(id).Rows[0];
+            name.Add(row["FirstName"].ToString());
+            name.Add(row["LastName"].ToString());
+            return name;
         }
 
         public class Interaction

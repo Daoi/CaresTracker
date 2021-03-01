@@ -1,11 +1,13 @@
 ﻿using CapstoneUI.DataModels;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataAccess.DataAccessors;
 
 namespace CapstoneUI
 {
@@ -14,7 +16,6 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 if (HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
@@ -22,30 +23,42 @@ namespace CapstoneUI
                     Resident res = Session["Resident"] as Resident;
                     hfResidentDetails.Value = $"{res.FirstName} {res.LastName} {res.Home.Address}";
                 }
+
+                GetAllInteractions getAllInteractions = new GetAllInteractions();
+                DataTable ds = getAllInteractions.ExecuteCommand();
+                gvInteractionList.DataSource = ds;
             }
 
-            List<Interaction> temp = new List<Interaction>();
-            Interaction interaction = new Interaction("John", " Doe", "Jane Deer", "1/1/2021", "Phone", "Office", "Resident wanted more information on laundary services.");
-            temp.Add(interaction);
-            interaction = new Interaction("Sally", "Seashells", "Fake Name", "1/2/2021", "Email", "Office", "Resident was interested in zoom lessons.");
-            temp.Add(interaction);
-            for (int i=0; i < 10; i++)
+            if (gvInteractionList.Rows.Count != 0)
             {
-                Interaction tempInteraction = new Interaction();
-                temp.Add(tempInteraction);
+                //Adds table head tag to visual studio html output so gridview format will work DataTables
+                gvInteractionList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
             }
 
-            //Adds table head tag to visual studio html output so gridview format will work DataTables
-            gvInteractionList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-
-            gvInteractionList.DataSource = temp;
             gvInteractionList.DataBind();
-
         }
 
+        public string CHWName(object user)
+        {
+            int id = (int)user;
+            GetCHWByID chw = new GetCHWByID();
+            DataRow row = chw.RunCommand(id).Rows[0];
+            return row["FirstName"].ToString() + " " + row["LastName"].ToString();
+        }
+
+        public List<string> ResidentName(object resident)
+        {
+            List<string> name = new List<string>();
+            int id = (int)resident;
+            GetResidentByID res = new GetResidentByID();
+            DataRow row = res.RunCommand(id).Rows[0];
+            name.Add(row["FirstName"].ToString());
+            name.Add(row["LastName"].ToString());
+            return name;
+        }
 
         public class Interaction
         {
