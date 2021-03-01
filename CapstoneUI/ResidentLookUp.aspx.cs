@@ -69,9 +69,5 @@ namespace CapstoneUI
             Response.Redirect("ResidentProfile.aspx");
         }
 
-        protected void Page_Unload(object sender, EventArgs e)
-        {
-            Session.Remove("ResidentList");
-        }
     }
 }
