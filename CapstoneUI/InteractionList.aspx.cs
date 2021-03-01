@@ -11,7 +11,7 @@ using CapstoneUI.DataAccess.DataAccessors;
 
 namespace CapstoneUI
 {
-    public partial class AdminInteractionList : System.Web.UI.Page
+    public partial class InteractionList : System.Web.UI.Page
     {
         CARESUser user;
         protected void Page_Load(object sender, EventArgs e)
