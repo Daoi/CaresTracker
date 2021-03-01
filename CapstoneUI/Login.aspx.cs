@@ -101,8 +101,8 @@ namespace CapstoneUI
         // change password
         protected async void btnPRConfirm_Click(object sender, EventArgs e)
         {
-            if (Validation.IsEmpty(txtPRUsername.Text) || Validation.IsEmpty(txtPRVerificationCode.Text) ||
-                Validation.IsEmpty(txtPRNewPassword.Text) || Validation.IsEmpty(txtPRRetypePassword.Text))
+            // check for empty textboxes
+            if (pnlPasswordReset.Controls.OfType<TextBox>().ToList().Any(tb => Validation.IsEmpty(tb.Text)))
             {
                 lblPRError.Text = "Fill out all fields.";
                 return;
