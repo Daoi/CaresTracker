@@ -20,11 +20,12 @@ namespace CapstoneUI
             man = new AWSCognitoManager();
         }
 
+        // user login
         protected async void btnLogin_Click(object sender, EventArgs e)
         {
             if (Validation.IsEmpty(txtUsername.Text) || Validation.IsEmpty(txtPassword.Text))
             {
-                lblError.Text = "Enter your Username and Password.";
+                lblError.Text = "Fill out all fields.";
                 return;
             }
 
