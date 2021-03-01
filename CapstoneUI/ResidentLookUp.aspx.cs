@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapstoneUI.Utilities;
+using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
@@ -15,14 +18,10 @@ namespace CapstoneUI
         {
             if (!IsPostBack)
             {
-                List<Resident> temp = new List<Resident>();
-                Resident interaction = new Resident("John", "Doe", "35", "111 Philadelphia Street", "West Philadelphia", "Last Covid-19 Test Result: Negative (1/1/2021)");
-                temp.Add(interaction);
-                for (int i = 0; i < 10; i++)
-                {
-                    Resident tempPatient = new Resident();
-                    temp.Add(tempPatient);
-                }
+                GetAllResident residents = new GetAllResident();
+                DataTable ds = residents.RunCommand();
+                gvResidentList.DataSource = ds;
+                gvResidentList.DataBind();
 
                 gvResidentList.DataBound += (object o, EventArgs ev) =>
                 {
@@ -36,7 +35,7 @@ namespace CapstoneUI
                 };
 
 
-                gvResidentList.DataSource = temp;
+                //gvResidentList.DataSource = temp;
                 gvResidentList.DataBind();
             }
         }
