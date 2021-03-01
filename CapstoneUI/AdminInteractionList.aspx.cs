@@ -13,7 +13,7 @@ namespace CapstoneUI
 {
     public partial class AdminInteractionList : System.Web.UI.Page
     {
-
+        CARESUser user;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,21 +24,40 @@ namespace CapstoneUI
                     hfResidentDetails.Value = $"{res.FirstName} {res.LastName} {res.Home.Address}";
                 }
 
+                user = Session["User"] as CARESUser;
                 GetAllInteractions getAllInteractions = new GetAllInteractions();
                 DataTable ds = getAllInteractions.ExecuteCommand();
-                gvInteractionList.DataSource = ds;
-            }
 
-            if (gvInteractionList.Rows.Count != 0)
-            {
-                //Adds table head tag to visual studio html output so gridview format will work DataTables
-                gvInteractionList.DataBound += (object o, EventArgs ev) =>
+                if (user.UserType == "C")
                 {
-                    gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
-                };
-            }
+                    for (int i = ds.Rows.Count - 1; i >= 0; i--)
+                    {
+                        DataRow record = ds.Rows[i];
+                        if (int.Parse(record["HealthWorkerID"].ToString()) != user.UserID)
+                        {
+                            ds.Rows[i].Delete();
+                        }
+                    }
+                    ds.AcceptChanges();
+                    gvInteractionList.Columns[3].Visible = false;
+                    gvInteractionList.DataSource = ds;
+                }
+                else
+                {
+                    gvInteractionList.DataSource = ds;
+                }
 
-            gvInteractionList.DataBind();
+                if (ds.Rows.Count != 0)
+                {
+                    //Adds table head tag to visual studio html output so gridview format will work DataTables
+                    gvInteractionList.DataBound += (object o, EventArgs ev) =>
+                    {
+                        gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    };
+                }
+
+                gvInteractionList.DataBind();
+            }
         }
 
         public string CHWName(object user)
@@ -93,5 +112,9 @@ namespace CapstoneUI
             Response.Redirect("Homepage.aspx");
         }
 
+        protected void btnViewResident_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

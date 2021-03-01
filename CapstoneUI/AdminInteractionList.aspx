@@ -17,9 +17,11 @@
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered thead-dark" OnRowCommand="gvInteractionList_RowCommand">
                         <Columns>
-                            <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Interaction">
-                                <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
-                            </asp:ButtonField>
+                            <asp:TemplateField HeaderText="View this Interaction">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="btnViewResident_Click" Text="View This Interaction" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Resident First Name">
                                 <ItemTemplate>
                                     <asp:Label Text='<%# ResidentName(Eval("ResidentID"))[0]%>' runat="server"></asp:Label>
