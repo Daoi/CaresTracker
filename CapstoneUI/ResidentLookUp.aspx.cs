@@ -22,32 +22,18 @@ namespace CapstoneUI
                 List<Resident> residents = new List<Resident>();
                 GetAllResident getAllResident = new GetAllResident();
                 DataTable ds = getAllResident.RunCommand();
-                for(int i = 0; i < ds.Rows.Count; i++)
-                {
-                    DataRow record = ds.Rows[i];
-                    Resident temp = new Resident(record);
-                    residents.Add(temp);
-                }
-                gvResidentList.DataSource = residents;
+
+                gvResidentList.DataSource = ds;
+                Session["ResidentList"] = ds;
 
                 gvResidentList.DataBound += (object o, EventArgs ev) =>
                 {
                     gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
                 };
-                Button btnCreateNewResident = new Button()
-                {
-                    Text = "Create New Resident",
-                    CssClass = "btn btn-primary",
-                    CommandName = "CreateNewResident"
-                };
 
                 gvResidentList.DataBind();
             }
-        }
 
-        protected void gvResidentList_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            Server.Transfer("ResidentProfile.aspx");
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -60,6 +46,27 @@ namespace CapstoneUI
         {
             
             Response.Redirect($"CreateResident.aspx");
+        }
+
+        protected void btnViewResident_Click(object sender, EventArgs e)
+        {
+            //Get the row containing the clicked button
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            //Recreate the Datarow the GVR is bound to
+            DataRow dr = (Session["ResidentList"] as DataTable).Rows[row.DataItemIndex];
+
+            Resident res = new Resident(dr);
+            GetHouseByID gh = new GetHouseByID();
+            res.Home = new House(gh.RunCommand(int.Parse(dr["HouseID"].ToString())).Rows[0]); //Look up House by ID, create house obj, add to resident
+
+            if (res.Home.DevelopmentID != -1) //-1 = HCV/Non development housing
+            {
+                GetDevelopmentByID gd = new GetDevelopmentByID();
+                res.HousingDevelopment = new HousingDevelopment(gd.RunCommand(res.Home.DevelopmentID).Rows[0]);
+            }
+            Session["Resident"] = res;
+            Response.Redirect("ResidentProfile.aspx");
         }
     }
 }
