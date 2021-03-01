@@ -121,13 +121,6 @@ namespace CapstoneUI
                     .Equals(ddlDevelopments.SelectedItem.ToString()));
 
                 newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
-                //{
-                //    DevelopmentName = hdRecord["DevelopmentName"].ToString(),
-                //    DevelopmentID = int.Parse(hdRecord["DevelopmentID"].ToString()),
-                //    NumUnits = int.Parse(hdRecord["NumUnits"].ToString()),
-                //    SiteType = hdRecord["SiteType"].ToString(),
-                //    OfficeAddress = hdRecord["OfficeAddress"].ToString(),
-                //};
             }
             //Store new resident in Session to use to redirect/populate resident profile
             Session["Resident"] = newResident;
