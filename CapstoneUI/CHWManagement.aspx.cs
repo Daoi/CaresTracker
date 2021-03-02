@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using CapstoneUI.Utilities;
 using CapstoneUI.DataModels;
+using CapstoneUI.DataAccess.DataAccessors;
 
 namespace CapstoneUI
 {
@@ -11,7 +13,19 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
             man = Session["CognitoManager"] as AWSCognitoManager;
-            worker = Session["Worker"] as CARESUser;
+            worker = Session["Worker"] as CARESUser; // stored from CHWList or CreateCHW
+
+            if (!IsPostBack)
+            {
+                // get stats
+                GetWorkerStats accessor = new GetWorkerStats();
+                DataRow row = accessor.RunCommand(worker.Username).Rows[0];
+                lblTotalInteractions.Text = row["TotalInteractions"].ToString();
+                lblWeekInteractions.Text = row["InteractionsThisWeek"].ToString();
+
+                // get all possible regions and supervisors
+                // set region and supervisor from worker props
+            }
         }
 
         // send user to InteractionList which will be pre-filtered for this worker
