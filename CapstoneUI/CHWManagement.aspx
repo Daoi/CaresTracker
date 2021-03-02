@@ -15,7 +15,7 @@
         <div class="row p-5">
             <!-- Section 1 Start -->
             <div class="col">
-                <asp:Label ID="lblCHWName" runat="server" Text="<u>John Doe</u>" CssClass="h3"></asp:Label>
+                <asp:Label ID="lblWorkerName" runat="server" Text="<u>John Doe</u>" CssClass="h3"></asp:Label>
                 <%-- CHW Picture --%>
                 <div class="chwInfo text-center" style="width: 22vw">
                     <asp:Image ID="imgCHW" runat="server" ImageUrl="https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg" CssClass="chwImg" />
@@ -63,8 +63,14 @@
                 <h3><u>Account Info</u></h3>
                 <br />
                 <div class="mx-auto">
-                    <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="btn-primary btn-lg btn-warning mr-3" />
-                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn-primary btn-lg btn-danger" />
+                    <span class="h6">Resend Verification Link for Sign Up:</span>
+                    <asp:Button ID="btnResendSignUpVerification" runat="server" Text="Resend" CssClass="btn btn-info" />
+
+                    <br />
+                    <br />
+
+                    <span class="h6">Toggle Account Activation Status:</span>
+                    <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="btn btn-danger" />
                 </div>
                 
             </div>

@@ -31,22 +31,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Label lblPageInfo;
         
         /// <summary>
-        /// txtName control.
+        /// lblWorkerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
-        
-        /// <summary>
-        /// lblCHWName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCHWName;
+        protected global::System.Web.UI.WebControls.Label lblWorkerName;
         
         /// <summary>
         /// imgCHW control.
@@ -112,6 +103,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
+        /// btnResendSignUpVerification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResendSignUpVerification;
+        
+        /// <summary>
         /// btnDeactivate control.
         /// </summary>
         /// <remarks>
@@ -119,14 +119,5 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDeactivate;
-        
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
     }
 }
