@@ -12,12 +12,6 @@
             </nav>
             <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 60%">CHW Management</asp:Label>
         </div>
-        <div class="row m-0 p-0">
-            <div class="col p-2 bg-secondary text-white">
-                <label>Search Name: </label>
-                <asp:TextBox ID="txtName" runat="server" Text="John Doe"></asp:TextBox>
-            </div>
-        </div>
         <div class="row p-5">
             <!-- Section 1 Start -->
             <div class="col">
