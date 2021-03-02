@@ -15,7 +15,7 @@
         <div class="row p-5">
             <!-- Section 1 Start -->
             <div class="col">
-                <asp:Label ID="lblCHWName" runat="server" Text="John Doe" CssClass="h3"></asp:Label>
+                <asp:Label ID="lblCHWName" runat="server" Text="<u>John Doe</u>" CssClass="h3"></asp:Label>
                 <%-- CHW Picture --%>
                 <div class="chwInfo text-center" style="width: 22vw">
                     <asp:Image ID="imgCHW" runat="server" ImageUrl="https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg" CssClass="chwImg" />
@@ -36,7 +36,7 @@
             <!-- Section 1 End -->
             <!-- Section 2 Start -->
             <div class="col">
-                <h3>Work Area</h3>
+                <h3><u>Work Info</u></h3>
                 <br />
                 <div class="row">
                     <div class="col text-center">
@@ -61,7 +61,8 @@
                 </div>
                 <br />
 
-                <h3>Account Management</h3>
+                <h3><u>Account Info</u></h3>
+                <br />
                 <div class="mx-auto">
                     <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="btn-primary btn-lg btn-warning mr-3" />
                     <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn-primary btn-lg btn-danger" />
