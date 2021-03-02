@@ -38,25 +38,24 @@
             <div class="col">
                 <h3><u>Work Info</u></h3>
                 <br />
-                <div class="row">
-                    <div class="col text-center">
-                        CHW Region
-                            <asp:DropDownList ID="ddlRegions" CssClass="form-control" runat="server">
+                    <div class="text-left">
+                        <h6>Region</h6>
+                            <asp:DropDownList ID="ddlRegions" CssClass="form-control w-50" runat="server">
                                 <asp:ListItem>North Philadelphia</asp:ListItem>
                                 <asp:ListItem>West Philadelphia</asp:ListItem>
                                 <asp:ListItem>North West Philadelphia</asp:ListItem>
                             </asp:DropDownList>
                     </div>
-                    <div class=" col text-center">
-                        CHW Supervisor
-                            <asp:DropDownList ID="ddlSupervisor" CssClass="form-control" runat="server">
+                <br />
+                    <div class="text-left">
+                        <h6>Supervisor</h6>
+                            <asp:DropDownList ID="ddlSupervisor" CssClass="form-control w-50" runat="server">
                                 <asp:ListItem>Linda</asp:ListItem>
                                 <asp:ListItem>Gaye</asp:ListItem>
                             </asp:DropDownList>
                     </div>
-                </div>
                 <br />
-                <div class="text-center">
+                <div class="text-left">
                     <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn-primary btn" Width="107px" />
                 </div>
                 <br />
