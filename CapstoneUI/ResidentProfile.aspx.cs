@@ -39,7 +39,7 @@ namespace CapstoneUI
             //Resident Stuff
             tbFirstName.Text = currentRes.FirstName;
             tbLastName.Text = currentRes.LastName;
-            tbDoB.Text = currentRes.DateOfBirth;
+            tbDoB.Text = DateTime.Parse(currentRes.DateOfBirth).ToString("yyyy-MM-dd");
             tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
