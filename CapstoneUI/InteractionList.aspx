@@ -15,28 +15,17 @@
                     <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Interaction List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
-                    <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered thead-dark" OnRowCommand="gvInteractionList_RowCommand">
+                    <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered thead-dark" OnRowCommand="gvInteractionList_RowCommand">
                         <Columns>
                             <asp:TemplateField HeaderText="View this Interaction">
                                 <ItemTemplate>
                                     <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="btnViewResident_Click" Text="View This Interaction" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Resident First Name">
-                                <ItemTemplate>
-                                    <asp:Label Text='<%# ResidentName(Eval("ResidentID"))[0]%>' runat="server"></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Resident Last Name">
-                                <ItemTemplate>
-                                    <asp:Label Text='<%# ResidentName(Eval("ResidentID"))[1]%>' runat="server"></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="CHW Name">
-                                <ItemTemplate>
-                                    <asp:Label Text='<%# CHWName(Eval("HealthWorkerID"))%>' runat="server"></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            <asp:BoundField DataField="FirstName" HeaderText="Resident First Name" />
+                            <asp:BoundField DataField="LastName" HeaderText="Resident First Name" />
+                            <asp:BoundField DataField="FirstName1" HeaderText="CHW First Name" />
+                            <asp:BoundField DataField="LastName1" HeaderText="CHW Last Name" />
                             <asp:BoundField DataField="DateOfContact" HeaderText="Date of Interaction" />
                             <asp:BoundField DataField="MethodOfContact" HeaderText="Method of Contact" />
                             <asp:BoundField DataField="LocationOfContact" HeaderText="Location" />

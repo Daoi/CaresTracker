@@ -60,25 +60,6 @@ namespace CapstoneUI
             }
         }
 
-        public string CHWName(object user)
-        {
-            int id = (int)user;
-            GetCHWByID chw = new GetCHWByID();
-            DataRow row = chw.RunCommand(id).Rows[0];
-            return row["FirstName"].ToString() + " " + row["LastName"].ToString();
-        }
-
-        public List<string> ResidentName(object resident)
-        {
-            List<string> name = new List<string>();
-            int id = (int)resident;
-            GetResidentByID res = new GetResidentByID();
-            DataRow row = res.RunCommand(id).Rows[0];
-            name.Add(row["FirstName"].ToString());
-            name.Add(row["LastName"].ToString());
-            return name;
-        }
-
         public class Interaction
         {
             public string ResidentFirstName { get; set; }
