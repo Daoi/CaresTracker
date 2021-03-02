@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="CHWManagement.aspx.cs" Inherits="CapstoneUI.CHWManagement" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="CHWManagement.aspx.cs" Inherits="CapstoneUI.CHWManagement" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid homepage backgroundblue">
@@ -65,7 +65,7 @@
                 <br />
                 <div class="mx-auto">
                     <span class="h6">Resend Verification Link for Sign Up:</span>
-                    <asp:Button ID="btnResendSignUpVerification" runat="server" Text="Resend" CssClass="btn btn-info" />
+                    <asp:Button ID="btnResendSignUpVerification" runat="server" Text="Resend" CssClass="btn btn-info" OnClick="btnResendSignUpVerification_Click" />
 
                     <br />
                     <br />
