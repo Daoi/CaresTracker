@@ -38,7 +38,7 @@ namespace CapstoneUI
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
