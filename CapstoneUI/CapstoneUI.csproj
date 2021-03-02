@@ -423,6 +423,7 @@
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\TextModeDateFormatter.cs" />
     <Compile Include="Utilities\Validation.cs" />
     <Compile Include="Verify.aspx.cs">
       <DependentUpon>Verify.aspx</DependentUpon>
