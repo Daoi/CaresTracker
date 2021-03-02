@@ -70,11 +70,10 @@ namespace CapstoneUI
                         values.Add(null);
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
-                        Response.Write("<script>alert('Admin/Supervisor inserted successfully.')</script>");
                     }
                     else
                     {
-                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
+                        throw new TimeoutException("An unknown error occurred. Please try again later.");
                     }
                 }
                 else
@@ -89,13 +88,27 @@ namespace CapstoneUI
                         values.Add(ddlSupervisor.SelectedValue);
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
-                        Response.Write("<script>alert('CHW inserted successfully.')</script>");
                     }
                     else
                     {
-                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
+                        throw new TimeoutException("An unknown error occurred. Please try again later.");
                     }
                 }
+
+                // creation successful, redirect
+                Session["Worker"] = new CARESUser()
+                {
+                    Username = txtUsername.Text,
+                    FirstName = txtFirstName.Text,
+                    LastName = txtLastName.Text,
+                    UserEmail = txtEmail.Text,
+                    UserPhoneNumber = txtPhoneNumber.Text,
+                    UserStatus = "Active",
+                    UserType = ddlIsSupervisor.SelectedValue == "yes" ? "A" : "C",
+                    RegionID = int.Parse(ddlRegion.SelectedValue),
+                    Supervisor = ddlSupervisor.SelectedValue
+                };
+                Response.Redirect("CHWManagement.aspx");
             }
             catch (Exception ex)
             {

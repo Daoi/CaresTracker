@@ -21,6 +21,11 @@ namespace CapstoneUI.DataModels
         public int RegionID { get; set; }
         public string FullName { get; set; }
 
+        public CARESUser()
+        {
+
+        }
+
         /// <summary>
         /// Used for Event Page, temporary?
         /// </summary>
