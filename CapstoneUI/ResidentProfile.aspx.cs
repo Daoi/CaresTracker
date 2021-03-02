@@ -1,5 +1,6 @@
 ﻿using CapstoneUI.DataAccess.DataAccessors;
 using CapstoneUI.DataModels;
+using CapstoneUI.Utilities;
 using System;
 using System.Data;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace CapstoneUI
             //Resident Stuff
             tbFirstName.Text = currentRes.FirstName;
             tbLastName.Text = currentRes.LastName;
-            tbDoB.Text = DateTime.Parse(currentRes.DateOfBirth).ToString("yyyy-MM-dd");
+            tbDoB.Text = TextModeDateFormatter.Format(currentRes.DateOfBirth);
             tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
