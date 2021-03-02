@@ -11,7 +11,7 @@ using CapstoneUI.DataAccess.DataAccessors;
 
 namespace CapstoneUI
 {
-    public partial class InteractionList : System.Web.UI.Page
+    public partial class InteractionList : Page
     {
         CARESUser user;
         protected void Page_Load(object sender, EventArgs e)
@@ -60,40 +60,15 @@ namespace CapstoneUI
             }
         }
 
-        public class Interaction
-        {
-            public string ResidentFirstName { get; set; }
-            public string ResidentLastName { get; set; }
-            public string CHWName { get; set; }
-            public string DateOfInteraction { get; set; }
-            public string MethodOfContact { get; set; }
-            public string Location { get; set; }
-            public string Notes { get; set; }
-            public Interaction() { }
-            public Interaction(string firstName, string lastName, string chwname, string dateofinteraction, string methodofcontact, string location, string notes)
-            {
-                ResidentFirstName = firstName;
-                ResidentLastName = lastName;
-                CHWName = chwname;
-                DateOfInteraction = dateofinteraction;
-                MethodOfContact = methodofcontact;
-                Location = location;
-                Notes = notes;
-            }
-        }
 
-        protected void gvInteractionList_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            Server.Transfer("ResidentInteractionForm.aspx"); 
-            
-        }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("Homepage.aspx");
         }
 
-        protected void btnViewResident_Click(object sender, EventArgs e)
+
+        protected void btnViewInteraction_Click(object sender, EventArgs e)
         {
 
         }
