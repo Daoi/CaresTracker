@@ -61,6 +61,7 @@
                 <br />
 
                 <h3><u>Account Info</u></h3>
+                <asp:Label ID="lblAWSError" runat="server" Text="" CssClass="h6 alert-danger mb-1"></asp:Label>
                 <br />
                 <div class="mx-auto">
                     <span class="h6">Resend Verification Link for Sign Up:</span>
