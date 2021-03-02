@@ -10,9 +10,10 @@ namespace CapstoneUI
 
         }
 
+        // send user to InteractionList which will be pre-filtered for this worker
         protected void btnViewInteractions_Click(object sender, EventArgs e)
         {
-            Server.Transfer("~/CHWInteractionList.aspx");
+            Server.Transfer("InteractionList.aspx");
         }
 
         // send user back to homepage

@@ -23,6 +23,11 @@ namespace CapstoneUI
                     Resident res = Session["Resident"] as Resident;
                     hfResidentDetails.Value = $"{res.FirstName} {res.LastName} {res.Home.Address}";
                 }
+                else if (HttpContext.Current.Request.Url.ToString().Contains("CHWManagement"))
+                {
+                    CARESUser worker = Session["Worker"] as CARESUser;
+                    hfResidentDetails.Value = $"{worker.FirstName} {worker.LastName}";
+                }
 
                 user = Session["User"] as CARESUser;
                 GetAllInteractions getAllInteractions = new GetAllInteractions();
