@@ -23,10 +23,10 @@
                 <br />
                 <div class="p-3" style="width: 22vw; background-color: lightgray">
                     <h3>Quick Stats</h3>
-                    <span>Interactions this Week: 3
-                            <asp:Label ID="lblWeekInteractions" runat="server" Text=""></asp:Label></span><br />
-                    <span>Total Interactions: 28
-                            <asp:Label ID="lblTotalInteractions" runat="server" Text=""></asp:Label></span>
+                    <span>Interactions this Week: 
+                            <asp:Label ID="lblWeekInteractions" runat="server" Text="2"></asp:Label></span><br />
+                    <span>Total Interactions: 
+                            <asp:Label ID="lblTotalInteractions" runat="server" Text="28"></asp:Label></span>
                     <br />
                     <br />
                     <asp:Button ID="btnViewInteractions" runat="server" Text="View Interactions" CssClass="btn-primary btn" OnClick="btnViewInteractions_Click" />
