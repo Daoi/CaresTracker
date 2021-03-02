@@ -7,10 +7,10 @@
                 <ol class="breadcrumb bg-white">
                     <li class="breadcrumb-item" style="color: deepskyblue">
                         <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton></li>
-                    <li class="breadcrumb-item active bg-white" aria-current="page">CHW Management</li>
+                    <li class="breadcrumb-item active bg-white" aria-current="page">Worker Management</li>
                 </ol>
             </nav>
-            <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 60%">CHW Management</asp:Label>
+            <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 60%">Worker Management</asp:Label>
         </div>
         <div class="row p-5">
             <!-- Section 1 Start -->
