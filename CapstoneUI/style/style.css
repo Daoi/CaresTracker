@@ -228,3 +228,7 @@ thead {
 #MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter {
     margin-right: 9.7em;
 }
+
+.rp-gender label {
+    padding-left: .5em;
+}
