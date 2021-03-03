@@ -10,7 +10,7 @@
 namespace CapstoneUI {
     
     
-    public partial class AdminInteractionList {
+    public partial class InteractionList {
         
         /// <summary>
         /// lnkHome control.

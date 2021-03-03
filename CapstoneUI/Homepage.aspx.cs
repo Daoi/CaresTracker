@@ -35,7 +35,7 @@ namespace CapstoneUI
 
         protected void btnReviewInteractions_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdminInteractionList.aspx");
+            Response.Redirect("InteractionList.aspx");
         }
 
         protected void btnCreateEvent_Click(object sender, EventArgs e)

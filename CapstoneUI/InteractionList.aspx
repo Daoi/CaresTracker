@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="AdminInteractionList.aspx.cs" Inherits="CapstoneUI.AdminInteractionList" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="InteractionList.aspx.cs" Inherits="CapstoneUI.InteractionList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid" style="background-color: #157CB6;">
@@ -17,16 +17,19 @@
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered thead-dark" OnRowCommand="gvInteractionList_RowCommand">
                         <Columns>
-                            <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Interaction">
-                                <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
-                            </asp:ButtonField>
-                            <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
-                            <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
-                            <asp:BoundField DataField="CHWName" HeaderText="Name of CHW" />
-                            <asp:BoundField DataField="DateOfInteraction" HeaderText="Date of Interaction" />
+                            <asp:TemplateField HeaderText="View this Interaction">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="btnViewInteraction_Click" Text="View This Interaction" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="FirstName" HeaderText="Resident First Name" />
+                            <asp:BoundField DataField="LastName" HeaderText="Resident First Name" />
+                            <asp:BoundField DataField="FirstName1" HeaderText="CHW First Name" />
+                            <asp:BoundField DataField="LastName1" HeaderText="CHW Last Name" />
+                            <asp:BoundField DataField="DateOfContact" HeaderText="Date of Interaction" />
                             <asp:BoundField DataField="MethodOfContact" HeaderText="Method of Contact" />
-                            <asp:BoundField DataField="Location" HeaderText="Location" />
-                            <asp:BoundField DataField="Notes" HeaderText="Notes" />
+                            <asp:BoundField DataField="LocationOfContact" HeaderText="Location" />
+                            <asp:BoundField DataField="ActionPlan" HeaderText="Notes" />
                         </Columns>
                     </asp:GridView>
                 </div>

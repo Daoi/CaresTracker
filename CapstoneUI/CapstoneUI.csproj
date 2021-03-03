@@ -118,8 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminInteractionList.aspx" />
-    <Content Include="CHWInteractionList.aspx" />
+    <Content Include="InteractionList.aspx" />
     <Content Include="CHWManagement.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -264,19 +263,12 @@
     <Content Include="CapstoneUI.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminInteractionList.aspx.cs">
-      <DependentUpon>AdminInteractionList.aspx</DependentUpon>
+    <Compile Include="InteractionList.aspx.cs">
+      <DependentUpon>InteractionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminInteractionList.aspx.designer.cs">
-      <DependentUpon>AdminInteractionList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CHWInteractionList.aspx.cs">
-      <DependentUpon>CHWInteractionList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CHWInteractionList.aspx.designer.cs">
-      <DependentUpon>CHWInteractionList.aspx</DependentUpon>
+    <Compile Include="InteractionList.aspx.designer.cs">
+      <DependentUpon>InteractionList.aspx</DependentUpon>
     </Compile>
     <Compile Include="CHWManagement.aspx.cs">
       <DependentUpon>CHWManagement.aspx</DependentUpon>
@@ -300,6 +292,7 @@
       <DependentUpon>CreateResident.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetAllInteractions.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByResidentAttributes.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllResident.cs" />
     <Compile Include="DataAccess\DataAccessors\GetDevelopmentByID.cs" />
@@ -430,6 +423,7 @@
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\TextModeDateFormatter.cs" />
     <Compile Include="Utilities\Validation.cs" />
     <Compile Include="Verify.aspx.cs">
       <DependentUpon>Verify.aspx</DependentUpon>
