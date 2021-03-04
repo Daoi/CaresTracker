@@ -24,37 +24,6 @@ namespace CapstoneUI
             gvCHWList.DataBind();
         }
 
-        public class CHW
-        {
-            public int UserID { get; set; }
-            public string Username { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string UserPhoneNumber { get; set; }
-            public string UserEmail { get; set; }
-            public DateTime LastLogin { get; set; }
-            public string UserStatus { get; set; }
-            public int Supervisor { get; set; }
-            public int RegionID { get; set; }
-
-            
-            public CHW() { }
-            public CHW(int userid, string username, string firstname, string lastname,
-                string userphonenumber, string useremail, DateTime lastlogin, string userstatus, int supervisor, int regionid)
-            {
-                UserID = userid;
-                Username = username;
-                FirstName = firstname;
-                LastName = lastname;
-                UserPhoneNumber = userphonenumber;
-                UserEmail = useremail;
-                LastLogin = lastlogin;
-                UserStatus = userstatus;
-                Supervisor = supervisor;
-                RegionID = regionid;
-            }
-        }
-
         protected void gvCHWList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             Server.Transfer("CHWManagement.aspx");

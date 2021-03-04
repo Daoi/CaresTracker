@@ -148,10 +148,5 @@ namespace CapstoneUI
 
             upHousing.Update();//Update the page without doing full postback using update panel
         }
-
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

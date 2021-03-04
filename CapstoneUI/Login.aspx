@@ -11,7 +11,6 @@
     <script src="../../Scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
     <script src="../../Scripts/jquery-ui-1.7.1.custom.min.js" type="text/javascript"></script>
     <link href="style/loginStyle.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title></title>
 </head>
 <body>
