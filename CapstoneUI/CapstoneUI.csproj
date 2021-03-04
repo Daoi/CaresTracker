@@ -127,6 +127,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CreateCHW.aspx" />
+    <Content Include="CHWList.aspx" />
     <Content Include="CreateResident.aspx" />
     <Content Include="Event.aspx" />
     <Content Include="EventCreator.aspx" />
@@ -329,6 +330,13 @@
     </Compile>
     <Compile Include="Event.aspx.designer.cs">
       <DependentUpon>Event.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CHWList.aspx.cs">
+      <DependentUpon>CHWList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CHWList.aspx.designer.cs">
+      <DependentUpon>CHWList.aspx</DependentUpon>
     </Compile>
     <Compile Include="EventCreator.aspx.cs">
       <DependentUpon>EventCreator.aspx</DependentUpon>
