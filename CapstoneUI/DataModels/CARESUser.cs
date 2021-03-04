@@ -19,7 +19,7 @@ namespace CapstoneUI.DataModels
         public string UserType { get; set; }
         public string Supervisor { get; set; }
         public int RegionID { get; set; }
-        public string FullName { get; set; }
+        public string FullName { get { return $"{FirstName} {LastName}"; } }
 
         public CARESUser()
         {
@@ -36,7 +36,6 @@ namespace CapstoneUI.DataModels
             Username = dataRow[1].ToString();
             FirstName = dataRow[2].ToString();
             LastName = dataRow[3].ToString();
-            FullName = $"{FirstName} {LastName}";
         }
 
         public CARESUser(DataRow dataRow)
@@ -52,7 +51,6 @@ namespace CapstoneUI.DataModels
             UserType = dataRow["UserType"].ToString();
             Supervisor = dataRow["Supervisor"].ToString();
             RegionID = int.Parse(dataRow["RegionID"].ToString());
-            FullName = $"{FirstName} {LastName}";
         }
 
     }
