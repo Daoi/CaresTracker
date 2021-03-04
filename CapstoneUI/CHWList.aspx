@@ -9,22 +9,22 @@
                         <ol class="breadcrumb bg-white">
                             <li class="breadcrumb-item" style="color: deepskyblue">
                                 <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton></li>
-                            <li class="breadcrumb-item active bg-white" aria-current="page">CHW List</li>
+                            <li class="breadcrumb-item active bg-white" aria-current="page">Worker List</li>
                         </ol>
                     </nav>
-                    <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">CHW List</asp:Label>
+                    <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Worker List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowCommand="gvCHWList_RowCommand">
                         <Columns>
-                            <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this CHW">
+                            <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Worker">
                                 <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
                             </asp:ButtonField>
-                            <asp:BoundField DataField="FirstName" HeaderText="CHW First Name" />
-                            <asp:BoundField DataField="LastName" HeaderText="CHW Last Name:" />
-                            <asp:BoundField DataField="Username" HeaderText="CHW Username:" />
-                            <asp:BoundField DataField="Email" HeaderText="Email: " />
-                            <asp:BoundField DataField="PhoneNumber" HeaderText="Phone: " />
+                            <asp:BoundField DataField="FirstName" HeaderText="First Name" />
+                            <asp:BoundField DataField="LastName" HeaderText="Last Name" />
+                            <asp:BoundField DataField="Username" HeaderText="Username" />
+                            <asp:BoundField DataField="UserEmail" HeaderText="Email " />
+                            <asp:BoundField DataField="UserPhoneNumber" HeaderText="Phone" />
                         </Columns>
                     </asp:GridView>
                 </div>
