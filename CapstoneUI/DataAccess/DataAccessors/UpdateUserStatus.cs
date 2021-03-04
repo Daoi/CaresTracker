@@ -29,7 +29,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
             }
 
             // enforce inputs to keep DB data consistent
-            if (newStatus != "Active" || newStatus != "Inactive")
+            if (newStatus != "Active" && newStatus != "Inactive")
             {
                 throw new ArgumentException("newStatus must be either: \"Active\" or \"Inactive\"");
             }

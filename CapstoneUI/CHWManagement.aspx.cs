@@ -22,6 +22,8 @@ namespace CapstoneUI
                     SetButtonActivate();
                 }
 
+                lblWorkerName.Text = worker.FullName;
+
                 GetWorkerStats accessor = new GetWorkerStats();
                 DataRow row = accessor.RunCommand(worker.Username).Rows[0];
                 lblTotalInteractions.Text = row["TotalInteractions"].ToString();
