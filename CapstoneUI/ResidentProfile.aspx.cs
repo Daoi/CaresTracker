@@ -35,7 +35,7 @@ namespace CapstoneUI
             //Housing Stuff
             tbAddress.Text = currentRes.Home.Address;
             tbDevelopment.Text = currentRes.HousingDevelopment != null ? currentRes.HousingDevelopment.DevelopmentName : "Resident does not live in a development.";
-            tbRegionId.Text = currentRes.Home.RegionID.ToString();
+            tbRegionName.Text = currentRes.Home.RegionName.ToString();
             //# of occupants still needed?
             //Resident Stuff
             tbFirstName.Text = currentRes.FirstName;
