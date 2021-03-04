@@ -61,8 +61,8 @@
                     <h2>HCV or PHA Development</h2>
                     <asp:DropDownList ID="ddlHousingType" CssClass="inputDropDown" runat="server">
                         <asp:ListItem>Select Housing Type</asp:ListItem>
-                        <asp:ListItem>Housing Choice Voucher</asp:ListItem>
-                        <asp:ListItem>PHA Development</asp:ListItem>
+                        <asp:ListItem Value="HCV">Housing Choice Voucher</asp:ListItem>
+                        <asp:ListItem Value="Development">PHA Development</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
                     <h2>PHA Development Name</h2>
