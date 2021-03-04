@@ -29,7 +29,7 @@
                     <div class="col m-3 homepageCol">
                         <%-- Button 2 Start --%>
                         <div class="card text-center homepageCard">
-                            <div class="card-body shadow-sm">
+                            <div class="card-body shadow">
                                 <asp:LinkButton ID="btnCreateResidentProfile" CssClass="card-title font-weight-bold h5" runat="server" Text="Create Resident Profile" OnClick="btnCreateResidentProfile_Click"></asp:LinkButton>
                                 <p>Create a profile for a resident.</p>
                             </div>
@@ -40,8 +40,8 @@
                     <div class="col m-3 homepageCol">
                         <%-- Button 3 Start --%>
                         <div class="card text-center homepageCard">
-                            <div class="card-body shadow text-white" style="background-color:#4dbfff">
-                                <asp:LinkButton ID="lnkCreateEvent" runat="server" CssClass="card-title font-weight-bold h5 text-white" Text="Create Event" OnClick="btnCreateEvent_Click1"></asp:LinkButton>
+                            <div class="card-body shadow">
+                                <asp:LinkButton ID="lnkCreateEvent" runat="server" CssClass="card-title font-weight-bold h5" Text="Create Event" OnClick="btnCreateEvent_Click1"></asp:LinkButton>
                                 <p>Create a new community health event.</p>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                     <div class="col m-3 homepageCol">
                         <%-- Button 4 Start --%>
                         <div class="card text-center homepageCard">
-                            <div class="card-body shadow-lg">
+                            <div class="card-body shadow">
                                 <asp:LinkButton ID="btnReviewInteractions" CssClass="card-title font-weight-bold h5" runat="server" Text="Review Past Interactions" OnClick="btnReviewInteractions_Click"></asp:LinkButton>
                                 <p>Search for past interactions by resident name.</p>
                             </div>
@@ -64,7 +64,7 @@
                     <div class="col m-3 homepageCol">
                         <%-- Button 5 Start --%>
                         <div class="card text-center homepageCard">
-                            <div class="card-body">
+                            <div class="card-body shadow">
                                 <%-- Change this button ID probably --%>
                                 <asp:LinkButton ID="btnCreateEvent" runat="server" CssClass="card-title font-weight-bold h5" Text="Review Past Event" OnClick="btnCreateEvent_Click"></asp:LinkButton>
                                 <p>Search for past community health events.</p>
@@ -76,7 +76,7 @@
                     <div class="col m-3 homepageCol">
                         <%-- Button 6 Start --%>
                         <div class="card text-center homepageCard">
-                            <div class="card-body">
+                            <div class="card-body shadow">
                                 <%-- Change this button ID probably --%>
                                 <asp:LinkButton ID="btnResidentLookUp" runat="server" CssClass="card-title font-weight-bold h5" Text="Resident Look Up" OnClick="btnResidentLookUp_Click"></asp:LinkButton>
                                 <p>Search for a specific resident's profile.</p>
