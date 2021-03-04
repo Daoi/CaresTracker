@@ -17,7 +17,6 @@
                 <asp:Label ID="lblWorkerName" runat="server" Text="<u>John Doe</u>" CssClass="h3 mb-2"></asp:Label>
                 <br />
                 <div class="p-3 mx-auto" style="width: 22vw;">
-                    <h3>Quick Stats</h3>
                     <span>Interactions this Week: 
                             <asp:Label ID="lblWeekInteractions" runat="server" Text="2"></asp:Label></span><br />
                     <span>Total Interactions: 
