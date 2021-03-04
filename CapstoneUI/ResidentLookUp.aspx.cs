@@ -1,63 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapstoneUI.Utilities;
+using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
     public partial class ResidentLookUp : Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Resident> temp = new List<Resident>();
-            Resident interaction = new Resident("John", "Doe", "35", "111 Philadelphia Street", "West Philadelphia", "Last Covid-19 Test Result: Negative (1/1/2021)");
-            temp.Add(interaction);
-            for (int i = 0; i < 10; i++)
+            if (!IsPostBack)
             {
-                Resident tempPatient = new Resident();
-                temp.Add(tempPatient);
+                GetAllResident getAllResident = new GetAllResident();
+                DataTable ds = getAllResident.RunCommand();
+
+                gvResidentList.DataSource = ds;
+                Session["ResidentList"] = ds;
+
+                gvResidentList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+
+                gvResidentList.DataBind();
             }
 
-            gvResidentList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-
-            gvResidentList.DataSource = temp;
-            gvResidentList.DataBind();
-        }
-
-        public class Resident
-        {
-            public string ResidentFirstName { get; set; }
-            public string ResidentLastName { get; set; }
-
-            public string ResidentAge { get; set; }
-            public string ResidentAddress { get; set; }
-            public string ResidentRegion { get; set; }
-            public string Notes { get; set; }
-            public Resident() { }
-            public Resident(string firstName, string lastName, string age, string address, string location, string notes)
-            {
-                ResidentFirstName = firstName;
-                ResidentLastName = lastName;
-                ResidentAge = age;
-                ResidentAddress = address;
-                ResidentRegion = location;
-                Notes = notes;
-            }
-        }
-
-        protected void gvResidentList_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            Server.Transfer("ResidentProfile.aspx");
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
             Server.Transfer("Homepage.aspx");
         }
+
+
+        protected void NewResident_Click(object sender, EventArgs e)
+        {
+            
+            Response.Redirect($"CreateResident.aspx");
+        }
+
+        protected void btnViewResident_Click(object sender, EventArgs e)
+        {
+            //Get the row containing the clicked button
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            //Recreate the Datarow the GVR is bound to
+            DataRow dr = (Session["ResidentList"] as DataTable).Rows[row.DataItemIndex];
+
+            Resident res = new Resident(dr);
+            GetHouseByID gh = new GetHouseByID();
+            res.Home = new House(gh.RunCommand(int.Parse(dr["HouseID"].ToString())).Rows[0]); //Look up House by ID, create house obj, add to resident
+
+            if (res.Home.DevelopmentID != -1) //-1 = HCV/Non development housing
+            {
+                GetDevelopmentByID gd = new GetDevelopmentByID();
+                res.HousingDevelopment = new HousingDevelopment(gd.RunCommand(res.Home.DevelopmentID).Rows[0]);
+            }
+            Session["Resident"] = res;
+            Response.Redirect("ResidentProfile.aspx");
+        }
+
     }
 }

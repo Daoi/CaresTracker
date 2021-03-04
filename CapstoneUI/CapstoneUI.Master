@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CapstoneUI.Master.cs" Inherits="CapstoneUI.Site1" %>
+<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="CapstoneUI.Master.cs" Inherits="CapstoneUI.Site1" %>
 
 <!DOCTYPE html>
 
@@ -20,7 +20,7 @@
 </head>
 <body>
     <form runat="server" class="backgroundblue">
-        <asp:ScriptManager ID="smMaster" runat="server"></asp:ScriptManager>
+        <asp:ScriptManager ID="smMaster" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <header>
             <nav class="navbar navbar-expand-xl navbar-light white">
 <%--                <div class="container">--%>
@@ -42,8 +42,6 @@
 
                         </div>
                         <div class="navbar-nav ml-auto">
-                            <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/AcctMgmt/Login.aspx" CssClass="nav-item nav-link">Login</asp:HyperLink>
-                            <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/AcctMgmt/Register.aspx" CssClass="nav-item nav-link">Register</asp:HyperLink>
                             <asp:LinkButton ID="lnkBtnLogout" runat="server" Enabled="false" Visible="false" CssClass="nav-item nav-link" ForeColor="Red" OnClick="lnkBtnLogout_Click">Logout</asp:LinkButton>
 
                         </div>
