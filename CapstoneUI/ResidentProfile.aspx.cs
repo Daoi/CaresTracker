@@ -73,7 +73,7 @@ namespace CapstoneUI
 
         protected void btnReviewPastInteractions_Click(object sender, EventArgs e)
         {
-            Server.Transfer("AdminInteractionList.aspx");
+            Server.Transfer("InteractionList.aspx");
         }
 
         protected void btnCreateNewInteraction_Click(object sender, EventArgs e)

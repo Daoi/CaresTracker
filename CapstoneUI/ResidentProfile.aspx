@@ -55,10 +55,11 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <asp:Label ID="lblGender" CssClass="labels" runat="server" Text="Gender"></asp:Label><asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" CellPadding="8">
+                            <asp:Label ID="lblGender" CssClass="labels" runat="server" Text="Gender"></asp:Label>
+                            <asp:RadioButtonList ID="rblGender" CssClass="rp-gender" runat="server" RepeatDirection="Horizontal" CellPadding="8">
                                 <asp:ListItem>Male</asp:ListItem>
                                 <asp:ListItem>Female</asp:ListItem>
-                                <asp:ListItem>Prefer not to say</asp:ListItem>
+                                <asp:ListItem>Other</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                     </div>
