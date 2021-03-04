@@ -22,7 +22,7 @@ namespace CapstoneUI
                     SetButtonActivate();
                 }
 
-                lblWorkerName.Text = worker.FullName;
+                lblWorkerName.Text = $"<u>{worker.FullName}</u>";
 
                 GetWorkerStats accessor = new GetWorkerStats();
                 DataRow row = accessor.RunCommand(worker.Username).Rows[0];
