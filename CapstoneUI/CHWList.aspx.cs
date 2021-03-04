@@ -26,12 +26,12 @@ namespace CapstoneUI
 
         protected void btnViewWorker_Click(object sender, EventArgs e)
         {
-            Server.Transfer("CHWManagement.aspx");
+            Response.Redirect("./CHWManagement.aspx");
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("./Homepage.aspx");
         }
     }
 }
