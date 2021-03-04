@@ -32,9 +32,11 @@
                         <div class="col">
                             <label>Last Name: </label>
                         </div>
+                        
                         <div class="col-7">
                             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
                         </div>
+                        
                     </div>
                     <div class="row m-3 modal-header">
                         <div class="col">
@@ -49,7 +51,7 @@
                             <label>Email: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
@@ -57,7 +59,7 @@
                             <label>Phone Number: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPhoneNumber" runat="server" TextMode="Phone"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row">

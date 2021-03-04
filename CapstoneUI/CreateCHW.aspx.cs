@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using CapstoneUI.Utilities;
 using CapstoneUI.DataAccess.DataAccessors;
 using System.Data;
+using System.Data.SqlClient;
+using CapstoneUI.Utilities;
 using CapstoneUI.DataModels;
 
 namespace CapstoneUI
@@ -43,7 +45,6 @@ namespace CapstoneUI
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
-            //validation
             List<string> values = new List<string>();
             values.Add(txtUsername.Text);
             values.Add(txtFirstName.Text);
