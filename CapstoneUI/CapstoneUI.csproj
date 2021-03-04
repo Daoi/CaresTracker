@@ -261,6 +261,8 @@
     <Content Include="CapstoneUI.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetResidentByID.cs" />
     <Compile Include="InteractionList.aspx.cs">
       <DependentUpon>InteractionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
