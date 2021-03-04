@@ -17,9 +17,11 @@
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowCommand="gvCHWList_RowCommand">
                         <Columns>
-                            <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Worker">
-                                <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
-                            </asp:ButtonField>
+                            <asp:TemplateField HeaderText="View Worker Profile">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnViewWorker" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View this Worker" OnClick="btnViewWorker_Click" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                             <asp:BoundField DataField="LastName" HeaderText="Last Name" />
                             <asp:BoundField DataField="Username" HeaderText="Username" />

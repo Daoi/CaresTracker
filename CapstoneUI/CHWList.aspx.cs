@@ -24,7 +24,7 @@ namespace CapstoneUI
             gvCHWList.DataBind();
         }
 
-        protected void gvCHWList_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void btnViewWorker_Click(object sender, EventArgs e)
         {
             Server.Transfer("CHWManagement.aspx");
         }
