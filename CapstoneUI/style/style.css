@@ -257,3 +257,20 @@ thead {
         padding-bottom: 50px;
     }
 }
+
+@media (max-height: 834px) {
+    .homepageCol {
+        padding-bottom: 40px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1366px) {
+    .homepageCard {
+        width: 100%;
+        height: 125%;
+    }
+
+    .homepageCol {
+        padding-bottom: 40px;
+    }
+}
