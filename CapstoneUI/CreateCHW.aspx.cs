@@ -29,6 +29,7 @@ namespace CapstoneUI
                         ds.Rows[i].Delete();
                     }
                 }
+                ds.AcceptChanges();
                 ddlSupervisor.DataSource = ds;
                 ddlSupervisor.DataTextField = "FirstName";
                 ddlSupervisor.DataValueField = "UserID";
