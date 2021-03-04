@@ -14,6 +14,8 @@ namespace CapstoneUI.DataModels
         public string HouseType { get; set; }
         public int DevelopmentID { get; set; }
         public string ZipCode { get; set; }
+        public string RegionName { get; set; }
+
         const int HCV = -1;
         public House()
         {
@@ -27,7 +29,7 @@ namespace CapstoneUI.DataModels
             Address = dataRow["Address"].ToString();
             HouseType = dataRow["HouseType"].ToString();
             ZipCode = dataRow["ZipCode"].ToString();
-
+            RegionName = dataRow["RegionName"].ToString();
             if (dataRow["DevelopmentID"] == null || dataRow["DevelopmentID"] == DBNull.Value) //Not part of a development
             {
                 DevelopmentID = HCV;
