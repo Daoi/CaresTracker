@@ -14,12 +14,6 @@
         </div>
         <div class="row p-5">
             <!-- Section 1 Start -->
-            <div class="col">
-                <asp:Label ID="lblWorkerName" runat="server" Text="<u>John Doe</u>" CssClass="h3"></asp:Label>
-                <%-- CHW Picture --%>
-                <div class="chwInfo text-center" style="width: 22vw">
-                    <asp:Image ID="imgCHW" runat="server" ImageUrl="https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg" CssClass="chwImg" />
-                </div>
                 <br />
                 <div class="p-3" style="width: 22vw; background-color: lightgray">
                     <h3>Quick Stats</h3>
