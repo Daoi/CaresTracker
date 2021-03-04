@@ -53,5 +53,49 @@ namespace CapstoneUI
                 lblAWSError.Text = ex.Message;
             }
         }
+
+        // deactivates/activates a user's account to manage sign in authorization
+        protected async void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (btnDeactivate.Text == "Deactivate")
+                {
+                    await man.DisableUserAsync(worker.Username);
+                    UpdateUserStatus updater = new UpdateUserStatus();
+                    updater.RunCommand(worker.Username, "Inactive");
+
+                    SetButtonActivate();
+                }
+                else
+                {
+                    await man.EnableUserAsync(worker.Username);
+                    UpdateUserStatus updater = new UpdateUserStatus();
+                    updater.RunCommand(worker.Username, "Active");
+
+                    SetButtonDeactivate();
+                }
+
+                lblAWSError.Text = "";
+            }
+            catch (Exception ex)
+            {
+                lblAWSError.Text = ex.Message;
+            }
+        }
+
+        // changes button styling when account deactivated
+        private void SetButtonActivate()
+        {
+            btnDeactivate.Text = "Activate";
+            btnDeactivate.CssClass = btnDeactivate.CssClass.Replace("btn-danger", "btn-success");
+        }
+
+        // changes button styling when account activated
+        private void SetButtonDeactivate()
+        {
+            btnDeactivate.Text = "Deactivate";
+            btnDeactivate.CssClass = btnDeactivate.CssClass.Replace("btn-success", "btn-danger");
+        }
     }
 }
