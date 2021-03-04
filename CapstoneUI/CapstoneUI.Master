@@ -35,7 +35,7 @@
                         <div class="navbar-nav">
                             <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="nav-item nav-link">Dashboard</asp:HyperLink>
                             <asp:HyperLink ID="lnkData" runat="server" NavigateUrl="~/ExportData.aspx" CssClass="nav-item nav-link" Enabled="False" Visible="False">Data Extracts</asp:HyperLink>
-                            <asp:HyperLink ID="lnkManagement" runat="server" NavigateUrl="~/CHWManagement.aspx" CssClass="nav-item nav-link" Visible="False" Enabled="False">CHW Management</asp:HyperLink>
+                            <asp:HyperLink ID="lnkManagement" runat="server" NavigateUrl="~/CHWList.aspx" CssClass="nav-item nav-link" Visible="False" Enabled="False">Worker Management</asp:HyperLink>
                             <asp:HyperLink ID="lnkImport" runat="server" NavigateUrl="~/ImportData.aspx" CssClass="nav-item nav-link" Visible="False" Enabled="False">Import Data</asp:HyperLink>
                             <asp:HyperLink ID="lnkInteractionForm" runat="server" NavigateUrl="~/ResidentInteractionForm.aspx" CssClass="nav-item nav-link" Visible="False" Enabled="False">Interaction Form</asp:HyperLink>
                             <asp:HyperLink ID="lnkPatientLookup" runat="server" NavigateUrl="~/ResidentLookUp.aspx" CssClass="nav-item nav-link" Visible="False" Enabled="False">Resident Lookup</asp:HyperLink>
