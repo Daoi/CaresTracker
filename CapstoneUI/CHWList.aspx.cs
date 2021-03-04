@@ -15,13 +15,17 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gvCHWList.DataBound += (object o, EventArgs ev) =>
+            if (!IsPostBack)
             {
-                gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-            CHWDataSet = new GetAllCHW().RunCommand();
-            gvCHWList.DataSource = CHWDataSet;
-            gvCHWList.DataBind();
+                gvCHWList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+
+                CHWDataSet = new GetAllCHW().RunCommand();
+                gvCHWList.DataSource = CHWDataSet;
+                gvCHWList.DataBind();
+            }
         }
 
         protected void btnViewWorker_Click(object sender, EventArgs e)

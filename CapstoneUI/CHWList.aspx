@@ -15,7 +15,7 @@
                     <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Worker List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
-                    <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowCommand="gvCHWList_RowCommand">
+                    <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                         <Columns>
                             <asp:TemplateField HeaderText="View Worker Profile">
                                 <ItemTemplate>
