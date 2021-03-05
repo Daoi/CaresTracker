@@ -14,7 +14,7 @@
         </div>
         <div class="jumbotron vertical-center bg-transparent">
             <div class="container-fluid">
-                <div class="row m-2">
+                <div class="row homepageCol">
                     <div id="divCreateCHW" class="col m-3 homepageCol" runat="server">
                         <!-- Button 1 Start -->
                         <div class="card text-center homepageCard">
@@ -49,7 +49,7 @@
                         <a class="stretched-link" href="EventCreator.aspx"></a>
                     </div>
                 </div>
-                <div class="row m-2">
+                <div class="row">
                     <div class="col m-3 homepageCol">
                         <%-- Button 4 Start --%>
                         <div class="card text-center homepageCard">
@@ -87,45 +87,8 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="row m-2">
-                    <div class="col m-3">
-                        <div class="card mt-5">
-                            <div class="card-body">
-                                <h2>Helpful Links</h2>
-                                <p>
-                                    <a href="http://www.pha.phila.gov/"><span style="font-weight: bold">Philadelphia Housing Authority Website</span> </a>
-                                    <br />
-                                    <a href="https://templelnpwi.org/"><span style="font-weight: bold">Temple Lenfest North Philadelphia Work Initiative</span></a>
-                                    <br />
-                                    <a href="https://www.templehealth.org/"><span style="font-weight: bold">Temple Health</span></a>
-                                    <br />
-                                    <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html"><span style="font-weight: bold">CDC Coronavirus Guidelines</span></a>
-                                    <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col m-3">
-                        <div class="card mt-5">
-                            <div class="card-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
-                                    Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis 
-                                    ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia 
-                                    arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos 
-                                    himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque 
-                                    nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut 
-                                    ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
-                                    Fusce ac turpis quis ligula lacinia aliquet. 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row m-2">
+            <div class="container-fluid mt-5">
+                <div class="row">
                     <div class="col m-3">
                         <%-- Follow Up Tracker Start --%>
                         <div class="card w-100">
@@ -165,7 +128,7 @@
                                                 <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
                                                 <asp:TemplateField HeaderText="Resident">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
+                                                        <asp:Label ID="Label1" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make Link)" />
@@ -176,6 +139,43 @@
                             </div>
                         </div>
                         <%-- Follow Up Tracker End --%>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col m-3">
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                <h2>Helpful Links</h2>
+                                <p>
+                                    <a href="http://www.pha.phila.gov/"><span style="font-weight: bold">Philadelphia Housing Authority Website</span> </a>
+                                    <br />
+                                    <a href="https://templelnpwi.org/"><span style="font-weight: bold">Temple Lenfest North Philadelphia Work Initiative</span></a>
+                                    <br />
+                                    <a href="https://www.templehealth.org/"><span style="font-weight: bold">Temple Health</span></a>
+                                    <br />
+                                    <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html"><span style="font-weight: bold">CDC Coronavirus Guidelines</span></a>
+                                    <br />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col m-3">
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
+                                    Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis 
+                                    ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia 
+                                    arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos 
+                                    himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque 
+                                    nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut 
+                                    ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
+                                    Fusce ac turpis quis ligula lacinia aliquet. 
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
