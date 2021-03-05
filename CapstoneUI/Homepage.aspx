@@ -14,7 +14,7 @@
         </div>
         <div class="jumbotron vertical-center bg-transparent">
             <div class="container-fluid">
-                <div class="row m-2">
+                <div class="row homepageCol">
                     <div id="divCreateCHW" class="col m-3 homepageCol" runat="server">
                         <!-- Button 1 Start -->
                         <div class="card text-center homepageCard">
@@ -49,8 +49,8 @@
                         <a class="stretched-link" href="EventCreator.aspx"></a>
                     </div>
                 </div>
-                <div class="row m-2">
-                    <div class="col m-3 homepageCol">
+                <div class="row">
+                    <div class="col m-3">
                         <%-- Button 4 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
@@ -61,7 +61,7 @@
                         <%-- Button 4 End --%>
                         <a class="stretched-link" href="InteractionList.aspx"></a>
                     </div>
-                    <div class="col m-3 homepageCol">
+                    <div class="col m-3">
                         <%-- Button 5 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
@@ -73,7 +73,7 @@
                         <%-- Button 5 End --%>
                         <a class="stretched-link" href="EventCreator.aspx"></a>
                     </div>
-                    <div class="col m-3 homepageCol">
+                    <div class="col m-3">
                         <%-- Button 6 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="row m-2">
+                <div class="row">
                     <div class="col m-3">
                         <div class="card mt-5">
                             <div class="card-body">
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="row m-2">
+                <div class="row">
                     <div class="col m-3">
                         <%-- Follow Up Tracker Start --%>
                         <div class="card w-100">
