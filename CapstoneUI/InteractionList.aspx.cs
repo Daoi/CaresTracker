@@ -105,12 +105,13 @@ namespace CapstoneUI
             //Create resident
             GetResidentByID gr = new GetResidentByID();
             DataRow resDr = gr.RunCommand(int.Parse(dr["ResidentID"].ToString())).Rows[0];
-            Resident res = new Resident(resDr);
+            Resident res = new Resident(dr);
 
             Session["Resident"] = res;
 
             //Create Interaction
-            Session["Interaction"] = new Interaction();
+            Interaction interaction = new Interaction(dr);
+            Session["Interaction"] = interaction;
 
 
 
