@@ -110,7 +110,7 @@
                             <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label><asp:TextBox ID="tbAddress" placeholder="Street Address" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-md-12">
-                            <asp:Label ID="lblRegionId" CssClass="labels" runat="server" Text="Region Id"></asp:Label><asp:TextBox ID="tbRegionId" placeholder="Region Id" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><asp:TextBox ID="tbRegionName" placeholder="Region" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
                 </div>

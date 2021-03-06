@@ -54,16 +54,8 @@ namespace CapstoneUI
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             //Recreate the Datarow the GVR is bound to
             DataRow dr = (Session["ResidentList"] as DataTable).Rows[row.DataItemIndex];
-
             Resident res = new Resident(dr);
-            GetHouseByID gh = new GetHouseByID();
-            res.Home = new House(gh.RunCommand(int.Parse(dr["HouseID"].ToString())).Rows[0]); //Look up House by ID, create house obj, add to resident
 
-            if (res.Home.DevelopmentID != -1) //-1 = HCV/Non development housing
-            {
-                GetDevelopmentByID gd = new GetDevelopmentByID();
-                res.HousingDevelopment = new HousingDevelopment(gd.RunCommand(res.Home.DevelopmentID).Rows[0]);
-            }
             Session["Resident"] = res;
             Response.Redirect("ResidentProfile.aspx");
         }

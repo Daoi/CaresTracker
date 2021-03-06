@@ -85,13 +85,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton lnkBtnHome;
         
         /// <summary>
-        /// residentInfoForm control.
+        /// pnlResidentInfoForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl residentInfoForm;
+        protected global::System.Web.UI.WebControls.Panel pnlResidentInfoForm;
         
         /// <summary>
         /// tbFirstName control.
@@ -157,13 +157,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbDoC;
         
         /// <summary>
-        /// housingInfoForm control.
+        /// pnlHousingInfoForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl housingInfoForm;
+        protected global::System.Web.UI.WebControls.Panel pnlHousingInfoForm;
         
         /// <summary>
         /// tbResidenceOccupants control.
@@ -211,13 +211,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbResidentAddress;
         
         /// <summary>
-        /// meetingInfoForm control.
+        /// pnlMeetingInfoForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl meetingInfoForm;
+        protected global::System.Web.UI.WebControls.Panel pnlMeetingInfoForm;
         
         /// <summary>
         /// ddlMeetingType control.
@@ -238,13 +238,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbLocation;
         
         /// <summary>
-        /// residentHealthForm control.
+        /// pnlResidentHealthForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl residentHealthForm;
+        protected global::System.Web.UI.WebControls.Panel pnlResidentHealthForm;
         
         /// <summary>
         /// cbShortnessOfBreath control.
@@ -409,13 +409,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbPossibleExposure;
         
         /// <summary>
-        /// servicesForm control.
+        /// pnlServicesForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl servicesForm;
+        protected global::System.Web.UI.WebControls.Panel pnlServicesForm;
         
         /// <summary>
         /// tbServices control.
@@ -436,13 +436,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbServicesRequested;
         
         /// <summary>
-        /// otherForm control.
+        /// pnlOtherForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl otherForm;
+        protected global::System.Web.UI.WebControls.Panel pnlOtherForm;
         
         /// <summary>
         /// nextSteps control.
