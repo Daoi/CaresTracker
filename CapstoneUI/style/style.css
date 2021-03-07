@@ -232,3 +232,24 @@ thead {
 .rp-gender label {
     padding-left: .5em;
 }
+
+.cblServices {
+    overflow-y: scroll;
+    font-size: .70em;
+    width: 80%;
+    height: 70%;
+}
+.cblServices label{
+    padding-left: .2em;
+}
+
+.cblServicesCompleted {
+    overflow-y: scroll;
+    font-size: .70em;
+    width: 80%;
+    height: 30%;
+}
+
+    .cblServicesCompleted label {
+        padding-left: .2em;
+    }
