@@ -10,7 +10,7 @@ namespace CapstoneUI.DataModels
     {
         public int ServiceID { get; set; }
         public string ServiceName { get; set; }
-        public bool IsRequested { get; set; }
+        public bool IsCompleted { get; set; }
 
         public Service() { }
 
@@ -18,23 +18,24 @@ namespace CapstoneUI.DataModels
         {
             ServiceID = int.Parse(dr["ServiceID"].ToString());
             ServiceName = dr["ServiceName"].ToString();
-            IsRequested = (bool)dr["IsRequested"];
+            IsCompleted = (bool)dr["IsCompleted"];
         }
 
-        public static (List<Service> requested, List<Service> offered) CreateServiceLists(DataTable dt)
+        public static (List<Service> requested, List<Service> completed) CreateServiceLists(DataTable dt)
         {
-            (List<Service> requested, List<Service> offered) services;
+            (List<Service> requested, List<Service> completed) services;
 
-            services.requested = dt.Rows.OfType<DataRow>().Where(dr => (bool)dr["IsRequested"])
+            services.requested = dt.Rows.OfType<DataRow>().Where(dr => !(bool)dr["IsCompleted"])
                 .Select(dr => new Service(dr))
                 .ToList();
 
-            services.offered = dt.Rows.OfType<DataRow>().Where(dr => !(bool)dr["IsRequested"])
+            services.completed = dt.Rows.OfType<DataRow>().Where(dr => (bool)dr["IsCompleted"])
                 .Select(dr => new Service(dr))
                 .ToList();
   
             return services;
         }
+
 
     }
 }
