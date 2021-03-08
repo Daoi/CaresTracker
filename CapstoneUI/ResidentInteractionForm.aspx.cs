@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace CapstoneUI
 {
-    public partial class ResidentInteractionForm : System.Web.UI.Page
+    public partial class ResidentInteractionForm : Page
     {
         Dictionary<string, Panel> links;
         Resident res;
@@ -152,7 +152,7 @@ namespace CapstoneUI
             cblCompletedServices.DataBind();
 
             List<string> interactionCompletedServices = new List<string>();
-            interaction.RequestedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
+            interaction.CompletedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
 
             cblCompletedServices.Items.Cast<ListItem>().ToList()
             .Where(li => interactionCompletedServices.Contains(li.Text))
