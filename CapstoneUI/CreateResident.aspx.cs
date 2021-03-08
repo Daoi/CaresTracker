@@ -59,7 +59,6 @@ namespace CapstoneUI
             {
                 residentHouse.HouseType = "Housing Choice Voucher";
                 residentHouse.RegionID = Int32.Parse(ddlRegion.SelectedValue); // Requires validation to ensure input is a number
-                residentHouse.DevelopmentID = -1;
             }
             else
             {
