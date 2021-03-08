@@ -28,9 +28,9 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
                 new MySqlParameter("@UserEmail", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@UserPhoneNumber", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@UserType", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@RegionID", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@SignedInUserName", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@SuperVisorID", MySqlDbType.VarChar, 50)             
+                new MySqlParameter("@SuperVisorID", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@OrganizationID", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@SignedInUserName", MySqlDbType.VarChar, 50)             
             };
         }
 

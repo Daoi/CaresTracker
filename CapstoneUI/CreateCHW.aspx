@@ -67,52 +67,31 @@
                             <h5>Admin Information:</h5>
                         </div>
                     </div>
-                    <div class="row m-3 modal-header">
+                    <div id="ddlOrganizationDiv" class="row m-3 modal-header" runat="server">
                         <div class="col">
-                            <label>Region:</label>
+                            <label>Organization:</label>
                         </div>
                         <div class="col-7">
-                            <asp:DropDownList ID="ddlRegion" runat="server">
-                                <asp:ListItem Value="1">Drexel</asp:ListItem>
-                                <asp:ListItem Value="2">Greater Philadelphia</asp:ListItem>
-                                <asp:ListItem Value="3">Temple</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="row m-3 modal-header">
-                        <div class="col">
-                            <label>Is Supervisor:</label>
-                        </div>
-                        <div class="col-7">
-                            <asp:DropDownList ID="ddlIsSupervisor" AutoPostBack="true" OnSelectedIndexChanged="ddlIsSupervisor_SelectedIndexChanged" runat="server">
+                            <asp:DropDownList ID="ddlOrganization" runat="server">
                                 <asp:ListItem Value="default" Selected>Select an option</asp:ListItem>
-                                <asp:ListItem Value="yes">Yes</asp:ListItem>
-                                <asp:ListItem Value="no">No</asp:ListItem>
+                                <asp:ListItem Value="1">Temple</asp:ListItem>
+                                <asp:ListItem Value="2">Drexel</asp:ListItem>
+                                <asp:ListItem Value="3">Greater Philadelphia Health Action</asp:ListItem>
+                                <asp:ListItem Value="0">None</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <asp:UpdatePanel ID="upSupervisor" UpdateMode="Conditional" runat="server">
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="ddlIsSupervisor" EventName="SelectedIndexChanged" />
-                        </Triggers>
-                        <ContentTemplate>
-                            <div id="divSelectSupervisor" class="row m-3 modal-header" runat="server">
-                                <div class="col">
-                                    <label>Supervisor:</label>
-                                </div>
-                                <div class="col-7">
-                                    <asp:DropDownList ID="ddlSupervisor" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
                     <div class="row m-3 modal-header">
                         <div class="col">
-                            <label>Employee Image:</label>
+                            <label>Account Type:</label>
                         </div>
                         <div class="col-7">
-                            <asp:FileUpload ID="fuCHWPicture" runat="server" />
+                            <asp:DropDownList ID="ddlAccountType" runat="server">
+                                <asp:ListItem Value="default" Selected>Select an option</asp:ListItem>
+                                <asp:ListItem Value="A">Partner Admin</asp:ListItem>
+                                <asp:ListItem Value="S">Supervisor</asp:ListItem>
+                                <asp:ListItem Value="C">CHW</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
                     <div class="row m-3">

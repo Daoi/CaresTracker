@@ -19,6 +19,7 @@ namespace CapstoneUI.DataModels
         public string UserType { get; set; }
         public string Supervisor { get; set; }
         public int RegionID { get; set; }
+        public int OrganizationID { get; set; }
         public string FullName { get; set; }
 
         /// <summary>
@@ -47,6 +48,7 @@ namespace CapstoneUI.DataModels
             UserType = dataRow["UserType"].ToString();
             Supervisor = dataRow["Supervisor"].ToString();
             RegionID = int.Parse(dataRow["RegionID"].ToString());
+            OrganizationID = int.Parse(dataRow["OrganizationID"].ToString());
             FullName = $"{FirstName} {LastName}";
         }
 
