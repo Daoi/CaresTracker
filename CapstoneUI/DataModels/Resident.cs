@@ -37,6 +37,7 @@ namespace CapstoneUI.DataModels
             RelationshipToHoH = dataRow["RelationshipToHOH"].ToString();
             Gender = dataRow["Gender"].ToString();
             Race = dataRow["Race"].ToString();
+            PreferredLanguage = dataRow["PreferredLanguage"].ToString();
 
             GetHouseByID gh = new GetHouseByID();
             Home = new House(gh.RunCommand(int.Parse(dataRow["HouseID"].ToString())).Rows[0]); //Look up House by ID, create house obj, add to resident
@@ -47,6 +48,5 @@ namespace CapstoneUI.DataModels
                 HousingDevelopment = new HousingDevelopment(gd.RunCommand(Home.DevelopmentID).Rows[0]);
             }
         }
-
     }
 }
