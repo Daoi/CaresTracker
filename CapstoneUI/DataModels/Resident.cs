@@ -48,22 +48,5 @@ namespace CapstoneUI.DataModels
             }
         }
 
-
-<<<<<<< Updated upstream
-=======
-        public Resident(DataRow dataRow)
-        {
-            FirstName = dataRow["FirstName"].ToString();
-            LastName = dataRow["LastName"].ToString();
-            DateOfBirth = dataRow["DateOfBirth"].ToString();
-            ResidentEmail = dataRow["ResidentEmail"].ToString();
-            ResidentPhoneNumber = dataRow["ResidentPhoneNumber"].ToString();
-            RelationshipToHoH = dataRow["RelationshipToHOH"].ToString();
-            Gender = dataRow["Gender"].ToString();
-            Race = dataRow["Race"].ToString();
-            PreferredLanguage = dataRow["PreferredLanguage"].ToString();
-        }
->>>>>>> Stashed changes
-
     }
 }
