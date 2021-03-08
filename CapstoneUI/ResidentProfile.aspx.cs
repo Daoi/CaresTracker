@@ -46,6 +46,7 @@ namespace CapstoneUI
             rblGender.SelectedValue = currentRes.Gender;
             //Family size still needed?
             ddlRace.SelectedValue = currentRes.Race;
+            ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
 
 
             interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.FirstName, currentRes.LastName, currentRes.DateOfBirth);

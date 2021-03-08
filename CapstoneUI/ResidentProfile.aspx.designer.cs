@@ -175,6 +175,24 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.DropDownList ddlHoH;
         
         /// <summary>
+        /// lblPrimLanguage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPrimLanguage;
+        
+        /// <summary>
+        /// ddlLanguage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
+        
+        /// <summary>
         /// lblRace control.
         /// </summary>
         /// <remarks>

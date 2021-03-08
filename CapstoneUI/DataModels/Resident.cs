@@ -37,6 +37,7 @@ namespace CapstoneUI.DataModels
             RelationshipToHoH = dataRow["RelationshipToHOH"].ToString();
             Gender = dataRow["Gender"].ToString();
             Race = dataRow["Race"].ToString();
+            PreferredLanguage = dataRow["PreferredLanguage"].ToString();
 
             GetHouseByID gh = new GetHouseByID();
             Home = new House(gh.RunCommand(int.Parse(dataRow["HouseID"].ToString())).Rows[0]); //Look up House by ID, create house obj, add to resident
@@ -49,21 +50,8 @@ namespace CapstoneUI.DataModels
         }
 
 
-<<<<<<< Updated upstream
-=======
-        public Resident(DataRow dataRow)
-        {
-            FirstName = dataRow["FirstName"].ToString();
-            LastName = dataRow["LastName"].ToString();
-            DateOfBirth = dataRow["DateOfBirth"].ToString();
-            ResidentEmail = dataRow["ResidentEmail"].ToString();
-            ResidentPhoneNumber = dataRow["ResidentPhoneNumber"].ToString();
-            RelationshipToHoH = dataRow["RelationshipToHOH"].ToString();
-            Gender = dataRow["Gender"].ToString();
-            Race = dataRow["Race"].ToString();
-            PreferredLanguage = dataRow["PreferredLanguage"].ToString();
-        }
->>>>>>> Stashed changes
+
+
 
     }
 }
