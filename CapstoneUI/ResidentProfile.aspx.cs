@@ -35,7 +35,8 @@ namespace CapstoneUI
             //Housing Stuff
             tbAddress.Text = currentRes.Home.Address;
             tbDevelopment.Text = currentRes.HousingDevelopment != null ? currentRes.HousingDevelopment.DevelopmentName : "Resident does not live in a development.";
-            tbRegionId.Text = currentRes.Home.RegionID.ToString();
+
+            tbRegionName.Text = currentRes.Home.RegionName == null ? "Region not implemented yet" : currentRes.Home.RegionName.ToString();
             //# of occupants still needed?
             //Resident Stuff
             tbFirstName.Text = currentRes.FirstName;
@@ -46,6 +47,7 @@ namespace CapstoneUI
             rblGender.SelectedValue = currentRes.Gender;
             //Family size still needed?
             ddlRace.SelectedValue = currentRes.Race;
+            ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
 
 
             interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.FirstName, currentRes.LastName, currentRes.DateOfBirth);

@@ -228,3 +228,44 @@ thead {
 #MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter {
     margin-right: 9.7em;
 }
+
+.rp-gender label {
+    padding-left: .5em;
+}
+
+.cblServices {
+    overflow-y: scroll;
+    font-size: .70em;
+    width: 80%;
+    height: 70%;
+}
+.cblServices label{
+    padding-left: .2em;
+}
+
+.cblServicesCompleted {
+    overflow-y: scroll;
+    font-size: .70em;
+    width: 80%;
+    height: 30%;
+}
+
+    .cblServicesCompleted label {
+        padding-left: .2em;
+    }
+.homepageCard {
+    margin: auto;
+    width: 100%;
+    height: 125%;
+}
+
+.homepageCol{
+    padding-bottom:30px;
+}
+
+@media (max-width: 1366px) {
+    .homepageCard {
+        width: 200px;
+        height: 200px;
+    }
+}

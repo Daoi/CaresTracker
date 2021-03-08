@@ -20,12 +20,12 @@
             </div>
             <%-- Resident Info Form Start --%>
             <div class="rightbox">
-                <div class="residentInfo" id="residentInfoForm" runat="server">
+                <asp:Panel class="residentInfo" ID="pnlResidentInfoForm" runat="server">
                     <h1>Resident Info</h1>
                     <h2>Full Name</h2>
                     <p>
                         <asp:TextBox ID="tbFirstName" runat="server" placeholder="Resident First Name" CssClass="inputText"></asp:TextBox>
-                    </p>    
+                    </p>
                     <p>
                         <asp:TextBox ID="tbLastName" runat="server" placeholder="Resident Last Name" CssClass="inputText"></asp:TextBox>
                     </p>
@@ -49,10 +49,10 @@
                     <p>
                         <asp:TextBox ID="tbDoC" runat="server" placeholder="Date of Contact" TextMode="Date" CssClass="inputText"></asp:TextBox>
                     </p>
-                </div>
+                </asp:Panel>
                 <%-- Resident Info Form End --%>
                 <%-- Housing Info Form Start--%>
-                <div class="housingInfo" id="housingInfoForm" runat="server">
+                <asp:Panel class="housingInfo" ID="pnlHousingInfoForm" runat="server">
                     <h1>Housing Info</h1>
                     <h2>Number of residents</h2>
                     <p>
@@ -61,8 +61,8 @@
                     <h2>HCV or PHA Development</h2>
                     <asp:DropDownList ID="ddlHousingType" CssClass="inputDropDown" runat="server">
                         <asp:ListItem>Select Housing Type</asp:ListItem>
-                        <asp:ListItem>Housing Choice Voucher</asp:ListItem>
-                        <asp:ListItem>PHA Development</asp:ListItem>
+                        <asp:ListItem Value="HCV">Housing Choice Voucher</asp:ListItem>
+                        <asp:ListItem Value="Development">PHA Development</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
                     <h2>PHA Development Name</h2>
@@ -77,11 +77,10 @@
                     <p>
                         <asp:TextBox ID="tbResidentAddress" runat="server" placeholder="Resident's Address" CssClass="inputText"></asp:TextBox>
                     </p>
-
-                </div>
+                </asp:Panel>
                 <%-- Housing Info Form End --%>
                 <%-- Meeting Info Form Start --%>
-                <div id="meetingInfoForm" class="meetingInfo" runat="server">
+                <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
                     <h1>Meeting Info</h1>
                     <h2>Meeting Type</h2>
                     <asp:DropDownList ID="ddlMeetingType" CssClass="inputDropDown" runat="server">
@@ -95,11 +94,10 @@
                     <p>
                         <asp:TextBox ID="tbLocation" runat="server" placeholder="Meeting Location" CssClass="inputText"></asp:TextBox>
                     </p>
-
-                </div>
+                </asp:Panel>
                 <%-- Meeting Info Form End --%>
                 <%-- Resident Health Form Start --%>
-                <div id="residentHealthForm" class="residentHealth form-group" style="display:inline-grid" runat="server">
+                <asp:Panel ID="pnlResidentHealthForm" class="residentHealth form-group" Style="display: inline-grid" runat="server">
                     <h1>Resident Health</h1>
                     <%-- Symtpom List Start --%>
                     <h2>Covid-19 Possible Symptoms</h2>
@@ -164,7 +162,7 @@
                         <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="inputText" TextMode="Date"></asp:TextBox>
                     </p>
                     <h2>Covid-19 Test Results</h2>
-                    <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server">
+                    <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server" Height="2em">
                         <asp:ListItem>Select Test Result</asp:ListItem>
                         <asp:ListItem>Positive</asp:ListItem>
                         <asp:ListItem>Negative</asp:ListItem>
@@ -175,31 +173,28 @@
                     <p>
                         <asp:TextBox ID="tbTestingLocation" runat="server" placeholder="Testing Location" CssClass="inputText"></asp:TextBox>
                     </p>
-                    <h2>Possible Exposure</h2>
-                    <p>
-                        <asp:TextBox ID="tbPossibleExposure" runat="server" placeholder="List of others who might have been exposed in case of positive test." CssClass="inputText"></asp:TextBox>
-                    </p>
-                </div>
+                </asp:Panel>
                 <%-- Resident Health Form End --%>
                 <%-- Services Form Start --%>
-                <div id="servicesForm" class="services" runat="server">
+                <asp:Panel ID="pnlServicesForm" class="services" runat="server">
                     <h1>Social Services</h1>
-                    <h2>Service's Offered</h2>
-                    <p>
-                        <asp:TextBox ID="tbServices" runat="server" placeholder="List of services offered to resident" CssClass="inputText"></asp:TextBox>
-                    </p>
-                    <h2>Services Requested</h2>
-                    <p>
-                        <asp:TextBox ID="tbServicesRequested" runat="server" placeholder="List of services requested by resident" CssClass="inputText"></asp:TextBox>
-                    </p>
-                </div>
+                    <div id="divNewInteractionServices" class="cblServices" runat="server">
+                        <h2>Services</h2>
+                            <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                        </div>
+                    <div id="divOldInteractionServices" class="cblServicesCompleted" runat="server">
+                        <h2>Services Requested (Check if completed)</h2>
+                            <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                    </div>
+                </asp:Panel>
+                <p></p>
                 <%-- Services Form End --%>
                 <%-- Other Form Start --%>
-                <div id="otherForm" class="otherInfo" runat="server">
+                <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                     <h1>Action Plan</h1>
                     <h2>Next Steps:</h2>
                     <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
-                </div>
+                </asp:Panel>
                 <%-- Other Form End --%>
             </div>
         </div>

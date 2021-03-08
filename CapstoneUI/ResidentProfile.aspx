@@ -55,10 +55,11 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <asp:Label ID="lblGender" CssClass="labels" runat="server" Text="Gender"></asp:Label><asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" CellPadding="8">
+                            <asp:Label ID="lblGender" CssClass="labels" runat="server" Text="Gender"></asp:Label>
+                            <asp:RadioButtonList ID="rblGender" CssClass="rp-gender" runat="server" RepeatDirection="Horizontal" CellPadding="8">
                                 <asp:ListItem>Male</asp:ListItem>
                                 <asp:ListItem>Female</asp:ListItem>
-                                <asp:ListItem>Prefer not to say</asp:ListItem>
+                                <asp:ListItem>Other</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                     </div>
@@ -75,6 +76,17 @@
                             </asp:DropDownList>
                         </div>
                         <div class="col-md-6">
+                            <asp:Label ID="lblPrimLanguage" CssClass="labels" runat="server" Text="Priamry Language"></asp:Label>
+                            <asp:DropDownList CssClass="w-100" ID="ddlLanguage" RepeatDirection="Horizontal" runat="server">
+                                <asp:ListItem>English</asp:ListItem>
+                                <asp:ListItem>Spanish</asp:ListItem>
+                                <asp:ListItem>French</asp:ListItem>
+                                <asp:ListItem>Arabic</asp:ListItem>
+                                <asp:ListItem>Vietnamese</asp:ListItem>
+                                <asp:ListItem>Arabic</asp:ListItem>
+                                <asp:ListItem>Mandarin</asp:ListItem>
+                                <asp:ListItem>Other</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -109,7 +121,7 @@
                             <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label><asp:TextBox ID="tbAddress" placeholder="Street Address" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-md-12">
-                            <asp:Label ID="lblRegionId" CssClass="labels" runat="server" Text="Region Id"></asp:Label><asp:TextBox ID="tbRegionId" placeholder="Region Id" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><asp:TextBox ID="tbRegionName" placeholder="Region" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
                 </div>

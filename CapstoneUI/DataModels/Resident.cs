@@ -3,6 +3,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CapstoneUI.DataAccess.DataAccessors;
 
 namespace CapstoneUI.DataModels
 {
@@ -16,6 +17,7 @@ namespace CapstoneUI.DataModels
         public string RelationshipToHoH { get; set; }
         public string Gender { get; set; } //?
         public string Race { get; set; } //?
+        public string PreferredLanguage { get; set; }
         public bool VaccineInterest { get; set; }
         public int VaccinePhaseEligibility { get; set; }
         public List<Vaccination> VaccineInfo { get; set; }
@@ -35,7 +37,16 @@ namespace CapstoneUI.DataModels
             RelationshipToHoH = dataRow["RelationshipToHOH"].ToString();
             Gender = dataRow["Gender"].ToString();
             Race = dataRow["Race"].ToString();
-        }
+            PreferredLanguage = dataRow["PreferredLanguage"].ToString();
 
+            GetHouseByID gh = new GetHouseByID();
+            Home = new House(gh.RunCommand(int.Parse(dataRow["HouseID"].ToString())).Rows[0]); //Look up House by ID, create house obj, add to resident
+
+            if (Home.DevelopmentID != -1) //-1 = HCV/Non development housing
+            {
+                GetDevelopmentByID gd = new GetDevelopmentByID();
+                HousingDevelopment = new HousingDevelopment(gd.RunCommand(Home.DevelopmentID).Rows[0]);
+            }
+        }
     }
 }
