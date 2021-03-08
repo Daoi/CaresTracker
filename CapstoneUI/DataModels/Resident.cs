@@ -48,10 +48,5 @@ namespace CapstoneUI.DataModels
                 HousingDevelopment = new HousingDevelopment(gd.RunCommand(Home.DevelopmentID).Rows[0]);
             }
         }
-
-
-
-
-
     }
 }
