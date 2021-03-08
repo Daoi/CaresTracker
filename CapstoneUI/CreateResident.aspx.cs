@@ -76,8 +76,8 @@ namespace CapstoneUI
 
             // Build Resident object
             Resident newResident = new Resident();
-            newResident.FirstName = txtFirstName.Text;
-            newResident.LastName = txtLastName.Text;
+            newResident.ResidentFirstName = txtFirstName.Text;
+            newResident.ResidentLastName = txtLastName.Text;
             newResident.DateOfBirth = txtDOB.Text;
             newResident.ResidentEmail = txtEmail.Text;
             newResident.ResidentPhoneNumber = txtPhoneNumber.Text;

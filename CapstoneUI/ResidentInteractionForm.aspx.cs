@@ -81,8 +81,8 @@ namespace CapstoneUI
             int age = today.Date.Year - bday.Date.Year;
 
             //Resident(First Tab)
-            tbFirstName.Text = res.FirstName;
-            tbLastName.Text = res.LastName;
+            tbFirstName.Text = res.ResidentFirstName;
+            tbLastName.Text = res.ResidentLastName;
             tbAge.Text = bday.Date > today.AddYears(-age) ? (age--).ToString() : age.ToString();
             tbGender.Text = res.Gender;
             tbPhone.Text = res.ResidentPhoneNumber;

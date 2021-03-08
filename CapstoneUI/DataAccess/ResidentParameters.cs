@@ -48,8 +48,8 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
             // Add the parameters
             // Done manually for now, couldn't figure out how to pass in house object and iterate through the object to fill in parameters
             Parameters[0].Value = resident.HouseID;
-            Parameters[1].Value = resident.FirstName;
-            Parameters[2].Value = resident.LastName;
+            Parameters[1].Value = resident.ResidentFirstName;
+            Parameters[2].Value = resident.ResidentLastName;
             Parameters[3].Value = resident.DateOfBirth;
             Parameters[4].Value = resident.ResidentEmail;
             Parameters[5].Value = resident.ResidentPhoneNumber;
