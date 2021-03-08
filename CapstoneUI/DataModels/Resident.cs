@@ -17,6 +17,7 @@ namespace CapstoneUI.DataModels
         public string RelationshipToHoH { get; set; }
         public string Gender { get; set; } //?
         public string Race { get; set; } //?
+        public string PreferredLanguage { get; set; }
         public bool VaccineInterest { get; set; }
         public int VaccinePhaseEligibility { get; set; }
         public List<Vaccination> VaccineInfo { get; set; }
@@ -46,8 +47,6 @@ namespace CapstoneUI.DataModels
                 HousingDevelopment = new HousingDevelopment(gd.RunCommand(Home.DevelopmentID).Rows[0]);
             }
         }
-
-
 
     }
 }
