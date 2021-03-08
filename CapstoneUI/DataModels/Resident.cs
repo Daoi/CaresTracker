@@ -17,6 +17,7 @@ namespace CapstoneUI.DataModels
         public string RelationshipToHoH { get; set; }
         public string Gender { get; set; } //?
         public string Race { get; set; } //?
+        public string PreferredLanguage { get; set; }
         public bool VaccineInterest { get; set; }
         public int VaccinePhaseEligibility { get; set; }
         public List<Vaccination> VaccineInfo { get; set; }
@@ -48,6 +49,21 @@ namespace CapstoneUI.DataModels
         }
 
 
+<<<<<<< Updated upstream
+=======
+        public Resident(DataRow dataRow)
+        {
+            FirstName = dataRow["FirstName"].ToString();
+            LastName = dataRow["LastName"].ToString();
+            DateOfBirth = dataRow["DateOfBirth"].ToString();
+            ResidentEmail = dataRow["ResidentEmail"].ToString();
+            ResidentPhoneNumber = dataRow["ResidentPhoneNumber"].ToString();
+            RelationshipToHoH = dataRow["RelationshipToHOH"].ToString();
+            Gender = dataRow["Gender"].ToString();
+            Race = dataRow["Race"].ToString();
+            PreferredLanguage = dataRow["PreferredLanguage"].ToString();
+        }
+>>>>>>> Stashed changes
 
     }
 }

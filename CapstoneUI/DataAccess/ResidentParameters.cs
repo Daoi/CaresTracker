@@ -32,7 +32,8 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
                 new MySqlParameter("@ResidentPhoneNumber", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@RelationshipToHoH", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@Gender", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@Race", MySqlDbType.VarChar, 50)
+                new MySqlParameter("@Race", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@PreferredLanguage", MySqlDbType.VarChar, 50)
             };
         }
 
@@ -55,6 +56,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
             Parameters[6].Value = resident.RelationshipToHoH;
             Parameters[7].Value = resident.Gender;
             Parameters[8].Value = resident.Race;
+            Parameters[9].Value = resident.PreferredLanguage;
             return Parameters;
 
         }

@@ -85,6 +85,7 @@ namespace CapstoneUI
             newResident.RelationshipToHoH = ddlRelationshipHOH.SelectedValue;
             newResident.Gender = rblGender.SelectedValue;
             newResident.Race = ddlRace.SelectedValue;
+            newResident.PreferredLanguage = ddlLanguage.SelectedValue;
             // Retrieve HouseID of House that was just created
             GetHouse GH = new GetHouse();
             DataTable dataTable = GH.RunCommand(txtAddress.Text);
