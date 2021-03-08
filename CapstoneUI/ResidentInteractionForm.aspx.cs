@@ -101,7 +101,7 @@ namespace CapstoneUI
                 ddlHousingType.SelectedValue = "Development";
                 tbDevelopmentName.Text = res.HousingDevelopment.DevelopmentName;
             }
-            tbRegion.Text = res.Home.RegionName.ToString();
+            tbRegion.Text = res.Home.RegionName == null ? "Region not implemented yet" : res.Home.RegionName.ToString();
             tbResidentAddress.Text = res.Home.Address;
 
             //Disable auto filled controls
