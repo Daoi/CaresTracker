@@ -266,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetAllServices.cs" />
     <Compile Include="DataAccess\DataAccessors\GetResidentByID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetServicesByInteractionID.cs" />

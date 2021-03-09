@@ -16,7 +16,7 @@ namespace CapstoneUI
         {
             user = Session["User"] as CARESUser;
 
-            lblUserInfo.Text = $"Welcome, {user.FirstName}";
+            lblUserInfo.Text = $"Welcome, {user.UserFirstName}";
             lblUserInfo.Visible = true;
             lblUserInfo.Enabled = true;
 

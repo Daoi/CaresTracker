@@ -400,15 +400,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbTestingLocation;
         
         /// <summary>
-        /// tbPossibleExposure control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPossibleExposure;
-        
-        /// <summary>
         /// pnlServicesForm control.
         /// </summary>
         /// <remarks>
@@ -418,22 +409,40 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Panel pnlServicesForm;
         
         /// <summary>
-        /// tbServices control.
+        /// divNewInteractionServices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbServices;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNewInteractionServices;
         
         /// <summary>
-        /// tbServicesRequested control.
+        /// cblServices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbServicesRequested;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblServices;
+        
+        /// <summary>
+        /// divOldInteractionServices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOldInteractionServices;
+        
+        /// <summary>
+        /// cblCompletedServices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblCompletedServices;
         
         /// <summary>
         /// pnlOtherForm control.
