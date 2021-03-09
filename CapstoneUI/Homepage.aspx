@@ -114,7 +114,7 @@
                                                 <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
                                                 <asp:TemplateField HeaderText="Resident">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
+                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make link)" />
@@ -128,7 +128,7 @@
                                                 <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
                                                 <asp:TemplateField HeaderText="Resident">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="Label1" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
+                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make Link)" />
