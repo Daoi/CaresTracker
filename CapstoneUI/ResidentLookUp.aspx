@@ -22,8 +22,8 @@
                                     <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View This Resident" OnClick="btnViewResident_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="FirstName" HeaderText="Resident First Name" />
-                            <asp:BoundField DataField="LastName" HeaderText="Resident Last Name" />
+                            <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
+                            <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
                             <asp:BoundField DataField="DateOfBirth" HeaderText="Resident Date of Birth" />
                         </Columns>
                     </asp:GridView>
