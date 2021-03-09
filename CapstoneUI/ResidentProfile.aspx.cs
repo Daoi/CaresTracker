@@ -39,8 +39,8 @@ namespace CapstoneUI
             tbRegionName.Text = currentRes.Home.RegionName == null ? "Region not implemented yet" : currentRes.Home.RegionName.ToString();
             //# of occupants still needed?
             //Resident Stuff
-            tbFirstName.Text = currentRes.FirstName;
-            tbLastName.Text = currentRes.LastName;
+            tbFirstName.Text = currentRes.ResidentFirstName;
+            tbLastName.Text = currentRes.ResidentLastName;
             tbDoB.Text = TextModeDateFormatter.Format(currentRes.DateOfBirth);
             tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
@@ -50,7 +50,7 @@ namespace CapstoneUI
             ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
 
 
-            interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.FirstName, currentRes.LastName, currentRes.DateOfBirth);
+            interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.ResidentFirstName, currentRes.ResidentLastName, currentRes.DateOfBirth);
             if (interactions.Rows.Count > 0)
             {
                 //Total rows returned = recorded interactions
