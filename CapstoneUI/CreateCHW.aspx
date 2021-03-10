@@ -77,7 +77,6 @@
                                 <asp:ListItem Value="1">Temple</asp:ListItem>
                                 <asp:ListItem Value="2">Drexel</asp:ListItem>
                                 <asp:ListItem Value="3">Greater Philadelphia Health Action</asp:ListItem>
-                                <asp:ListItem Value="0">None</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>

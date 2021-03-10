@@ -44,14 +44,7 @@ namespace CapstoneUI
 
             if (user.UserType == "T")
             {
-                if (ddlOrganization.SelectedValue == "0")
-                {
-                    values.Add(null);
-                }
-                else
-                {
-                    values.Add(ddlOrganization.SelectedValue);
-                }
+                values.Add(ddlOrganization.SelectedValue);
             }
             else
             {
