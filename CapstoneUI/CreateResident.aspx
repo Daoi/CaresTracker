@@ -182,6 +182,9 @@
                             <asp:Label runat="server" class="alert alert-danger" ID="lblFail" role="alert" Visible="false">
                                 Could not add resident to the database
                             </asp:Label>
+                            <asp:Label runat="server" class="alert alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
+                                Resident profile already exists!
+                            </asp:Label>
                         </div>
                     </div>
                 </div>

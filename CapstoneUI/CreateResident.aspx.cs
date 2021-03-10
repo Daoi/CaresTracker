@@ -38,7 +38,7 @@ namespace CapstoneUI
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-           Response.Redirect("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
@@ -76,6 +76,7 @@ namespace CapstoneUI
 
             // Build Resident object
             Resident newResident = new Resident();
+
             newResident.ResidentFirstName = txtFirstName.Text;
             newResident.ResidentLastName = txtLastName.Text;
             newResident.DateOfBirth = txtDOB.Text;
@@ -89,19 +90,31 @@ namespace CapstoneUI
             GetHouse GH = new GetHouse();
             DataTable dataTable = GH.RunCommand(txtAddress.Text);
             newResident.HouseID = dataTable.Rows[0].Field<int>("HouseID");
+            // Attach newly created house to resident for session storage
+            newResident.Home = residentHouse;
 
-            // Add new Resident
-            ResidentWriter RW = new ResidentWriter(newResident);
-            if (RW.ExecuteCommand() == 1)
+            // Check if resident is unique
+            GetResidentByAttributes GRBA = new GetResidentByAttributes();
+            DataTable UniqueResidentTable = GRBA.RunCommand(newResident);
+            if (UniqueResidentTable.Rows.Count == 0)
             {
-                residentResult = true;
+                lblUniqueResident.Visible = false;
+                // Add new Resident
+                ResidentWriter RW = new ResidentWriter(newResident);
+                if (RW.ExecuteCommand() == 1)
+                {
+                    residentResult = true;
+                }
+            }
+            else
+            {
+                lblUniqueResident.Visible = true;
             }
 
 
             // Hide alert labels then show which is appropriate
             lblFail.Visible = false;
             lblSuccess.Visible = false;
-            newResident.Home = residentHouse;
 
             if (residentResult == true && houseResult == true)
 
@@ -125,7 +138,6 @@ namespace CapstoneUI
             }
             //Store new resident in Session to use to redirect/populate resident profile
             Session["Resident"] = newResident;
-
 
 
             Response.Redirect("ResidentProfile.aspx");
