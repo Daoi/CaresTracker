@@ -162,7 +162,7 @@
                         <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="inputText" TextMode="Date"></asp:TextBox>
                     </p>
                     <h2>Covid-19 Test Results</h2>
-                    <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server">
+                    <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server" Height="2em">
                         <asp:ListItem>Select Test Result</asp:ListItem>
                         <asp:ListItem>Positive</asp:ListItem>
                         <asp:ListItem>Negative</asp:ListItem>
@@ -173,24 +173,21 @@
                     <p>
                         <asp:TextBox ID="tbTestingLocation" runat="server" placeholder="Testing Location" CssClass="inputText"></asp:TextBox>
                     </p>
-                    <h2>Possible Exposure</h2>
-                    <p>
-                        <asp:TextBox ID="tbPossibleExposure" runat="server" placeholder="List of others who might have been exposed in case of positive test." CssClass="inputText"></asp:TextBox>
-                    </p>
                 </asp:Panel>
                 <%-- Resident Health Form End --%>
                 <%-- Services Form Start --%>
                 <asp:Panel ID="pnlServicesForm" class="services" runat="server">
                     <h1>Social Services</h1>
-                    <h2>Service's Offered</h2>
-                    <p>
-                        <asp:TextBox ID="tbServices" runat="server" placeholder="List of services offered to resident" CssClass="inputText"></asp:TextBox>
-                    </p>
-                    <h2>Services Requested</h2>
-                    <p>
-                        <asp:TextBox ID="tbServicesRequested" runat="server" placeholder="List of services requested by resident" CssClass="inputText"></asp:TextBox>
-                    </p>
+                    <div id="divNewInteractionServices" class="cblServices" runat="server">
+                        <h2>Services</h2>
+                            <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                        </div>
+                    <div id="divOldInteractionServices" class="cblServicesCompleted" runat="server">
+                        <h2>Services Requested (Check if completed)</h2>
+                            <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                    </div>
                 </asp:Panel>
+                <p></p>
                 <%-- Services Form End --%>
                 <%-- Other Form Start --%>
                 <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">

@@ -19,9 +19,10 @@ namespace CapstoneUI.DataModels
         public string COVIDTestLocation { get; set; }
         public string COVIDTestResult { get; set; }
         public string ActionPlan { get; set; }
+        public string SymptomStartDate { get; set; }
         public List<Symptom> Symptoms { get; set; }
         public List<Service> RequestedServices { get; set; }
-        public List<Service> OfferedServices { get; set; }
+        public List<Service> CompletedServices { get; set; }
 
         public Interaction() { }
 
@@ -36,20 +37,22 @@ namespace CapstoneUI.DataModels
             COVIDTestLocation = dr["COVIDTestLocation"].ToString();
             COVIDTestResult = dr["COVIDTestResult"].ToString();
             ActionPlan = dr["ActionPlan"].ToString();
-
+            SymptomStartDate = dr["SymptomStartDate"].ToString();
+            try
+            {
+                DateTime.Parse(SymptomStartDate);
+            }
+            catch(Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine($"Invalid date format for interaction ID: {InteractionID}");
+                SymptomStartDate = DateTime.Today.ToString();
+            }
             //Create Symptom list from DataTable of Symptoms associated with interaction ID
             Symptoms = Symptom.CreateSymptomList(new GetSymptomsByInteractionID().RunCommand(InteractionID));
 
             var services = Service.CreateServiceLists(new GetServicesByInteractionID().RunCommand(InteractionID));
             RequestedServices = services.requested;
-            OfferedServices = services.offered;
-
-
-
-
-
-
-
+            CompletedServices = services.completed;
         }
 
     }
