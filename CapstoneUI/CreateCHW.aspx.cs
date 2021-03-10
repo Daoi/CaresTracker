@@ -1,40 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using CapstoneUI.Utilities;
 using CapstoneUI.DataAccess.DataAccessors;
-using System.Data;
-using System.Data.SqlClient;
-using CapstoneUI.Utilities;
 using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
     public partial class CreateCHW : System.Web.UI.Page
     {
+        CARESUser user;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            user = Session["User"] as CARESUser;
+            if (user.UserType == "T")
             {
-                divSelectSupervisor.Visible = false;
-                GetAllCHW chws = new GetAllCHW();
-                DataTable ds = chws.RunCommand();
-                for(int i = ds.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow record = ds.Rows[i];
-                    if (record["UserType"].ToString() != "A")
-                    {
-                        ds.Rows[i].Delete();
-                    }
-                }
-                ddlSupervisor.DataSource = ds;
-                ddlSupervisor.DataTextField = "FirstName";
-                ddlSupervisor.DataValueField = "UserID";
-                ddlSupervisor.DataBind();
+                ddlOrganizationDiv.Visible = true;
+            }
+            else
+            {
+                ddlAccountType.Items[1].Enabled = false;
+                ddlOrganizationDiv.Visible = false;
             }
         }
 
@@ -55,64 +40,49 @@ namespace CapstoneUI
             values.Add(phoneNumber);
             string signedInUserName = ((CARESUser)Session["User"]).Username;
 
+            values.Add(ddlAccountType.SelectedValue);
+
+            if (user.UserType == "T")
+            {
+                values.Add(ddlOrganization.SelectedValue);
+            }
+            else
+            {
+                values.Add(user.OrganizationID.ToString());
+            }
+
+            values.Add(signedInUserName);
+
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
 
             try
             {
-                if (ddlIsSupervisor.SelectedValue == "yes")
+                if (ddlAccountType.SelectedValue == "A" || ddlAccountType.SelectedValue == "S")
                 {
                     var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 1);
 
                     if (res != null)
                     {
-                        values.Add("A");
-                        values.Add(ddlRegion.SelectedValue);
-                        values.Add(signedInUserName);
-                        values.Add(null);
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
                         Response.Write("<script>alert('Admin/Supervisor inserted successfully.')</script>");
                     }
-                    else
-                    {
-                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
-                    }
                 }
-                else
+                else if (ddlAccountType.SelectedValue == "C")
                 {
                     var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 0);
 
                     if (res != null)
                     {
-                        values.Add("C");
-                        values.Add(ddlRegion.SelectedValue);
-                        values.Add(signedInUserName);
-                        values.Add(ddlSupervisor.SelectedValue);
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
                         Response.Write("<script>alert('CHW inserted successfully.')</script>");
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
                     }
                 }
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert(" + ex.ToString() + ")</script>");
-            }
-        }
-
-        protected void ddlIsSupervisor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(ddlIsSupervisor.SelectedValue == "no")
-            {
-                divSelectSupervisor.Visible = true;
-            }
-            else
-            {
-                divSelectSupervisor.Visible = false;
             }
         }
     }
