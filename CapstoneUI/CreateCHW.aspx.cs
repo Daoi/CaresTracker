@@ -14,7 +14,7 @@ namespace CapstoneUI
             user = Session["User"] as CARESUser;
             if (user.UserType == "T")
             {
-                ddlOrganization.Visible = true;
+                ddlOrganizationDiv.Visible = true;
             }
             else
             {
@@ -40,6 +40,26 @@ namespace CapstoneUI
             values.Add(phoneNumber);
             string signedInUserName = ((CARESUser)Session["User"]).Username;
 
+            values.Add(ddlAccountType.SelectedValue);
+
+            if (user.UserType == "T")
+            {
+                if (ddlOrganization.SelectedValue == "0")
+                {
+                    values.Add(null);
+                }
+                else
+                {
+                    values.Add(ddlOrganization.SelectedValue);
+                }
+            }
+            else
+            {
+                values.Add(user.OrganizationID.ToString());
+            }
+
+            values.Add(signedInUserName);
+
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
 
             try
@@ -50,26 +70,6 @@ namespace CapstoneUI
 
                     if (res != null)
                     {
-                        values.Add(ddlAccountType.SelectedValue);
-                        values.Add(user.UserID.ToString());
-
-                        if (user.UserType == "T")
-                        {
-                            if (ddlOrganization.SelectedValue == "0")
-                            {
-                                values.Add(null);
-                            }
-                            else
-                            {
-                                values.Add(ddlOrganization.SelectedValue);
-                            }
-                        }
-                        else
-                        {
-                            values.Add(user.OrganizationID.ToString());
-                        }
-
-                        values.Add(signedInUserName);
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
                         Response.Write("<script>alert('Admin/Supervisor inserted successfully.')</script>");
@@ -81,10 +81,6 @@ namespace CapstoneUI
 
                     if (res != null)
                     {
-                        values.Add(ddlAccountType.SelectedValue);
-                        values.Add(user.UserID.ToString());
-                        values.Add(user.OrganizationID.ToString());
-                        values.Add(signedInUserName);
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
                         Response.Write("<script>alert('CHW inserted successfully.')</script>");
