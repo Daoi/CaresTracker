@@ -36,8 +36,17 @@ namespace CapstoneUI
             dtCHWList = Session["CHWListDT"] as DataTable;
         }
 
+        // redirect to the management page
         protected void btnViewWorker_Click(object sender, EventArgs e)
         {
+            // get the selected DataRow
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            DataRow dr = dtCHWList.Rows[row.DataItemIndex];
+
+            // create worker in Session
+            Session["Worker"] = new CARESUser(dr);
+
             Response.Redirect("./CHWManagement.aspx");
         }
 
