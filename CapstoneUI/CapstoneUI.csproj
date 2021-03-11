@@ -270,6 +270,7 @@
     <Compile Include="DataAccess\DataAccessors\GetResidentByID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetServicesByInteractionID.cs" />
+    <Compile Include="DataAccess\DataAccessors\GetWorkersByUserID.cs" />
     <Compile Include="InteractionList.aspx.cs">
       <DependentUpon>InteractionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
