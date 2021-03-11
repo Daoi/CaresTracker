@@ -27,9 +27,8 @@ namespace CapstoneUI
                 lnkImport.Enabled = true;
                 lnkInteractionForm.Enabled = true;
                 lnkInteractionForm.Visible = true;
-
             }
-            else if (user.UserType == "A")
+            else
             {
                 lnkImport.Visible = true;
                 lnkManagement.Visible = true;
@@ -39,7 +38,6 @@ namespace CapstoneUI
                 lnkData.Enabled = true;
                 lnkInteractionForm.Enabled = true;
                 lnkInteractionForm.Visible = true;
-
             }
 
             lnkBtnLogout.Visible = true;
@@ -51,6 +49,5 @@ namespace CapstoneUI
             Session.Abandon();
             Response.Redirect("~/Login.aspx");
         }
-
     }
 }
