@@ -81,8 +81,8 @@ namespace CapstoneUI
             int age = today.Date.Year - bday.Date.Year;
 
             //Resident(First Tab)
-            tbFirstName.Text = res.FirstName;
-            tbLastName.Text = res.LastName;
+            tbFirstName.Text = res.ResidentFirstName;
+            tbLastName.Text = res.ResidentLastName;
             tbAge.Text = bday.Date > today.AddYears(-age) ? (age--).ToString() : age.ToString();
             tbGender.Text = res.Gender;
             tbPhone.Text = res.ResidentPhoneNumber;
@@ -101,7 +101,7 @@ namespace CapstoneUI
                 ddlHousingType.SelectedValue = "Development";
                 tbDevelopmentName.Text = res.HousingDevelopment.DevelopmentName;
             }
-            tbRegion.Text = res.Home.RegionName.ToString();
+            tbRegion.Text = res.Home.RegionName == null ? "Region not implemented yet" : res.Home.RegionName.ToString();
             tbResidentAddress.Text = res.Home.Address;
 
             //Disable auto filled controls
