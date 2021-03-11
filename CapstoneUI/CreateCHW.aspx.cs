@@ -25,7 +25,7 @@ namespace CapstoneUI
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
@@ -65,7 +65,10 @@ namespace CapstoneUI
                     {
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
-                        Response.Write("<script>alert('Admin/Supervisor inserted successfully.')</script>");
+                    }
+                    else
+                    {
+                        throw new TimeoutException("An unknown error occurred. Please try again later.");
                     }
                 }
                 else if (ddlAccountType.SelectedValue == "C")
@@ -76,9 +79,29 @@ namespace CapstoneUI
                     {
                         CHWWriter newCHW = new CHWWriter(values);
                         newCHW.ExecuteCommand();
-                        Response.Write("<script>alert('CHW inserted successfully.')</script>");
+                    }
+                    else
+                    {
+                        throw new TimeoutException("An unknown error occurred. Please try again later.");
                     }
                 }
+
+                // creation successful, redirect
+                Session["Worker"] = new CARESUser()
+                {
+                    Username = txtUsername.Text,
+                    UserFirstName = txtFirstName.Text,
+                    UserLastName = txtLastName.Text,
+                    UserEmail = txtEmail.Text,
+                    UserPhoneNumber = txtPhoneNumber.Text,
+                    UserStatus = "Active",
+                    UserType = ddlAccountType.SelectedValue,
+                    OrganizationName = ddlOrganization.SelectedValue == "default" ? 
+                        user.OrganizationName : ddlOrganization.SelectedItem.Text,
+                    LastLogin = "N/A"
+                };
+
+                Response.Redirect("CHWManagement.aspx");
             }
             catch (Exception ex)
             {
