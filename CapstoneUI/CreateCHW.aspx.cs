@@ -37,18 +37,23 @@ namespace CapstoneUI
                 return;
             }
 
-            List<string> values = new List<string>();
+            if (Validation.IsAlphanumeric(txtUsername.Text))
+            {
+                lblError.Text = "Incorrect input type in username field";
+                return;
+            }
 
-            //if(Validation.IsAlphanumeric(txtUsername.Text) || Validation.IsLetters(txtFirstName.Text) || Validation.IsLetters(txtLastName.Text))
-            //{
-            //    lblError.Text = "Incorrect input type";
-            //    return;
-            //}
+            if(Validation.IsLetters(txtFirstName.Text) || Validation.IsLetters(txtLastName.Text))
+            {
+                lblError.Text = "Sorry we can only accept letters for first and last names";
+                return;
+            }
 
-            values.Add(txtUsername.Text);
-            values.Add(txtFirstName.Text);
-            values.Add(txtLastName.Text);
-            values.Add(txtEmail.Text);
+            if (Validation.IsEmail(txtEmail.Text))
+            {
+                lblError.Text = "Please enter a valid email address";
+                return;
+            }
 
             if (Validation.IsPhoneNumber(txtPhoneNumber.Text))
             {
@@ -56,30 +61,31 @@ namespace CapstoneUI
                 return;
             }
 
+            if (ddlAccountType.SelectedValue == "default")
+            {
+                lblError.Text = "Make sure to select an account type";
+                return;
+            }
+
+            if(user.UserType == "T" && ddlOrganization.SelectedValue == "default")
+            {
+                lblError.Text = "Make sure to select an organization";
+                return;
+            }
+
+            List<string> values = new List<string>();
+            values.Add(txtUsername.Text);
+            values.Add(txtFirstName.Text);
+            values.Add(txtLastName.Text);
+            values.Add(txtEmail.Text);
             string phoneNumber = "+1" + txtPhoneNumber.Text;
             values.Add(phoneNumber);
             string signedInUserName = user.Username;
-
-            if(ddlAccountType.SelectedValue == "default")
-            {
-                lblError.Text = "Make sure to select an account type";
-            }
-            else
-            {
-                values.Add(ddlAccountType.SelectedValue);
-            }
+            values.Add(ddlAccountType.SelectedValue);
 
             if (user.UserType == "T")
             {
-                if (ddlOrganization.SelectedValue != "default")
-                {
-                    values.Add(ddlOrganization.SelectedValue);
-                }
-                else
-                {
-                    lblError.Text = "Make sure to select an organization";
-                    return;
-                }
+                values.Add(ddlOrganization.SelectedValue);
             }
             else
             {
