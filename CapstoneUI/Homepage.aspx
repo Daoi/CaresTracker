@@ -19,8 +19,8 @@
                         <!-- Button 1 Start -->
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <asp:LinkButton ID="btnCHWCreateAccount" CssClass="card-title font-weight-bold h5" runat="server" Text="Create CHW Account" OnClick="btnCHWCreateAccount_Click"></asp:LinkButton>
-                                <p>Create a new Community Health Worker Account.</p>
+                                <label class="card-title text-primary font-weight-bold h5">Create CHW Account</label>
+                                <p>Create a new Community Health Worker Account</p>
                             </div>
                         </div>
                         <%-- Button 1 End --%>
@@ -30,8 +30,8 @@
                         <%-- Button 2 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <asp:LinkButton ID="btnCreateResidentProfile" CssClass="card-title font-weight-bold h5" runat="server" Text="Create Resident Profile" OnClick="btnCreateResidentProfile_Click"></asp:LinkButton>
-                                <p>Create a profile for a resident.</p>
+                                <label class="card-title text-primary font-weight-bold h5">Create Resident Profile</label>
+                                <p>Create a profile for a resident</p>
                             </div>
                         </div>
                         <%-- Button 2 End --%>
@@ -41,8 +41,8 @@
                         <%-- Button 3 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <asp:LinkButton ID="lnkCreateEvent" runat="server" CssClass="card-title font-weight-bold h5" Text="Create Event" OnClick="btnCreateEvent_Click1"></asp:LinkButton>
-                                <p>Create a new community health event.</p>
+                                <label class="card-title text-primary font-weight-bold h5">Create Event</label>
+                                <p>Create a new community health event</p>
                             </div>
                         </div>
                         <%-- Button 3 End --%>
@@ -54,8 +54,8 @@
                         <%-- Button 4 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <asp:LinkButton ID="btnReviewInteractions" CssClass="card-title font-weight-bold h5" runat="server" Text="Review Past Interactions" OnClick="btnReviewInteractions_Click"></asp:LinkButton>
-                                <p>Search for past interactions by resident name.</p>
+                                <label class="card-title text-primary font-weight-bold h5">Review Past Interactions</label>
+                                <p>Search for past interactions by resident name</p>
                             </div>
                         </div>
                         <%-- Button 4 End --%>
@@ -65,25 +65,23 @@
                         <%-- Button 5 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <%-- Change this button ID probably --%>
-                                <asp:LinkButton ID="btnCreateEvent" runat="server" CssClass="card-title font-weight-bold h5" Text="Review Past Event" OnClick="btnCreateEvent_Click"></asp:LinkButton>
-                                <p>Search for past community health events.</p>
+                                <label class="card-title text-primary font-weight-bold h5">Resident Look Up</label>
+                                <p>Search for a specific resident's profile</p>
                             </div>
                         </div>
                         <%-- Button 5 End --%>
-                        <a class="stretched-link" href="EventCreator.aspx"></a>
+                        <a class="stretched-link" href="ResidentLookUp.aspx"></a>
                     </div>
                     <div class="col m-3 homepageCol">
                         <%-- Button 6 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <%-- Change this button ID probably --%>
-                                <asp:LinkButton ID="btnResidentLookUp" runat="server" CssClass="card-title font-weight-bold h5" Text="Resident Look Up" OnClick="btnResidentLookUp_Click"></asp:LinkButton>
-                                <p>Search for a specific resident's profile.</p>
+                                <label class="card-title text-primary font-weight-bold h5">Review Past Events</label>
+                                <p>Search for past community health events</p>
                             </div>
                         </div>
                         <%-- Button 6 End --%>
-                        <a class="stretched-link" href="ResidentLookUp.aspx"></a>
+                        <a class="stretched-link" href="EventList.aspx"></a>
                     </div>
                 </div>
             </div>
