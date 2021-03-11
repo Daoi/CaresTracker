@@ -18,6 +18,10 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
             user = Session["User"] as CARESUser;
+
+            // redirect CHWs
+            if (user.UserType == "C") { Response.Redirect("./Homepage.aspx"); }
+
             if (!IsPostBack)
             {
                 gvCHWList.DataBound += (object o, EventArgs ev) =>

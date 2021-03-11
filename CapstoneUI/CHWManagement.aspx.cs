@@ -9,6 +9,7 @@ namespace CapstoneUI
 {
     public partial class CHWManagement : System.Web.UI.Page
     {
+        CARESUser user;
         AWSCognitoManager man;
         CARESUser worker;
         Dictionary<string, string> userTypes = new Dictionary<string, string>()
@@ -21,6 +22,11 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = Session["User"] as CARESUser;
+
+            // redirect CHWs
+            if (user.UserType == "C") { Response.Redirect("./Homepage.aspx"); }
+
             man = Session["CognitoManager"] as AWSCognitoManager;
             worker = Session["Worker"] as CARESUser; // stored from CHWList or CreateCHW
 
