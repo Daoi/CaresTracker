@@ -1,4 +1,5 @@
 ﻿using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,10 +12,12 @@ namespace CapstoneUI
 {
     public partial class CHWList : System.Web.UI.Page
     {
-        DataTable CHWDataSet;
+        CARESUser user;
+        DataTable dtCHWList;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = Session["User"] as CARESUser;
             if (!IsPostBack)
             {
                 gvCHWList.DataBound += (object o, EventArgs ev) =>
@@ -22,10 +25,15 @@ namespace CapstoneUI
                     gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
                 };
 
-                CHWDataSet = new GetAllCHW().RunCommand();
-                gvCHWList.DataSource = CHWDataSet;
+                dtCHWList = new GetWorkersByUserID().RunCommand(user.UserID);
+                if (dtCHWList.Rows.Count == 0) { return; }
+                gvCHWList.DataSource = dtCHWList;
                 gvCHWList.DataBind();
+
+                Session["CHWListDT"] = dtCHWList;
             }
+
+            dtCHWList = Session["CHWListDT"] as DataTable;
         }
 
         protected void btnViewWorker_Click(object sender, EventArgs e)
