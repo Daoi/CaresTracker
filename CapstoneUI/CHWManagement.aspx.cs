@@ -3,6 +3,7 @@ using System.Data;
 using CapstoneUI.Utilities;
 using CapstoneUI.DataModels;
 using CapstoneUI.DataAccess.DataAccessors;
+using System.Collections.Generic;
 
 namespace CapstoneUI
 {
@@ -24,13 +25,12 @@ namespace CapstoneUI
 
                 lblWorkerName.Text = $"<u>{worker.FullName}</u>";
 
-                GetWorkerStats accessor = new GetWorkerStats();
-                DataRow row = accessor.RunCommand(worker.Username).Rows[0];
+                DataRow row = new GetWorkerStats().RunCommand(worker.Username).Rows[0];
                 lblTotalInteractions.Text = row["TotalInteractions"].ToString();
                 lblWeekInteractions.Text = row["InteractionsThisWeek"].ToString();
 
-                // get all possible regions and supervisors
-                // set region and supervisor from worker props
+                dvAccountInfo.DataSource = new List<CARESUser>() { worker };
+                dvAccountInfo.DataBind();
             }
         }
 

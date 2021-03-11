@@ -26,29 +26,22 @@
                     <asp:Button ID="btnViewInteractions" runat="server" Text="View Interactions" CssClass="btn-primary btn" OnClick="btnViewInteractions_Click" />
                 </div>
             <br />
-            <br />
             <!-- Section 1 End -->
             <!-- Section 2 Start -->
             <div class="w-50 text-center mx-auto">
-                <h3><u>Work Info</u></h3>
-                <br />
-                    <h6>Region</h6>
-                    <asp:DropDownList ID="ddlRegions" CssClass="form-control w-50 mx-auto" runat="server">
-                        <asp:ListItem>North Philadelphia</asp:ListItem>
-                        <asp:ListItem>West Philadelphia</asp:ListItem>
-                        <asp:ListItem>North West Philadelphia</asp:ListItem>
-                    </asp:DropDownList>
-                <br />
-                    <h6>Supervisor</h6>
-                    <asp:DropDownList ID="ddlSupervisor" CssClass="form-control w-50 mx-auto" runat="server">
-                        <asp:ListItem>Linda</asp:ListItem>
-                        <asp:ListItem>Gaye</asp:ListItem>
-                    </asp:DropDownList>
-                <br />
-                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn-primary btn" Width="107px" />
-                <br />
-                <br />
                 <h3><u>Account Info</u></h3>
+                <asp:DetailsView ID="dvAccountInfo" runat="server" CssClass="w-50 mx-auto" Height="50px" Width="125px" AutoGenerateRows="False">
+                    <Fields>
+                        <asp:BoundField DataField="Username" HeaderText="Username" />
+                        <asp:BoundField DataField="UserEmail" HeaderText="Email" />
+                        <asp:BoundField DataField="UserPhoneNumber" HeaderText="Phone Number" />
+                        <asp:BoundField DataField="OrganizationName" HeaderText="Organization" />
+                        <asp:BoundField DataField="LastLogin" HeaderText="Last Login" />
+                    </Fields>
+                </asp:DetailsView>
+                <br />
+                <br />
+                <h3><u>Manage Account</u></h3>
                 <asp:Label ID="lblAWSError" runat="server" Text="" CssClass="h6 alert-danger mb-1"></asp:Label>
                 <br />
                 <div class="mx-auto">
