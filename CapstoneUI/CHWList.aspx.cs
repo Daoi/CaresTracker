@@ -26,6 +26,7 @@ namespace CapstoneUI
                 };
 
                 dtCHWList = new GetWorkersByUserID().RunCommand(user.UserID);
+
                 if (dtCHWList.Rows.Count == 0) { return; }
                 gvCHWList.DataSource = dtCHWList;
                 gvCHWList.DataBind();
