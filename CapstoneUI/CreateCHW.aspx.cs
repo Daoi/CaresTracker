@@ -100,6 +100,7 @@ namespace CapstoneUI
                         user.OrganizationName : ddlOrganization.SelectedItem.Text,
                     LastLogin = "N/A"
                 };
+
                 Response.Redirect("CHWManagement.aspx");
             }
             catch (Exception ex)

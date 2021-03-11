@@ -11,6 +11,14 @@ namespace CapstoneUI
     {
         AWSCognitoManager man;
         CARESUser worker;
+        Dictionary<string, string> userTypes = new Dictionary<string, string>()
+        {
+            {"T", "Temple Admin" },
+            {"A", "Partner Admin" },
+            {"S", "Supervisor" },
+            {"C", "Community Health Worker" }
+        };
+
         protected void Page_Load(object sender, EventArgs e)
         {
             man = Session["CognitoManager"] as AWSCognitoManager;
@@ -23,14 +31,7 @@ namespace CapstoneUI
                     SetButtonActivate();
                 }
 
-                lblWorkerName.Text = $"<u>{worker.FullName}</u>";
-
-                DataRow row = new GetWorkerStats().RunCommand(worker.Username).Rows[0];
-                lblTotalInteractions.Text = row["TotalInteractions"].ToString();
-                lblWeekInteractions.Text = row["InteractionsThisWeek"].ToString();
-
-                dvAccountInfo.DataSource = new List<CARESUser>() { worker };
-                dvAccountInfo.DataBind();
+                SetUpPage();
             }
         }
 
@@ -102,6 +103,25 @@ namespace CapstoneUI
         {
             btnDeactivate.Text = "Deactivate";
             btnDeactivate.CssClass = btnDeactivate.CssClass.Replace("btn-success", "btn-danger");
+        }
+
+        // sets data based on selected user
+        private void SetUpPage()
+        {
+            DataRow row = new GetWorkerStats().RunCommand(worker.Username).Rows[0];
+            lblTotalInteractions.Text += row["TotalInteractions"].ToString();
+            lblWeekInteractions.Text += row["InteractionsThisWeek"].ToString();
+
+            // only show if user has not yet verified account
+            divResendLink.Visible = worker.LastLogin == "N/A";
+
+            txtUsername.Text = worker.Username;
+            txtFullName.Text = worker.FullName;
+            txtPhone.Text = worker.UserPhoneNumber;
+            txtEmail.Text = worker.UserEmail;
+            txtOrganizationName.Text = worker.OrganizationName;
+            txtAccountType.Text = userTypes[worker.UserType];
+            txtLastLogin.Text = worker.LastLogin;
         }
     }
 }
