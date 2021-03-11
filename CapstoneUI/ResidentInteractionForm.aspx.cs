@@ -24,7 +24,7 @@ namespace CapstoneUI
             //Key = lnkbtnID Value = Associated Panel
             links = new Dictionary<string, Panel> { {"residentInfo", pnlResidentInfoForm }, { "residentHealth", pnlResidentHealthForm },
                                                     { "meetingInfo", pnlMeetingInfoForm }, { "otherInfo", pnlOtherForm }, { "services", pnlServicesForm },
-                                                    {"housingInfo", pnlHousingInfoForm }
+                                                    {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}
                                                     };
 
             if (!IsPostBack)

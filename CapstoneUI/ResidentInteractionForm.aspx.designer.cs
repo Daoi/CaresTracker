@@ -58,6 +58,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton services;
         
         /// <summary>
+        /// vaccineInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton vaccineInfo;
+        
+        /// <summary>
         /// otherInfo control.
         /// </summary>
         /// <remarks>
@@ -443,6 +452,51 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList cblCompletedServices;
+        
+        /// <summary>
+        /// pnlVaccineForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlVaccineForm;
+        
+        /// <summary>
+        /// ddlVaccineInterest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVaccineInterest;
+        
+        /// <summary>
+        /// ddlVaccineEligibility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVaccineEligibility;
+        
+        /// <summary>
+        /// divVaccineAppointment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVaccineAppointment;
+        
+        /// <summary>
+        /// tbVaccineAppointmentDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbVaccineAppointmentDate;
         
         /// <summary>
         /// pnlOtherForm control.

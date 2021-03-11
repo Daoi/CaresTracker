@@ -13,6 +13,7 @@
                     <asp:LinkButton ID="meetingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Meeting Information</asp:LinkButton>
                     <asp:LinkButton ID="residentHealth" CssClass="active" runat="server" OnClick="formNav_Click">Resident Health</asp:LinkButton>
                     <asp:LinkButton ID="services" CssClass="active" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
+                    <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information</asp:LinkButton>
                     <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan</asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"></asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnHome" CssClass="active" runat="server" OnClick="lnkBtnHome_Click"><i class="fas fa-home" style="margin-right: .5rem"></i>Return To Dashboard</asp:LinkButton>
@@ -180,15 +181,39 @@
                     <h1>Social Services</h1>
                     <div id="divNewInteractionServices" class="cblServices" runat="server">
                         <h2>Services</h2>
-                            <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
-                        </div>
+                        <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                    </div>
                     <div id="divOldInteractionServices" class="cblServicesCompleted" runat="server">
                         <h2>Services Requested (Check if completed)</h2>
-                            <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                        <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                     </div>
                 </asp:Panel>
                 <p></p>
                 <%-- Services Form End --%>
+                <%-- Vaccine Form Start --%>
+                <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
+                    <h1>Vaccine Info</h1>
+                    <h2>Vaccine Interest</h2>
+                    <asp:DropDownList ID="ddlVaccineInterest" CssClass="inputDropDown" runat="server">
+                        <asp:ListItem>Select Vaccine Interest</asp:ListItem>
+                        <asp:ListItem Value="True">Interested in vaccine</asp:ListItem>
+                        <asp:ListItem Value="False">Not interested in vaccine</asp:ListItem>
+                    </asp:DropDownList>
+                    <p></p>
+                    <h2>Vaccine Eligibility</h2>
+                    <asp:DropDownList ID="ddlVaccineEligibility" CssClass="inputDropDown" runat="server">
+                        <asp:ListItem>Select Eligibility</asp:ListItem>
+                        <asp:ListItem Value="True">Eligible for priority registration</asp:ListItem>
+                        <asp:ListItem Value="False">Not Eligible</asp:ListItem>
+                    </asp:DropDownList>
+                    <div runat="server" id="divVaccineAppointment">
+                        <h2>Vaccine Appointment Date</h2>
+                        <p>
+                            <asp:TextBox ID="tbVaccineAppointmentDate" runat="server" TextMode="Date" CssClass="inputText"></asp:TextBox>
+                        </p>
+                    </div>
+                </asp:Panel>
+                <%-- Vaccine Form End --%>
                 <%-- Other Form Start --%>
                 <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                     <h1>Action Plan</h1>

@@ -19,7 +19,8 @@ namespace CapstoneUI.DataModels
         public string Race { get; set; } //?
         public string PreferredLanguage { get; set; }
         public bool VaccineInterest { get; set; }
-        public int VaccinePhaseEligibility { get; set; }
+        public bool VaccineEligibility { get; set; }
+        public string VaccineAppointmentDate { get; set; } 
         public List<Vaccination> VaccineInfo { get; set; }
         public HousingDevelopment HousingDevelopment { get; set; }
         public int HouseID { get; set; }
@@ -46,6 +47,11 @@ namespace CapstoneUI.DataModels
                 GetDevelopmentByID gd = new GetDevelopmentByID();
                 HousingDevelopment = new HousingDevelopment(gd.RunCommand(Home.DevelopmentID).Rows[0]);
             }
+
+            VaccineInterest = (bool)dataRow["VaccineInterest"];
+            VaccineEligibility = (bool)dataRow["VaccineEligibility"];
+            VaccineAppointmentDate = dataRow["VaccineAppointmentDate"].ToString();
+
         }
 
     }
