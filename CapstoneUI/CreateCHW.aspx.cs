@@ -90,14 +90,15 @@ namespace CapstoneUI
                 Session["Worker"] = new CARESUser()
                 {
                     Username = txtUsername.Text,
-                    FirstName = txtFirstName.Text,
-                    LastName = txtLastName.Text,
+                    UserFirstName = txtFirstName.Text,
+                    UserLastName = txtLastName.Text,
                     UserEmail = txtEmail.Text,
                     UserPhoneNumber = txtPhoneNumber.Text,
                     UserStatus = "Active",
-                    UserType = ddlIsSupervisor.SelectedValue == "yes" ? "A" : "C",
-                    RegionID = int.Parse(ddlRegion.SelectedValue),
-                    Supervisor = ddlSupervisor.SelectedValue
+                    UserType = ddlAccountType.SelectedValue,
+                    OrganizationName = ddlOrganization.SelectedValue == "default" ? 
+                        user.OrganizationName : ddlOrganization.SelectedItem.Text,
+                    LastLogin = "N/A"
                 };
                 Response.Redirect("CHWManagement.aspx");
             }
