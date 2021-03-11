@@ -47,7 +47,7 @@ namespace CapstoneUI
             Server.Transfer("InteractionList.aspx");
         }
 
-        // send user back to homepage
+        // send user back to list of workers
         protected void lnkWorkerList_Click(object sender, EventArgs e)
         {
             Response.Redirect("CHWList.aspx");
