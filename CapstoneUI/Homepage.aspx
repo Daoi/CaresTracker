@@ -14,7 +14,7 @@
         </div>
         <div class="jumbotron vertical-center bg-transparent">
             <div class="container-fluid">
-                <div class="row m-2">
+                <div class="row homepageCol">
                     <div id="divCreateCHW" class="col m-3 homepageCol" runat="server">
                         <!-- Button 1 Start -->
                         <div class="card text-center homepageCard">
@@ -49,7 +49,7 @@
                         <a class="stretched-link" href="EventCreator.aspx"></a>
                     </div>
                 </div>
-                <div class="row m-2">
+                <div class="row">
                     <div class="col m-3 homepageCol">
                         <%-- Button 4 Start --%>
                         <div class="card text-center homepageCard">
@@ -87,8 +87,63 @@
                     </div>
                 </div>
             </div>
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col m-3">
+                        <%-- Follow Up Tracker Start --%>
+                        <div class="card w-100">
+                            <div class="card-header">
+                                <div class="row pl-1">
+                                    <ul class="nav nav-tabs card-header-tabs" id="follow-up-tracker" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#outstanding" role="tab" aria-controls="Outstanding" aria-selected="true">Oustanding</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#completed" role="tab" aria-controls="Completed" aria-selected="false">Completed</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body followup-tracker">
+                                <h4 class="card-title">Follow Ups</h4>
+                                <div class="tab-content mt-3">
+                                    <div class="tab-pane active" id="outstanding" role="tabpanel">
+                                        <asp:Label ID="lblOutstandingMsg" runat="server" Text="Label"></asp:Label>
+                                        <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                            <Columns>
+                                                <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
+                                                <asp:TemplateField HeaderText="Resident">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make link)" />
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                    <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                                        <asp:Label ID="lblCompletedMsg" runat="server" Text="Label"></asp:Label>
+                                        <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                            <Columns>
+                                                <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
+                                                <asp:TemplateField HeaderText="Resident">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make Link)" />
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%-- Follow Up Tracker End --%>
+                    </div>
+                </div>
+            </div>
             <div class="container-fluid">
-                <div class="row m-2">
+                <div class="row">
                     <div class="col m-3">
                         <div class="card mt-5">
                             <div class="card-body">
@@ -121,61 +176,6 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row m-2">
-                    <div class="col m-3">
-                        <%-- Follow Up Tracker Start --%>
-                        <div class="card w-100">
-                            <div class="card-header">
-                                <div class="row pl-1">
-                                    <ul class="nav nav-tabs card-header-tabs" id="follow-up-tracker" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#outstanding" role="tab" aria-controls="Outstanding" aria-selected="true">Oustanding</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#completed" role="tab" aria-controls="Completed" aria-selected="false">Completed</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body followup-tracker">
-                                <h4 class="card-title">Follow Ups</h4>
-                                <div class="tab-content mt-3">
-                                    <div class="tab-pane active" id="outstanding" role="tabpanel">
-                                        <asp:Label ID="lblOutstandingMsg" runat="server" Text="Label"></asp:Label>
-                                        <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
-                                            <Columns>
-                                                <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
-                                                <asp:TemplateField HeaderText="Resident">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make link)" />
-                                            </Columns>
-                                        </asp:GridView>
-                                    </div>
-                                    <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                                        <asp:Label ID="lblCompletedMsg" runat="server" Text="Label"></asp:Label>
-                                        <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
-                                            <Columns>
-                                                <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
-                                                <asp:TemplateField HeaderText="Resident">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("FirstName")+ " " + Eval("LastName")%>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make Link)" />
-                                            </Columns>
-                                        </asp:GridView>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <%-- Follow Up Tracker End --%>
                     </div>
                 </div>
             </div>

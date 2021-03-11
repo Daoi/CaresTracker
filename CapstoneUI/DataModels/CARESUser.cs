@@ -10,15 +10,15 @@ namespace CapstoneUI.DataModels
     {
         public int UserID { get; set; }
         public string Username { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
         public string UserEmail { get; set; }
         public string UserPhoneNumber { get; set; }
         public string LastLogin { get; set; }
         public string UserStatus { get; set; }
         public string UserType { get; set; }
-        public string Supervisor { get; set; }
-        public int RegionID { get; set; }
+        public int OrganizationID { get; set; }
+        public string OrganizationName { get; set; }
         public string FullName { get { return $"{FirstName} {LastName}"; } }
 
         public CARESUser()
@@ -34,27 +34,24 @@ namespace CapstoneUI.DataModels
         {
             UserID = (int)dataRow[0];
             Username = dataRow[1].ToString();
-            FirstName = dataRow[2].ToString();
-            LastName = dataRow[3].ToString();
+            UserFirstName = dataRow[2].ToString();
+            UserLastName = dataRow[3].ToString();
+            FullName = $"{UserFirstName} {UserLastName}";
         }
 
         public CARESUser(DataRow dataRow)
         {
             UserID = int.Parse(dataRow["UserID"].ToString());
             Username = dataRow["Username"].ToString();
-            FirstName = dataRow["FirstName"].ToString();
-            LastName = dataRow["LastName"].ToString();
+            UserFirstName = dataRow["UserFirstName"].ToString();
+            UserLastName = dataRow["UserLastName"].ToString();
             UserEmail = dataRow["UserEmail"].ToString();
             UserPhoneNumber = dataRow["UserPhoneNumber"].ToString();
             LastLogin = dataRow["LastLogin"].ToString();
             UserStatus = dataRow["UserStatus"].ToString();
             UserType = dataRow["UserType"].ToString();
-            Supervisor = dataRow["Supervisor"].ToString();
-            RegionID = int.Parse(dataRow["RegionID"].ToString());
+            OrganizationID = int.Parse(dataRow["OrganizationID"].ToString());
+            OrganizationName = dataRow["OrganizationName"].ToString();
         }
-
     }
-
-
-
 }

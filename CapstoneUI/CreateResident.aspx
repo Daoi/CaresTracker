@@ -98,6 +98,23 @@
                             </asp:DropDownList>
                         </div>
                     </div>
+                    <div class="row m-3 modal-header">
+                        <div class="col">
+                            <label>Preferred Language: </label>
+                        </div>
+                        <div class="col-7">
+                            <asp:DropDownList CssClass="w-100" ID="ddlLanguage" RepeatDirection="Horizontal" runat="server">
+                                <asp:ListItem>English</asp:ListItem>
+                                <asp:ListItem>Spanish</asp:ListItem>
+                                <asp:ListItem>French</asp:ListItem>
+                                <asp:ListItem>Arabic</asp:ListItem>
+                                <asp:ListItem>Vietnamese</asp:ListItem>
+                                <asp:ListItem>Arabic</asp:ListItem>
+                                <asp:ListItem>Mandarin</asp:ListItem>
+                                <asp:ListItem>Other</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
 
                     <%-- Universal Info End --%>
                     <h2>Housing Information</h2>
@@ -159,10 +176,10 @@
                     </div>
                     <div class="row m-3">
                         <div class="col">
-                            <asp:Label runat="server" class="alert alert-success" id="lblSuccess" role="alert" visible="false">
+                            <asp:Label runat="server" class="alert alert-success" ID="lblSuccess" role="alert" Visible="false">
                                 The resident and their housing information were successfully added!
                             </asp:Label>
-                            <asp:Label runat="server" class="alert alert-danger" id="lblFail" role="alert" visible="false">
+                            <asp:Label runat="server" class="alert alert-danger" ID="lblFail" role="alert" Visible="false">
                                 Could not add resident to the database
                             </asp:Label>
                         </div>

@@ -32,7 +32,8 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
                 new MySqlParameter("@ResidentPhoneNumber", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@RelationshipToHoH", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@Gender", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@Race", MySqlDbType.VarChar, 50)
+                new MySqlParameter("@Race", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@PreferredLanguage", MySqlDbType.VarChar, 50)
             };
         }
 
@@ -47,14 +48,15 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
             // Add the parameters
             // Done manually for now, couldn't figure out how to pass in house object and iterate through the object to fill in parameters
             Parameters[0].Value = resident.HouseID;
-            Parameters[1].Value = resident.FirstName;
-            Parameters[2].Value = resident.LastName;
+            Parameters[1].Value = resident.ResidentFirstName;
+            Parameters[2].Value = resident.ResidentLastName;
             Parameters[3].Value = resident.DateOfBirth;
             Parameters[4].Value = resident.ResidentEmail;
             Parameters[5].Value = resident.ResidentPhoneNumber;
             Parameters[6].Value = resident.RelationshipToHoH;
             Parameters[7].Value = resident.Gender;
             Parameters[8].Value = resident.Race;
+            Parameters[9].Value = resident.PreferredLanguage;
             return Parameters;
 
         }
