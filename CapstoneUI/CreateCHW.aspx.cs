@@ -30,21 +30,56 @@ namespace CapstoneUI
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
+            if(Validation.IsEmpty(txtUsername.Text) || Validation.IsEmpty(txtFirstName.Text) || Validation.IsEmpty(txtLastName.Text) ||
+                Validation.IsEmpty(txtEmail.Text) || Validation.IsEmpty(txtPhoneNumber.Text))
+            {
+                lblError.Text = "Fill out all fields";
+                return;
+            }
+
             List<string> values = new List<string>();
+
+            //if(Validation.IsAlphanumeric(txtUsername.Text) || Validation.IsLetters(txtFirstName.Text) || Validation.IsLetters(txtLastName.Text))
+            //{
+            //    lblError.Text = "Incorrect input type";
+            //    return;
+            //}
+
             values.Add(txtUsername.Text);
             values.Add(txtFirstName.Text);
             values.Add(txtLastName.Text);
             values.Add(txtEmail.Text);
 
+            if (Validation.IsPhoneNumber(txtPhoneNumber.Text))
+            {
+                lblError.Text = "Please enter a valid phone number";
+                return;
+            }
+
             string phoneNumber = "+1" + txtPhoneNumber.Text;
             values.Add(phoneNumber);
-            string signedInUserName = ((CARESUser)Session["User"]).Username;
+            string signedInUserName = user.Username;
 
-            values.Add(ddlAccountType.SelectedValue);
+            if(ddlAccountType.SelectedValue == "default")
+            {
+                lblError.Text = "Make sure to select an account type";
+            }
+            else
+            {
+                values.Add(ddlAccountType.SelectedValue);
+            }
 
             if (user.UserType == "T")
             {
-                values.Add(ddlOrganization.SelectedValue);
+                if (ddlOrganization.SelectedValue != "default")
+                {
+                    values.Add(ddlOrganization.SelectedValue);
+                }
+                else
+                {
+                    lblError.Text = "Make sure to select an organization";
+                    return;
+                }
             }
             else
             {
@@ -96,7 +131,7 @@ namespace CapstoneUI
                     UserPhoneNumber = txtPhoneNumber.Text,
                     UserStatus = "Active",
                     UserType = ddlAccountType.SelectedValue,
-                    OrganizationName = ddlOrganization.SelectedValue == "default" ? 
+                    OrganizationName = ddlOrganization.SelectedValue == "default" ?
                         user.OrganizationName : ddlOrganization.SelectedItem.Text,
                     LastLogin = "N/A"
                 };
@@ -105,7 +140,7 @@ namespace CapstoneUI
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert(" + ex.ToString() + ")</script>");
+                lblError.Text = ex.ToString();
             }
         }
     }
