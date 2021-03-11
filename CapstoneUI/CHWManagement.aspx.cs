@@ -42,9 +42,9 @@ namespace CapstoneUI
         }
 
         // send user back to homepage
-        protected void lnkHome_Click(object sender, EventArgs e)
+        protected void lnkWorkerList_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Homepage.aspx");
+            Response.Redirect("CHWList.aspx");
         }
 
         // resends the initial verification link used to finish sign up process
