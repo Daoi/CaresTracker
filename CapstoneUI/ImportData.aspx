@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="ImportData.aspx.cs" Inherits="CapstoneUI.ImportData" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="ImportData.aspx.cs" Inherits="CapstoneUI.ImportData" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="loginContainer justify-content-center d-flex py-5">
