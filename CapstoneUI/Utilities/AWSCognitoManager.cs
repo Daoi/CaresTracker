@@ -393,6 +393,14 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
+        /// Gets the time the user's session tokens expire
+        /// </summary>
+        public DateTime TokenExpirationTime
+        {
+            get { return user.SessionTokens.ExpirationTime; }
+        }
+
+        /// <summary>
         /// Helper function to create a client from current credentials.
         /// </summary>
         /// <returns>Cognito client</returns>
