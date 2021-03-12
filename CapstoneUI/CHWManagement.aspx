@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-white">
                     <li class="breadcrumb-item" style="color: deepskyblue">
-                        <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton></li>
+                        <asp:LinkButton ID="lnkWorkerList" NavigateUrl="~/CHWManagement.aspx" runat="server" OnClick="lnkWorkerList_Click">Worker List</asp:LinkButton></li>
                     <li class="breadcrumb-item active bg-white" aria-current="page">Worker Management</li>
                 </ol>
             </nav>
