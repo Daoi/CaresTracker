@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
 </head>
 <body>
-    <form runat="server" class="backgroundblue">
+    <form id="frmMain" runat="server" class="backgroundblue">
         <asp:ScriptManager ID="smMaster" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <header>
             <nav class="navbar navbar-expand-xl navbar-light white">
