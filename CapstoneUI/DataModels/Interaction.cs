@@ -20,6 +20,8 @@ namespace CapstoneUI.DataModels
         public string COVIDTestResult { get; set; }
         public string ActionPlan { get; set; }
         public string SymptomStartDate { get; set; }
+        public bool RequiresFollowUp { get; set; }
+        public string FollowUpCompleted { get; set; }
         public List<Symptom> Symptoms { get; set; }
         public List<Service> RequestedServices { get; set; }
         public List<Service> CompletedServices { get; set; }
@@ -38,6 +40,8 @@ namespace CapstoneUI.DataModels
             COVIDTestResult = dr["COVIDTestResult"].ToString();
             ActionPlan = dr["ActionPlan"].ToString();
             SymptomStartDate = dr["SymptomStartDate"].ToString();
+            RequiresFollowUp = (bool)dr["RequiresFollowUp"];
+            FollowUpCompleted = dr["FollowUpCompleted"].ToString();
             try
             {
                 DateTime.Parse(SymptomStartDate);

@@ -36,6 +36,12 @@ namespace CapstoneUI.DataModels
             return services;
         }
 
+        public Service(string name, int id)
+        {
+            ServiceID = id;
+            ServiceName = name;
+        }
+
 
     }
 }

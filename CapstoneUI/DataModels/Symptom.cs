@@ -34,7 +34,11 @@ namespace CapstoneUI.DataModels
 
         }
 
-
+        public Symptom(string name, int id)
+        {
+            SymptomName = name;
+            SymptomID = id;
+        }
 
 
     }

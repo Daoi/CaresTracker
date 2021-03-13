@@ -15,7 +15,8 @@
                     <asp:LinkButton ID="services" CssClass="active" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
                     <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information</asp:LinkButton>
                     <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan</asp:LinkButton>
-                    <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"><i class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
+                    <asp:Label ID="lblSave" runat="server" CssClass="active" Text="Label" Visible="false"></asp:Label>
                     <asp:LinkButton ID="lnkBtnHome" CssClass="active" runat="server" OnClick="lnkBtnHome_Click"><i class="fas fa-home" style="margin-right: .5rem"></i>Return To Dashboard</asp:LinkButton>
                 </nav>
             </div>
@@ -103,57 +104,58 @@
                     <%-- Symtpom List Start --%>
                     <h2>Covid-19 Possible Symptoms</h2>
                     <div class="row">
+                        <%-- Value after _ represents the ID, sorry future developers --%>
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbShortnessOfBreath" runat="server" CssClass="inputCheckBox" Text="Shortness of Breath" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbShortnessOfBreath_1" runat="server" CssClass="inputCheckBox" Text="Shortness of Breath" Font-Size="Medium"  />
                         </div>
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbNausea" runat="server" CssClass="inputCheckBox" Text="Nausea or Vomiting" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbNausea_2" runat="server" CssClass="inputCheckBox" Text="Nausea or Vomiting" Font-Size="Medium"  />
                         </div>
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbFatigue" runat="server" CssClass="inputCheckBox" Text="Fatigue" Font-Size="Medium" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbAches" runat="server" CssClass="inputCheckBox" Text="Body/Muscle Aches" Font-Size="Medium" />
-                        </div>
-                        <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbHeadaches" runat="server" CssClass="inputCheckBox" Text="Headaches" Font-Size="Medium" />
-                        </div>
-                        <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbSoreThroat" runat="server" CssClass="inputCheckBox" Text="Sore Throat" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbFatigue_3" runat="server" CssClass="inputCheckBox" Text="Fatigue" Font-Size="Medium" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbTasteOrSmell" runat="server" CssClass="inputCheckBox" Text="New Loss of Taste or Smell" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbAches_4" runat="server" CssClass="inputCheckBox" Text="Body/Muscle Aches" Font-Size="Medium" />
                         </div>
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbCongestion" runat="server" CssClass="inputCheckBox" Text="Congestion or Runny Nose" Font-Size="Medium" />
+                            <asp:CheckBox ID="cbHeadaches_5" runat="server" CssClass="inputCheckBox" Text="Headaches" Font-Size="Medium" />
                         </div>
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbCough" runat="server" CssClass="inputCheckBox" Text="Cough" Font-Size="Medium"/>
+                            <asp:CheckBox ID="cbSoreThroat_6" runat="server" CssClass="inputCheckBox" Text="Sore Throat" Font-Size="Medium"  />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4">
+                            <asp:CheckBox ID="cbTasteOrSmell_7" runat="server" CssClass="inputCheckBox" Text="New Loss of Taste or Smell" Font-Size="Medium"  />
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <asp:CheckBox ID="cbCongestion_8" runat="server" CssClass="inputCheckBox" Text="Congestion or Runny Nose" Font-Size="Medium" />
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <asp:CheckBox ID="cbCough_9" runat="server" CssClass="inputCheckBox" Text="Cough" Font-Size="Medium"/>
                         </div>
                     </div>
                     <p></p>
                     <h2>Critical Symptoms(Seek Immediate Medical Attention)</h2>
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbConfusion" runat="server" CssClass="inputCheckBox" Text="Confusion" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbConfusion_10" runat="server" CssClass="inputCheckBox" Text="Confusion" Font-Size="Medium"  />
                         </div>
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbTroubleBreathing" runat="server" CssClass="inputCheckBox" Text="Trouble Breathing" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbTroubleBreathing_11" runat="server" CssClass="inputCheckBox" Text="Trouble Breathing" Font-Size="Medium"  />
                         </div>
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbBlueLips" runat="server" CssClass="inputCheckBox" Text="Blueish Lips" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbBlueLips_12" runat="server" CssClass="inputCheckBox" Text="Blueish Lips" Font-Size="Medium"  />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
-                            <asp:CheckBox ID="cbInabilityToAwake" runat="server" CssClass="inputCheckBox" Text="Inability to stay awake" Font-Size="Medium" />
+                            <asp:CheckBox ID="cbInabilityToAwake_13" runat="server" CssClass="inputCheckBox" Text="Inability to stay awake" Font-Size="Medium" />
                         </div>
                         <div class="col-sm-4 col-md-8">
-                            <asp:CheckBox ID="cbChestPain" runat="server" CssClass="inputCheckBox" Text="Persistent Chest Pain or Pressure" Font-Size="Medium"  />
+                            <asp:CheckBox ID="cbChestPain_14" runat="server" CssClass="inputCheckBox" Text="Persistent Chest Pain or Pressure" Font-Size="Medium"  />
                         </div>
                     </div>
                     <p></p>
@@ -219,7 +221,7 @@
                 <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                     <h1>Action Plan</h1>
                     <h2>Next Steps:</h2>
-                    <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
+                    <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server"></textarea>
                 </asp:Panel>
                 <%-- Other Form End --%>
             </div>

@@ -9,6 +9,7 @@ namespace CapstoneUI.DataModels
 {
     public class Resident
     {
+        public int ResidentID { get; set; }
         public string ResidentFirstName { get; set; }
         public string ResidentLastName { get; set; }
         public string DateOfBirth { get; set; }
@@ -30,6 +31,7 @@ namespace CapstoneUI.DataModels
 
         public Resident(DataRow dataRow)
         {
+            ResidentID = int.Parse(dataRow["ResidentID"].ToString());
             ResidentFirstName = dataRow["ResidentFirstName"].ToString();
             ResidentLastName = dataRow["ResidentLastName"].ToString();
             DateOfBirth = dataRow["DateOfBirth"].ToString();

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 
 
-namespace CapstoneUI.DataAccess.DataAccessors
+namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
 {
     public class InteractionParameters
     {
@@ -25,15 +25,16 @@ namespace CapstoneUI.DataAccess.DataAccessors
                 new MySqlParameter("@COVIDTestLocation", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@COVIDTestResult", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@ActionPlan", MySqlDbType.VarChar, 500),
-                new MySqlParameter("@SymptomStartDate", MySqlDbType.VarChar, 50)
+                new MySqlParameter("@SymptomStartDate", MySqlDbType.VarChar, 50),
+                new MySqlParameter("RequiresFollowUp", MySqlDbType.Bit, 1),
+                new MySqlParameter("FollowUpCompleted", MySqlDbType.VarChar, 50),
             };
         }
 
         /// <summary>
-        /// Takes a list of values and fills the Parameter array with them.
+        /// Create SQL command parameters from interaction object
         /// </summary>
-        /// <param name="values">A collection of values intended to be used as SQL stored procedure parameters. It's necessary that the values
-        /// match the order established in the constructor. I.e. The value for UserName needs to be first in the list. </param>
+        /// <param name="interaction"></param>
         /// <returns></returns>
         public MySqlParameter[] Fill(Interaction interaction)
         {
@@ -48,6 +49,8 @@ namespace CapstoneUI.DataAccess.DataAccessors
             Parameters[6].Value = interaction.COVIDTestResult;
             Parameters[7].Value = interaction.ActionPlan;
             Parameters[8].Value = interaction.SymptomStartDate;
+            Parameters[9].Value = interaction.RequiresFollowUp;
+            Parameters[10].Value = interaction.FollowUpCompleted;
             return Parameters;
 
         }

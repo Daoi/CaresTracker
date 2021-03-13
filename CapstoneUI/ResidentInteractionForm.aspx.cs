@@ -1,4 +1,6 @@
 ﻿using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
+using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 using System;
@@ -44,6 +46,7 @@ namespace CapstoneUI
             if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile")) //Should be a new interaction in this case
             {
                 FillResidentInfo();
+                Session["InteractionSaved"] = false;
             }
             else if (Session["Interaction"] != null && HttpContext.Current.Request.Url.ToString().Contains("InteractionList"))//Old interaction
             {
@@ -67,7 +70,7 @@ namespace CapstoneUI
 
         protected void lnkBtnSave_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SaveInteraction();
         }
 
         protected void lnkBtnHome_Click(object sender, EventArgs e)
@@ -189,6 +192,55 @@ namespace CapstoneUI
 
             //Action Plan
             nextSteps.InnerText = interaction.ActionPlan;
+        }
+
+        private void SaveInteraction()
+        {
+            res = Session["Resident"] as Resident;
+            Interaction intact = new Interaction();
+            //ID Values
+            intact.HealthWorkerID = (Session["User"] as CARESUser).UserID;
+            intact.ResidentID = res.ResidentID;
+            //Form Values
+            intact.DateOfContact = tbDoC.Text;
+            intact.MethodOfContact = ddlMeetingType.SelectedValue;
+            intact.LocationOfContact = tbLocation.Text;
+            intact.COVIDTestLocation = tbTestingLocation.Text;
+            intact.COVIDTestResult = ddlTestResult.SelectedValue;
+            intact.SymptomStartDate = tbSymptomDates.Text;
+            intact.ActionPlan = nextSteps.InnerText;
+            //Symptoms
+            List<CheckBox> checkedBoxes = pnlResidentHealthForm.Controls.OfType<CheckBox>().Where(cb => cb.Checked).ToList();
+            List<Symptom> symptoms = new List<Symptom>();
+            checkedBoxes.ForEach(cb => symptoms.Add(new Symptom(cb.Text, int.Parse(cb.ID.Split('_')[1])))); 
+            intact.Symptoms = symptoms;
+            //Services
+            List<Service> services = new List<Service>();
+            cblServices.Items.OfType<ListItem>().Where(li => li.Selected)
+                .ToList()
+                .ForEach(li => services.Add(new Service(li.Text, int.Parse(li.Value))));
+            intact.RequestedServices = services;
+            intact.RequiresFollowUp = services.Count > 0;
+
+            try
+            {
+                new InteractionWriter(intact).ExecuteCommand();
+            }
+            catch (Exception e)
+            {
+                lblSave.Text = $"Error saving interaction, please try again: {e.Message}";
+                lblSave.Visible = true;
+                return;
+            }
+
+            //Update Resident vaccine values
+            bool interest = ddlVaccineInterest.SelectedIndex == 1;
+            bool eligibility = ddlVaccineEligibility.SelectedIndex == 1;
+            string date = tbVaccineAppointmentDate.Text;
+
+            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
+                
+            Session["InteractionSaved"] = true;
         }
 
     }
