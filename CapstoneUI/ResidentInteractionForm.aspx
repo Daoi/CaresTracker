@@ -93,7 +93,7 @@
                     <p></p>
                     <h2>Location</h2>
                     <p>
-                        <asp:TextBox ID="tbLocation" runat="server" placeholder="Meeting Location" CssClass="inputText" onchange="Save(this)"></asp:TextBox>
+                        <asp:TextBox ID="tbLocation" runat="server" placeholder="Meeting Location" CssClass="inputText"></asp:TextBox>
                     </p>
                 </asp:Panel>
                 <%-- Meeting Info Form End --%>
@@ -163,7 +163,7 @@
                         <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="inputText" TextMode="Date" ></asp:TextBox>
                     </p>
                     <h2>Covid-19 Test Results</h2>
-                    <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server" Height="2em" onchange="Save(this)">
+                    <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server" Height="2em">
                         <asp:ListItem>Select Test Result</asp:ListItem>
                         <asp:ListItem>Positive</asp:ListItem>
                         <asp:ListItem>Negative</asp:ListItem>
@@ -219,7 +219,7 @@
                 <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                     <h1>Action Plan</h1>
                     <h2>Next Steps:</h2>
-                    <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" onchange="Save(this)" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
+                    <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
                     <span id="SaveSpan"></span>
                 </asp:Panel>
                 <%-- Other Form End --%>
