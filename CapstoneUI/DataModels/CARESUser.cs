@@ -19,7 +19,12 @@ namespace CapstoneUI.DataModels
         public string UserType { get; set; }
         public int OrganizationID { get; set; }
         public string OrganizationName { get; set; }
-        public string FullName { get; set; }
+        public string FullName { get { return $"{UserFirstName} {UserLastName}"; } }
+
+        public CARESUser()
+        {
+
+        }
 
         /// <summary>
         /// Used for Event Page, temporary?
@@ -31,7 +36,6 @@ namespace CapstoneUI.DataModels
             Username = dataRow[1].ToString();
             UserFirstName = dataRow[2].ToString();
             UserLastName = dataRow[3].ToString();
-            FullName = $"{UserFirstName} {UserLastName}";
         }
 
         public CARESUser(DataRow dataRow)
@@ -47,12 +51,6 @@ namespace CapstoneUI.DataModels
             UserType = dataRow["UserType"].ToString();
             OrganizationID = int.Parse(dataRow["OrganizationID"].ToString());
             OrganizationName = dataRow["OrganizationName"].ToString();
-            FullName = $"{UserFirstName} {UserLastName}";
-            
         }
-
     }
-
-
-
 }

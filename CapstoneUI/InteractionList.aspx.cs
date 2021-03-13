@@ -39,6 +39,11 @@ namespace CapstoneUI
                     Resident res = Session["Resident"] as Resident;
                     hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName} {res.Home.Address}";
                 }
+                else if (HttpContext.Current.Request.Url.ToString().Contains("CHWManagement"))
+                {
+                    CARESUser worker = Session["Worker"] as CARESUser;
+                    hfResidentDetails.Value = $"{worker.UserFirstName} {worker.UserLastName}";
+                }
 
 
                 if (user.UserType == "C")
@@ -46,8 +51,8 @@ namespace CapstoneUI
                     GetAllInteractionsByWorkerID gi = new  GetAllInteractionsByWorkerID();
                     dt = gi.RunCommand(user.UserID);
                     //Remove the CHW name columns as they can only see their own
-                    dt.Columns.Remove("FirstName1");
-                    dt.Columns.Remove("LastName1");
+                    dt.Columns.Remove("UserFirstName");
+                    dt.Columns.Remove("UserLastName");
 
                     gvInteractionList.DataSource = dt;
 

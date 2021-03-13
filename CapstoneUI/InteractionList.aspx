@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="InteractionList.aspx.cs" Inherits="CapstoneUI.InteractionList" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="InteractionList.aspx.cs" Inherits="CapstoneUI.InteractionList" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid" style="background-color: #157CB6;">

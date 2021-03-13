@@ -28,36 +28,6 @@ namespace CapstoneUI
             InitializeFollowUps();
         }
 
-        protected void btnCreateResidentProfile_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CreateResident.aspx");
-        }
-
-        protected void btnReviewInteractions_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("InteractionList.aspx");
-        }
-
-        protected void btnCreateEvent_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("EventList.aspx");
-        }
-
-        protected void btnCHWCreateAccount_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CreateCHW.aspx");
-        }
-
-        protected void btnCreateEvent_Click1(object sender, EventArgs e)
-        {
-            Response.Redirect("EventCreator.aspx");
-        }
-
-        protected void btnResidentLookUp_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ResidentLookUp.aspx");
-        }
-
         public void InitializeFollowUps()
         {
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
