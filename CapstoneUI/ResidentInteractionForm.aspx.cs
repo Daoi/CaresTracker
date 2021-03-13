@@ -1,5 +1,6 @@
 ﻿using CapstoneUI.DataAccess.DataAccessors;
 using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
+using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 using System;
@@ -231,7 +232,14 @@ namespace CapstoneUI
                 lblSave.Visible = true;
                 return;
             }
-        
+
+            //Update Resident vaccine values
+            bool interest = ddlVaccineInterest.SelectedIndex == 1;
+            bool eligibility = ddlVaccineEligibility.SelectedIndex == 1;
+            string date = tbVaccineAppointmentDate.Text;
+
+            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
+                
             Session["InteractionSaved"] = true;
         }
 

@@ -5,14 +5,14 @@ using System.Web;
 using System.Data;
 using CapstoneUI.DataModels;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccesors
+namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
 {
-    public class InteractionServiceWriter : DataSupport, IData
+    public class InteractionSymptomWriter : DataSupport, IData
     {
-        public InteractionServiceWriter(string cText)
+        public InteractionSymptomWriter(string cText)
         {
             CommandText = cText;
-            CommandType = CommandType.Text;    
+            CommandType = CommandType.Text;
         }
 
         public int ExecuteCommand()

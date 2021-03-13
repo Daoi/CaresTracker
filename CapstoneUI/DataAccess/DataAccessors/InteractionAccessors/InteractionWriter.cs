@@ -6,7 +6,7 @@ using System.Data;
 using CapstoneUI.DataModels;
 using System.Text;
 using MySql.Data.MySqlClient;
-using CapstoneUI.DataAccess.DataAccessors.InteractionAccesors;
+using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
 
 namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
 {

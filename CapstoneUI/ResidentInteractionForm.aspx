@@ -15,7 +15,7 @@
                     <asp:LinkButton ID="services" CssClass="active" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
                     <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information</asp:LinkButton>
                     <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan</asp:LinkButton>
-                    <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click">Save Interaction</asp:LinkButton>
+                    <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"><i class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
                     <asp:Label ID="lblSave" runat="server" CssClass="active" Text="Label" Visible="false"></asp:Label>
                     <asp:LinkButton ID="lnkBtnHome" CssClass="active" runat="server" OnClick="lnkBtnHome_Click"><i class="fas fa-home" style="margin-right: .5rem"></i>Return To Dashboard</asp:LinkButton>
                 </nav>
