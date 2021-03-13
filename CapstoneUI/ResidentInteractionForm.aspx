@@ -220,7 +220,6 @@
                     <h1>Action Plan</h1>
                     <h2>Next Steps:</h2>
                     <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server">We should try establishing contact with Jane Smith and John Doe.</textarea>
-                    <span id="SaveSpan"></span>
                 </asp:Panel>
                 <%-- Other Form End --%>
             </div>
