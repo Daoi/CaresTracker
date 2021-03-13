@@ -85,6 +85,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton lnkBtnSave;
         
         /// <summary>
+        /// lblSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSave;
+        
+        /// <summary>
         /// lnkBtnHome control.
         /// </summary>
         /// <remarks>
@@ -256,130 +265,130 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Panel pnlResidentHealthForm;
         
         /// <summary>
-        /// cbShortnessOfBreath control.
+        /// cbShortnessOfBreath_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbShortnessOfBreath;
+        protected global::System.Web.UI.WebControls.CheckBox cbShortnessOfBreath_1;
         
         /// <summary>
-        /// cbNausea control.
+        /// cbNausea_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbNausea;
+        protected global::System.Web.UI.WebControls.CheckBox cbNausea_2;
         
         /// <summary>
-        /// cbFatigue control.
+        /// cbFatigue_3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbFatigue;
+        protected global::System.Web.UI.WebControls.CheckBox cbFatigue_3;
         
         /// <summary>
-        /// cbAches control.
+        /// cbAches_4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAches;
+        protected global::System.Web.UI.WebControls.CheckBox cbAches_4;
         
         /// <summary>
-        /// cbHeadaches control.
+        /// cbHeadaches_5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbHeadaches;
+        protected global::System.Web.UI.WebControls.CheckBox cbHeadaches_5;
         
         /// <summary>
-        /// cbSoreThroat control.
+        /// cbSoreThroat_6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbSoreThroat;
+        protected global::System.Web.UI.WebControls.CheckBox cbSoreThroat_6;
         
         /// <summary>
-        /// cbTasteOrSmell control.
+        /// cbTasteOrSmell_7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTasteOrSmell;
+        protected global::System.Web.UI.WebControls.CheckBox cbTasteOrSmell_7;
         
         /// <summary>
-        /// cbCongestion control.
+        /// cbCongestion_8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbCongestion;
+        protected global::System.Web.UI.WebControls.CheckBox cbCongestion_8;
         
         /// <summary>
-        /// cbCough control.
+        /// cbCough_9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbCough;
+        protected global::System.Web.UI.WebControls.CheckBox cbCough_9;
         
         /// <summary>
-        /// cbConfusion control.
+        /// cbConfusion_10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbConfusion;
+        protected global::System.Web.UI.WebControls.CheckBox cbConfusion_10;
         
         /// <summary>
-        /// cbTroubleBreathing control.
+        /// cbTroubleBreathing_11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTroubleBreathing;
+        protected global::System.Web.UI.WebControls.CheckBox cbTroubleBreathing_11;
         
         /// <summary>
-        /// cbBlueLips control.
+        /// cbBlueLips_12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbBlueLips;
+        protected global::System.Web.UI.WebControls.CheckBox cbBlueLips_12;
         
         /// <summary>
-        /// cbInabilityToAwake control.
+        /// cbInabilityToAwake_13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbInabilityToAwake;
+        protected global::System.Web.UI.WebControls.CheckBox cbInabilityToAwake_13;
         
         /// <summary>
-        /// cbChestPain control.
+        /// cbChestPain_14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbChestPain;
+        protected global::System.Web.UI.WebControls.CheckBox cbChestPain_14;
         
         /// <summary>
         /// tbSymptomDates control.
