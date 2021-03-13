@@ -71,8 +71,14 @@ namespace CapstoneUI.DataAccess
                 using (MySqlCommand cmd = new MySqlCommand(cmdInfo.CommandText, cn))
                 {
                     ConfigureCommand(cmd, cmdInfo);
-
-                    dataObj = cmd.ExecuteScalar();
+                    try
+                    {
+                        dataObj = cmd.ExecuteScalar();
+                    }
+                    catch(Exception e)
+                    {
+                        return null;
+                    }
                     cmd.Parameters.Clear();
                 }
             }
