@@ -22,10 +22,11 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
             //Key = lnkbtnID Value = Associated Panel
-            links = new Dictionary<string, Panel> { {"residentInfo", pnlResidentInfoForm }, { "residentHealth", pnlResidentHealthForm },
-                                                    { "meetingInfo", pnlMeetingInfoForm }, { "otherInfo", pnlOtherForm }, { "services", pnlServicesForm },
-                                                    {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}
-                                                    };
+            links = new Dictionary<string, Panel> {
+                { "residentInfo", pnlResidentInfoForm }, { "residentHealth", pnlResidentHealthForm },
+                { "meetingInfo", pnlMeetingInfoForm }, { "otherInfo", pnlOtherForm }, { "services", pnlServicesForm },
+                {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}
+                };
 
             if (!IsPostBack)
             {
@@ -48,6 +49,10 @@ namespace CapstoneUI
             {
                 FillResidentInfo();
                 FillInteractionInfo();
+            }
+            else
+            {
+
             }
         }
 
@@ -108,6 +113,29 @@ namespace CapstoneUI
             pnlResidentInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
             pnlHousingInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
             ddlHousingType.Enabled = false;
+
+            //Vaccine Info
+            if (res.VaccineEligibility == null)
+            {
+                ddlVaccineEligibility.SelectedIndex = 0;
+            }
+            else
+            {
+                ddlVaccineEligibility.SelectedValue = res.VaccineEligibility.ToString();
+            }
+            if(res.VaccineInterest == null)
+            {
+                ddlVaccineInterest.SelectedIndex = 0;
+            }
+            else
+            {
+                ddlVaccineInterest.SelectedValue = res.VaccineInterest.ToString();
+            }
+
+            if (!string.IsNullOrEmpty(res.VaccineAppointmentDate))
+            {
+                tbVaccineAppointmentDate.Text = TextModeDateFormatter.Format(res.VaccineAppointmentDate);
+            }
         }
 
 
@@ -161,8 +189,6 @@ namespace CapstoneUI
 
             //Action Plan
             nextSteps.InnerText = interaction.ActionPlan;
-            
-                
         }
 
     }
