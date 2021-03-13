@@ -13,6 +13,15 @@ namespace CapstoneUI {
     public partial class Site1 {
         
         /// <summary>
+        /// frmMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmMain;
+        
+        /// <summary>
         /// smMaster control.
         /// </summary>
         /// <remarks>
