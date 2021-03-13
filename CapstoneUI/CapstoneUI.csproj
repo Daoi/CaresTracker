@@ -266,7 +266,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\DataAccessors\GetWorkerStats.cs" />
-    <Compile Include="DataAccess\DataAccessors\InteractionParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccesors\InteractionParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccesors\InteractionServiceWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccesors\InteractionSymptomWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccesors\InteractionWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateUserStatus.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllServices.cs" />
