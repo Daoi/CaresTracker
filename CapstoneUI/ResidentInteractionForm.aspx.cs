@@ -131,10 +131,12 @@ namespace CapstoneUI
                     new UpdateFollowUpCompleted().ExecuteCommand(date, interaction.InteractionID);
                 }
                 lblUpdateServices.Text = $"Services updated succesfully";
+                lblUpdateServices.Visible = true;
             }
             catch(Exception ex)
             {
                 lblUpdateServices.Text = $"Problem updating services, please try again later. {ex}";
+                lblUpdateServices.Visible = true;
             }
         }
 
