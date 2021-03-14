@@ -39,7 +39,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
             try
             {
                 new CTextWriter(servicesCommand).ExecuteCommand();
-                new CTextWriter(symptomsCommand.ToString()).ExecuteCommand();
+                new CTextWriter(symptomsCommand).ExecuteCommand();
                 return 1;
             }
             catch (Exception e)
