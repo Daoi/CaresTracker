@@ -196,6 +196,8 @@ namespace CapstoneUI
 
         private void SaveInteraction()
         {
+            if (!IsFormValid()) { return; }
+
             res = Session["Resident"] as Resident;
             Interaction intact = new Interaction();
             //ID Values
@@ -241,6 +243,98 @@ namespace CapstoneUI
             new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
                 
             Session["InteractionSaved"] = true;
+        }
+
+        private bool IsFormValid()
+        {
+            bool isValid = true;
+
+            // meeting info
+            if (Validation.IsEmpty(tbLocation.Text) || ddlMeetingType.SelectedIndex == 0)
+            {
+                isValid = false;
+                lblErrorMeetingInfo.Visible = true;
+                icErrorMeetingInfo.Visible = true;
+            }
+            else
+            {
+                lblErrorMeetingInfo.Visible = false;
+                icErrorMeetingInfo.Visible = false;
+            }
+
+            // resident health
+            bool symptomError = false; // helps keep track of when to show this panel's error icon
+
+            // covid symptoms w/o date that they started
+            if (pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList().Any(cb => cb.Checked) &&
+                Validation.IsEmpty(tbSymptomDates.Text))
+            {
+                isValid = false;
+                lblErrorSymptoms.Text = "You must enter the date symptoms occurred if you selected any.";
+
+                symptomError = true;
+            }
+            // date symptoms started w/o any symptoms checked
+            else if (!pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList().Any(cb => cb.Checked) &&
+                !Validation.IsEmpty(tbSymptomDates.Text))
+            {
+                isValid = false;
+                lblErrorSymptoms.Text = "You must select symptoms if you entered the date they occurred.";
+
+                symptomError = true;
+            }
+            else
+            {
+                lblErrorSymptoms.Text = "";
+            }
+
+            // test result w/o location
+            if (ddlTestResult.SelectedIndex != 0 && Validation.IsEmpty(tbTestingLocation.Text))
+            {
+                isValid = false;
+                lblErrorCOVIDTest.Text = "You must enter a testing location if you selected a test result.";
+                icErrorResidentHealth.Visible = true;
+            }
+            // test location w/o result
+            else if (ddlTestResult.SelectedIndex == 0 && !Validation.IsEmpty(tbTestingLocation.Text))
+            {
+                isValid = false;
+                lblErrorCOVIDTest.Text = "You must select a test result if you entered a testing location.";
+                icErrorResidentHealth.Visible = true;
+            }
+            else
+            {
+                lblErrorCOVIDTest.Text = "";
+                icErrorResidentHealth.Visible = false || symptomError; // displays if any of this panel's error conditions are met
+            }
+
+            // vaccine info
+            if (ddlVaccineInterest.SelectedIndex == 0 || ddlVaccineEligibility.SelectedIndex == 0)
+            {
+                isValid = false;
+                lblErrorVaccine.Visible = true;
+                icErrorVaxInfo.Visible = true;
+            }
+            else
+            {
+                lblErrorVaccine.Visible = false;
+                icErrorVaxInfo.Visible = false;
+            }
+
+            // action plan
+            if (Validation.IsEmpty(nextSteps.InnerText))
+            {
+                isValid = false;
+                lblErrorActionPlan.Visible = true;
+                icErrorActionPlan.Visible = true;
+            }
+            else
+            {
+                lblErrorActionPlan.Visible = false;
+                icErrorActionPlan.Visible = false;
+            }
+
+            return isValid;
         }
 
     }
