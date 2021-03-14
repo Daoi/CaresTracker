@@ -211,8 +211,7 @@ input {
 .inputTextArea {
     height: auto;
     width: 85% !important;
-    height: 50%;
-    font-size: .65em;
+    font-size: 1em;
 }
 
     .inputCheckBox {
@@ -228,3 +227,9 @@ input {
             font-size: 1.2em;
             display: inline;
         }
+
+
+.modalError{
+    width: 70%;
+    font-size: 1em;
+}
