@@ -15,8 +15,6 @@ namespace CapstoneUI.DataModels
         public string EventDate { get; set; }
         public string EventStartTime { get; set; }
         public string EventEndTime { get; set; }
-        public string EventTopic { get; set; }
-        public string EventAttendanceRange { get; set; }
         public List<CARESUser> Hosts { get; set; }
         public List<Resident> Attendees { get; set; }
     }
