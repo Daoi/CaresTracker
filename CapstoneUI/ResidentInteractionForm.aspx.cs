@@ -39,7 +39,6 @@ namespace CapstoneUI
                 cblServices.DataTextField = "ServiceName";
                 cblServices.DataBind();
                 divOldInteractionServices.Visible = false;
-
             }
 
             //initialize form values
@@ -52,12 +51,23 @@ namespace CapstoneUI
             {
                 FillResidentInfo();
                 FillInteractionInfo();
-            }
-            else
-            {
+                //Panels
+                TogglePanels();
+                pnlVaccineForm.Enabled = false; //Requires a new interaction to be changed
+                //Services
+                btnUpdateServices.Visible = true;
+                //Side Bar
+                lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
+                lnkBtnEdit.Visible = true;
 
+                
             }
+
         }
+        
+        
+        //EVENT HANDLERS
+
 
         //Navigation
         protected void formNav_Click(object sender, EventArgs e)
@@ -75,10 +85,183 @@ namespace CapstoneUI
 
         protected void lnkBtnHome_Click(object sender, EventArgs e)
         {
+            if(Session["InteractionSaved"] != null && (bool)Session["InteractionSaved"] == false)
+            {
+                lblHome.Text = "Interaction not saved yet. Click Home again to leave without saving.";
+                warningHome.Visible = true;
+                Session["InteractionSaved"] = null;
+                return;
+            }
+
             Response.Redirect("~/Homepage.aspx");
         }
 
+        protected void lnkBtnEdit_Click(object sender, EventArgs e)
+        {
+            if(ViewState["EditMode"] == null)
+            {
+                ViewState["EditMode"] = true;
+                lnkBtnEdit.Text = $"<i class='fas fa-save' id='icoEditSave' runat='server'  style='margin-right: .5rem'></i> Save Edits";
+                TogglePanels();
+            }
+            else if((bool)ViewState["EditMode"] == true)
+            {
+                //Popup modal
+                string showModalCall = "$('#modalEditReason').modal({show: true, keyboard: true, backdrop: 'true'});";
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", showModalCall, true);
+            }
 
+        }
+        
+        protected void btnUpdateServices_Click(object sender, EventArgs e)
+        {
+            interaction = Session["Interaction"] as Interaction;
+
+            List<Service> completedServices = new List<Service>();
+            cblCompletedServices.Items.OfType<ListItem>()
+                .ToList().Where(li => li.Selected)
+                .ToList()
+                .ForEach(li => completedServices.Add(new Service(li.Text, int.Parse(li.Value), true)));
+
+            try
+            {
+                new UpdateInteractionServices(completedServices, interaction.InteractionID).ExecuteCommand();
+
+                if (cblCompletedServices.Items.Count == completedServices.Count)
+                {
+                    string date = DateTime.Today.ToString("yyyy-mm-dd");
+                    new UpdateFollowUpCompleted().ExecuteCommand(date, interaction.InteractionID);
+                }
+                lblUpdateServices.Text = $"Services updated succesfully";
+            }
+            catch(Exception ex)
+            {
+                lblUpdateServices.Text = $"Problem updating services, please try again later. {ex}";
+            }
+        }
+
+        protected void btnEditSubmit_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(taEditReason.InnerText))
+            {
+                lblModalError.Text = "Reason for edit is required";
+            }
+            else
+            {
+                try
+                {
+                    SaveEdits(taEditReason.InnerText);
+                }
+                catch(Exception ex)
+                {
+                    lblModalError.Text = "Error updating interaction, please try again later";
+                    return;
+                }
+                string hideModalCall = "$('#modalEditReason').modal('hide');";
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideModal", hideModalCall, true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", "", true);
+            }
+        }
+
+
+        //FUNCTIONALITY
+
+
+        //The first two panels are always disabled, Services is always Enabled.
+        private void TogglePanels()
+        {
+            pnlMeetingInfoForm.Enabled = !pnlMeetingInfoForm.Enabled;
+            pnlOtherForm.Enabled = !pnlOtherForm.Enabled;
+            pnlResidentHealthForm.Enabled = !pnlResidentHealthForm.Enabled;
+            if (pnlOtherForm.Enabled)
+            {
+                nextSteps.Attributes.Remove("readonly");
+            }
+            else
+            {
+                nextSteps.Attributes.Add("readonly", "true");
+            }
+        }
+
+        private void SaveEdits(string reason)
+        {
+            Interaction interaction = GenerateInteraction();
+            interaction.InteractionID = (Session["Interaction"] as Interaction).InteractionID;
+            string date = DateTime.Today.ToString("yyyy-MM-dd");
+            try
+            {
+                new UpdateInteraction(interaction).ExecuteCommand();
+                new UpdateInteractionSymptoms(interaction.Symptoms, interaction.InteractionID).ExecuteCommand();
+                new InsertInteractionEdit().ExecuteCommand(date, reason, interaction.InteractionID);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
+            //Reset Edit State
+            ViewState["EditMode"] = null;
+            TogglePanels(); // Should be disabled now
+            lnkBtnEdit.Text = $"<i class='fas fa-edit' id='icoEdit' runat='server'  style='margin-right: .5rem'></i> Edit Interaction";
+
+            lblSave.Text = "Interaction updated succesfully!";
+        }
+
+        private void SaveInteraction()
+        {
+            res = Session["Resident"] as Resident;
+            Interaction interaction = GenerateInteraction();
+
+            try
+            {
+                new InteractionWriter(interaction).ExecuteCommand();
+            }
+            catch (Exception e)
+            {
+                lblSave.Text = $"Error saving interaction, please try again: {e.Message}";
+                lblSave.Visible = true;
+                return;
+            }
+
+            //Update Resident vaccine values
+            bool interest = ddlVaccineInterest.SelectedIndex == 1;
+            bool eligibility = ddlVaccineEligibility.SelectedIndex == 1;
+            string date = tbVaccineAppointmentDate.Text;
+
+            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
+
+            Session["InteractionSaved"] = true;
+        }
+
+        private Interaction GenerateInteraction()
+        {
+            Interaction interaction = new Interaction();
+            res = Session["Resident"] as Resident;
+            //ID Values
+            interaction.HealthWorkerID = (Session["User"] as CARESUser).UserID;
+            interaction.ResidentID = res.ResidentID;
+            //Form Values
+            interaction.DateOfContact = tbDoC.Text;
+            interaction.MethodOfContact = ddlMeetingType.SelectedValue;
+            interaction.LocationOfContact = tbLocation.Text;
+            interaction.COVIDTestLocation = tbTestingLocation.Text;
+            interaction.COVIDTestResult = ddlTestResult.SelectedValue;
+            interaction.SymptomStartDate = tbSymptomDates.Text;
+            interaction.ActionPlan = nextSteps.InnerText;
+            //Symptoms
+            List<CheckBox> checkedBoxes = pnlResidentHealthForm.Controls.OfType<CheckBox>().Where(cb => cb.Checked).ToList();
+            List<Symptom> symptoms = new List<Symptom>();
+            checkedBoxes.ForEach(cb => symptoms.Add(new Symptom(cb.Text, int.Parse(cb.ID.Split('_')[1]))));
+            interaction.Symptoms = symptoms;
+            //Services
+            List<Service> services = new List<Service>();
+            cblServices.Items.OfType<ListItem>().Where(li => li.Selected)
+                .ToList()
+                .ForEach(li => services.Add(new Service(li.Text, int.Parse(li.Value))));
+            interaction.RequestedServices = services;
+            interaction.RequiresFollowUp = services.Count > 0; //A service should imply requires follow up
+            return interaction;
+        }
 
         private void FillResidentInfo()
         {
@@ -102,7 +285,7 @@ namespace CapstoneUI
             {
                 ddlHousingType.SelectedValue = "HCV";
                 tbDevelopmentName.Text = "Resident does not live in a development";
-                
+
             }
             else
             {
@@ -126,7 +309,7 @@ namespace CapstoneUI
             {
                 ddlVaccineEligibility.SelectedValue = res.VaccineEligibility.ToString();
             }
-            if(res.VaccineInterest == null)
+            if (res.VaccineInterest == null)
             {
                 ddlVaccineInterest.SelectedIndex = 0;
             }
@@ -161,7 +344,7 @@ namespace CapstoneUI
 
             tbSymptomDates.Text = TextModeDateFormatter.Format(interaction.SymptomStartDate);
 
-            if(interaction.COVIDTestResult.Equals("No Recent Test"))
+            if (interaction.COVIDTestResult.Equals("No Recent Test"))
             {
                 tbTestingLocation.Text = "N/A";
                 ddlTestResult.SelectedValue = "No Recent Test";
@@ -194,54 +377,6 @@ namespace CapstoneUI
             nextSteps.InnerText = interaction.ActionPlan;
         }
 
-        private void SaveInteraction()
-        {
-            res = Session["Resident"] as Resident;
-            Interaction intact = new Interaction();
-            //ID Values
-            intact.HealthWorkerID = (Session["User"] as CARESUser).UserID;
-            intact.ResidentID = res.ResidentID;
-            //Form Values
-            intact.DateOfContact = tbDoC.Text;
-            intact.MethodOfContact = ddlMeetingType.SelectedValue;
-            intact.LocationOfContact = tbLocation.Text;
-            intact.COVIDTestLocation = tbTestingLocation.Text;
-            intact.COVIDTestResult = ddlTestResult.SelectedValue;
-            intact.SymptomStartDate = tbSymptomDates.Text;
-            intact.ActionPlan = nextSteps.InnerText;
-            //Symptoms
-            List<CheckBox> checkedBoxes = pnlResidentHealthForm.Controls.OfType<CheckBox>().Where(cb => cb.Checked).ToList();
-            List<Symptom> symptoms = new List<Symptom>();
-            checkedBoxes.ForEach(cb => symptoms.Add(new Symptom(cb.Text, int.Parse(cb.ID.Split('_')[1])))); 
-            intact.Symptoms = symptoms;
-            //Services
-            List<Service> services = new List<Service>();
-            cblServices.Items.OfType<ListItem>().Where(li => li.Selected)
-                .ToList()
-                .ForEach(li => services.Add(new Service(li.Text, int.Parse(li.Value))));
-            intact.RequestedServices = services;
-            intact.RequiresFollowUp = services.Count > 0;
-
-            try
-            {
-                new InteractionWriter(intact).ExecuteCommand();
-            }
-            catch (Exception e)
-            {
-                lblSave.Text = $"Error saving interaction, please try again: {e.Message}";
-                lblSave.Visible = true;
-                return;
-            }
-
-            //Update Resident vaccine values
-            bool interest = ddlVaccineInterest.SelectedIndex == 1;
-            bool eligibility = ddlVaccineEligibility.SelectedIndex == 1;
-            string date = tbVaccineAppointmentDate.Text;
-
-            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
-                
-            Session["InteractionSaved"] = true;
-        }
 
     }
 }
