@@ -1,13 +1,13 @@
 ﻿using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
+namespace CapstoneUI.DataAccess.DataAccessors
 {
-    public class InteractionServiceWriter : DataSupport, IData
+    public class CTextWriter : DataSupport, IData
     {
-        public InteractionServiceWriter(string cText)
+        public CTextWriter(string cText)
         {
             CommandText = cText;
-            CommandType = CommandType.Text;    
+            CommandType = CommandType.Text;
         }
 
         public int ExecuteCommand()
