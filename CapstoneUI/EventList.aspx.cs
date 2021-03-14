@@ -34,9 +34,9 @@ namespace CapstoneUI
             dtEventList = Session["EventListDT"] as DataTable;
         }
 
-        protected void gvEventList_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void btnViewEvent_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Event.aspx");
+
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
