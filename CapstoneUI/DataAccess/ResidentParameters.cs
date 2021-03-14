@@ -27,7 +27,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
                 new MySqlParameter("@HouseID", MySqlDbType.Int64, 50),
                 new MySqlParameter("@FirstName", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@LastName", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@DateOfBirth", MySqlDbType.DateTime, 50),
+                new MySqlParameter("@DateOfBirth", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@ResidentEmail", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@ResidentPhoneNumber", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@RelationshipToHoH", MySqlDbType.VarChar, 50),

@@ -45,6 +45,8 @@ namespace CapstoneUI
         {
             bool houseResult = false;
             bool residentResult = false;
+            lblFail.Visible = false;
+
             // VALIDATION NEEDED
 
             // bool valid = Validate();
@@ -92,26 +94,18 @@ namespace CapstoneUI
 
             // Add new Resident
             ResidentWriter RW = new ResidentWriter(newResident);
-            if (RW.ExecuteCommand() == 1)
+            object returnObj  = RW.ExecuteCommand();
+            
+            if (returnObj == null) //If null Resident is NOT unique
             {
-                residentResult = true;
-            }
-
-
-            // Hide alert labels then show which is appropriate
-            lblFail.Visible = false;
-            lblSuccess.Visible = false;
-            newResident.Home = residentHouse;
-
-            if (residentResult == true && houseResult == true)
-
-            {
-                lblSuccess.Visible = true;
-            }
-            else
-            {
+                residentResult = false;
                 lblFail.Visible = true;
+                return;
             }
+
+            newResident.ResidentID = Convert.ToInt32(returnObj);
+
+            newResident.Home = residentHouse;
 
             // Create Development object if development is selected house type
             if (residentHouse.HouseType == "Development")
@@ -123,11 +117,9 @@ namespace CapstoneUI
 
                 newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
             }
+            
             //Store new resident in Session to use to redirect/populate resident profile
             Session["Resident"] = newResident;
-
-
-
             Response.Redirect("ResidentProfile.aspx");
         }
 

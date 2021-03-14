@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventList.aspx.cs" Inherits="CapstoneUI.EventList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventList.aspx.cs" Inherits="CapstoneUI.EventList" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid" style="background-color: #157CB6;">
@@ -15,17 +15,20 @@
                     <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Event List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
-                    <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowCommand="gvEventList_RowCommand">
+                    <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                         <Columns>
-                            <asp:ButtonField ControlStyle-CssClass="btn btn-light w-100 p-3 font-weight-bold" ButtonType="Button" Text="View this Event">
-                                <ControlStyle CssClass="btn btn-light w-100 p-3 font-weight-bold"></ControlStyle>
-                            </asp:ButtonField>
+                            <asp:TemplateField HeaderText="View Event">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnViewEvent" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View this Event" OnClick="btnViewEvent_Click" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
                             <asp:BoundField DataField="EventDescription" HeaderText="Event Description:" />
                             <asp:BoundField DataField="EventType" HeaderText="Event Type:" />
                             <asp:BoundField DataField="EventLocation" HeaderText="Location: " />
-                            <asp:BoundField DataField="EventStartDateTime" HeaderText="Start:" />
-                            <asp:BoundField DataField="EventEndDateTime" HeaderText="End:" />
+                            <asp:BoundField DataField="EventDate" HeaderText="Date:" />
+                            <asp:BoundField DataField="EventStartTime" HeaderText="Start Time:" />
+                            <asp:BoundField DataField="EventEndTime" HeaderText="End Time:" />
                         </Columns>
                     </asp:GridView>
                 </div>
