@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
@@ -36,7 +37,15 @@ namespace CapstoneUI
 
         protected void btnViewEvent_Click(object sender, EventArgs e)
         {
+            // get the selected DataRow
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            DataRow dr = dtEventList.Rows[row.DataItemIndex];
 
+            // create event in Session
+            Session["Event"] = new DataModels.Event(dr);
+
+            Response.Redirect("./Event.aspx");
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
