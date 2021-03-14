@@ -265,6 +265,9 @@
     <Content Include="CapstoneUI.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventHosts.cs" />
     <Compile Include="DataAccess\DataAccessors\GetWorkerStats.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionServiceWriter.cs" />
