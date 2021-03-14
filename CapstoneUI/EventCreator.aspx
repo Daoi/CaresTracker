@@ -89,12 +89,12 @@
             </asp:UpdatePanel>
             <div>
                 <h5>Event Description and Notes</h5>
-                <textarea class="w-100" id="TextArea1" rows="6"></textarea>
+                <textarea class="w-100" id="txtDescription" rows="6" runat="server"></textarea>
             </div>
 
             <br />
             <br />
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-lg mb-1" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-lg mb-1" OnClick="btnSubmit_Click" />
         </div>
     </div>
 </asp:Content>

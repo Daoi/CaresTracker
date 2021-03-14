@@ -8,22 +8,22 @@
                 <div class="col-md-1 col-sm-1"></div>
                 <div class="col-md-4 quickAccess col-sm-1">
                     <h3>
-                        <asp:Label ID="lblEventName" runat="server" Text="The Importance of Masks"></asp:Label></h3>
+                        <asp:Label ID="lblEventName" runat="server"></asp:Label></h3>
                     <br />
                     <span><b>Type:</b>
-                        <asp:Label ID="lblEventType" runat="server" Text="Seminar"></asp:Label></span>
+                        <asp:Label ID="lblEventType" runat="server"></asp:Label></span>
                     <br />
                     <br />
                     <span><b>Location:</b>
-                        <asp:Label ID="Label1" runat="server" Text="Community Center 10"></asp:Label></span>
+                        <asp:Label ID="lblLocation" runat="server"></asp:Label></span>
                     <br />
                     <br />
                     <span><b>Start Time:</b>
-                        <asp:Label ID="lblStartTime" runat="server" Text="12/1/2020 5:00PM"></asp:Label></span>
+                        <asp:Label ID="lblStartTime" runat="server"></asp:Label></span>
                     <br />
                     <br />
                     <span><b>End Time:</b>
-                        <asp:Label ID="lblEndTime" runat="server" Text="12/1/2020 6:00PM"></asp:Label></span>
+                        <asp:Label ID="lblEndTime" runat="server"></asp:Label></span>
                     <br />
                     <br />
                 </div>
@@ -38,10 +38,30 @@
                         <asp:Repeater ID="rptHealthWorkers" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <asp:Label ID="lblHealthWorkerID" runat="server" Text='<%# Bind("UserID") %>'></asp:Label>:
-                                    <asp:Label ID="lblHealthWorkerName" runat="server" Text='<%# Bind("UserName") %>'></asp:Label>
+                                    <asp:Label ID="lblHealthWorkerName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
                                 </li>
                             </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label ID="lblEmptyData" CssClass="text-secondary" runat="server" Visible='<%# ((Repeater)Container.NamingContainer).Items.Count == 0 %>' Text="No Hosts for this event" />
+                            </FooterTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-4 col-sm-1">
+                    <br />
+                    <br />
+                    <h4 class="mt-2">Attendees:</h4>
+                    <ul>
+                        <asp:Repeater ID="rptResidents" runat="server">
+                            <ItemTemplate>
+                                <li>
+                                    <asp:Label ID="lblResidentName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
+                                </li>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label ID="lblEmptyData" CssClass="text-secondary" runat="server" Visible='<%# ((Repeater)Container.NamingContainer).Items.Count == 0 %>' Text="No Attendees for this event" />
+                            </FooterTemplate>
                         </asp:Repeater>
                     </ul>
                 </div>
@@ -52,7 +72,7 @@
                 <div class="col-md-4 quickAccess col-sm-1">
                     <div>
                         <h4>Description:</h4>
-                        <asp:Label ID="lblDescription" runat="server" Text="Description..."></asp:Label>
+                        <asp:Label ID="lblDescription" runat="server"></asp:Label>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-1"></div>

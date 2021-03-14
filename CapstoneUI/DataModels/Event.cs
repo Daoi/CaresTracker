@@ -19,5 +19,7 @@ namespace CapstoneUI.DataModels
         public string EventAttendanceRange { get; set; }
         public List<CARESUser> Hosts { get; set; }
         public List<Resident> Attendees { get; set; }
+
+        public Event() { }
     }
 }

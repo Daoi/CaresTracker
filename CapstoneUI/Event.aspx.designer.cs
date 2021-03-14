@@ -31,13 +31,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Label lblEventType;
         
         /// <summary>
-        /// Label1 control.
+        /// lblLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblLocation;
         
         /// <summary>
         /// lblStartTime control.
@@ -65,6 +65,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptHealthWorkers;
+        
+        /// <summary>
+        /// rptResidents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptResidents;
         
         /// <summary>
         /// lblDescription control.
