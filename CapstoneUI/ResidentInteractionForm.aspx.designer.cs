@@ -40,6 +40,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton meetingInfo;
         
         /// <summary>
+        /// icErrorMeetingInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorMeetingInfo;
+        
+        /// <summary>
         /// residentHealth control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton residentHealth;
+        
+        /// <summary>
+        /// icErrorResidentHealth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorResidentHealth;
         
         /// <summary>
         /// services control.
@@ -67,6 +85,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton vaccineInfo;
         
         /// <summary>
+        /// icErrorVaxInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorVaxInfo;
+        
+        /// <summary>
         /// otherInfo control.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton otherInfo;
+        
+        /// <summary>
+        /// icErrorActionPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorActionPlan;
         
         /// <summary>
         /// lnkBtnSave control.

@@ -10,11 +10,11 @@
                 <nav>
                     <asp:LinkButton ID="residentInfo" CssClass="active" runat="server" OnClick="formNav_Click">Resident Information</asp:LinkButton>
                     <asp:LinkButton ID="housingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Housing Information</asp:LinkButton>
-                    <asp:LinkButton ID="meetingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Meeting Information</asp:LinkButton>
-                    <asp:LinkButton ID="residentHealth" CssClass="active" runat="server" OnClick="formNav_Click">Resident Health</asp:LinkButton>
+                    <asp:LinkButton ID="meetingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Meeting Information<i id="icErrorMeetingInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
+                    <asp:LinkButton ID="residentHealth" CssClass="active" runat="server" OnClick="formNav_Click">Resident Health<i id="icErrorResidentHealth" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
                     <asp:LinkButton ID="services" CssClass="active" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
-                    <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information</asp:LinkButton>
-                    <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan</asp:LinkButton>
+                    <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
+                    <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"><i class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
                     <asp:Label ID="lblSave" runat="server" CssClass="active" Text="Label" Visible="false"></asp:Label>
                     <asp:LinkButton ID="lnkBtnHome" CssClass="active" runat="server" OnClick="lnkBtnHome_Click"><i class="fas fa-home" style="margin-right: .5rem"></i>Return To Dashboard</asp:LinkButton>
