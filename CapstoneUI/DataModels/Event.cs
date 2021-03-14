@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
 
 namespace CapstoneUI.DataModels
 {
@@ -17,5 +19,26 @@ namespace CapstoneUI.DataModels
         public string EventEndTime { get; set; }
         public List<CARESUser> Hosts { get; set; }
         public List<Resident> Attendees { get; set; }
+
+        public Event()
+        {
+
+        }
+
+        public Event(DataRow dataRow)
+        {
+            EventID = int.Parse(dataRow["EventID"].ToString());
+            EventName = dataRow["EventName"].ToString();
+            EventDescription = dataRow["EventDescription"].ToString();
+            EventType = dataRow["EventType"].ToString();
+            EventLocation = dataRow["EventLocation"].ToString();
+            EventDate = dataRow["EventDate"].ToString();
+            EventStartTime = dataRow["EventStartTime"].ToString();
+            EventEndTime = dataRow["EventEndTime"].ToString();
+
+            // fill lists
+            Hosts = CARESUser.CreateEventHostList(new GetEventHosts().ExecuteCommand(EventID));
+            Attendees = Resident.CreateEventAttendeeList(new GetEventAttendees().ExecuteCommand(EventID));
+        }
     }
 }
