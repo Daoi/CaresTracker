@@ -84,6 +84,8 @@
                 <%-- Meeting Info Form Start --%>
                 <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
                     <h1>Meeting Info</h1>
+                    <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                    <div class="mb-3"></div>
                     <h2>Meeting Type</h2>
                     <asp:DropDownList ID="ddlMeetingType" CssClass="inputDropDown" runat="server" >
                         <asp:ListItem>Select Meeting Type</asp:ListItem>
@@ -101,6 +103,8 @@
                 <%-- Resident Health Form Start --%>
                 <asp:Panel ID="pnlResidentHealthForm" class="residentHealth form-group" Style="display: inline-grid" runat="server">
                     <h1>Resident Health</h1>
+                    <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                    <div class="mb-3"></div>
                     <%-- Symtpom List Start --%>
                     <h2>Covid-19 Possible Symptoms</h2>
                     <div class="row">
@@ -164,6 +168,8 @@
                     <p>
                         <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="inputText" TextMode="Date" ></asp:TextBox>
                     </p>
+                    <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                    <div class="mb-3"></div>
                     <h2>Covid-19 Test Results</h2>
                     <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server" Height="2em">
                         <asp:ListItem>Select Test Result</asp:ListItem>
@@ -195,6 +201,8 @@
                 <%-- Vaccine Form Start --%>
                 <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
                     <h1>Vaccine Info</h1>
+                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please fill out vaccine interest and eligibility." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                    <div class="mb-3"></div>
                     <h2>Vaccine Interest</h2>
                     <asp:DropDownList ID="ddlVaccineInterest" CssClass="inputDropDown" runat="server" >
                         <asp:ListItem>Select Vaccine Interest</asp:ListItem>
@@ -220,6 +228,8 @@
                 <%-- Other Form Start --%>
                 <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                     <h1>Action Plan</h1>
+                    <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                    <div class="mb-3"></div>
                     <h2>Next Steps:</h2>
                     <textarea id="nextSteps" class="inputTextArea" name="nextSteps" rows="5" cols="70" runat="server"></textarea>
                 </asp:Panel>
