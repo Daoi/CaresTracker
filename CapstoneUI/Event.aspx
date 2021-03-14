@@ -41,9 +41,6 @@
                                     <asp:Label ID="lblHealthWorkerName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
                                 </li>
                             </ItemTemplate>
-                            <FooterTemplate>
-                                <asp:Label ID="lblEmptyData" CssClass="text-secondary" runat="server" Visible='<%# ((Repeater)Container.NamingContainer).Items.Count == 0 %>' Text="No Hosts for this event" />
-                            </FooterTemplate>
                         </asp:Repeater>
                     </ul>
                 </div>
@@ -59,9 +56,6 @@
                                     <asp:Label ID="lblResidentName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
                                 </li>
                             </ItemTemplate>
-                            <FooterTemplate>
-                                <asp:Label ID="lblEmptyData" CssClass="text-secondary" runat="server" Visible='<%# ((Repeater)Container.NamingContainer).Items.Count == 0 %>' Text="No Attendees for this event" />
-                            </FooterTemplate>
                         </asp:Repeater>
                     </ul>
                 </div>
@@ -74,11 +68,6 @@
                         <h4>Description:</h4>
                         <asp:Label ID="lblDescription" runat="server"></asp:Label>
                     </div>
-                </div>
-                <div class="col-md-2 col-sm-1"></div>
-                <div class="col-md-4 col-sm-1">
-                    <h5>Number of Attendees:
-                    <asp:Label ID="lblNumberAttendees" runat="server" Text="50-75"></asp:Label></h5>
                 </div>
             </div>
         </div>

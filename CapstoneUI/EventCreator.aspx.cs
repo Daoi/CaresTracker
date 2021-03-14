@@ -28,10 +28,10 @@ namespace CapstoneUI
                 }
                 Session["CHWUserList"] = UserList;
 
-                            cblUsers.DataSource = UserList;
-            cblUsers.DataTextField = "FullName";
-            cblUsers.DataValueField = "UserID";
-            cblUsers.DataBind();
+                cblUsers.DataSource = UserList;
+                cblUsers.DataTextField = "FullName";
+                cblUsers.DataValueField = "UserID";
+                cblUsers.DataBind();
             }
             else
             {
@@ -79,7 +79,6 @@ namespace CapstoneUI
             newEvent.EventDate = txtEventDate.Text;
             newEvent.EventStartTime = txtEventTimeStart.Text;
             newEvent.EventEndTime = txtEventTimeEnd.Text;
-            newEvent.EventAttendanceRange = ddlNumberAttending.SelectedValue;
             newEvent.Hosts = new List<CARESUser>();
             foreach(ListItem item in cblUsers.Items)
             {
@@ -89,7 +88,7 @@ namespace CapstoneUI
                     newEvent.Hosts.Add(UserList.ElementAt(index));
                 }
             }
-            newEvent.EventType = ddlEventType.SelectedValue;
+            newEvent.EventType = ddlEventType.SelectedItem.Text;
             newEvent.EventDescription = txtDescription.InnerText;
 
             AddEvent add = new AddEvent(newEvent);

@@ -39,7 +39,6 @@ namespace CapstoneUI
             rptResidents.DataBind();
             
             lblDescription.Text = theEvent.EventDescription;
-            lblNumberAttendees.Text = theEvent.EventAttendanceRange;
         }
     }
 }

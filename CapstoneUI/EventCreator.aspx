@@ -23,13 +23,6 @@
                 <asp:TextBox ID="txtEventTimeStart" placeholder="Event Time Start" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
                 <asp:Label ID="lblEventEndTime" runat="server" Text="End Time:"></asp:Label>
                 <asp:TextBox ID="txtEventTimeEnd" placeholder="Event Time End" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
-                <asp:DropDownList ID="ddlNumberAttending" CssClass="form-control" runat="server">
-                    <asp:ListItem Value="Select Attendee Range">Select Attendance Range</asp:ListItem>
-                    <asp:ListItem Value="1 to 25">1 to 25</asp:ListItem>
-                    <asp:ListItem Value="26 to 50">26 to 50</asp:ListItem>
-                    <asp:ListItem Value="51 to 75">51 to 75</asp:ListItem>
-                    <asp:ListItem Value="76 to 100">76 to 100</asp:ListItem>
-                </asp:DropDownList><br />
                 <h5>Select Health Workers to Host Event</h5>
                 <div id="userCBLDiv" class="DataboundCBLOverflow row">
                     <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal">
