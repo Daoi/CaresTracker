@@ -37,28 +37,27 @@ namespace CapstoneUI
                 cblServices.DataTextField = "ServiceName";
                 cblServices.DataBind();
                 divOldInteractionServices.Visible = false;
-            }
 
-            //initialize form values
-            if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile")) //Should be a new interaction in this case
-            {
-                FillResidentInfo();
-                Session["InteractionSaved"] = false;
-            }
-            else if (Session["Interaction"] != null && HttpContext.Current.Request.Url.ToString().Contains("InteractionList"))//Old interaction
-            {
-                FillResidentInfo();
-                FillInteractionInfo();
-                //Panels
-                TogglePanels();
-                pnlVaccineForm.Enabled = false; //Requires a new interaction to be changed
-                //Services
-                btnUpdateServices.Visible = true;
-                //Side Bar
-                lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
-                lnkBtnEdit.Visible = true;
 
-                
+                //initialize form values
+                if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile")) //Should be a new interaction in this case
+                {
+                    FillResidentInfo();
+                    Session["InteractionSaved"] = false;
+                }
+                else if (Session["Interaction"] != null && HttpContext.Current.Request.Url.ToString().Contains("InteractionList"))//Old interaction
+                {
+                    FillResidentInfo();
+                    FillInteractionInfo();
+                    //Panels
+                    TogglePanels();
+                    pnlVaccineForm.Enabled = false; //Requires a new interaction to be changed
+                                                    //Services
+                    btnUpdateServices.Visible = true;
+                    //Side Bar
+                    lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
+                    lnkBtnEdit.Visible = true;
+                }
             }
 
         }
