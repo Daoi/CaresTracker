@@ -269,7 +269,6 @@
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\DeleteOldInteractionSymptoms.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InsertInteractionEdit.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionParameters.cs" />
-    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionServiceWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\CTextWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionUpdateParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionWriter.cs" />
