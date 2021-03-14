@@ -6,11 +6,9 @@ using CapstoneUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace CapstoneUI
@@ -191,7 +189,6 @@ namespace CapstoneUI
             try
             {
                 new UpdateInteraction(interaction).ExecuteCommand();
-                new UpdateInteractionSymptoms(interaction.Symptoms, interaction.InteractionID).ExecuteCommand();
                 new InsertInteractionEdit().ExecuteCommand(date, reason, interaction.InteractionID);
             }
             catch(Exception e)

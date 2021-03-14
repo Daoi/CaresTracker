@@ -26,7 +26,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
 
         private void UpdateInteractionSymptoms()
         {
-            
+            new UpdateInteractionSymptoms(interaction.Symptoms, interaction.InteractionID).ExecuteCommand();
         }
     }
 }
