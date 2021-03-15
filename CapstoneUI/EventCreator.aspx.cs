@@ -35,16 +35,7 @@ namespace CapstoneUI
             }
             else
             {
-                CHWDataSet = (DataTable)Session["CHWDataSet"];
                 UserList = (List<CARESUser>)Session["CHWUserList"];
-            }
-
-            foreach(ListItem l in cblUsers.Items)
-            {
-                if (l.Selected)
-                {
-                    Response.Write(l.Value);
-                }   
             }
         }
 
@@ -68,7 +59,7 @@ namespace CapstoneUI
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
