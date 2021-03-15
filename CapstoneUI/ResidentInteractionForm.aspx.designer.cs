@@ -40,6 +40,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton meetingInfo;
         
         /// <summary>
+        /// icErrorMeetingInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorMeetingInfo;
+        
+        /// <summary>
         /// residentHealth control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton residentHealth;
+        
+        /// <summary>
+        /// icErrorResidentHealth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorResidentHealth;
         
         /// <summary>
         /// services control.
@@ -67,6 +85,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton vaccineInfo;
         
         /// <summary>
+        /// icErrorVaxInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorVaxInfo;
+        
+        /// <summary>
         /// otherInfo control.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton otherInfo;
+        
+        /// <summary>
+        /// icErrorActionPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorActionPlan;
         
         /// <summary>
         /// lnkBtnSave control.
@@ -274,6 +310,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Panel pnlMeetingInfoForm;
         
         /// <summary>
+        /// lblErrorMeetingInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMeetingInfo;
+        
+        /// <summary>
         /// ddlMeetingType control.
         /// </summary>
         /// <remarks>
@@ -299,6 +344,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlResidentHealthForm;
+        
+        /// <summary>
+        /// lblErrorSymptoms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorSymptoms;
         
         /// <summary>
         /// cbShortnessOfBreath_1 control.
@@ -436,6 +490,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbSymptomDates;
         
         /// <summary>
+        /// lblErrorCOVIDTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorCOVIDTest;
+        
+        /// <summary>
         /// ddlTestResult control.
         /// </summary>
         /// <remarks>
@@ -526,6 +589,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Panel pnlVaccineForm;
         
         /// <summary>
+        /// lblErrorVaccine control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorVaccine;
+        
+        /// <summary>
         /// ddlVaccineInterest control.
         /// </summary>
         /// <remarks>
@@ -569,6 +641,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlOtherForm;
+        
+        /// <summary>
+        /// lblErrorActionPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorActionPlan;
         
         /// <summary>
         /// nextSteps control.
