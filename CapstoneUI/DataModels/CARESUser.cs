@@ -52,5 +52,17 @@ namespace CapstoneUI.DataModels
             OrganizationID = int.Parse(dataRow["OrganizationID"].ToString());
             OrganizationName = dataRow["OrganizationName"].ToString();
         }
+
+        /// <summary>
+        /// Create a list of CARESUser objects from a CARESUser DataTable
+        /// </summary>
+        /// <param name="dataTable">Contains CARESUser table data</param>
+        /// <returns></returns>
+        public static List<CARESUser> CreateEventHostList(DataTable dataTable)
+        {
+            return dataTable.Rows.OfType<DataRow>()
+                .Select(dr => new CARESUser(dr))
+                .ToList();
+        }
     }
 }

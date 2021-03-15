@@ -36,10 +36,11 @@ namespace CapstoneUI.DataModels
             return services;
         }
 
-        public Service(string name, int id)
+        public Service(string name, int id, bool flag = false)
         {
             ServiceID = id;
             ServiceName = name;
+            IsCompleted = flag;
         }
 
 

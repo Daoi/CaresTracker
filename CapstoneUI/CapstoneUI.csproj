@@ -265,11 +265,25 @@
     <Content Include="CapstoneUI.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\HostWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventHosts.cs" />
     <Compile Include="DataAccess\DataAccessors\GetWorkerStats.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\DeleteOldInteractionSymptoms.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InsertInteractionEdit.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionParameters.cs" />
-    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionServiceWriter.cs" />
-    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionSymptomWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\CTextWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionUpdateParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\ServicesInsertWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\SymptomsInsertSQLWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateFollowUpCompleted.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteraction.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionServices.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionSymptoms.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateUserStatus.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />

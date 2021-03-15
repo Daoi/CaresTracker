@@ -26,6 +26,7 @@ namespace CapstoneUI.DataModels
         public HousingDevelopment HousingDevelopment { get; set; }
         public int HouseID { get; set; }
         public House Home { get; set; }
+        public string FullName { get { return $"{ResidentFirstName} {ResidentLastName}"; } }
 
         public Resident() { }
 
@@ -54,7 +55,18 @@ namespace CapstoneUI.DataModels
             VaccineInterest = dataRow["VaccineInterest"] != DBNull.Value ? (bool?)dataRow["VaccineInterest"] : null;
             VaccineEligibility = dataRow["VaccineEligibility"] != DBNull.Value ? (bool?)dataRow["VaccineEligibility"] : null;
             VaccineAppointmentDate = dataRow["VaccineAppointmentDate"].ToString();
+        }
 
+        /// <summary>
+        /// Create a list of Resident objects from a Resident DataTable
+        /// </summary>
+        /// <param name="dataTable">Contains Resident table data</param>
+        /// <returns></returns>
+        public static List<Resident> CreateEventAttendeeList(DataTable dataTable)
+        {
+            return dataTable.Rows.OfType<DataRow>()
+                .Select(dr => new Resident(dr))
+                .ToList();
         }
     }
 }
