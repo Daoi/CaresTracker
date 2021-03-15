@@ -68,7 +68,7 @@ namespace CapstoneUI
             {
                 // pop modal
                 string showModalCall = "$('#timeoutModal').modal({show: true, keyboard: false, backdrop: 'static'});";
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", showModalCall, true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showTimeoutModal", showModalCall, true);
                 txtModalUsername.Text = user.Username;
 
                 // set tries
@@ -122,8 +122,8 @@ namespace CapstoneUI
                 lblModalError.Text = "";
                 pnlModalControls.Controls[0].Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Text = "");
                 string hideModalCall = "$('#timeoutModal').modal('hide');";
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideModal", hideModalCall, true);
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", "", true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideTimeoutModal", hideModalCall, true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showTimeoutModal", "", true);
             }
             catch (Exception ex)
             {
