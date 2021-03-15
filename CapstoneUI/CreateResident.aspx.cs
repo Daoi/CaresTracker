@@ -45,6 +45,8 @@ namespace CapstoneUI
         {
             bool houseResult = false;
             bool residentResult = false;
+            lblFail.Visible = false;
+
             // VALIDATION NEEDED
 
             // bool valid = Validate();
@@ -93,38 +95,23 @@ namespace CapstoneUI
             // Attach newly created house to resident for session storage
             newResident.Home = residentHouse;
 
-            // Check if resident is unique
-            GetResidentByAttributes GRBA = new GetResidentByAttributes();
-            DataTable UniqueResidentTable = GRBA.RunCommand(newResident);
-            if (UniqueResidentTable.Rows.Count == 0)
+            // Add new Resident
+            ResidentWriter RW = new ResidentWriter(newResident);
+            object returnObj  = RW.ExecuteCommand();
+            
+            if (returnObj == null) //If null Resident is NOT unique
             {
-                lblUniqueResident.Visible = false;
-                // Add new Resident
-                ResidentWriter RW = new ResidentWriter(newResident);
-                if (RW.ExecuteCommand() == 1)
-                {
-                    residentResult = true;
-                }
-            }
-            else
-            {
-                lblUniqueResident.Visible = true;
+                residentResult = false;
+                lblFail.Visible = true;
+                return;
             }
 
+            newResident.ResidentID = Convert.ToInt32(returnObj);
 
             // Hide alert labels then show which is appropriate
             lblFail.Visible = false;
             lblSuccess.Visible = false;
-
-            if (residentResult == true && houseResult == true)
-
-            {
-                lblSuccess.Visible = true;
-            }
-            else
-            {
-                lblFail.Visible = true;
-            }
+            newResident.Home = residentHouse;
 
             // Create Development object if development is selected house type
             if (residentHouse.HouseType == "Development")
@@ -136,6 +123,7 @@ namespace CapstoneUI
 
                 newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
             }
+            
             //Store new resident in Session to use to redirect/populate resident profile
             Session["Resident"] = newResident;
 

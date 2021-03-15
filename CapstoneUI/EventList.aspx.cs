@@ -4,62 +4,53 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
     public partial class EventList : System.Web.UI.Page
     {
+        DataTable dtEventList;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<EventInteraction> temp = new List<EventInteraction>();
-            EventInteraction eventInteraction = new EventInteraction("The Importance of Masks", "Explaining how masks help control the spread of COVID-19", "Seminar", "Community Center 10", "12/1/2020 5:00PM", "12/1/2020 6:00PM");
-            temp.Add(eventInteraction);
-            eventInteraction = new EventInteraction("How To: Social Distancing", "Tips on staying connected from afar", "Instructional", "Virtual", "12/2/2020 3:00PM", "12/2/2020 4:00PM");
-            temp.Add(eventInteraction);
-            for (int i = 0; i < 10; i++)
+            if (!IsPostBack)
             {
-                EventInteraction tempInteraction = new EventInteraction();
-                temp.Add(tempInteraction);
+                gvEventList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvEventList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+
+                dtEventList = new GetAllEvents().ExecuteCommand();
+
+                if (dtEventList.Rows.Count == 0) { return; }
+                gvEventList.DataSource = dtEventList;
+                gvEventList.DataBind();
+
+                Session["EventListDT"] = dtEventList;
             }
 
-            gvEventList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvEventList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-
-            gvEventList.DataSource = temp;
-            gvEventList.DataBind();
+            dtEventList = Session["EventListDT"] as DataTable;
         }
 
-        public class EventInteraction
+        protected void btnViewEvent_Click(object sender, EventArgs e)
         {
-            public string EventName { get; set; }
-            public string EventDescription { get; set; }
-            public string EventType { get; set; }
-            public string EventLocation { get; set; }
-            public string EventStartDateTime { get; set; }
-            public string EventEndDateTime { get; set; }
-            public EventInteraction() { }
-            public EventInteraction(string eventname, string eventdescription, string eventtype,
-                string eventlocation, String eventstartdatetime, string eventenddatetime)
-            {
-                EventName = eventname;
-                EventDescription = eventdescription;
-                EventType = eventtype;
-                EventLocation = eventlocation;
-                EventStartDateTime = eventstartdatetime;
-                EventEndDateTime = eventenddatetime;
-            }
-        }
+            // get the selected DataRow
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            DataRow dr = dtEventList.Rows[row.DataItemIndex];
 
-        protected void gvEventList_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            Server.Transfer("Event.aspx");
+            // create event in Session
+            Session["Event"] = new DataModels.Event(dr);
+
+            Response.Redirect("./Event.aspx");
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("./Homepage.aspx");
         }
     }
 }

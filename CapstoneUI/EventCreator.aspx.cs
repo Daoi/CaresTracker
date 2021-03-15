@@ -1,11 +1,9 @@
 ﻿using CapstoneUI.DataAccess.DataAccessors;
 using CapstoneUI.DataModels;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
@@ -29,18 +27,16 @@ namespace CapstoneUI
                     UserList.Add(temp);
                 }
                 Session["CHWUserList"] = UserList;
+
+                cblUsers.DataSource = UserList;
+                cblUsers.DataTextField = "FullName";
+                cblUsers.DataValueField = "UserID";
+                cblUsers.DataBind();
             }
             else
             {
-                CHWDataSet = (DataTable)Session["CHWDataSet"];
                 UserList = (List<CARESUser>)Session["CHWUserList"];
             }
-
-            cblUsers.DataSource = UserList;
-            cblUsers.DataTextField = "FullName";
-            cblUsers.DataValueField = "UserID";
-            cblUsers.DataBind();
-
         }
 
         protected void ddlEventType_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,7 +59,36 @@ namespace CapstoneUI
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            DataModels.Event newEvent = new DataModels.Event();
+            newEvent.EventName = txtEventName.Text;
+            newEvent.EventLocation = txtEventLocation.Text;
+            newEvent.EventDate = txtEventDate.Text;
+            newEvent.EventStartTime = txtEventTimeStart.Text;
+            newEvent.EventEndTime = txtEventTimeEnd.Text;
+            newEvent.Hosts = new List<CARESUser>();
+            foreach(ListItem item in cblUsers.Items)
+            {
+                if (item.Selected)
+                {
+                    int index = cblUsers.Items.IndexOf(item);
+                    newEvent.Hosts.Add(UserList.ElementAt(index));
+                }
+            }
+            newEvent.EventType = ddlEventType.SelectedItem.Text;
+            newEvent.EventDescription = txtDescription.InnerText;
+
+            AddEvent add = new AddEvent(newEvent);
+            int res = add.ExecuteCommand();
+            if(res == 1)
+            {
+                Session["Event"] = newEvent;
+                Response.Redirect("Event.aspx");
+            }
         }
     }
 }
