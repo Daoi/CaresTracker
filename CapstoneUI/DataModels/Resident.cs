@@ -26,6 +26,7 @@ namespace CapstoneUI.DataModels
         public HousingDevelopment HousingDevelopment { get; set; }
         public int HouseID { get; set; }
         public House Home { get; set; }
+        public string FullName { get { return $"{ResidentFirstName} {ResidentLastName}"; } }
 
         public Resident() { }
 
