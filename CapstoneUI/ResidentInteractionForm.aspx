@@ -10,20 +10,20 @@
                 <nav>
                     <asp:LinkButton ID="residentInfo" CssClass="active" runat="server" OnClick="formNav_Click">Resident Information</asp:LinkButton>
                     <asp:LinkButton ID="housingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Housing Information</asp:LinkButton>
-                    <asp:LinkButton ID="meetingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Meeting Information<i id="icErrorMeetingInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
-                    <asp:LinkButton ID="residentHealth" CssClass="active" runat="server" OnClick="formNav_Click">Resident Health<i id="icErrorResidentHealth" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
+                    <asp:LinkButton ID="meetingInfo" CssClass="active" runat="server" OnClick="formNav_Click">Meeting Information<i id="icErrorMeetingInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
+                    <asp:LinkButton ID="residentHealth" CssClass="active" runat="server" OnClick="formNav_Click">Resident Health<i id="icErrorResidentHealth" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
                     <asp:LinkButton ID="services" CssClass="active" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
-                    <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
-                    <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color:yellow;"></i></asp:LinkButton>
+                    <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
+                    <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"><i class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnEdit" CssClass="active" runat="server" Visible="false" OnClick="lnkBtnEdit_Click">
                         <i class="fas fa-edit" id="icoEdit" style="margin-right: .5rem" runat="server"></i>
                         Edit Interaction
                     </asp:LinkButton>
-                    
-                    
+
+
                     <asp:Label ID="lblSave" runat="server" CssClass="active" Text="Label" Visible="false"></asp:Label>
-                    <asp:LinkButton ID="lnkBtnHome" CssClass="active" runat="server" OnClick="lnkBtnHome_Click"><i class="fas fa-home" style="margin-right: .5rem"></i>Return To Dashboard<i id="warningHome" runat="server" Visible="false" class="fas fa-exclamation-triangle"></i></asp:LinkButton>
+                    <asp:LinkButton ID="lnkBtnHome" CssClass="active" runat="server" OnClick="lnkBtnHome_Click"><i class="fas fa-home" style="margin-right: .5rem"></i>Return To Dashboard<i id="warningHome" runat="server" visible="false" class="fas fa-exclamation-triangle"></i></asp:LinkButton>
                     <asp:Label ID="lblHome" runat="server" Text="" Visible="false"></asp:Label>
                 </nav>
             </div>
@@ -53,10 +53,6 @@
                     <h2>Email</h2>
                     <p>
                         <asp:TextBox ID="tbEmail" runat="server" placeholder="Resident Email" TextMode="Phone" CssClass="inputText"></asp:TextBox>
-                    </p>
-                    <h2>Date of Contact</h2>
-                    <p>
-                        <asp:TextBox ID="tbDoC" runat="server" placeholder="Date of Contact" TextMode="Date" CssClass="inputText"></asp:TextBox>
                     </p>
                 </asp:Panel>
                 <%-- Resident Info Form End --%>
@@ -104,6 +100,10 @@
                     <h2>Location</h2>
                     <p>
                         <asp:TextBox ID="tbLocation" runat="server" placeholder="Meeting Location" CssClass="inputText"></asp:TextBox>
+                    </p>
+                    <h2>Date of Contact</h2>
+                    <p>
+                        <asp:TextBox ID="tbDoC" runat="server" placeholder="Date of Contact" TextMode="Date" CssClass="inputText"></asp:TextBox>
                     </p>
                 </asp:Panel>
                 <%-- Meeting Info Form End --%>

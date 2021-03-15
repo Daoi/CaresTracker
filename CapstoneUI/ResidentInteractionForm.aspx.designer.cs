@@ -238,15 +238,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbEmail;
         
         /// <summary>
-        /// tbDoC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDoC;
-        
-        /// <summary>
         /// pnlHousingInfoForm control.
         /// </summary>
         /// <remarks>
@@ -335,6 +326,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbLocation;
+        
+        /// <summary>
+        /// tbDoC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDoC;
         
         /// <summary>
         /// pnlResidentHealthForm control.
