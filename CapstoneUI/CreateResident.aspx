@@ -178,7 +178,7 @@
                     <div class="row m-3 justify-content-center mt-5">
                         <div class="col text-center">
                             <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblFail" role="alert" Visible="false">
-                                Could not add resident to the database
+                                Could not add resident and/or house to the database
                             </asp:Label>
                             <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
                                 Resident profile already exists!
