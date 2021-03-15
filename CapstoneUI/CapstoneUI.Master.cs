@@ -67,9 +67,9 @@ namespace CapstoneUI
             if (lblTimeLeft.Text == "" && timeLeft < new TimeSpan(0, 10, 0))
             {
                 // pop modal
+                txtModalUsername.Text = user.Username;
                 string showModalCall = "$('#timeoutModal').modal({show: true, keyboard: false, backdrop: 'static'});";
                 ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", showModalCall, true);
-                txtModalUsername.Text = user.Username;
 
                 // set tries
                 Session["ReauthTries"] = 3;
@@ -77,6 +77,7 @@ namespace CapstoneUI
 
                 tmrSessionTimeout.Interval = 60000; // update every min
                 lblTimeLeft.Text = $"{timeLeft.Minutes} minutes";
+                pnlModalControls.Update();
             }
             else if (timeLeft.TotalMilliseconds < 0) // time expired
             {
