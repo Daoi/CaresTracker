@@ -14,7 +14,7 @@
                     </nav>
                     <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 70%"></asp:Label>
                 </div>
-                <div class="container mt-5 mr-5 w-75 mb-5">
+                <div class="container mt-5 w-75 mb-5" style="margin-right: 13%">
                     <div class="row">
                         <div class="col">
                             <h5>Personal Information:</h5>
