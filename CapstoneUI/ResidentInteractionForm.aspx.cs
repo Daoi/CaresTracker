@@ -107,7 +107,7 @@ namespace CapstoneUI
                 if (!IsFormValid()) { return; }
                 //Popup modal
                 string showModalCall = "$('#modalEditReason').modal({show: true, keyboard: true, backdrop: 'true'});";
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", showModalCall, true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showEditModal", showModalCall, true);
             }
 
         }
@@ -159,8 +159,8 @@ namespace CapstoneUI
                     return;
                 }
                 string hideModalCall = "$('#modalEditReason').modal('hide');";
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideModal", hideModalCall, true);
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", "", true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideEditModal", hideModalCall, true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showEditModal", "", true);
             }
         }
 
