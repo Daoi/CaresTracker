@@ -14,7 +14,7 @@
                     </nav>
                     <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 70%"></asp:Label>
                 </div>
-                <div class="container mt-5 w-75 mb-5" style="margin-right: 13%">
+                <div class="container mt-5 w-75 mr-5 mb-5">
                     <div class="row">
                         <div class="col">
                             <h5>Personal Information:</h5>
@@ -169,7 +169,7 @@
                             <%-- Development Unit End --%>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <div class="row m-3">
+                    <div class="row mt-3">
                         <div class="col">
                             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click1" />
                         </div>
@@ -177,13 +177,10 @@
                     <%-- Alerts start --%>
                     <div class="row m-3 justify-content-center mt-5">
                         <div class="col text-center">
-                            <asp:Label runat="server" class="alert alert-success" ID="lblSuccess" role="alert" Visible="false">
-                                The resident and their housing information were successfully added!
-                            </asp:Label>
-                            <asp:Label runat="server" class="alert alert-danger" ID="lblFail" role="alert" Visible="false">
+                            <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblFail" role="alert" Visible="false">
                                 Could not add resident to the database
                             </asp:Label>
-                            <asp:Label runat="server" class="alert alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
+                            <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
                                 Resident profile already exists!
                             </asp:Label>
                         </div>
