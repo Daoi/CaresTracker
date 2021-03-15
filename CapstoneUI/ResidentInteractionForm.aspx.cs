@@ -38,7 +38,6 @@ namespace CapstoneUI
                 cblServices.DataBind();
                 divOldInteractionServices.Visible = false;
 
-
                 //initialize form values
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile")) //Should be a new interaction in this case
                 {
@@ -49,10 +48,14 @@ namespace CapstoneUI
                 {
                     FillResidentInfo();
                     FillInteractionInfo();
+                    ViewState["PanelState"] = true;
                     //Panels
                     TogglePanels();
-                    pnlVaccineForm.Enabled = false; //Requires a new interaction to be changed
-                                                    //Services
+                   //Vaccines require a new interaction to be changed
+                    tbVaccineAppointmentDate.Enabled = false;
+                    ddlVaccineEligibility.Enabled = false;
+                    ddlVaccineInterest.Enabled = false;
+                    //Services
                     btnUpdateServices.Visible = true;
                     //Side Bar
                     lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
@@ -171,16 +174,24 @@ namespace CapstoneUI
         //The first two panels are always disabled, Services is always Enabled.
         private void TogglePanels()
         {
-            pnlMeetingInfoForm.Enabled = !pnlMeetingInfoForm.Enabled;
-            pnlOtherForm.Enabled = !pnlOtherForm.Enabled;
-            pnlResidentHealthForm.Enabled = !pnlResidentHealthForm.Enabled;
-            if (pnlOtherForm.Enabled)
+            bool state = (bool)ViewState["PanelState"];
+            //Meeting Form
+            pnlMeetingInfoForm.Controls.OfType<TextBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            pnlMeetingInfoForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            //Health Form
+            pnlResidentHealthForm.Controls.OfType<TextBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            pnlResidentHealthForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            //Other FOrm
+            if (!state)
             {
                 nextSteps.Attributes.Remove("readonly");
+                ViewState["PanelState"] = !state;
             }
             else
             {
                 nextSteps.Attributes.Add("readonly", "true");
+                ViewState["PanelState"] = !state;
             }
         }
 
