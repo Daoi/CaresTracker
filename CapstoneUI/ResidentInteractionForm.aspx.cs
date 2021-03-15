@@ -77,6 +77,7 @@ namespace CapstoneUI
 
         protected void lnkBtnSave_Click(object sender, EventArgs e)
         {
+            if (!IsFormValid()) { return; }
             SaveInteraction();
         }
 
@@ -103,6 +104,7 @@ namespace CapstoneUI
             }
             else if((bool)ViewState["EditMode"] == true)
             {
+                if (!IsFormValid()) { return; }
                 //Popup modal
                 string showModalCall = "$('#modalEditReason').modal({show: true, keyboard: true, backdrop: 'true'});";
                 ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showModal", showModalCall, true);
