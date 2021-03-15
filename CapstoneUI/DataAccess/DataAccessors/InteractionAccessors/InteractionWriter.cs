@@ -32,14 +32,19 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
             {
                 throw e;
             }
-
-            string servicesCommand = ServicesInsertSQLWriter.WriteSQL(interact.RequestedServices, interact.InteractionID);
-            string symptomsCommand = SymptomsInsertSQLWriter.WriteSQL(interact.Symptoms, interact.InteractionID);
-
+            //If interaction insert succeeds 
             try
             {
-                new CTextWriter(servicesCommand).ExecuteCommand();
-                new CTextWriter(symptomsCommand).ExecuteCommand();
+                if (interact.RequestedServices.Count > 0)
+                {
+                    string servicesCommand = ServicesInsertSQLWriter.WriteSQL(interact.RequestedServices, interact.InteractionID);
+                    new CTextWriter(servicesCommand).ExecuteCommand();
+                }
+                if (interact.Symptoms.Count > 0)
+                {
+                    string symptomsCommand = SymptomsInsertSQLWriter.WriteSQL(interact.Symptoms, interact.InteractionID);
+                    new CTextWriter(symptomsCommand).ExecuteCommand();
+                }
                 return 1;
             }
             catch (Exception e)
