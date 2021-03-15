@@ -66,6 +66,10 @@ namespace CapstoneUI
             {
                 residentHouse.HouseType = "Development";
                 residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
+                // Retrieve RegionID of Development
+                GetDevelopmentByID GDBI = new GetDevelopmentByID();
+                DataTable development = GDBI.RunCommand(residentHouse.DevelopmentID);
+                residentHouse.RegionID = development.Rows[0].Field<int>("RegionID");
             }
             // Write new House to the database
             AddHouse AH = new AddHouse(residentHouse);
