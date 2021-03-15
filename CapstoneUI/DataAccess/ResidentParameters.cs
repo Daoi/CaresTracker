@@ -24,7 +24,6 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
         {
             Parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@HouseID", MySqlDbType.Int64, 50),
                 new MySqlParameter("@FirstName", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@LastName", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@DateOfBirth", MySqlDbType.VarChar, 50),
@@ -47,16 +46,15 @@ namespace CapstoneUI.DataAccess.DataAccessors.Examples
         {
             // Add the parameters
             // Done manually for now, couldn't figure out how to pass in house object and iterate through the object to fill in parameters
-            Parameters[0].Value = resident.HouseID;
-            Parameters[1].Value = resident.ResidentFirstName;
-            Parameters[2].Value = resident.ResidentLastName;
-            Parameters[3].Value = resident.DateOfBirth;
-            Parameters[4].Value = resident.ResidentEmail;
-            Parameters[5].Value = resident.ResidentPhoneNumber;
-            Parameters[6].Value = resident.RelationshipToHoH;
-            Parameters[7].Value = resident.Gender;
-            Parameters[8].Value = resident.Race;
-            Parameters[9].Value = resident.PreferredLanguage;
+            Parameters[0].Value = resident.ResidentFirstName;
+            Parameters[1].Value = resident.ResidentLastName;
+            Parameters[2].Value = resident.DateOfBirth;
+            Parameters[3].Value = resident.ResidentEmail;
+            Parameters[4].Value = resident.ResidentPhoneNumber;
+            Parameters[5].Value = resident.RelationshipToHoH;
+            Parameters[6].Value = resident.Gender;
+            Parameters[7].Value = resident.Race;
+            Parameters[8].Value = resident.PreferredLanguage;
             return Parameters;
 
         }

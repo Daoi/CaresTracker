@@ -266,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
+    <Compile Include="DataAccess\DataAccessors\DeleteLastHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\EventParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\HostWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
