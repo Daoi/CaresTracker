@@ -421,14 +421,14 @@ namespace CapstoneUI
             }
 
             // test result w/o location
-            if (ddlTestResult.SelectedIndex != 0 && Validation.IsEmpty(tbTestingLocation.Text))
+            if ((ddlTestResult.SelectedIndex == 1 || ddlTestResult.SelectedIndex == 2) && Validation.IsEmpty(tbTestingLocation.Text))
             {
                 isValid = false;
                 lblErrorCOVIDTest.Text = "You must enter a testing location if you selected a test result.";
                 icErrorResidentHealth.Visible = true;
             }
             // test location w/o result
-            else if (ddlTestResult.SelectedIndex == 0 && !Validation.IsEmpty(tbTestingLocation.Text))
+            else if ((ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && !Validation.IsEmpty(tbTestingLocation.Text))
             {
                 isValid = false;
                 lblErrorCOVIDTest.Text = "You must select a test result if you entered a testing location.";
