@@ -88,47 +88,50 @@ namespace CapstoneUI
             newResident.Gender = rblGender.SelectedValue;
             newResident.Race = ddlRace.SelectedValue;
             newResident.PreferredLanguage = ddlLanguage.SelectedValue;
-            // Retrieve HouseID of House that was just created
-            GetHouse GH = new GetHouse();
-            DataTable dataTable = GH.RunCommand(txtAddress.Text);
-            newResident.HouseID = dataTable.Rows[0].Field<int>("HouseID");
+
             // Attach newly created house to resident for session storage
             newResident.Home = residentHouse;
 
             // Add new Resident
             ResidentWriter RW = new ResidentWriter(newResident);
-            object returnObj  = RW.ExecuteCommand();
-            
+            object returnObj = RW.ExecuteCommand();
+
             if (returnObj == null) //If null Resident is NOT unique
             {
-                residentResult = false;
-                lblFail.Visible = true;
-                return;
+                lblUniqueResident.Visible = true;
             }
-
-            newResident.ResidentID = Convert.ToInt32(returnObj);
-
-            // Hide alert labels then show which is appropriate
-            lblFail.Visible = false;
-            lblSuccess.Visible = false;
-            newResident.Home = residentHouse;
-
-            // Create Development object if development is selected house type
-            if (residentHouse.HouseType == "Development")
+            else
             {
-                //Get the row matching the currently selected Housing Development Name
-                DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
-                    .First(r => r.Field<string>("DevelopmentName")
-                    .Equals(ddlDevelopments.SelectedItem.ToString()));
-
-                newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
+                residentResult = true;
             }
-            
-            //Store new resident in Session to use to redirect/populate resident profile
-            Session["Resident"] = newResident;
+            // If house was posted but resident wasn't, delete the house
+            if (houseResult == true && residentResult == false)
+            {
+                DeleteLastHouse DLH = new DeleteLastHouse();
+                DLH.ExecuteCommand();
+            }
+            // If both operations were successful, store resident object in session and redirect
+            else if (houseResult == true && residentResult == true)
+            {
+                newResident.ResidentID = Convert.ToInt32(returnObj);
+                // Create Development object if development is selected house type
+                if (residentHouse.HouseType == "Development")
+                {
+                    //Get the row matching the currently selected Housing Development Name
+                    DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                        .First(r => r.Field<string>("DevelopmentName")
+                        .Equals(ddlDevelopments.SelectedItem.ToString()));
+
+                    newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
+                }
 
 
-            Response.Redirect("ResidentProfile.aspx");
+                //Store new resident in Session to use to redirect/populate resident profile
+                Session["Resident"] = newResident;
+
+
+                Response.Redirect("ResidentProfile.aspx");
+            }
         }
 
         // Show/hide divs depending on which housing option is selected

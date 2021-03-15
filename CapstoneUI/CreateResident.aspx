@@ -174,8 +174,9 @@
                             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click1" />
                         </div>
                     </div>
-                    <div class="row m-3">
-                        <div class="col">
+                    <%-- Alerts start --%>
+                    <div class="row m-3 justify-content-center mt-5">
+                        <div class="col text-center">
                             <asp:Label runat="server" class="alert alert-success" ID="lblSuccess" role="alert" Visible="false">
                                 The resident and their housing information were successfully added!
                             </asp:Label>
@@ -187,6 +188,7 @@
                             </asp:Label>
                         </div>
                     </div>
+                    <%-- Alerts end --%>
                 </div>
             </div>
         </div>
