@@ -51,8 +51,11 @@ namespace CapstoneUI
                     ViewState["PanelState"] = true;
                     //Panels
                     TogglePanels();
-                    pnlVaccineForm.Enabled = false; //Requires a new interaction to be changed
-                                                    //Services
+                   //Vaccines require a new interaction to be changed
+                    tbVaccineAppointmentDate.Enabled = false;
+                    ddlVaccineEligibility.Enabled = false;
+                    ddlVaccineInterest.Enabled = false;
+                    //Services
                     btnUpdateServices.Visible = true;
                     //Side Bar
                     lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
