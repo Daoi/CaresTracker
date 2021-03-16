@@ -43,7 +43,6 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
-            bool houseResult = false;
 
             // Build Resident object
             Resident newResident = new Resident();
@@ -65,6 +64,7 @@ namespace CapstoneUI
             if (AddResidentResult == null) //If null Resident is NOT unique
             {
                 lblUniqueResident.Visible = true;
+                return;
             }
             else // If resident was posted, do the rest of the operations
             {
@@ -72,7 +72,7 @@ namespace CapstoneUI
                 House residentHouse = new House();
                 residentHouse.Address = txtAddress.Text;
                 residentHouse.ZipCode = txtZipCode.Text;
-
+                residentHouse.UnitNumber = txtUnitNumber.Text;
                 if (ddlHousing.SelectedIndex == 1)
                 {
                     residentHouse.HouseType = "Housing Choice Voucher";
@@ -89,19 +89,18 @@ namespace CapstoneUI
                 // Attach newly created house to resident for session storage
                 newResident.Home = residentHouse;
 
-                // Write new House to the database
-                AddHouse AH = new AddHouse(residentHouse);
-                object AddHouseResult = AH.ExecuteCommand();
-                houseResult = true;
-
-                // Update new Resident's HouseID to match new House
-                UpdateHouseID UHI = new UpdateHouseID();
-                UHI.ExecuteCommand(Convert.ToInt32(AddResidentResult), Convert.ToInt32(AddHouseResult));
-
-                // If both operations were successful, store resident object in session and redirect
-                HousingDevelopment newHd = new HousingDevelopment();
-                if (houseResult == true)
+                try
                 {
+                    // Write new House to the database
+                    AddHouse AH = new AddHouse(residentHouse);
+                    object AddHouseResult = AH.ExecuteCommand();
+
+                    // Update new Resident's HouseID to match new House
+                    UpdateHouseID UHI = new UpdateHouseID();
+                    UHI.ExecuteCommand(Convert.ToInt32(AddResidentResult), Convert.ToInt32(AddHouseResult));
+
+                    // If both operations were successful, store resident object in session and redirect
+                    HousingDevelopment newHd = new HousingDevelopment();
                     newResident.ResidentID = Convert.ToInt32(AddResidentResult);
                     // Create Development object if development is selected house type
                     if (residentHouse.HouseType == "Development")
@@ -118,9 +117,10 @@ namespace CapstoneUI
 
                     Response.Redirect("ResidentProfile.aspx");
                 }
-                else
+                catch(Exception ex) // If the House post fails, display error label
                 {
                     lblFail.Visible = true;
+                    lblFail.Text = ex.Message;
                 }
             }
 
