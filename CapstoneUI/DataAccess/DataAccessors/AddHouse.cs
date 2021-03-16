@@ -16,10 +16,10 @@ namespace CapstoneUI.DataAccess.DataAccessors
             Parameters = new HouseParameters().Fill(house);
         }
 
-        public int ExecuteCommand()
+        public object ExecuteCommand()
         {
             ExecuteQuery eq = new ExecuteQuery();
-            return eq.ExecuteNonQuery(this);
+            return eq.ExecuteScalar(this);
         }
     }
 }

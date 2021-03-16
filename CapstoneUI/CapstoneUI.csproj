@@ -285,6 +285,7 @@
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionServices.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionSymptoms.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
+    <Compile Include="DataAccess\DataAccessors\UpdateHouseID.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateUserStatus.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllServices.cs" />

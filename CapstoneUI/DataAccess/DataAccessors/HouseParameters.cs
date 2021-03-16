@@ -30,6 +30,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
                 new MySqlParameter("@HouseType", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@DevelopmentID", MySqlDbType.Int64),
                 new MySqlParameter("@ZipCode", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@UnitNumber", MySqlDbType.VarChar, 50),
             };
         }
 
@@ -48,6 +49,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
             Parameters[2].Value = house.HouseType;
             Parameters[3].Value = house.DevelopmentID;
             Parameters[4].Value = house.ZipCode;
+            Parameters[5].Value = house.UnitNumber;
 
             // If IDs are 0, null is entered into the DB
             if (house.RegionID == 0)
