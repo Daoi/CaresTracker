@@ -15,6 +15,7 @@ namespace CapstoneUI.DataModels
         public int DevelopmentID { get; set; }
         public string ZipCode { get; set; }
         public string RegionName { get; set; }
+        public string UnitNumber { get; set; }
 
         const int HCV = -1;
         public House()
