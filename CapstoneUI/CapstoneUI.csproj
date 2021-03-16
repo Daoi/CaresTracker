@@ -266,7 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
-    <Compile Include="DataAccess\DataAccessors\DeleteLastHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\EventParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\HostWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
@@ -291,7 +290,6 @@
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllServices.cs" />
     <Compile Include="DataAccess\DataAccessors\GetResidentByID.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetResidentByAttributes.cs" />
     <Compile Include="DataAccess\DataAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetServicesByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetWorkersByUserID.cs" />

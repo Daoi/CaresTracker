@@ -66,64 +66,61 @@ namespace CapstoneUI
                 lblUniqueResident.Visible = true;
                 return;
             }
-            else // If resident was posted, do the rest of the operations
+            // If resident was posted, do the rest of the operations
+
+            //Build House object
+            House residentHouse = new House();
+            residentHouse.Address = txtAddress.Text;
+            residentHouse.ZipCode = txtZipCode.Text;
+            residentHouse.UnitNumber = txtUnitNumber.Text;
+            if (ddlHousing.SelectedIndex == 1)
             {
-                //Build House object
-                House residentHouse = new House();
-                residentHouse.Address = txtAddress.Text;
-                residentHouse.ZipCode = txtZipCode.Text;
-                residentHouse.UnitNumber = txtUnitNumber.Text;
-                if (ddlHousing.SelectedIndex == 1)
-                {
-                    residentHouse.HouseType = "Housing Choice Voucher";
-                    residentHouse.RegionID = Int32.Parse(ddlRegion.SelectedValue); // Requires validation to ensure input is a number
-                }
-                else
-                {
-                    residentHouse.HouseType = "Development";
-                    residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
-                    // Retrieve RegionID of Development
-                    residentHouse.RegionID = developmentDT.Rows[0].Field<int>("RegionID");
-                }
-
-                // Attach newly created house to resident for session storage
-                newResident.Home = residentHouse;
-
-                try
-                {
-                    // Write new House to the database
-                    AddHouse AH = new AddHouse(residentHouse);
-                    object AddHouseResult = AH.ExecuteCommand();
-
-                    // Update new Resident's HouseID to match new House
-                    UpdateHouseID UHI = new UpdateHouseID();
-                    UHI.ExecuteCommand(Convert.ToInt32(AddResidentResult), Convert.ToInt32(AddHouseResult));
-
-                    // If both operations were successful, store resident object in session and redirect
-                    HousingDevelopment newHd = new HousingDevelopment();
-                    newResident.ResidentID = Convert.ToInt32(AddResidentResult);
-                    // Create Development object if development is selected house type
-                    if (residentHouse.HouseType == "Development")
-                    {
-                        //Get the row matching the currently selected Housing Development Name
-                        DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
-                            .First(r => r.Field<string>("DevelopmentName")
-                            .Equals(ddlDevelopments.SelectedItem.ToString()));
-
-                        newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
-                    }
-                    //Store new resident in Session to use to redirect/populate resident profile
-                    Session["Resident"] = newResident;
-
-                    Response.Redirect("ResidentProfile.aspx");
-                }
-                catch(Exception ex) // If the House post fails, display error label
-                {
-                    lblFail.Visible = true;
-                    lblFail.Text = ex.Message;
-                }
+                residentHouse.HouseType = "Housing Choice Voucher";
+                residentHouse.RegionID = Int32.Parse(ddlRegion.SelectedValue); // Requires validation to ensure input is a number
+            }
+            else
+            {
+                residentHouse.HouseType = "Development";
+                residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
+                // Retrieve RegionID of Development
+                residentHouse.RegionID = developmentDT.Rows[0].Field<int>("RegionID");
             }
 
+            // Attach newly created house to resident for session storage
+            newResident.Home = residentHouse;
+
+            try
+            {
+                // Write new House to the database
+                AddHouse AH = new AddHouse(residentHouse);
+                object AddHouseResult = AH.ExecuteCommand();
+
+                // Update new Resident's HouseID to match new House
+                UpdateHouseID UHI = new UpdateHouseID();
+                UHI.ExecuteCommand(Convert.ToInt32(AddResidentResult), Convert.ToInt32(AddHouseResult));
+
+                newResident.ResidentID = Convert.ToInt32(AddResidentResult);
+
+                // Create Development object if development is selected house type
+                if (residentHouse.HouseType == "Development")
+                {
+                    //Get the row matching the currently selected Housing Development Name
+                    DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                        .First(r => r.Field<string>("DevelopmentName")
+                        .Equals(ddlDevelopments.SelectedItem.ToString()));
+
+                    newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
+                }
+                //Store new resident in Session to use to redirect/populate resident profile
+                Session["Resident"] = newResident;
+
+                Response.Redirect("ResidentProfile.aspx");
+            }
+            catch (Exception ex) // If the House post fails, display error label
+            {
+                lblFail.Visible = true;
+                lblFail.Text = ex.Message;
+            }
         }
 
 
