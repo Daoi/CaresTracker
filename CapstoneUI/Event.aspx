@@ -18,7 +18,7 @@
                 </nav>
                 <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 54%">Event</asp:Label>
             </div>
-            <div class="container-fluid h-75">
+            <div class="container-fluid">
                 <div class="container w-75 mr-5 mt-5">
                     <div class="row">
                         <asp:Label ID="lblEventName" CssClass="h3" runat="server"></asp:Label>
@@ -64,34 +64,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="container text-center">
+                <div class="container">
                     <div class="row mt-5">
                         <div class="col border-right">
-                            <b>Health Workers:</b>
-                            <ul style="list-style-type: none!important">
-                                <asp:Repeater ID="rptHealthWorkers" runat="server">
-                                    <ItemTemplate>
-                                        <li>
-                                            <asp:Label ID="lblHealthWorkerName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
-                                        </li>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </ul>
+                            <div class="row justify-content-center">
+                                <b>Health Workers:</b>
+                            </div>
+                            <div class="row justify-content-center">
+                                <ul class="eventLists">
+                                    <asp:Repeater ID="rptHealthWorkers" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <asp:Label ID="lblHealthWorkerName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                            </div>
                         </div>
                         <div class="col">
-                            <b>Attendees:</b>
-                            <ul>
-                                <asp:Repeater ID="rptResidents" runat="server">
-                                    <ItemTemplate>
-                                        <li>
-                                            <asp:Label ID="lblResidentName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
-                                        </li>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        <asp:Label ID="lblEmptyData" CssClass="text-secondary" runat="server" Visible='<%# ((Repeater)Container.NamingContainer).Items.Count == 0 %>' Text="No Attendees for this event" />
-                                    </FooterTemplate>
-                                </asp:Repeater>
-                            </ul>
+                            <div class="row justify-content-center">
+                                <b>Attendees:</b>
+                            </div>
+                            <div class="row justify-content-center">
+                                <ul class="eventLists">
+                                    <asp:Repeater ID="rptResidents" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <asp:Label ID="lblResidentName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 text-center">
+                        <div class="col">
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Save Event" runat="server" />
                         </div>
                     </div>
                 </div>
