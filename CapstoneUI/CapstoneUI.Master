@@ -68,7 +68,7 @@
                                 <asp:AsyncPostBackTrigger ControlID="tmrSessionTimeout" />
                             </Triggers>
                         </asp:UpdatePanel>
-                        <asp:UpdatePanel ID="pnlModalControls" runat="server">
+                        <asp:UpdatePanel ID="pnlModalControls" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <div class="modal-body px-5 pb-3">
                                     <h5>Enter your credentials</h5>
