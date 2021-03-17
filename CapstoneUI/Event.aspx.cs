@@ -27,10 +27,11 @@ namespace CapstoneUI
         public void FillEventInfo()
         {
             lblEventName.Text = theEvent.EventName;
-            lblEventType.Text = theEvent.EventType;
-            lblLocation.Text = theEvent.EventLocation;
-            lblStartTime.Text = theEvent.EventStartTime;
-            lblEndTime.Text = theEvent.EventEndTime;
+            txtEventType.Text = theEvent.EventType;
+            txtLocation.Text = theEvent.EventLocation;
+            txtEventDate.Text = theEvent.EventDate;
+            txtStartTime.Text = theEvent.EventStartTime;
+            txtEndTime.Text = theEvent.EventEndTime;
 
             rptHealthWorkers.DataSource = theEvent.Hosts;
             rptHealthWorkers.DataBind();
@@ -38,7 +39,54 @@ namespace CapstoneUI
             rptResidents.DataSource = theEvent.Attendees;
             rptResidents.DataBind();
             
-            lblDescription.Text = theEvent.EventDescription;
+            txtDescription.Text = theEvent.EventDescription;
+        }
+
+        protected void lnkHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Homepage.aspx");
+        }
+
+        protected void lnkEventList_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EventList.aspx");
+        }
+
+        private void EnableDisableControls()
+        {
+            foreach (Control c in form.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox temp = c as TextBox;
+                    temp.Enabled = !temp.Enabled;
+                }
+            }
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            EnableDisableControls();
+            btnEdit.Visible = false;
+            btnSave.Visible = true;
+            btnCancel.Visible = true;
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            EnableDisableControls();
+            btnEdit.Visible = true;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            EnableDisableControls();
+            FillEventInfo();
+            btnEdit.Visible = true;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
         }
     }
 }
