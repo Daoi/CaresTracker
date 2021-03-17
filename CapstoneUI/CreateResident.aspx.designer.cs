@@ -130,6 +130,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
         
         /// <summary>
+        /// txtUnitNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUnitNumber;
+        
+        /// <summary>
         /// txtZipCode control.
         /// </summary>
         /// <remarks>
@@ -193,15 +202,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
-        /// lblSuccess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuccess;
-        
-        /// <summary>
         /// lblFail control.
         /// </summary>
         /// <remarks>
@@ -209,5 +209,14 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFail;
+        
+        /// <summary>
+        /// lblUniqueResident control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUniqueResident;
     }
 }

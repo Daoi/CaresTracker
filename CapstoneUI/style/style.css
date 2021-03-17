@@ -13,6 +13,14 @@
     padding-bottom: 5%;
 }
 
+.managementContainer {
+    background-color: white;
+    width: 70%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding-bottom: 5%;
+}
+
 .textContainer {
     background-color: lightgrey;
     color: black;
@@ -268,4 +276,8 @@ thead {
         width: 200px;
         height: 200px;
     }
+}
+
+.eventLists {
+    list-style-type: none;
 }

@@ -67,6 +67,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
+        /// ddlEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmail;
+        
+        /// <summary>
         /// txtPhoneNumber control.
         /// </summary>
         /// <remarks>
@@ -76,58 +85,40 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtPhoneNumber;
         
         /// <summary>
-        /// ddlRegion control.
+        /// ddlOrganizationDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ddlOrganizationDiv;
         
         /// <summary>
-        /// ddlIsSupervisor control.
+        /// ddlOrganization control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIsSupervisor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrganization;
         
         /// <summary>
-        /// upSupervisor control.
+        /// ddlAccountType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upSupervisor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccountType;
         
         /// <summary>
-        /// divSelectSupervisor control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSelectSupervisor;
-        
-        /// <summary>
-        /// ddlSupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupervisor;
-        
-        /// <summary>
-        /// fuCHWPicture control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fuCHWPicture;
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// btnSubmit control.

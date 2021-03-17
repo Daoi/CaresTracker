@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateResident.aspx.cs" MasterPageFile="~/CapstoneUI.Master" Inherits="CapstoneUI.CreateResident" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateResident.aspx.cs" MasterPageFile="~/CapstoneUI.Master" Inherits="CapstoneUI.CreateResident" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid backgroundblue">
@@ -14,7 +14,8 @@
                     </nav>
                     <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 70%"></asp:Label>
                 </div>
-                <div class="container mt-5 mr-5 w-75 mb-5">
+                <%-- Resident Info Start --%>
+                <div class="container mt-5 w-75 mr-5 mb-5">
                     <div class="row">
                         <div class="col">
                             <h5>Personal Information:</h5>
@@ -115,26 +116,29 @@
                             </asp:DropDownList>
                         </div>
                     </div>
+                    <%-- Resident Info End --%>
 
-                    <%-- Universal Info End --%>
+                    <%-- House Start --%>
                     <h2>Housing Information</h2>
                     <asp:DropDownList ID="ddlHousing" CssClass="form-control mt-4" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
                         <asp:ListItem Value="None Selected">Select Housing Type</asp:ListItem>
                         <asp:ListItem Value="divHouse">Housing Choice Voucher</asp:ListItem>
                         <asp:ListItem Value="divDevelopmentUnit">Housing Development</asp:ListItem>
                     </asp:DropDownList><br />
-                    <%-- House Start --%>
+                    <%-- Universal Info Start --%>
                     <div class="eventControlBG">
                         <asp:TextBox ID="txtAddress" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />
+                        <asp:TextBox ID="txtUnitNumber" placeholder="Unit Number" runat="server" CssClass="form-control"></asp:TextBox><br />
                         <asp:TextBox ID="txtZipCode" placeholder="Zip Code" runat="server" CssClass="form-control"></asp:TextBox><br />
                     </div>
-                    <%-- House End --%>
+                    <%-- Universal Info End --%>
+
+                    <%-- Housing Choice Start --%>
                     <asp:UpdatePanel ID="upHousing" runat="server" UpdateMode="Conditional">
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="ddlHousing" EventName="SelectedIndexChanged" />
                         </Triggers>
                         <ContentTemplate>
-                            <%-- House Start --%>
                             <div id="divHouse" runat="server" visible="false">
                                 <div class="eventControlBG">
                                     <h4 class="font-weight-light">Region</h4>
@@ -156,7 +160,8 @@
 
                                 </div>
                             </div>
-                            <%-- House End --%>
+                            <%-- Housing Choice End --%>
+
                             <%-- Development Unit Start --%>
 
                             <div id="divDevelopmentUnit" runat="server" visible="false">
@@ -169,21 +174,25 @@
                             <%-- Development Unit End --%>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <div class="row m-3">
+                    <div class="row mt-3">
                         <div class="col">
                             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click1" />
                         </div>
                     </div>
-                    <div class="row m-3">
-                        <div class="col">
-                            <asp:Label runat="server" class="alert alert-success" ID="lblSuccess" role="alert" Visible="false">
-                                The resident and their housing information were successfully added!
+                    <%-- House End --%>
+
+                    <%-- Alerts start --%>
+                    <div class="row m-3 justify-content-center mt-5">
+                        <div class="col text-center">
+                            <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblFail" role="alert" Visible="false">
+                                Could not add resident and/or house to the database
                             </asp:Label>
-                            <asp:Label runat="server" class="alert alert-danger" ID="lblFail" role="alert" Visible="false">
-                                Could not add resident to the database
+                            <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
+                                Resident profile already exists!
                             </asp:Label>
                         </div>
                     </div>
+                    <%-- Alerts end --%>
                 </div>
             </div>
         </div>

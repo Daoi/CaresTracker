@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="CHWList.aspx.cs" Inherits="CapstoneUI.CHWList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="CHWList.aspx.cs" Inherits="CapstoneUI.CHWList" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid" style="background-color: #157CB6;">
@@ -22,11 +22,12 @@
                                     <asp:Button ID="btnViewWorker" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View this Worker" OnClick="btnViewWorker_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" />
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" />
+                            <asp:BoundField DataField="UserFirstName" HeaderText="First Name" />
+                            <asp:BoundField DataField="UserLastName" HeaderText="Last Name" />
                             <asp:BoundField DataField="Username" HeaderText="Username" />
                             <asp:BoundField DataField="UserEmail" HeaderText="Email " />
                             <asp:BoundField DataField="UserPhoneNumber" HeaderText="Phone" />
+                            <asp:BoundField DataField="OrganizationName" HeaderText="Organization" />
                         </Columns>
                     </asp:GridView>
                 </div>

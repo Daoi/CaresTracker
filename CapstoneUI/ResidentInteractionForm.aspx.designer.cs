@@ -40,6 +40,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton meetingInfo;
         
         /// <summary>
+        /// icErrorMeetingInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorMeetingInfo;
+        
+        /// <summary>
         /// residentHealth control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton residentHealth;
+        
+        /// <summary>
+        /// icErrorResidentHealth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorResidentHealth;
         
         /// <summary>
         /// services control.
@@ -58,6 +76,24 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton services;
         
         /// <summary>
+        /// vaccineInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton vaccineInfo;
+        
+        /// <summary>
+        /// icErrorVaxInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorVaxInfo;
+        
+        /// <summary>
         /// otherInfo control.
         /// </summary>
         /// <remarks>
@@ -65,6 +101,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton otherInfo;
+        
+        /// <summary>
+        /// icErrorActionPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorActionPlan;
         
         /// <summary>
         /// lnkBtnSave control.
@@ -76,6 +121,33 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton lnkBtnSave;
         
         /// <summary>
+        /// lnkBtnEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtnEdit;
+        
+        /// <summary>
+        /// icoEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icoEdit;
+        
+        /// <summary>
+        /// lblSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSave;
+        
+        /// <summary>
         /// lnkBtnHome control.
         /// </summary>
         /// <remarks>
@@ -83,6 +155,24 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkBtnHome;
+        
+        /// <summary>
+        /// warningHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl warningHome;
+        
+        /// <summary>
+        /// lblHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHome;
         
         /// <summary>
         /// pnlResidentInfoForm control.
@@ -148,15 +238,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbEmail;
         
         /// <summary>
-        /// tbDoC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDoC;
-        
-        /// <summary>
         /// pnlHousingInfoForm control.
         /// </summary>
         /// <remarks>
@@ -220,6 +301,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Panel pnlMeetingInfoForm;
         
         /// <summary>
+        /// lblErrorMeetingInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMeetingInfo;
+        
+        /// <summary>
         /// ddlMeetingType control.
         /// </summary>
         /// <remarks>
@@ -238,6 +328,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbLocation;
         
         /// <summary>
+        /// tbDoC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDoC;
+        
+        /// <summary>
         /// pnlResidentHealthForm control.
         /// </summary>
         /// <remarks>
@@ -247,130 +346,139 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Panel pnlResidentHealthForm;
         
         /// <summary>
-        /// cbShortnessOfBreath control.
+        /// lblErrorSymptoms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbShortnessOfBreath;
+        protected global::System.Web.UI.WebControls.Label lblErrorSymptoms;
         
         /// <summary>
-        /// cbNausea control.
+        /// cbShortnessOfBreath_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbNausea;
+        protected global::System.Web.UI.WebControls.CheckBox cbShortnessOfBreath_1;
         
         /// <summary>
-        /// cbFatigue control.
+        /// cbNausea_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbFatigue;
+        protected global::System.Web.UI.WebControls.CheckBox cbNausea_2;
         
         /// <summary>
-        /// cbAches control.
+        /// cbFatigue_3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAches;
+        protected global::System.Web.UI.WebControls.CheckBox cbFatigue_3;
         
         /// <summary>
-        /// cbHeadaches control.
+        /// cbAches_4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbHeadaches;
+        protected global::System.Web.UI.WebControls.CheckBox cbAches_4;
         
         /// <summary>
-        /// cbSoreThroat control.
+        /// cbHeadaches_5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbSoreThroat;
+        protected global::System.Web.UI.WebControls.CheckBox cbHeadaches_5;
         
         /// <summary>
-        /// cbTasteOrSmell control.
+        /// cbSoreThroat_6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTasteOrSmell;
+        protected global::System.Web.UI.WebControls.CheckBox cbSoreThroat_6;
         
         /// <summary>
-        /// cbCongestion control.
+        /// cbTasteOrSmell_7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbCongestion;
+        protected global::System.Web.UI.WebControls.CheckBox cbTasteOrSmell_7;
         
         /// <summary>
-        /// cbCough control.
+        /// cbCongestion_8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbCough;
+        protected global::System.Web.UI.WebControls.CheckBox cbCongestion_8;
         
         /// <summary>
-        /// cbConfusion control.
+        /// cbCough_9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbConfusion;
+        protected global::System.Web.UI.WebControls.CheckBox cbCough_9;
         
         /// <summary>
-        /// cbTroubleBreathing control.
+        /// cbConfusion_10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTroubleBreathing;
+        protected global::System.Web.UI.WebControls.CheckBox cbConfusion_10;
         
         /// <summary>
-        /// cbBlueLips control.
+        /// cbTroubleBreathing_11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbBlueLips;
+        protected global::System.Web.UI.WebControls.CheckBox cbTroubleBreathing_11;
         
         /// <summary>
-        /// cbInabilityToAwake control.
+        /// cbBlueLips_12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbInabilityToAwake;
+        protected global::System.Web.UI.WebControls.CheckBox cbBlueLips_12;
         
         /// <summary>
-        /// cbChestPain control.
+        /// cbInabilityToAwake_13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbChestPain;
+        protected global::System.Web.UI.WebControls.CheckBox cbInabilityToAwake_13;
+        
+        /// <summary>
+        /// cbChestPain_14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbChestPain_14;
         
         /// <summary>
         /// tbSymptomDates control.
@@ -380,6 +488,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbSymptomDates;
+        
+        /// <summary>
+        /// lblErrorCOVIDTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorCOVIDTest;
         
         /// <summary>
         /// ddlTestResult control.
@@ -445,6 +562,78 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.CheckBoxList cblCompletedServices;
         
         /// <summary>
+        /// btnUpdateServices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateServices;
+        
+        /// <summary>
+        /// lblUpdateServices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUpdateServices;
+        
+        /// <summary>
+        /// pnlVaccineForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlVaccineForm;
+        
+        /// <summary>
+        /// lblErrorVaccine control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorVaccine;
+        
+        /// <summary>
+        /// ddlVaccineInterest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVaccineInterest;
+        
+        /// <summary>
+        /// ddlVaccineEligibility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVaccineEligibility;
+        
+        /// <summary>
+        /// divVaccineAppointment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVaccineAppointment;
+        
+        /// <summary>
+        /// tbVaccineAppointmentDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbVaccineAppointmentDate;
+        
+        /// <summary>
         /// pnlOtherForm control.
         /// </summary>
         /// <remarks>
@@ -454,6 +643,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Panel pnlOtherForm;
         
         /// <summary>
+        /// lblErrorActionPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorActionPlan;
+        
+        /// <summary>
         /// nextSteps control.
         /// </summary>
         /// <remarks>
@@ -461,5 +659,41 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea nextSteps;
+        
+        /// <summary>
+        /// lblModalError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModalError;
+        
+        /// <summary>
+        /// taEditReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea taEditReason;
+        
+        /// <summary>
+        /// btnEditCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditCancel;
+        
+        /// <summary>
+        /// btnEditSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditSubmit;
     }
 }

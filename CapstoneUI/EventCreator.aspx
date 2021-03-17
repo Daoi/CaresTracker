@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CapstoneUI.EventCreator" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CapstoneUI.EventCreator" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid backgroundblue">
@@ -23,13 +23,6 @@
                 <asp:TextBox ID="txtEventTimeStart" placeholder="Event Time Start" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
                 <asp:Label ID="lblEventEndTime" runat="server" Text="End Time:"></asp:Label>
                 <asp:TextBox ID="txtEventTimeEnd" placeholder="Event Time End" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
-                <asp:DropDownList ID="ddlNumberAttending" CssClass="form-control" runat="server">
-                    <asp:ListItem Value="Select Attendee Range">Select Attendance Range</asp:ListItem>
-                    <asp:ListItem Value="1 to 25">1 to 25</asp:ListItem>
-                    <asp:ListItem Value="26 to 50">26 to 50</asp:ListItem>
-                    <asp:ListItem Value="51 to 75">51 to 75</asp:ListItem>
-                    <asp:ListItem Value="76 to 100">76 to 100</asp:ListItem>
-                </asp:DropDownList><br />
                 <h5>Select Health Workers to Host Event</h5>
                 <div id="userCBLDiv" class="DataboundCBLOverflow row">
                     <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal">
@@ -89,12 +82,12 @@
             </asp:UpdatePanel>
             <div>
                 <h5>Event Description and Notes</h5>
-                <textarea class="w-100" id="TextArea1" rows="6"></textarea>
+                <textarea class="w-100" id="txtDescription" rows="6" runat="server"></textarea>
             </div>
 
             <br />
             <br />
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-lg mb-1" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-lg mb-1" OnClick="btnSubmit_Click" />
         </div>
     </div>
 </asp:Content>

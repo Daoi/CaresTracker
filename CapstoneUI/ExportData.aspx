@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="ExportData.aspx.cs" Inherits="CapstoneUI.ExportData" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="ExportData.aspx.cs" Inherits="CapstoneUI.ExportData" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="loginContainer justify-content-center d-flex py-5">

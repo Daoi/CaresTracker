@@ -37,18 +37,19 @@ namespace CapstoneUI
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
                 {
                     Resident res = Session["Resident"] as Resident;
-                    hfResidentDetails.Value = $"{res.FirstName} {res.LastName} {res.Home.Address}";
+                    hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName} {res.Home.Address}";
+                }
+                else if (Session["Worker"] != null && HttpContext.Current.Request.Url.ToString().Contains("CHWManagement"))
+                {
+                    CARESUser worker = Session["Worker"] as CARESUser;
+                    hfResidentDetails.Value = $"{worker.UserFirstName} {worker.UserLastName}";
                 }
 
 
                 if (user.UserType == "C")
                 {
-                    GetAllInteractionsByWorkerID gi = new  GetAllInteractionsByWorkerID();
+                    GetAllInteractionsByWorkerID gi = new GetAllInteractionsByWorkerID();
                     dt = gi.RunCommand(user.UserID);
-                    //Remove the CHW name columns as they can only see their own
-                    dt.Columns.Remove("FirstName1");
-                    dt.Columns.Remove("LastName1");
-
                     gvInteractionList.DataSource = dt;
 
                 }
@@ -100,20 +101,13 @@ namespace CapstoneUI
             //Recreate the Datarow the GVR is bound to
             DataRow dr = dt.Rows[row.DataItemIndex];
 
-
-
             //Create resident
-            GetResidentByID gr = new GetResidentByID();
-            DataRow resDr = gr.RunCommand(int.Parse(dr["ResidentID"].ToString())).Rows[0];
             Resident res = new Resident(dr);
-
             Session["Resident"] = res;
 
             //Create Interaction
             Interaction interaction = new Interaction(dr);
             Session["Interaction"] = interaction;
-
-
 
             Server.Transfer("ResidentInteractionForm.aspx");
         }

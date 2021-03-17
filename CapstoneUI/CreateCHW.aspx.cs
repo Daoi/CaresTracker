@@ -1,118 +1,160 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using CapstoneUI.Utilities;
 using CapstoneUI.DataAccess.DataAccessors;
-using System.Data;
-using System.Data.SqlClient;
-using CapstoneUI.Utilities;
 using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
     public partial class CreateCHW : System.Web.UI.Page
     {
+        CARESUser user;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            user = Session["User"] as CARESUser;
+            if (user.UserType == "T")
             {
-                divSelectSupervisor.Visible = false;
-                GetAllCHW chws = new GetAllCHW();
-                DataTable ds = chws.RunCommand();
-                for(int i = ds.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow record = ds.Rows[i];
-                    if (record["UserType"].ToString() != "A")
-                    {
-                        ds.Rows[i].Delete();
-                    }
-                }
-                ddlSupervisor.DataSource = ds;
-                ddlSupervisor.DataTextField = "FirstName";
-                ddlSupervisor.DataValueField = "UserID";
-                ddlSupervisor.DataBind();
+                ddlOrganizationDiv.Visible = true;
+            }
+            else
+            {
+                ddlAccountType.Items[1].Enabled = false;
+                ddlOrganizationDiv.Visible = false;
             }
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
+        }
+
+        public bool ValidateFields()
+        {
+            if (Validation.IsEmpty(txtUsername.Text) || Validation.IsEmpty(txtFirstName.Text) || Validation.IsEmpty(txtLastName.Text) ||
+            Validation.IsEmpty(txtEmail.Text) || Validation.IsEmpty(txtPhoneNumber.Text))
+            {
+                lblError.Text = "Fill out all fields";
+                return false;
+            }
+
+            if (!Validation.IsAlphanumeric(txtUsername.Text))
+            {
+                lblError.Text = "Incorrect input type in username field";
+                return false;
+            }
+
+            if (!Validation.IsLetters(txtFirstName.Text) || !Validation.IsLetters(txtLastName.Text))
+            {
+                lblError.Text = "Sorry we can only accept letters for first and last names";
+                return false;
+            }
+
+            if (!Validation.IsEmail(txtEmail.Text))
+            {
+                lblError.Text = "Please enter a valid email address";
+                return false;
+            }
+
+            if (!Validation.IsPhoneNumber("+1" + txtPhoneNumber.Text))
+            {
+                lblError.Text = "Please enter a valid phone number";
+                return false;
+            }
+
+            if (user.UserType == "T" && ddlOrganization.SelectedValue == "default")
+            {
+                lblError.Text = "Make sure to select an organization";
+                return false;
+            }
+
+            if (ddlAccountType.SelectedValue == "default")
+            {
+                lblError.Text = "Make sure to select an account type";
+                return false;
+            }
+
+            return true;
         }
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
-            List<string> values = new List<string>();
-            values.Add(txtUsername.Text);
-            values.Add(txtFirstName.Text);
-            values.Add(txtLastName.Text);
-            values.Add(txtEmail.Text);
-
-            string phoneNumber = "+1" + txtPhoneNumber.Text;
-            values.Add(phoneNumber);
-            string signedInUserName = ((CARESUser)Session["User"]).Username;
-
-            AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
-
-            try
+            if (ValidateFields())
             {
-                if (ddlIsSupervisor.SelectedValue == "yes")
-                {
-                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 1);
+                List<string> values = new List<string>();
+                values.Add(txtUsername.Text);
+                values.Add(txtFirstName.Text);
+                values.Add(txtLastName.Text);
+                values.Add(txtEmail.Text);
+                string phoneNumber = "+1" + txtPhoneNumber.Text;
+                values.Add(phoneNumber);
+                string signedInUserName = user.Username;
+                values.Add(ddlAccountType.SelectedValue);
 
-                    if (res != null)
-                    {
-                        values.Add("A");
-                        values.Add(ddlRegion.SelectedValue);
-                        values.Add(signedInUserName);
-                        values.Add(null);
-                        CHWWriter newCHW = new CHWWriter(values);
-                        newCHW.ExecuteCommand();
-                        Response.Write("<script>alert('Admin/Supervisor inserted successfully.')</script>");
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
-                    }
+                if (user.UserType == "T")
+                {
+                    values.Add(ddlOrganization.SelectedValue);
                 }
                 else
                 {
-                    var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 0);
-
-                    if (res != null)
-                    {
-                        values.Add("C");
-                        values.Add(ddlRegion.SelectedValue);
-                        values.Add(signedInUserName);
-                        values.Add(ddlSupervisor.SelectedValue);
-                        CHWWriter newCHW = new CHWWriter(values);
-                        newCHW.ExecuteCommand();
-                        Response.Write("<script>alert('CHW inserted successfully.')</script>");
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('An unknown error occurred. Please try again later.')</script>");
-                    }
+                    values.Add(user.OrganizationID.ToString());
                 }
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert(" + ex.ToString() + ")</script>");
-            }
-        }
 
-        protected void ddlIsSupervisor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(ddlIsSupervisor.SelectedValue == "no")
-            {
-                divSelectSupervisor.Visible = true;
-            }
-            else
-            {
-                divSelectSupervisor.Visible = false;
+                values.Add(signedInUserName);
+
+                AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
+
+                try
+                {
+                    if (ddlAccountType.SelectedValue == "A" || ddlAccountType.SelectedValue == "S")
+                    {
+                        var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 1);
+
+                        if (res != null)
+                        {
+                            CHWWriter newCHW = new CHWWriter(values);
+                            newCHW.ExecuteCommand();
+                        }
+                        else
+                        {
+                            throw new TimeoutException("An unknown error occurred. Please try again later.");
+                        }
+                    }
+                    else if (ddlAccountType.SelectedValue == "C")
+                    {
+                        var res = await man.CreateUserAsync(txtUsername.Text, txtEmail.Text, 0);
+
+                        if (res != null)
+                        {
+                            CHWWriter newCHW = new CHWWriter(values);
+                            newCHW.ExecuteCommand();
+                        }
+                        else
+                        {
+                            throw new TimeoutException("An unknown error occurred. Please try again later.");
+                        }
+                    }
+
+                    // creation successful, redirect
+                    Session["Worker"] = new CARESUser()
+                    {
+                        Username = txtUsername.Text,
+                        UserFirstName = txtFirstName.Text,
+                        UserLastName = txtLastName.Text,
+                        UserEmail = txtEmail.Text,
+                        UserPhoneNumber = txtPhoneNumber.Text,
+                        UserStatus = "Active",
+                        UserType = ddlAccountType.SelectedValue,
+                        OrganizationName = ddlOrganization.SelectedValue == "default" ?
+                            user.OrganizationName : ddlOrganization.SelectedItem.Text,
+                        LastLogin = "N/A"
+                    };
+
+                    Response.Redirect("CHWManagement.aspx");
+                }
+                catch (Exception ex)
+                {
+                    lblError.Text = ex.ToString();
+                }
             }
         }
     }
