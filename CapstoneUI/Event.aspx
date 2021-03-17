@@ -47,6 +47,14 @@
                             </div>
                             <div class="row m-3">
                                 <div class="col-3 p-0">
+                                    <b>Event Date:</b>
+                                </div>
+                                <div class="col p-0">
+                                    <asp:TextBox ID="txtEventDate" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <div class="col-3 p-0">
                                     <b>Start Time:</b>
                                 </div>
                                 <div class="col p-0">

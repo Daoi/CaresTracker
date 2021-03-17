@@ -29,6 +29,7 @@ namespace CapstoneUI
             lblEventName.Text = theEvent.EventName;
             txtEventType.Text = theEvent.EventType;
             txtLocation.Text = theEvent.EventLocation;
+            txtEventDate.Text = theEvent.EventDate;
             txtStartTime.Text = theEvent.EventStartTime;
             txtEndTime.Text = theEvent.EventEndTime;
 

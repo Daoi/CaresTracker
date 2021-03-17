@@ -76,6 +76,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtLocation;
         
         /// <summary>
+        /// txtEventDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEventDate;
+        
+        /// <summary>
         /// txtStartTime control.
         /// </summary>
         /// <remarks>
