@@ -48,12 +48,8 @@ namespace CapstoneUI
 
                 if (user.UserType == "C")
                 {
-                    GetAllInteractionsByWorkerID gi = new  GetAllInteractionsByWorkerID();
+                    GetAllInteractionsByWorkerID gi = new GetAllInteractionsByWorkerID();
                     dt = gi.RunCommand(user.UserID);
-                    //Remove the CHW name columns as they can only see their own
-                    dt.Columns.Remove("UserFirstName");
-                    dt.Columns.Remove("UserLastName");
-
                     gvInteractionList.DataSource = dt;
 
                 }
