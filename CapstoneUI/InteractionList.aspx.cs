@@ -39,7 +39,7 @@ namespace CapstoneUI
                     Resident res = Session["Resident"] as Resident;
                     hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName} {res.Home.Address}";
                 }
-                else if (HttpContext.Current.Request.Url.ToString().Contains("CHWManagement"))
+                else if (Session["Worker"] != null && HttpContext.Current.Request.Url.ToString().Contains("CHWManagement"))
                 {
                     CARESUser worker = Session["Worker"] as CARESUser;
                     hfResidentDetails.Value = $"{worker.UserFirstName} {worker.UserLastName}";
