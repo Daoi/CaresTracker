@@ -51,5 +51,42 @@ namespace CapstoneUI
         {
             Response.Redirect("EventList.aspx");
         }
+
+        private void EnableDisableControls()
+        {
+            foreach (Control c in form.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox temp = c as TextBox;
+                    temp.Enabled = !temp.Enabled;
+                }
+            }
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            EnableDisableControls();
+            btnEdit.Visible = false;
+            btnSave.Visible = true;
+            btnCancel.Visible = true;
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            EnableDisableControls();
+            btnEdit.Visible = true;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            EnableDisableControls();
+            FillEventInfo();
+            btnEdit.Visible = true;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
+        }
     }
 }
