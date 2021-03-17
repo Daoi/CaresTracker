@@ -25,7 +25,7 @@
                             <label>First Name: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-7">
-                            <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
 
                     </div>
@@ -43,7 +43,7 @@
                             <label>Username: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtUsername" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row m-3 modal-header">
@@ -69,7 +69,7 @@
                             <label>Phone Number: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPhoneNumber" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row">
@@ -82,7 +82,7 @@
                             <label>Organization:</label>
                         </div>
                         <div class="col-7">
-                            <asp:DropDownList ID="ddlOrganization" runat="server">
+                            <asp:DropDownList ID="ddlOrganization" CssClass="form-control" runat="server">
                                 <asp:ListItem Value="default" Selected>Select an option</asp:ListItem>
                                 <asp:ListItem Value="1">Temple</asp:ListItem>
                                 <asp:ListItem Value="2">Drexel</asp:ListItem>
@@ -95,7 +95,7 @@
                             <label>Account Type:</label>
                         </div>
                         <div class="col-7">
-                            <asp:DropDownList ID="ddlAccountType" runat="server">
+                            <asp:DropDownList ID="ddlAccountType" CssClass="form-control" runat="server">
                                 <asp:ListItem Value="default" Selected>Select an option</asp:ListItem>
                                 <asp:ListItem Value="A">Partner Admin</asp:ListItem>
                                 <asp:ListItem Value="S">Supervisor</asp:ListItem>
