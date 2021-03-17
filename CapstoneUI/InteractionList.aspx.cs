@@ -101,20 +101,13 @@ namespace CapstoneUI
             //Recreate the Datarow the GVR is bound to
             DataRow dr = dt.Rows[row.DataItemIndex];
 
-
-
             //Create resident
-            GetResidentByID gr = new GetResidentByID();
-            DataRow resDr = gr.RunCommand(int.Parse(dr["ResidentID"].ToString())).Rows[0];
             Resident res = new Resident(dr);
-
             Session["Resident"] = res;
 
             //Create Interaction
             Interaction interaction = new Interaction(dr);
             Session["Interaction"] = interaction;
-
-
 
             Server.Transfer("ResidentInteractionForm.aspx");
         }
