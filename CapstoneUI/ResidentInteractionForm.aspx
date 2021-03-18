@@ -219,11 +219,13 @@
                         <asp:ListItem Value="False">Not interested in vaccine</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
-                    <h2>Vaccine Eligibility</h2>
+                    <h2>Vaccine Phase</h2>
                     <asp:DropDownList ID="ddlVaccineEligibility" CssClass="inputDropDown" runat="server">
                         <asp:ListItem>Select Eligibility</asp:ListItem>
-                        <asp:ListItem Value="True">Eligible for priority registration</asp:ListItem>
-                        <asp:ListItem Value="False">Not Eligible</asp:ListItem>
+                        <asp:ListItem Value="0">Phase1A</asp:ListItem>
+                        <asp:ListItem Value="1">Phase1B</asp:ListItem>
+                        <asp:ListItem Value="2">Phase1C</asp:ListItem>
+                        <asp:ListItem Value="3">Phase2</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
                     <div runat="server" id="divVaccineAppointment">

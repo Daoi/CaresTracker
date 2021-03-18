@@ -131,9 +131,11 @@
                         <asp:Label ID="lblVaccinePhase" CssClass="labels" runat="server" Text="Vaccine Phase"></asp:Label>
                         <br />
                         <asp:DropDownList ID="ddlVaccinePhases" runat="server">
-                            <asp:ListItem>Phase 1</asp:ListItem>
-                            <asp:ListItem>Phase 2</asp:ListItem>
-                            <asp:ListItem>Phase 3</asp:ListItem>
+                            <asp:ListItem Value="0">Phase1A</asp:ListItem>
+                            <asp:ListItem Value="1">Phase1B</asp:ListItem>
+                            <asp:ListItem Value="2">Phase1C</asp:ListItem>
+                            <asp:ListItem Value="3">Phase2</asp:ListItem>
+                            <asp:ListItem Value="4">No Information</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                     <div class="mt-3">

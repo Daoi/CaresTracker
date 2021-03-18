@@ -15,12 +15,12 @@ namespace CapstoneUI.DataAccess.DataAccessors.ResidentAccessors
             CommandType = CommandType.StoredProcedure;
         }
 
-        public int ExecuteCommand(int id, bool interest, bool eligibility, string date)
+        public int ExecuteCommand(int id, bool interest, int phase, string date)
         {
             Parameters = new MySqlParameter[] {
                 new MySqlParameter("ResidentID", id),
                 new MySqlParameter("VaccineInterest", interest),
-                new MySqlParameter("VaccineEligibility", eligibility),
+                new MySqlParameter("VaccineEligibility", phase),
                 new MySqlParameter("VaccineAppointmentDate", date) };
 
             ExecuteQuery eq = new ExecuteQuery();
