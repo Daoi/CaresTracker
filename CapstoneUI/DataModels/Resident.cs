@@ -7,13 +7,6 @@ using CapstoneUI.DataAccess.DataAccessors;
 
 namespace CapstoneUI.DataModels
 {
-    enum VaccinePhases
-    {
-        Phase1A,
-        Phase1B,
-        Phase1C,
-        Phase2
-    }
     public class Resident
     {
         public int ResidentID { get; set; }
