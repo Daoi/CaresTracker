@@ -124,6 +124,41 @@
                             <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><asp:TextBox ID="tbRegionName" placeholder="Region" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <h4>Vaccine Info</h4>
+                    </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblVaccinePhase" CssClass="labels" runat="server" Text="Vaccine Phase"></asp:Label>
+                        <br />
+                        <asp:DropDownList ID="ddlVaccinePhases" runat="server">
+                            <asp:ListItem Value="0">Phase1A</asp:ListItem>
+                            <asp:ListItem Value="1">Phase1B</asp:ListItem>
+                            <asp:ListItem Value="2">Phase1C</asp:ListItem>
+                            <asp:ListItem Value="3">Phase2</asp:ListItem>
+                            <asp:ListItem Value="4">No Information</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="mt-3">
+                        <asp:Label ID="lblVaccineStatus" CssClass="labels" runat="server" Text="Vaccine Status"></asp:Label>
+                        <br />
+                        <asp:DropDownList ID="ddlVaccineStatus" runat="server">
+                            <asp:ListItem>No Information</asp:ListItem>
+                            <asp:ListItem>Not Interested</asp:ListItem>
+                            <asp:ListItem>Interested, not scheduled</asp:ListItem>
+                            <asp:ListItem>Appointment Scheduled</asp:ListItem>
+                            <asp:ListItem>Vaccinated</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div id="divAppointmentInfo"  runat="server" class="col-md-12 mt-3">
+                        <div class="row">
+                            <asp:Label ID="lblVaccineAppointment" CssClass="labels" runat="server" Text="Appointment Date"></asp:Label><br />
+                            <asp:TextBox ID="tbAppointmentDate" placeholder="Region" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="row">
+                            <asp:Label ID="lblAppointmentTime" CssClass="labels" runat="server" Text="Appointment Time"></asp:Label>
+                            <asp:TextBox ID="tbAppointmentTime" TextMode="Time" CssClass="form-control" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
