@@ -122,8 +122,8 @@
                     <h2>Housing Information</h2>
                     <asp:DropDownList ID="ddlHousing" CssClass="form-control mt-4" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
                         <asp:ListItem Value="None Selected">Select Housing Type</asp:ListItem>
-                        <asp:ListItem Value="divHouse">Housing Choice Voucher</asp:ListItem>
-                        <asp:ListItem Value="divDevelopmentUnit">Housing Development</asp:ListItem>
+                        <asp:ListItem Value="House">Housing Choice Voucher</asp:ListItem>
+                        <asp:ListItem Value="DevelopmentUnit">Housing Development</asp:ListItem>
                     </asp:DropDownList><br />
                     <%-- Universal Info Start --%>
                     <div class="eventControlBG">
