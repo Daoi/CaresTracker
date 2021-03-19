@@ -284,6 +284,8 @@
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteraction.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionServices.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionSymptoms.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateHouseID.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateUserStatus.cs" />
@@ -352,7 +354,6 @@
     <Compile Include="DataModels\Resident.cs" />
     <Compile Include="DataModels\Service.cs" />
     <Compile Include="DataModels\Symptom.cs" />
-    <Compile Include="DataModels\Vaccination.cs" />
     <Compile Include="Event.aspx.cs">
       <DependentUpon>Event.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
