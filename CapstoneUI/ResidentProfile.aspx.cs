@@ -1,4 +1,5 @@
 ﻿using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 using System;
@@ -21,11 +22,35 @@ namespace CapstoneUI
             {
                 currentRes = (Resident)Session["Resident"];
             }
+            else
+            {
+                Response.Redirect("Homepage.aspx");
+            }
 
-            if (!IsPostBack && Session["Resident"] != null)
+            if (!IsPostBack)
             {
                 InitializeProfileValues();
-                DisableControls();
+                ToggleControls(); //Set page to disabled status
+                if (Session["DevelopmentDT"] == null)
+                {
+                    GetAllDevelopments GAD = new GetAllDevelopments();
+                    DataTable developmentDT = GAD.ExecuteCommand();
+                    // Bind to drop down list
+                    ddlHousingDevelopment.DataSource = developmentDT;
+                    ddlHousingDevelopment.DataValueField = "DevelopmentID";
+                    ddlHousingDevelopment.DataTextField = "DevelopmentName";
+                    ddlHousingDevelopment.DataBind();
+
+                }
+                else
+                {
+                    DataTable developmentDT = (DataTable)Session["DevelopmentDT"];
+                    ddlHousingDevelopment.DataSource = developmentDT;
+                    ddlHousingDevelopment.DataValueField = "DevelopmentID";
+                    ddlHousingDevelopment.DataTextField = "DevelopmentName";
+                    ddlHousingDevelopment.DataBind();
+
+                }
             }
         }
 
@@ -39,15 +64,16 @@ namespace CapstoneUI
         {
             //Housing Stuff
             tbAddress.Text = currentRes.Home.Address;
-            tbDevelopment.Text = currentRes.HousingDevelopment != null ? currentRes.HousingDevelopment.DevelopmentName : "Resident does not live in a development.";
-
-            tbRegionName.Text = currentRes.Home.RegionName == null ? "Region not implemented yet" : currentRes.Home.RegionName.ToString();
+            ddlHousingDevelopment.SelectedValue = currentRes.HousingDevelopment == null ? "-1" : currentRes.HousingDevelopment.DevelopmentID.ToString();
+            tbUnitNumber.Text = currentRes.Home.UnitNumber;
+            ddlRegion.SelectedValue = currentRes.Home.RegionID.ToString();
+            tbZipcode.Text = currentRes.Home.ZipCode;
             //# of occupants still needed?
             //Resident Stuff
             tbFirstName.Text = currentRes.ResidentFirstName;
             tbLastName.Text = currentRes.ResidentLastName;
             tbDoB.Text = TextModeDateFormatter.Format(currentRes.DateOfBirth);
-            tbPhone.Text = currentRes.ResidentPhoneNumber;
+            tbPhone.Text = currentRes.ResidentPhoneNumber.Insert(3, "-").Insert(7, "-");
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
             //Family size still needed?
@@ -118,10 +144,13 @@ namespace CapstoneUI
 
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
-
+            ToggleControls(); //Enable controls for editing
+            btnSaveEdits.Visible = true;
+            btnEditProfile.Visible = false;
         }
 
-        private void DisableControls(Control control = null)
+        //Toggle all non-button controls enabled status 
+        private void ToggleControls(Control control = null)
         {
             List<Control> controls = control != null ? control.Controls.OfType<Control>().ToList() : Page.Controls.OfType<Control>().ToList();
 
@@ -130,17 +159,95 @@ namespace CapstoneUI
                 Type type = c.GetType();
                 PropertyInfo prop = type.GetProperty("Enabled");
 
-                if (prop != null && type != typeof(Button))
+                if (prop != null && type != typeof(Button) && type != typeof(LinkButton))
                 {
-                    prop.SetValue(c, false, null);
+                    bool flag = (bool)prop.GetValue(c);
+                    prop.SetValue(c, !flag, null);
                 }
-
+                //Repeat on child controls(E.g. checkbox list)
                 if (c.Controls.Count > 0)
                 {
-                    this.DisableControls(c);
+                    ToggleControls(c);
                 }
             }
         }
 
+        protected void btnSaveEdits_Click(object sender, EventArgs e)
+        {
+
+            Resident res = new Resident();
+            //Resident Info
+            res.ResidentID = currentRes.ResidentID;
+            res.ResidentPhoneNumber = tbPhone.Text.Replace("-", "");
+            res.ResidentEmail = tbEmail.Text;
+            res.ResidentFirstName = tbFirstName.Text;
+            res.ResidentLastName = tbLastName.Text;
+            res.DateOfBirth = tbDoB.Text;
+            res.Gender = rblGender.SelectedValue;
+            res.Race = ddlRace.SelectedValue;
+            res.RelationshipToHoH = ddlHoH.SelectedValue;
+            res.VaccineEligibility = int.Parse(ddlVaccinePhases.SelectedValue);
+            res.PreferredLanguage = ddlLanguage.SelectedItem.Text;
+            int interest = ddlVaccineStatus.SelectedIndex;
+            if (interest == 0)
+            {
+                res.VaccineInterest = null; //No info
+            }
+            else if(interest == 1)
+            {
+                res.VaccineInterest = false; //Not interested
+            }
+            else
+            {
+                res.VaccineInterest = true; //Interested or vaccinated
+            }
+            res.VaccineAppointmentDate = tbAppointmentDate.Text;
+            //Housing Info
+            //House changed
+            if (!currentRes.Home.Address.Equals(tbAddress.Text) || !currentRes.Home.UnitNumber.Equals(tbUnitNumber.Text))
+            {
+                res.Home = new House();
+                
+                res.Home.Address = tbAddress.Text;
+                res.Home.UnitNumber = tbUnitNumber.Text;
+                res.Home.RegionName = ddlRegion.SelectedItem.Text;
+                res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
+                res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
+                res.Home.ZipCode = tbZipcode.Text;
+
+                res.HousingDevelopment = new HousingDevelopment();
+                res.HousingDevelopment.DevelopmentID = res.Home.DevelopmentID;
+                res.HousingDevelopment.DevelopmentName = ddlHousingDevelopment.SelectedItem.Text;
+
+                AddHouse AH = new AddHouse(res.Home);
+                object AddHouseResult = AH.ExecuteCommand();
+
+                // Update Resident's HouseID to match new House
+                UpdateHouseID UHI = new UpdateHouseID();
+                UHI.ExecuteCommand(res.ResidentID, Convert.ToInt32(AddHouseResult));
+
+            }
+            else
+            {
+                res.Home = currentRes.Home;
+                res.HousingDevelopment = currentRes.HousingDevelopment;
+                res.HouseID = res.Home.HouseID;
+            }
+            Session["Resident"] = res;
+            //Update the resident values
+            try
+            {
+                new UpdateResident(res).ExecuteCommand();
+                ToggleControls();
+                btnEditProfile.Visible = true;
+                btnSaveEdits.Visible = false;
+            }
+            catch(Exception ex)
+            {
+                lblErrorMessage.Visible = true;
+                lblErrorMessage.Text = "Succesfully dropped table carestracker_db";
+            }
+            
+        }
     }
 }
