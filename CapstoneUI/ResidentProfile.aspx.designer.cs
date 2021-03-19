@@ -220,6 +220,24 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Button btnEditProfile;
         
         /// <summary>
+        /// btnSaveEdits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveEdits;
+        
+        /// <summary>
+        /// lblErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
+        
+        /// <summary>
         /// lblDevelopment control.
         /// </summary>
         /// <remarks>
@@ -229,13 +247,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Label lblDevelopment;
         
         /// <summary>
-        /// tbDevelopment control.
+        /// ddlHousingDevelopment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDevelopment;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHousingDevelopment;
         
         /// <summary>
         /// lblAddress control.
@@ -256,6 +274,42 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox tbAddress;
         
         /// <summary>
+        /// lblUnitNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUnitNumber;
+        
+        /// <summary>
+        /// tbUnitNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbUnitNumber;
+        
+        /// <summary>
+        /// lblZipcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblZipcode;
+        
+        /// <summary>
+        /// tbZipcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbZipcode;
+        
+        /// <summary>
         /// lblRegionName control.
         /// </summary>
         /// <remarks>
@@ -265,13 +319,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Label lblRegionName;
         
         /// <summary>
-        /// tbRegionName control.
+        /// ddlRegion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbRegionName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
         
         /// <summary>
         /// lblVaccinePhase control.
@@ -335,23 +389,5 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbAppointmentDate;
-        
-        /// <summary>
-        /// lblAppointmentTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAppointmentTime;
-        
-        /// <summary>
-        /// tbAppointmentTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAppointmentTime;
     }
 }
