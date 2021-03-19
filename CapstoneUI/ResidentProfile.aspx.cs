@@ -64,7 +64,7 @@ namespace CapstoneUI
         {
             //Housing Stuff
             tbAddress.Text = currentRes.Home.Address;
-            ddlHousingDevelopment.SelectedValue = currentRes.HousingDevelopment == null ? "-1" : currentRes.HousingDevelopment.DevelopmentID.ToString();
+            ddlHousingDevelopment.SelectedValue = currentRes.Home.DevelopmentID.ToString();
             tbUnitNumber.Text = currentRes.Home.UnitNumber;
             ddlRegion.SelectedValue = currentRes.Home.RegionID.ToString();
             tbZipcode.Text = currentRes.Home.ZipCode;
@@ -91,11 +91,12 @@ namespace CapstoneUI
                 else if(DateTime.Parse(currentRes.VaccineAppointmentDate) > DateTime.Now )
                 {
                     ddlVaccineStatus.SelectedIndex = 3; //Appointment scheduled and hasn't happened yet.
+                    tbAppointmentDate.Text = currentRes.VaccineAppointmentDate.ToString();
                 }
                 else //Should double check with vaccinated status
                 {
                     ddlVaccineStatus.SelectedIndex = 4; //Vaccinated
-                    divAppointmentInfo.Visible = false;
+                    tbAppointmentDate.Text = currentRes.VaccineAppointmentDate.ToString();
                 }
             }
             else if(flag == null)
@@ -203,36 +204,30 @@ namespace CapstoneUI
             }
             res.VaccineAppointmentDate = tbAppointmentDate.Text;
             //Housing Info
-            //House changed
-            if (!currentRes.Home.Address.Equals(tbAddress.Text) || !currentRes.Home.UnitNumber.Equals(tbUnitNumber.Text))
-            {
-                res.Home = new House();
+            res.Home = new House();
                 
-                res.Home.Address = tbAddress.Text;
-                res.Home.UnitNumber = tbUnitNumber.Text;
-                res.Home.RegionName = ddlRegion.SelectedItem.Text;
-                res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
-                res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
-                res.Home.ZipCode = tbZipcode.Text;
+            res.Home.Address = tbAddress.Text;
+            res.Home.UnitNumber = tbUnitNumber.Text;
+            res.Home.RegionName = ddlRegion.SelectedItem.Text;
+            res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
+            res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
+            res.Home.ZipCode = tbZipcode.Text;
 
+            if (res.Home.DevelopmentID != -1) //If not HCV
+            {
                 res.HousingDevelopment = new HousingDevelopment();
                 res.HousingDevelopment.DevelopmentID = res.Home.DevelopmentID;
                 res.HousingDevelopment.DevelopmentName = ddlHousingDevelopment.SelectedItem.Text;
-
-                AddHouse AH = new AddHouse(res.Home);
-                object AddHouseResult = AH.ExecuteCommand();
-
-                // Update Resident's HouseID to match new House
-                UpdateHouseID UHI = new UpdateHouseID();
-                UHI.ExecuteCommand(res.ResidentID, Convert.ToInt32(AddHouseResult));
-
             }
-            else
-            {
-                res.Home = currentRes.Home;
-                res.HousingDevelopment = currentRes.HousingDevelopment;
-                res.HouseID = res.Home.HouseID;
-            }
+
+
+            AddHouse AH = new AddHouse(res.Home);
+            object AddHouseResult = AH.ExecuteCommand();
+
+            // Update Resident's HouseID to match new House
+            UpdateHouseID UHI = new UpdateHouseID();
+            UHI.ExecuteCommand(res.ResidentID, Convert.ToInt32(AddHouseResult));
+
             Session["Resident"] = res;
             //Update the resident values
             try
@@ -245,7 +240,7 @@ namespace CapstoneUI
             catch(Exception ex)
             {
                 lblErrorMessage.Visible = true;
-                lblErrorMessage.Text = "Succesfully dropped table carestracker_db";
+                lblErrorMessage.Text = $"Failed to update profile: {ex.Message}";
             }
             
         }
