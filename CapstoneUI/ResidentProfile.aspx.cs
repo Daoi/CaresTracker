@@ -2,8 +2,12 @@
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace CapstoneUI
 {
@@ -21,6 +25,7 @@ namespace CapstoneUI
             if (!IsPostBack && Session["Resident"] != null)
             {
                 InitializeProfileValues();
+                DisableControls();
             }
         }
 
@@ -82,5 +87,32 @@ namespace CapstoneUI
         {
             Server.Transfer("ResidentInteractionForm.aspx");
         }
+
+        protected void btnEditProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DisableControls(Control control = null)
+        {
+            List<Control> controls = control != null ? control.Controls.OfType<Control>().ToList() : Page.Controls.OfType<Control>().ToList();
+
+            foreach (Control c in controls)
+            {
+                Type type = c.GetType();
+                PropertyInfo prop = type.GetProperty("Enabled");
+
+                if (prop != null && type != typeof(Button))
+                {
+                    prop.SetValue(c, false, null);
+                }
+
+                if (c.Controls.Count > 0)
+                {
+                    this.DisableControls(c);
+                }
+            }
+        }
+
     }
 }

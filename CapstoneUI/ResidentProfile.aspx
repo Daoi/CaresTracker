@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <asp:Button ID="btnEditProfile" CssClass="btn btn-primary" runat="server" Text="Edit Profile" />
+                        <asp:Button ID="btnEditProfile" CssClass="btn btn-primary" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" />
                     </div>
                 </div>
             </div>
