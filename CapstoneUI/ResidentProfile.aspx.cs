@@ -53,6 +53,34 @@ namespace CapstoneUI
             //Family size still needed?
             ddlRace.SelectedValue = currentRes.Race;
             ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
+            //Vaccine
+            ddlVaccinePhases.SelectedIndex = currentRes.VaccineEligibility != null ? (int)currentRes.VaccineEligibility : 4;
+            bool? flag = currentRes.VaccineInterest;
+            if(flag != null && (bool)flag)
+            {
+                if (string.IsNullOrEmpty(currentRes.VaccineAppointmentDate))
+                {
+                    ddlVaccineStatus.SelectedIndex = 2; //Interested, not scheduled
+                }
+                else if(DateTime.Parse(currentRes.VaccineAppointmentDate) > DateTime.Now )
+                {
+                    ddlVaccineStatus.SelectedIndex = 3; //Appointment scheduled and hasn't happened yet.
+                }
+                else //Should double check with vaccinated status
+                {
+                    ddlVaccineStatus.SelectedIndex = 4; //Vaccinated
+                    divAppointmentInfo.Visible = false;
+                }
+            }
+            else if(flag == null)
+            {
+                ddlVaccineStatus.SelectedIndex = 0; //No information
+            }
+            else
+            {
+                ddlVaccineStatus.SelectedIndex = 1; //Not interested
+                divAppointmentInfo.Visible = false;
+            }
 
 
             interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.ResidentFirstName, currentRes.ResidentLastName, currentRes.DateOfBirth);

@@ -236,7 +236,7 @@ namespace CapstoneUI
 
             //Update Resident vaccine values
             bool interest = ddlVaccineInterest.SelectedIndex == 1;
-            bool eligibility = ddlVaccineEligibility.SelectedIndex == 1;
+            int eligibility = ddlVaccineEligibility.SelectedIndex;
             string date = tbVaccineAppointmentDate.Text;
 
             new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
