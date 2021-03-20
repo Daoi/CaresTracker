@@ -153,6 +153,11 @@ namespace CapstoneUI
                 }
                 catch (Exception ex)
                 {
+                    if (ex.GetType().IsAssignableFrom(typeof(Amazon.CognitoIdentityProvider.Model.UsernameExistsException)))
+                    {
+                        lblError.Text = "That username already exists please pick another one";
+                        return;
+                    }
                     lblError.Text = ex.ToString();
                 }
             }
