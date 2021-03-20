@@ -24,6 +24,7 @@
                             </asp:TemplateField>
                             <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
                             <asp:BoundField DataField="ResidentLastName" HeaderText="Resident First Name" />
+                            <asp:BoundField DataField="DateOfBirth" HeaderText="Resident DoB" />
                             <asp:BoundField DataField="UserFirstName" HeaderText="CHW First Name" />
                             <asp:BoundField DataField="UserLastName" HeaderText="CHW Last Name" />
                             <asp:BoundField DataField="DateOfContact" HeaderText="Date of Interaction" />

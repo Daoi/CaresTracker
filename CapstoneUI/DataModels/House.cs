@@ -39,6 +39,8 @@ namespace CapstoneUI.DataModels
             {
                 DevelopmentID = int.Parse(dataRow["DevelopmentID"].ToString());
             }
+            UnitNumber = dataRow["UnitNumber"].ToString();
+
         }
     }
 }
