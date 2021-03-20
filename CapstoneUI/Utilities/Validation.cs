@@ -24,17 +24,6 @@ namespace CapstoneUI.Utilities
         }
 
         /// <summary>
-        /// Checks if a string represents a valid time in 12-hour format.
-        /// Valid: 9:30am, 12:15PM
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns>True for a match.</returns>
-        public static bool IsTime(string input)
-        {
-            return Regex.IsMatch(input, @"^(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)$");
-        }
-
-        /// <summary>
         /// Checks if a string represents a valid email address.
         /// </summary>
         /// <param name="input"></param>
