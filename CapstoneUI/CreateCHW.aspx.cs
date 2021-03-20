@@ -55,7 +55,7 @@ namespace CapstoneUI
                 return false;
             }
 
-            if (!Validation.IsPhoneNumber("+1" + txtPhoneNumber.Text))
+            if (!Validation.IsPhoneNumber(txtPhoneNumber.Text))
             {
                 lblError.Text = "Please enter a valid phone number";
                 return false;
@@ -85,7 +85,8 @@ namespace CapstoneUI
                 values.Add(txtFirstName.Text);
                 values.Add(txtLastName.Text);
                 values.Add(txtEmail.Text);
-                string phoneNumber = "+1" + txtPhoneNumber.Text;
+                string phoneNumber;
+                Validation.IsPhoneNumber(txtPhoneNumber.Text, out phoneNumber); // format string
                 values.Add(phoneNumber);
                 string signedInUserName = user.Username;
                 values.Add(ddlAccountType.SelectedValue);
@@ -141,7 +142,7 @@ namespace CapstoneUI
                         UserFirstName = txtFirstName.Text,
                         UserLastName = txtLastName.Text,
                         UserEmail = txtEmail.Text,
-                        UserPhoneNumber = txtPhoneNumber.Text,
+                        UserPhoneNumber = phoneNumber,
                         UserStatus = "Active",
                         UserType = ddlAccountType.SelectedValue,
                         OrganizationName = ddlOrganization.SelectedValue == "default" ?
