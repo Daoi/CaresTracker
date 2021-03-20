@@ -35,9 +35,19 @@ namespace CapstoneUI.Utilities
 
         /// <summary>
         /// Checks if a string represents a valid phone number.
+        /// </summary>
+        /// <param name="input">The phone number string to check.</param>
+        /// <returns></returns>
+        public static bool IsPhoneNumber(string input)
+        {
+            return Regex.IsMatch(input, @"^(\d{10})$") || Regex.IsMatch(input, @"^\d{3}-\d{3}-\d{4}$");
+        }
+
+        /// <summary>
+        /// Checks if a string represents a valid phone number.
         /// Returns a formatted phone number string if true.
         /// </summary>
-        /// <param name="input">The phone number string to be checked.</param>
+        /// <param name="input">The phone number string to check.</param>
         /// <param name="outPhoneNumber">An uninitialized variable.</param>
         /// <returns>True for a match.</returns>
         public static bool IsPhoneNumber(string input, out string outPhoneNumber)
