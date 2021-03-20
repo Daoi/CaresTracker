@@ -106,7 +106,6 @@ namespace CapstoneUI
             else
             {
                 ddlVaccineStatus.SelectedIndex = 1; //Not interested
-                divAppointmentInfo.Visible = false;
             }
 
 
