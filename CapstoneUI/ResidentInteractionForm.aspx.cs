@@ -323,7 +323,7 @@ namespace CapstoneUI
             }
             else
             {
-                ddlVaccineEligibility.SelectedIndex = (int)res.VaccineEligibility + 1; 
+                ddlVaccineEligibility.SelectedValue = res.VaccineEligibility.ToString();
             }
             if (res.VaccineInterest == null)
             {
