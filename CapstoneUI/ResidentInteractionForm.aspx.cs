@@ -387,33 +387,35 @@ namespace CapstoneUI
             divOldInteractionServices.Visible = true;
             btnUpdateServices.Visible = true;
             divNewInteractionServices.Visible = false;
+
+            List<Service> allServices = new List<Service>();
+            bool someServicesAreComplete = false;
+
             if (interaction.RequestedServices != null && interaction.RequestedServices.Count > 0)
             {
-                bool someServicesAreComplete = false;
-                List<Service> interactionServices = interaction.RequestedServices;
+                allServices.Concat(interaction.RequestedServices);
+            }
 
-                if (interaction.CompletedServices != null && interaction.CompletedServices.Count > 0)
-                {
-                   interactionServices  = interaction.RequestedServices.Concat(interaction.CompletedServices).ToList(); //Completed and Uncompleted services
-                    someServicesAreComplete = true;
-                }
+            if (interaction.CompletedServices != null && interaction.CompletedServices.Count > 0)
+            {
+                allServices.Concat(interaction.CompletedServices);   
+                someServicesAreComplete = true;
+            }
 
-                cblCompletedServices.DataSource = interactionServices;
-                cblCompletedServices.DataTextField = "ServiceName";
-                cblCompletedServices.DataValueField = "ServiceID";
-                cblCompletedServices.DataBind();
-                
+            cblCompletedServices.DataSource = allServices;
+            cblCompletedServices.DataTextField = "ServiceName";
+            cblCompletedServices.DataValueField = "ServiceID";
+            cblCompletedServices.DataBind();    
 
-                if (someServicesAreComplete)
-                {
-                    List<string> interactionCompletedServices = new List<string>();
-                    interaction.CompletedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
+            if (someServicesAreComplete)
+            {
+                List<string> interactionCompletedServices = new List<string>();
+                interaction.CompletedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
 
-                    cblCompletedServices.Items.Cast<ListItem>().ToList()
-                    .Where(li => interactionCompletedServices.Contains(li.Text))
-                    .ToList()
-                    .ForEach(li => li.Selected = true);
-                }
+                cblCompletedServices.Items.Cast<ListItem>().ToList()
+                .Where(li => interactionCompletedServices.Contains(li.Text))
+                .ToList()
+                .ForEach(li => li.Selected = true);
             }
             //Action Plan
             nextSteps.InnerText = interaction.ActionPlan;

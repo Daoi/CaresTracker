@@ -180,7 +180,7 @@
                     <div class="mb-3"></div>
                     <h2>Covid-19 Test Results</h2>
                     <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server" Height="2em">
-                        <asp:ListItem>Select Test Result</asp:ListItem>
+                        <asp:ListItem >Select Test Result</asp:ListItem>
                         <asp:ListItem Value="Positive">Positive</asp:ListItem>
                         <asp:ListItem Value="Negative">Negative</asp:ListItem>
                         <asp:ListItem Value="No Recent Test">No Recent Test</asp:ListItem>
