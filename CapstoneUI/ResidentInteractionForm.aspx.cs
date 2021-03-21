@@ -261,7 +261,14 @@ namespace CapstoneUI
             newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
             newInteraction.LocationOfContact = tbLocation.Text;
             newInteraction.COVIDTestLocation = tbTestingLocation.Text;
-            newInteraction.COVIDTestResult = ddlTestResult.SelectedValue;
+            if(ddlTestResult.SelectedIndex == 0)
+            {
+                newInteraction.COVIDTestResult = null;
+            }
+            else
+            {
+                newInteraction.COVIDTestResult = ddlTestResult.SelectedValue;
+            }
             newInteraction.SymptomStartDate = tbSymptomDates.Text;
             newInteraction.ActionPlan = nextSteps.InnerText;
             //Symptoms
@@ -365,6 +372,10 @@ namespace CapstoneUI
             {
                 tbTestingLocation.Text = "N/A";
                 ddlTestResult.SelectedValue = "No Recent Test";
+            }
+            else if(interaction.COVIDTestResult == null)
+            {
+                ddlTestResult.SelectedIndex = 0;
             }
             else
             {
