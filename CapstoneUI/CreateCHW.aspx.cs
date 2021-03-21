@@ -55,7 +55,7 @@ namespace CapstoneUI
                 return false;
             }
 
-            if (!Validation.IsPhoneNumber(txtPhoneNumber.Text))
+            if (!Validation.IsPhoneNumber(txtPhoneNumber.Text).isValid)
             {
                 lblError.Text = "Please enter a valid phone number";
                 return false;
@@ -85,8 +85,7 @@ namespace CapstoneUI
                 values.Add(txtFirstName.Text);
                 values.Add(txtLastName.Text);
                 values.Add(txtEmail.Text);
-                string phoneNumber;
-                Validation.IsPhoneNumber(txtPhoneNumber.Text, out phoneNumber); // format string
+                string phoneNumber = Validation.IsPhoneNumber(txtPhoneNumber.Text).strPhone;
                 values.Add(phoneNumber);
                 string signedInUserName = user.Username;
                 values.Add(ddlAccountType.SelectedValue);

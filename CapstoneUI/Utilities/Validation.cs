@@ -37,34 +37,22 @@ namespace CapstoneUI.Utilities
         /// Checks if a string represents a valid phone number.
         /// </summary>
         /// <param name="input">The phone number string to check.</param>
-        /// <returns></returns>
-        public static bool IsPhoneNumber(string input)
-        {
-            return Regex.IsMatch(input, @"^(\d{10})$") || Regex.IsMatch(input, @"^\d{3}-\d{3}-\d{4}$");
-        }
-
-        /// <summary>
-        /// Checks if a string represents a valid phone number.
-        /// Returns a formatted phone number string if true.
-        /// </summary>
-        /// <param name="input">The phone number string to check.</param>
-        /// <param name="outPhoneNumber">An uninitialized variable.</param>
-        /// <returns>True for a match.</returns>
-        public static bool IsPhoneNumber(string input, out string outPhoneNumber)
+        /// <returns>
+        /// A tuple with bool: isValid and formatted string: strPhone.
+        /// strPhone will be null if isValid is false.
+        /// </returns>
+        public static (bool isValid, string strPhone) IsPhoneNumber(string input)
         {
             if (Regex.IsMatch(input, @"^(\d{10})$")) // just 10 digits, needs to be formatted
             {
-                outPhoneNumber = input.Insert(3, "-").Insert(7, "-");
-                return true;
+                return (true, input.Insert(3, "-").Insert(7, "-"));
             }
             else if (Regex.IsMatch(input, @"^\d{3}-\d{3}-\d{4}$")) // already formatted
             {
-                outPhoneNumber = input;
-                return true;
+                return (true, input);
             }
 
-            outPhoneNumber = "";
-            return false;
+            return (false, null);
         }
 
         /// <summary>
