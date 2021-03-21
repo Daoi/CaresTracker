@@ -37,7 +37,7 @@ namespace CapstoneUI
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
                 {
                     Resident res = Session["Resident"] as Resident;
-                    hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName} {res.Home.Address}";
+                    hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName} {res.DateOfBirth}";
                 }
                 else if (Session["Worker"] != null && HttpContext.Current.Request.Url.ToString().Contains("CHWManagement"))
                 {

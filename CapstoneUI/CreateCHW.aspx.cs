@@ -151,6 +151,10 @@ namespace CapstoneUI
 
                     Response.Redirect("CHWManagement.aspx");
                 }
+                catch (Amazon.CognitoIdentityProvider.Model.UsernameExistsException ex) 
+                {
+                    lblError.Text = "That username already exists please pick another one";
+                }
                 catch (Exception ex)
                 {
                     lblError.Text = ex.ToString();
