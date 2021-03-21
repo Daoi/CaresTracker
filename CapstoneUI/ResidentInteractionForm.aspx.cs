@@ -393,12 +393,12 @@ namespace CapstoneUI
 
             if (interaction.RequestedServices != null && interaction.RequestedServices.Count > 0)
             {
-                allServices.Concat(interaction.RequestedServices);
+                allServices = allServices.Concat(interaction.RequestedServices).ToList();
             }
 
             if (interaction.CompletedServices != null && interaction.CompletedServices.Count > 0)
             {
-                allServices.Concat(interaction.CompletedServices);   
+                allServices = allServices.Concat(interaction.CompletedServices).ToList();   
                 someServicesAreComplete = true;
             }
 
