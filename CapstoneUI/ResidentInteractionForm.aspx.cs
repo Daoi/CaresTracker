@@ -195,12 +195,13 @@ namespace CapstoneUI
         private void SaveEdits(string reason)
         {
             Interaction newInteraction = GenerateInteraction();
+            int userId = (Session["User"] as CARESUser).UserID;
             newInteraction.InteractionID = (Session["Interaction"] as Interaction).InteractionID;
             string date = DateTime.Today.ToString("yyyy-MM-dd");
             try
             {
                 new UpdateInteraction(newInteraction).ExecuteCommand();
-                new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID);
+                new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID, userId);
             }
             catch(Exception e)
             {
@@ -249,14 +250,11 @@ namespace CapstoneUI
             Interaction newInteraction = new Interaction();
             res = Session["Resident"] as Resident;
             //ID Values
-            if ((bool)ViewState["OldInteraction"]) //Interaction already existed, use same HealthWorker ID
-            {
-                newInteraction.HealthWorkerID = (Session["Interaction"] as Interaction).HealthWorkerID;
-            }
-            else
+            if (!(bool)ViewState["OldInteraction"]) //If interaction is new
             {
                 newInteraction.HealthWorkerID = (Session["User"] as CARESUser).UserID; //Interaction is being created now, use current user ID
             }
+
             newInteraction.ResidentID = res.ResidentID;
             //Form Values
             newInteraction.DateOfContact = tbDoC.Text;
