@@ -19,7 +19,6 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
             {
                 new MySqlParameter("@InteractionID", MySqlDbType.Int64),
                 new MySqlParameter("@ResidentID", MySqlDbType.Int64),
-                new MySqlParameter("@HealthWorkerID", MySqlDbType.Int64),
                 new MySqlParameter("@DateOfContact", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@MethodOfContact", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@LocationOfContact", MySqlDbType.VarChar, 50),
@@ -41,7 +40,6 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
             // Done manually for now, couldn't figure out how to pass in house object and iterate through the object to fill in parameters
             Parameters[0].Value = interaction.InteractionID;
             Parameters[1].Value = interaction.ResidentID;
-            Parameters[2].Value = interaction.HealthWorkerID;
             Parameters[3].Value = interaction.DateOfContact;
             Parameters[4].Value = interaction.MethodOfContact;
             Parameters[5].Value = interaction.LocationOfContact;

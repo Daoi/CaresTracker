@@ -13,9 +13,14 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
             CommandType = CommandType.StoredProcedure;
         }
 
-        public int ExecuteCommand(string date, string reason, int id)
+        public int ExecuteCommand(string date, string reason, int intID, int workerID)
         {
-            Parameters = new MySqlParameter[3] { new MySqlParameter("InteractionID", id), new MySqlParameter("EditReason", reason), new MySqlParameter("EditDate", date) };
+            Parameters = new MySqlParameter[4] {
+                new MySqlParameter("InteractionID", intID),
+                new MySqlParameter("EditReason", reason),
+                new MySqlParameter("EditDate", date),
+                new MySqlParameter("WorkerID", workerID)
+            };
             ExecuteQuery eq = new ExecuteQuery();
             return eq.ExecuteNonQuery(this);
         }
