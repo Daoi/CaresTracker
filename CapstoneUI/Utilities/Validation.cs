@@ -13,17 +13,6 @@ namespace CapstoneUI.Utilities
     public static class Validation
     {
         /// <summary>
-        /// Checks if a string represents a valid date.
-        /// </summary>
-        /// <param name="input">String to be checked.</param>
-        /// <param name="outDateTime">A DateTime reference.</param>
-        /// <returns>True for a match.</returns>
-        public static bool IsDate(string input, out DateTime outDateTime)
-        {
-            return DateTime.TryParse(input, out outDateTime);
-        }
-
-        /// <summary>
         /// Checks if a string represents a valid email address.
         /// </summary>
         /// <param name="input"></param>
