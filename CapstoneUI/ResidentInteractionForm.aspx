@@ -15,7 +15,7 @@
                     <asp:LinkButton ID="services" CssClass="active" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
                     <asp:LinkButton ID="vaccineInfo" CssClass="active" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
                     <asp:LinkButton ID="otherInfo" CssClass="active" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
-                    <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"><i class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
+                    <asp:LinkButton ID="lnkBtnSave" CssClass="active" runat="server" OnClick="lnkBtnSave_Click"><i id="icoSave" runat="server" class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
                     <asp:LinkButton ID="lnkBtnEdit" CssClass="active" runat="server" Visible="false" OnClick="lnkBtnEdit_Click">
                         <i class="fas fa-edit" id="icoEdit" style="margin-right: .5rem" runat="server"></i>
                         Edit Interaction
@@ -95,6 +95,7 @@
                         <asp:ListItem>Phone</asp:ListItem>
                         <asp:ListItem>Email</asp:ListItem>
                         <asp:ListItem>In-Person</asp:ListItem>
+                        <asp:ListItem>Virtual</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
                     <h2>Location</h2>
@@ -179,10 +180,10 @@
                     <div class="mb-3"></div>
                     <h2>Covid-19 Test Results</h2>
                     <asp:DropDownList ID="ddlTestResult" CssClass="inputDropDown" runat="server" Height="2em">
-                        <asp:ListItem>Select Test Result</asp:ListItem>
-                        <asp:ListItem>Positive</asp:ListItem>
-                        <asp:ListItem>Negative</asp:ListItem>
-                        <asp:ListItem>No Recent Test</asp:ListItem>
+                        <asp:ListItem >Select Test Result</asp:ListItem>
+                        <asp:ListItem Value="Positive">Positive</asp:ListItem>
+                        <asp:ListItem Value="Negative">Negative</asp:ListItem>
+                        <asp:ListItem Value="No Recent Test">No Recent Test</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
                     <h2>Testing Location</h2>
@@ -201,9 +202,11 @@
                     <div id="divOldInteractionServices" class="cblServicesCompleted" runat="server">
                         <h2>Services Requested (Check if completed)</h2>
                         <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
-                        <asp:Button ID="btnUpdateServices" CssClass="btn-primary btn" runat="server" Text="Update Services" Visible="False" OnClick="btnUpdateServices_Click" />
-                        <asp:Label ID="lblUpdateServices" runat="server" Text="" Visible="false"></asp:Label>
                     </div>
+                    <div class="row">
+                        <asp:Button ID="btnUpdateServices" CssClass="btn-primary btn" runat="server" Text="Update Services" Visible="False" OnClick="btnUpdateServices_Click" />
+                        <asp:Label ID="lblUpdateServices" CssClass="ml-1" runat="server" Text="" Visible="false"></asp:Label>
+                        </div>
                 </asp:Panel>
                 <p></p>
                 <%-- Services Form End --%>
@@ -219,11 +222,13 @@
                         <asp:ListItem Value="False">Not interested in vaccine</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
-                    <h2>Vaccine Eligibility</h2>
+                    <h2>Vaccine Phase</h2>
                     <asp:DropDownList ID="ddlVaccineEligibility" CssClass="inputDropDown" runat="server">
                         <asp:ListItem>Select Eligibility</asp:ListItem>
-                        <asp:ListItem Value="True">Eligible for priority registration</asp:ListItem>
-                        <asp:ListItem Value="False">Not Eligible</asp:ListItem>
+                        <asp:ListItem Value="0">Phase1A</asp:ListItem>
+                        <asp:ListItem Value="1">Phase1B</asp:ListItem>
+                        <asp:ListItem Value="2">Phase1C</asp:ListItem>
+                        <asp:ListItem Value="3">Phase2</asp:ListItem>
                     </asp:DropDownList>
                     <p></p>
                     <div runat="server" id="divVaccineAppointment">

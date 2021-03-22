@@ -65,19 +65,19 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <asp:Label ID="lblRelationshipToHoH" CssClass="labels" runat="server" Text="Relation to Head of House"></asp:Label>
-                            <asp:DropDownList ID="ddlHoH" runat="server">
+                            <asp:Label ID="lblRelationshipToHoH" CssClass="labels" runat="server" Text="Relation to Head of House"></asp:Label><br />
+                            <asp:DropDownList ID="ddlHoH" CssClass="form-control" runat="server">
                                 <asp:ListItem Value="Head of House">Head of House</asp:ListItem>
                                 <asp:ListItem Value="Spouse/Partner">Spouse/Partner</asp:ListItem>
                                 <asp:ListItem Value="Sibling">Sibling</asp:ListItem>
-                                <asp:ListItem>Child</asp:ListItem>
-                                <asp:ListItem>Parent</asp:ListItem>
-                                <asp:ListItem>Other</asp:ListItem>
+                                <asp:ListItem Value="Child">Child</asp:ListItem>
+                                <asp:ListItem Value="Parent">Parent</asp:ListItem>
+                                <asp:ListItem Value="Other">Other</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <div class="col-md-6">
-                            <asp:Label ID="lblPrimLanguage" CssClass="labels" runat="server" Text="Priamry Language"></asp:Label>
-                            <asp:DropDownList CssClass="w-100" ID="ddlLanguage" RepeatDirection="Horizontal" runat="server">
+                            <asp:Label ID="lblPrimLanguage" CssClass="labels" runat="server" Text="Primary Language"></asp:Label>
+                            <asp:DropDownList CssClass="form-control" ID="ddlLanguage" RepeatDirection="Horizontal" runat="server">
                                 <asp:ListItem>English</asp:ListItem>
                                 <asp:ListItem>Spanish</asp:ListItem>
                                 <asp:ListItem>French</asp:ListItem>
@@ -93,7 +93,7 @@
                         <div class="col-md-12">
                             <asp:Label ID="lblRace" CssClass="labels" runat="server" Text="Race"></asp:Label>
                             <br />
-                            <asp:DropDownList ID="ddlRace" RepeatDirection="Horizontal" runat="server">
+                            <asp:DropDownList ID="ddlRace" CssClass="form-control" RepeatDirection="Horizontal" runat="server">
                                 <asp:ListItem>American Indian/Alaska Native</asp:ListItem>
                                 <asp:ListItem>Asian</asp:ListItem>
                                 <asp:ListItem>Black or African American</asp:ListItem>
@@ -103,7 +103,9 @@
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <asp:Button ID="btnEditProfile" CssClass="btn btn-primary" runat="server" Text="Edit Profile" />
+                        <asp:Button ID="btnEditProfile" CssClass="btn btn-primary" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" />
+                        <asp:Button ID="btnSaveEdits" CssClass="btn btn-primary" Visible="false" runat="server" Text="Save Edits" OnClick="btnSaveEdits_Click" />
+                        <asp:Label ID="lblErrorMessage" runat="server" Text="" Visible="false"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -112,16 +114,68 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h4>Housing Info</h4>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <asp:Label ID="lblDevelopment" CssClass="labels" runat="server" Text="Development"></asp:Label><asp:TextBox ID="tbDevelopment" placeholder="Development Name" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblDevelopment" CssClass="labels" runat="server" Text="Development"></asp:Label><br />
+                        <asp:DropDownList ID="ddlHousingDevelopment" CssClass="form-control" runat="server" DataValueField='DevelopmentID' DataTextField='DevelopmentName' AppendDataBoundItems="True">
+                            <asp:ListItem Value="-1">HCV Housing</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label><asp:TextBox ID="tbAddress" placeholder="Street Address" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblUnitNumber" CssClass="labels" runat="server" Text="Unit Number"></asp:Label><asp:TextBox ID="tbUnitNumber" placeholder="Unit Number" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblZipcode" CssClass="labels" runat="server" Text="Zipcode"></asp:Label><asp:TextBox ID="tbZipcode" placeholder="Zipcode" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><br />
+                        <asp:DropDownList ID="ddlRegion" CssClass="form-control" runat="server">
+                            <asp:ListItem Value="1">North</asp:ListItem>
+                            <asp:ListItem Value="2">Upper North</asp:ListItem>
+                            <asp:ListItem Value="3">Lower North</asp:ListItem>
+                            <asp:ListItem Value="4">Upper Northwest</asp:ListItem>
+                            <asp:ListItem Value="5">Lower Northwest</asp:ListItem>
+                            <asp:ListItem Value="6">Lower Northeast</asp:ListItem>
+                            <asp:ListItem Value="7">West</asp:ListItem>
+                            <asp:ListItem Value="8">Central</asp:ListItem>
+                            <asp:ListItem Value="9">South</asp:ListItem>
+                            <asp:ListItem Value="10">Lower Soutwest</asp:ListItem>
+                            <asp:ListItem Value="11">University Southwest</asp:ListItem>
+                            <asp:ListItem Value="12">North Delaware</asp:ListItem>
+                            <asp:ListItem Value="13">River Wards</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <h4>Vaccine Info</h4>
+                    </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblVaccinePhase" CssClass="labels" runat="server" Text="Vaccine Phase"></asp:Label>
                         <br />
-                        <div class="col-md-12">
-                            <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label><asp:TextBox ID="tbAddress" placeholder="Street Address" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
-                        <div class="col-md-12">
-                            <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><asp:TextBox ID="tbRegionName" placeholder="Region" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:DropDownList ID="ddlVaccinePhases" CssClass="form-control" runat="server">
+                            <asp:ListItem Value="0">Phase1A</asp:ListItem>
+                            <asp:ListItem Value="1">Phase1B</asp:ListItem>
+                            <asp:ListItem Value="2">Phase1C</asp:ListItem>
+                            <asp:ListItem Value="3">Phase2</asp:ListItem>
+                            <asp:ListItem Value="4">No Information</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="mt-2">
+                        <asp:Label ID="lblVaccineStatus" CssClass="labels" runat="server" Text="Vaccine Status"></asp:Label>
+                        <br />
+                        <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
+                            <asp:ListItem>No Information</asp:ListItem>
+                            <asp:ListItem>Not Interested</asp:ListItem>
+                            <asp:ListItem>Interested, not scheduled</asp:ListItem>
+                            <asp:ListItem>Appointment Scheduled</asp:ListItem>
+                            <asp:ListItem>Vaccinated</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div id="divAppointmentInfo" runat="server" class="col-md-12 mt-2">
+                        <div class="row">
+                            <asp:Label ID="lblVaccineAppointment" CssClass="labels" runat="server" Text="Appointment Date"></asp:Label><br />
+                            <asp:TextBox ID="tbAppointmentDate" placeholder="Region" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
                         </div>
                     </div>
                 </div>
