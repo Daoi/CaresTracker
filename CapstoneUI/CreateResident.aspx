@@ -15,7 +15,7 @@
                     <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 70%"></asp:Label>
 
                     <!-- Hidden field for JavaScript + C# variable passing -->
-                    <asp:HiddenField ID="hdnfldVariable" ClientIDMode="Static" Value="test" runat="server" />
+                    <asp:HiddenField ID="hdnfldFormattedAddress" ClientIDMode="Static" runat="server" />
                 </div>
                 <%-- Resident Info Start --%>
                 <div class="container mt-5 w-75 mr-5 mb-5">
@@ -130,7 +130,7 @@
                     </asp:DropDownList><br />
                     <%-- Universal Info Start --%>
                     <div class="eventControlBG">
-                        <input id="txtAddress" placeholder="Personal Address" type="text" class="form-control mb-4" />
+                        <input id="txtAddress" placeholder="Personal Address" type="text" runat="server" class="form-control mb-4" />
                         <%--<asp:TextBox ID="autocomplete" Text="didthiswork?" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />--%>
                         <asp:TextBox ID="txtUnitNumber" placeholder="Unit Number" runat="server" CssClass="form-control"></asp:TextBox><br />
                     </div>
@@ -193,6 +193,9 @@
                             <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
                                 Resident profile already exists!
                             </asp:Label>
+                            <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblWrongAddressInput" role="alert" Visible="false">
+                                You must select an address from the list
+                            </asp:Label>
                         </div>
                     </div>
                     <%-- Alerts end --%>
@@ -224,13 +227,13 @@
 
         // Callback function for api
         function initMap() {
-            autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtAddress"), options);
+            autocomplete = new google.maps.places.Autocomplete(document.getElementById("MainContent_txtAddress"), options);
 
             autocomplete.addListener('place_changed', function () {
                 const place = autocomplete.getPlace();
 
                 // Set hidden variable to place result to retrieve in serverside code
-                document.getElementById("hdnfldVariable").value = place.formatted_address;
+                document.getElementById("hdnfldFormattedAddress").value = place.formatted_address;
             });
 
         };
