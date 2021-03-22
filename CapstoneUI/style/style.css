@@ -1,8 +1,34 @@
-﻿
-.backgroundblue {
-    background-color: #157CB6;
+﻿.backgroundImage {
     overflow: auto;
     min-height: 100vh;
+    background-image: url("../img/master-wen-lpLRwDZigvc-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.cherryFont{
+    color: #A41E35;
+}
+
+.cherryBackground {
+    color: white;
+    background-color: #A41E35;
+}
+
+.offwhiteBackground {
+    background-color: #F2EFE8;
+}
+
+a {
+    color: #A41E35;
+}
+
+a:hover {
+    color: gold;
+}
+
+.rblItem label {
+    margin-left: 5px;
 }
 
 .homepage {
@@ -143,9 +169,6 @@
     margin-bottom: 2rem
 }
 
-/*.eventControlBG{
-}*/
-
 .dataTables_filter {
     justify-content: center;
 }
@@ -181,7 +204,7 @@ thead {
 }
 
 #divrblGender input[type="radio"]{
-    margin-left: 4px;
+    margin-right: 5px;
 }
 
 .DataboundCBLOverflow{

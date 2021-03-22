@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="loginContainer justify-content-center d-flex py-5">
         <div class="card mb-3 text-center loginCard my-auto ">
-            <div class="card-header forestGreen" style="font-size: 18px">
+            <div class="card-header cherryBackground" style="font-size: 18px">
                 Import Data
             </div>
             <div class="card-body justify-content-center">
@@ -23,7 +23,7 @@
                         <asp:FileUpload runat="server"></asp:FileUpload>
                     </div>
                 </div>
-                <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="btn-primary btn-lg" />
+                <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="btn btn-lg cherryBackground" />
             </div>
             <div class="card-footer text-muted">
             CARES Tracker

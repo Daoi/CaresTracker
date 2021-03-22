@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="CHWManagement.aspx.cs" Inherits="CapstoneUI.CHWManagement" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid homepage backgroundblue">
-        <div class="row modal-header no-gutters" style="height: auto; font-size: large">
+    <div class="container-fluid homepage p-0">
+        <div class="row modal-header no-gutters offwhiteBackground" style="height: auto; font-size: large">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-white">
-                    <li class="breadcrumb-item" style="color: deepskyblue">
+                <ol class="breadcrumb bg-transparent">
+                    <li class="breadcrumb-item">
                         <asp:LinkButton ID="lnkWorkerList" NavigateUrl="~/CHWManagement.aspx" runat="server" OnClick="lnkWorkerList_Click">Worker List</asp:LinkButton></li>
-                    <li class="breadcrumb-item active bg-white" aria-current="page">Worker Management</li>
+                    <li class="breadcrumb-item active" aria-current="page">Worker Management</li>
                 </ol>
             </nav>
             <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 60%">Worker Management</asp:Label>

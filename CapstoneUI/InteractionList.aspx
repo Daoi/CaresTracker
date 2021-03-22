@@ -1,21 +1,22 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="InteractionList.aspx.cs" Inherits="CapstoneUI.InteractionList" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid" style="background-color: #157CB6;">
+    <div class="container-fluid">
         <div class="container-fluid pl-5 pr-5">
             <div class="table-responsive tableContainer" style="background-color: white !important">
-                <div class="row  modal-header pb-0" style="height: 7%; font-size: large">
+                <div class="row modal-header pb-0 offwhiteBackground" style="height: 7%; font-size: large">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb bg-white">
+                        <ol class="breadcrumb bg-transparent">
                             <li class="breadcrumb-item" style="color: deepskyblue">
                                 <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton></li>
-                            <li class="breadcrumb-item active bg-white" aria-current="page">Interaction List</li>
+                            <li class="breadcrumb-item active" aria-current="page">Interaction List</li>
                         </ol>
                     </nav>
                     <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Interaction List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered thead-dark">
+                        <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
                             <asp:TemplateField HeaderText="View this Interaction">
                                 <ItemTemplate>
