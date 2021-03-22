@@ -133,7 +133,6 @@
                         <input id="txtAddress" placeholder="Personal Address" type="text" class="form-control mb-4" />
                         <%--<asp:TextBox ID="autocomplete" Text="didthiswork?" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />--%>
                         <asp:TextBox ID="txtUnitNumber" placeholder="Unit Number" runat="server" CssClass="form-control"></asp:TextBox><br />
-                        <asp:TextBox ID="txtZipCode" placeholder="Zip Code" runat="server" CssClass="form-control"></asp:TextBox><br />
                     </div>
                     <%-- Universal Info End --%>
 
