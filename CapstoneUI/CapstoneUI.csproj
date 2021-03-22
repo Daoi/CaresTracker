@@ -328,7 +328,7 @@
     <Compile Include="DataAccess\DataAccessors\GetAllInteractions.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByResidentAttributes.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllResident.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetDevelopmentByID.cs" />
+    <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentByID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetHouseByID.cs" />
     <Compile Include="DataAccess\DataAccessors\GetUncompletedFollowUps.cs" />
     <Compile Include="DataAccess\DataAccessors\GetCompletedFollowUps.cs" />
@@ -338,7 +338,7 @@
     <Compile Include="DataAccess\DataAccessors\GetHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\HouseParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\Examples\LookUpUser.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllDevelopments.cs" />
+    <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetAllDevelopments.cs" />
     <Compile Include="DataAccess\DataAccessors\GetUser.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateLastLogin.cs" />
