@@ -43,7 +43,6 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
-
             // Build Resident object
             Resident newResident = new Resident();
 
@@ -66,12 +65,20 @@ namespace CapstoneUI
                 lblUniqueResident.Visible = true;
                 return;
             }
-            // If resident was posted, do the rest of the operations
 
             //Build House object
             House residentHouse = new House();
-            residentHouse.Address = txtAddress.Text;
-            residentHouse.ZipCode = txtZipCode.Text;
+
+            // Slice up formatted address from Google API
+            string formatted_address = hdnfldVariable.Value;
+            string[] list = formatted_address.Split(',');
+
+            string Address = list[0];
+            // Remove "PA" from zipcode string
+            string ZipCode = list[2].Remove(0, 4);
+
+            residentHouse.ZipCode = ZipCode;
+            residentHouse.Address = Address;
             residentHouse.UnitNumber = txtUnitNumber.Text;
             if (ddlHousing.SelectedIndex == 1)
             {

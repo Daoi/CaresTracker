@@ -13,6 +13,9 @@
                         </ol>
                     </nav>
                     <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 70%"></asp:Label>
+
+                    <!-- Hidden field for JavaScript + C# variable passing -->
+                    <asp:HiddenField ID="hdnfldVariable" ClientIDMode="Static" Value="test" runat="server" />
                 </div>
                 <%-- Resident Info Start --%>
                 <div class="container mt-5 w-75 mr-5 mb-5">
@@ -127,7 +130,8 @@
                     </asp:DropDownList><br />
                     <%-- Universal Info Start --%>
                     <div class="eventControlBG">
-                        <asp:TextBox ID="txtAddress" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />
+                        <input id="txtAddress" placeholder="Personal Address" type="text" class="form-control mb-4" />
+                        <%--<asp:TextBox ID="autocomplete" Text="didthiswork?" placeholder="Personal Address" runat="server" CssClass="form-control"></asp:TextBox><br />--%>
                         <asp:TextBox ID="txtUnitNumber" placeholder="Unit Number" runat="server" CssClass="form-control"></asp:TextBox><br />
                         <asp:TextBox ID="txtZipCode" placeholder="Zip Code" runat="server" CssClass="form-control"></asp:TextBox><br />
                     </div>
@@ -197,4 +201,41 @@
             </div>
         </div>
     </div>
+    <script>
+        let autocomplete;
+
+        // Center of Philadelphia, will be used to bias search results
+        const center = { lat: 39.951668, lng: -75.163743 };
+        // Create a bounding box with sides ~20km away from the center point
+        const defaultBounds = {
+            north: center.lat + 0.2,
+            south: center.lat - 0.2,
+            east: center.lng + 0.2,
+            west: center.lng - 0.2,
+        };
+
+        // Options for Autocomplete constructor
+        const options = {
+            bounds: defaultBounds,
+            componentRestrictions: { country: "us" },
+            fields: ["formatted_address"],
+            origin: center,
+            strictBounds: true
+        }
+
+        // Callback function for api
+        function initMap() {
+            autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtAddress"), options);
+
+            autocomplete.addListener('place_changed', function () {
+                const place = autocomplete.getPlace();
+
+                // Set hidden variable to place result to retrieve in serverside code
+                document.getElementById("hdnfldVariable").value = place.formatted_address;
+            });
+
+        };
+    </script>
+    <!-- Google Maps JavaScript library -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUR5TUQYRQwObVxISNpIi7RlFTsg6NQcI&libraries=places&callback=initMap"></script>
 </asp:Content>
