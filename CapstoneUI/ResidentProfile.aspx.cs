@@ -159,7 +159,7 @@ namespace CapstoneUI
                 Type type = c.GetType();
                 PropertyInfo prop = type.GetProperty("Enabled");
 
-                if (prop != null && type != typeof(Button) && type != typeof(LinkButton))
+                if (prop != null && type != typeof(Button) && !c.ID.Contains("lnk")) //Dont disable links or buttons
                 {
                     bool flag = (bool)prop.GetValue(c);
                     prop.SetValue(c, !flag, null);

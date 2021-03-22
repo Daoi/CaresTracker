@@ -121,6 +121,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton lnkBtnSave;
         
         /// <summary>
+        /// icoSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icoSave;
+        
+        /// <summary>
         /// lnkBtnEdit control.
         /// </summary>
         /// <remarks>
