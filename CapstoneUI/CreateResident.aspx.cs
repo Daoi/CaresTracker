@@ -43,6 +43,18 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
+            // Check that address is selected from the API predictions list
+            if (hdnfldFormattedAddress.Value.Equals(""))
+            {
+                lblWrongAddressInput.Visible = true;
+                return;
+            }
+            else if (!hdnfldFormattedAddress.Value.Equals(txtAddress.Value))
+            {
+                lblWrongAddressInput.Visible = true;
+                return;
+            }
+
             // Build Resident object
             Resident newResident = new Resident();
 
@@ -70,7 +82,7 @@ namespace CapstoneUI
             House residentHouse = new House();
 
             // Slice up formatted address from Google API
-            string formatted_address = hdnfldVariable.Value;
+            string formatted_address = hdnfldFormattedAddress.Value;
             string[] list = formatted_address.Split(',');
 
             string Address = list[0];
