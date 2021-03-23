@@ -179,9 +179,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
-                                        <asp:BoundField DataField="EventStartTime" HeaderText="Event Start Time" />
+                                        <asp:TemplateField HeaderText="Start Time:">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                        <%--                                        <asp:TemplateField HeaderText="Event Host">
+                                        <%--<asp:TemplateField HeaderText="Event Host">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblChwName" runat="server" Text='<%#Eval("UserFirstName")+ " " + Eval("UserLastName")%>'></asp:Label>
                                             </ItemTemplate>
