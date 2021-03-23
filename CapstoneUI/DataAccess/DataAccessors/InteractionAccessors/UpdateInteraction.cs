@@ -1,7 +1,6 @@
 ﻿using System.Data;
 using CapstoneUI.DataModels;
 
-
 namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
 {
     public class UpdateInteraction : DataSupport, IData
@@ -20,13 +19,9 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
         /// <returns></returns>
         public int ExecuteCommand()
         {
+            new UpdateInteractionSymptoms(interaction.Symptoms, interaction.InteractionID).ExecuteCommand();
             ExecuteQuery eq = new ExecuteQuery();
             return eq.ExecuteNonQuery(this);
-        }
-
-        private void UpdateInteractionSymptoms()
-        {
-            new UpdateInteractionSymptoms(interaction.Symptoms, interaction.InteractionID).ExecuteCommand();
         }
     }
 }
