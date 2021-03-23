@@ -3,14 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid homepage p-0">
         <div class="row modal-header no-gutters offwhiteBackground" style="height: auto; font-size: large">
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb w-75">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
                         <asp:LinkButton ID="lnkWorkerList" NavigateUrl="~/CHWManagement.aspx" runat="server" OnClick="lnkWorkerList_Click">Worker List</asp:LinkButton></li>
                     <li class="breadcrumb-item active" aria-current="page">Worker Management</li>
                 </ol>
             </nav>
-            <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 60%">Worker Management</asp:Label>
+            <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" style="width: 60%;">Worker Management</asp:Label>
         </div>
         <div class="row">
             <div class="col-md-2 border-right">

@@ -42,7 +42,7 @@
                             <label>Date of Birth: </label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtDOB" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDOB" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row m-3">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="row m-3">
                         <div class="col">
-                            <label>Phone-number: </label>
+                            <label>Phone Number: </label>
                         </div>
                         <div class="col-7">
                             <asp:TextBox ID="txtPhoneNumber" CssClass="form-control" runat="server"></asp:TextBox>

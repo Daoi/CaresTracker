@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">
         <div class="container-fluid pl-5 pr-5">
-            <div class="table-responsive tableContainer" style="background-color: white !important">
+            <div class="table-responsive tableContainer">
                 <div class="row  modal-header pb-0 offwhiteBackground" style="height: 7%; font-size: large">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent">
@@ -12,7 +12,7 @@
                             <li class="breadcrumb-item active" aria-current="page">Event List</li>
                         </ol>
                     </nav>
-                    <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Event List</asp:Label>
+                    <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 56%">Event List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >

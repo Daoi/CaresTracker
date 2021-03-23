@@ -129,5 +129,10 @@ namespace CapstoneUI
             txtAccountType.Text = userTypes[worker.UserType];
             txtLastLogin.Text = worker.LastLogin;
         }
+
+        protected void lnkHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Homepage.aspx");
+        }
     }
 }
