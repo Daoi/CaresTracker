@@ -171,27 +171,31 @@
                         <%-- Event Tracker Start --%>
                         <div class="card mt-5">
                             <div class="card-body UCEventsCard">
-                                <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Event (Click to View)">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lnkToEvent" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
-                                        <asp:TemplateField HeaderText="Start Time">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                <asp:UpdatePanel ID="upEvents" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Event (Click to View)">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkToEvent" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
+                                                <asp:TemplateField HeaderText="Start Time">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                        <%--<asp:TemplateField HeaderText="Event Host">
+                                                <%--<asp:TemplateField HeaderText="Event Host">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblChwName" runat="server" Text='<%#Eval("UserFirstName")+ " " + Eval("UserLastName")%>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                                    </Columns>
-                                </asp:GridView>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                         <%-- Event Tracker End --%>
@@ -221,7 +225,10 @@
     <%-- Events Tracker --%>
     <script type="text/javascript">
         $(document).ready(function () {
-            var table = $('#MainContent_gvEvents').DataTable();
+            var table = $('#MainContent_gvEvents').DataTable({
+                "lengthMenu": [5]    
+            });
+            
         });
     </script>
 </asp:Content>

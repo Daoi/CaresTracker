@@ -26,9 +26,11 @@ namespace CapstoneUI
             {
                 divCreateCHW.Visible = false;
             }
-
-            InitializeFollowUps();
-            InitializeEvents();
+            if (!IsPostBack)
+            {
+                InitializeEvents();
+                InitializeFollowUps();
+            }
         }
 
 
@@ -40,6 +42,7 @@ namespace CapstoneUI
             gvEvents.DataSource = dt;
             gvEvents.DataBind();
             ViewState["EventDT"] = dt;
+            upEvents.Update();
         }
 
         public void InitializeFollowUps()
