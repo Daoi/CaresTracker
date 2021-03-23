@@ -263,7 +263,7 @@ namespace CapstoneUI
             newInteraction.COVIDTestLocation = tbTestingLocation.Text;
             if(ddlTestResult.SelectedIndex == 0)
             {
-                newInteraction.COVIDTestResult = null;
+                newInteraction.COVIDTestResult = "";
             }
             else
             {
@@ -368,14 +368,14 @@ namespace CapstoneUI
             if (!string.IsNullOrEmpty(tbSymptomDates.Text))
                 tbSymptomDates.Text = TextModeDateFormatter.Format(interaction.SymptomStartDate);
 
-            if (interaction.COVIDTestResult.Equals("No Recent Test"))
+            if (interaction.COVIDTestResult == null)
+            {
+                ddlTestResult.SelectedIndex = 0;
+            }
+            else if(interaction.COVIDTestResult.Equals("No Recent Test"))
             {
                 tbTestingLocation.Text = "N/A";
                 ddlTestResult.SelectedValue = "No Recent Test";
-            }
-            else if(interaction.COVIDTestResult == null)
-            {
-                ddlTestResult.SelectedIndex = 0;
             }
             else
             {
