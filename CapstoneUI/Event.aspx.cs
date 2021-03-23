@@ -41,10 +41,13 @@ namespace CapstoneUI
             rptResidents.DataSource = theEvent.Attendees;
             rptResidents.DataBind();
 
-            ddlMainHost.DataSource = theEvent.Hosts;
-            ddlMainHost.DataTextField = "FullName";
-            ddlMainHost.DataValueField = "UserID";
-            ddlMainHost.DataBind();
+            if (!IsPostBack)
+            {
+                ddlMainHost.DataSource = theEvent.Hosts;
+                ddlMainHost.DataTextField = "FullName";
+                ddlMainHost.DataValueField = "UserID";
+                ddlMainHost.DataBind();
+            }
             ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
         }
 
