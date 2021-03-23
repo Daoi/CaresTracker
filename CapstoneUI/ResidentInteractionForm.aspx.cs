@@ -128,7 +128,7 @@ namespace CapstoneUI
 
                 if (cblCompletedServices.Items.Count == completedServices.Count)
                 {
-                    string date = DateTime.Today.ToString("yyyy-mm-dd");
+                    string date = DateTime.Today.ToString("yyyy-MM-dd");
                     new UpdateFollowUpCompleted().ExecuteCommand(date, interaction.InteractionID);
                 }
                 lblUpdateServices.Text = $"Services updated succesfully";
