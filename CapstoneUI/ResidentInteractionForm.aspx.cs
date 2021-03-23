@@ -263,7 +263,7 @@ namespace CapstoneUI
             newInteraction.COVIDTestLocation = tbTestingLocation.Text;
             if(ddlTestResult.SelectedIndex == 0)
             {
-                newInteraction.COVIDTestResult = "";
+                newInteraction.COVIDTestResult = "N/A";
             }
             else
             {
@@ -368,7 +368,7 @@ namespace CapstoneUI
             if (!string.IsNullOrEmpty(tbSymptomDates.Text))
                 tbSymptomDates.Text = TextModeDateFormatter.Format(interaction.SymptomStartDate);
 
-            if (interaction.COVIDTestResult == null)
+            if (interaction.COVIDTestResult.Equals("N/A"))
             {
                 ddlTestResult.SelectedIndex = 0;
             }
