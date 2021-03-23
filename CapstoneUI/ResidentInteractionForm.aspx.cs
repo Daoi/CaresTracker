@@ -260,7 +260,7 @@ namespace CapstoneUI
             newInteraction.DateOfContact = tbDoC.Text;
             newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
             newInteraction.LocationOfContact = tbLocation.Text;
-            newInteraction.COVIDTestLocation = tbTestingLocation.Text;
+            newInteraction.COVIDTestLocation = tbTestingLocation.Text.Equals("N/A") ? "" : tbTestingLocation.Text;
             if(ddlTestResult.SelectedIndex == 0)
             {
                 newInteraction.COVIDTestResult = string.Empty;
