@@ -24,7 +24,8 @@ namespace CapstoneUI.DataAccess.DataAccessors
                 new MySqlParameter("@EventLocation", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@EventDate", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@EventStartTime", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@EventEndTime", MySqlDbType.VarChar, 50)
+                new MySqlParameter("@EventEndTime", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@MainHostID", MySqlDbType.Int32)
             };
         }
 
@@ -42,6 +43,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
             Parameters[4].Value = newEvent.EventDate;
             Parameters[5].Value = newEvent.EventStartTime;
             Parameters[6].Value = newEvent.EventEndTime;
+            Parameters[7].Value = newEvent.MainHostID;
             return Parameters;
         }
     }

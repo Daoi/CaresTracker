@@ -25,9 +25,19 @@
                 <asp:TextBox ID="txtEventTimeEnd" placeholder="Event Time End" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
                 <h5>Select Health Workers to Host Event</h5>
                 <div id="userCBLDiv" class="DataboundCBLOverflow row">
-                    <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal">
+                    <asp:CheckBoxList ID="cblUsers" AutoPostBack="true" runat="server" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged">
                     </asp:CheckBoxList>
                 </div>
+                <asp:UpdatePanel ID="upMainHost" UpdateMode="Conditional" runat="server">
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="cblUsers" EventName="SelectedIndexChanged" />
+                    </Triggers>
+                    <ContentTemplate>
+                        <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
+                            <asp:ListItem Value="default">Select Main Host</asp:ListItem>
+                        </asp:DropDownList>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
             <br />
             <br />

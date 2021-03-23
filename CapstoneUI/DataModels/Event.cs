@@ -17,6 +17,7 @@ namespace CapstoneUI.DataModels
         public string EventDate { get; set; }
         public string EventStartTime { get; set; }
         public string EventEndTime { get; set; }
+        public int MainHostID { get; set; }
         public List<CARESUser> Hosts { get; set; }
         public List<Resident> Attendees { get; set; }
 
@@ -35,6 +36,7 @@ namespace CapstoneUI.DataModels
             EventDate = dataRow["EventDate"].ToString();
             EventStartTime = dataRow["EventStartTime"].ToString();
             EventEndTime = dataRow["EventEndTime"].ToString();
+            MainHostID = int.Parse(dataRow["MainHostID"].ToString());
 
             // fill lists
             Hosts = CARESUser.CreateEventHostList(new GetEventHosts().ExecuteCommand(EventID));
