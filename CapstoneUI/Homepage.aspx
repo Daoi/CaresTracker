@@ -115,7 +115,7 @@
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%# Eval("ResidentFirstName")+ " " + Eval("ResidentLastName") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Resident">
+                                                <asp:TemplateField HeaderText="View Interaction">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkViewInteraction" runat="server" OnClick="lnkViewOutstandingInteraction_Click">View this Interaction</asp:LinkButton>
                                                     </ItemTemplate>
@@ -133,7 +133,7 @@
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Resident">
+                                                <asp:TemplateField HeaderText="View Interaction">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkViewInteraction" runat="server" OnClick="lnkViewCompletedInteraction_Click">View this Interaction</asp:LinkButton>
                                                     </ItemTemplate>
