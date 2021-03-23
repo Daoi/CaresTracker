@@ -201,6 +201,7 @@ namespace CapstoneUI
             try
             {
                 new UpdateInteraction(newInteraction).ExecuteCommand();
+                
                 new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID, userId);
             }
             catch(Exception e)
@@ -365,8 +366,8 @@ namespace CapstoneUI
                 .ToList()
                 .ForEach(cb => cb.Checked = true);
 
-            if (!string.IsNullOrEmpty(tbSymptomDates.Text))
-                tbSymptomDates.Text = TextModeDateFormatter.Format(interaction.SymptomStartDate);
+            if (!string.IsNullOrEmpty(interaction.SymptomStartDate))
+                tbSymptomDates.Text = interaction.SymptomStartDate;
 
             if (interaction.COVIDTestResult.Equals("No Recent Test"))
             {
