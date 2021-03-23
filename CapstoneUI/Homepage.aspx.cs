@@ -42,7 +42,6 @@ namespace CapstoneUI
             gvEvents.DataSource = dt;
             gvEvents.DataBind();
             ViewState["EventDT"] = dt;
-            upEvents.Update();
         }
 
         public void InitializeFollowUps()

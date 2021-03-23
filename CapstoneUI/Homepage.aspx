@@ -106,7 +106,7 @@
                                 <h4 class="card-title">Follow Ups</h4>
                                 <div class="tab-content mt-3">
                                     <div class="tab-pane active" id="outstanding" role="tabpanel">
-                                        <asp:Label ID="lblOutstandingMsg" runat="server" Text="Label"></asp:Label>
+                                        <asp:Label ID="lblOutstandingMsg" runat="server" Text=""></asp:Label>
                                         <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                             <Columns>
                                                 <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
@@ -124,7 +124,7 @@
                                         </asp:GridView>
                                     </div>
                                     <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                                        <asp:Label ID="lblCompletedMsg" runat="server" Text="Label"></asp:Label>
+                                        <asp:Label ID="lblCompletedMsg" runat="server" Text=""></asp:Label>
                                         <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                             <Columns>
                                                 <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
@@ -169,33 +169,31 @@
                     </div>
                     <div class="col m-3">
                         <%-- Event Tracker Start --%>
-                        <div class="card mt-5">
-                            <div class="card-body UCEventsCard">
-                                <asp:UpdatePanel ID="upEvents" runat="server" UpdateMode="Conditional">
-                                    <ContentTemplate>
-                                        <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Event (Click to View)">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkToEvent" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
-                                                <asp:TemplateField HeaderText="Start Time">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-                                                <%--<asp:TemplateField HeaderText="Event Host">
+                        <div class="card-body border">
+                            <h4 class="card-title">Upcoming Events</h4>
+                            <div class="card mt-5">
+                                <div class="card-body UCEventsCard">
+                                    <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Event (Click to View)">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
+                                            <asp:TemplateField HeaderText="Start Time">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <%--<asp:TemplateField HeaderText="Event Host">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblChwName" runat="server" Text='<%#Eval("UserFirstName")+ " " + Eval("UserLastName")%>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
                         </div>
                         <%-- Event Tracker End --%>
@@ -226,9 +224,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var table = $('#MainContent_gvEvents').DataTable({
-                "lengthMenu": [5]    
+                "lengthMenu": [5]
             });
-            
+
         });
     </script>
 </asp:Content>
