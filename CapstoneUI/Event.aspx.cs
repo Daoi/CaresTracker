@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
@@ -32,14 +33,19 @@ namespace CapstoneUI
             txtEventDate.Text = theEvent.EventDate;
             txtStartTime.Text = theEvent.EventStartTime;
             txtEndTime.Text = theEvent.EventEndTime;
+            txtDescription.Text = theEvent.EventDescription;
 
             rptHealthWorkers.DataSource = theEvent.Hosts;
             rptHealthWorkers.DataBind();
 
             rptResidents.DataSource = theEvent.Attendees;
             rptResidents.DataBind();
-            
-            txtDescription.Text = theEvent.EventDescription;
+
+            ddlMainHost.DataSource = theEvent.Hosts;
+            ddlMainHost.DataTextField = "FullName";
+            ddlMainHost.DataValueField = "UserID";
+            ddlMainHost.DataBind();
+            ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -59,6 +65,11 @@ namespace CapstoneUI
                 if (c is TextBox)
                 {
                     TextBox temp = c as TextBox;
+                    temp.Enabled = !temp.Enabled;
+                }
+                if (c is DropDownList)
+                {
+                    DropDownList temp = c as DropDownList;
                     temp.Enabled = !temp.Enabled;
                 }
             }

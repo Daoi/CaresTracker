@@ -31,6 +31,14 @@
                             </div>
                             <div class="row m-3">
                                 <div class="col-3 p-0">
+                                    <b>Main Host:</b>
+                                </div>
+                                <div class="col p-0">
+                                    <asp:DropDownList ID="ddlMainHost" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <div class="col-3 p-0">
                                     <b>Type:</b>
                                 </div>
                                 <div class="col p-0">
