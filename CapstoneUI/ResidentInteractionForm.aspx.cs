@@ -128,7 +128,7 @@ namespace CapstoneUI
 
                 if (cblCompletedServices.Items.Count == completedServices.Count)
                 {
-                    string date = DateTime.Today.ToString("yyyy-mm-dd");
+                    string date = DateTime.Today.ToString("yyyy-MM-dd");
                     new UpdateFollowUpCompleted().ExecuteCommand(date, interaction.InteractionID);
                 }
                 lblUpdateServices.Text = $"Services updated succesfully";
@@ -261,10 +261,10 @@ namespace CapstoneUI
             newInteraction.DateOfContact = tbDoC.Text;
             newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
             newInteraction.LocationOfContact = tbLocation.Text;
-            newInteraction.COVIDTestLocation = tbTestingLocation.Text;
+            newInteraction.COVIDTestLocation = tbTestingLocation.Text.Equals("N/A") ? "" : tbTestingLocation.Text;
             if(ddlTestResult.SelectedIndex == 0)
             {
-                newInteraction.COVIDTestResult = null;
+                newInteraction.COVIDTestResult = string.Empty;
             }
             else
             {
@@ -369,14 +369,14 @@ namespace CapstoneUI
             if (!string.IsNullOrEmpty(interaction.SymptomStartDate))
                 tbSymptomDates.Text = interaction.SymptomStartDate;
 
-            if (interaction.COVIDTestResult.Equals("No Recent Test"))
+            if (string.IsNullOrEmpty(interaction.COVIDTestResult))
+            {
+                ddlTestResult.SelectedIndex = 0;
+            }
+            else if(interaction.COVIDTestResult.Equals("No Recent Test"))
             {
                 tbTestingLocation.Text = "N/A";
                 ddlTestResult.SelectedValue = "No Recent Test";
-            }
-            else if(interaction.COVIDTestResult == null)
-            {
-                ddlTestResult.SelectedIndex = 0;
             }
             else
             {
