@@ -112,10 +112,14 @@
                                                 <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
                                                 <asp:TemplateField HeaderText="Resident">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
+                                                        <asp:Label ID="lblResidentName" runat="server" Text='<%# Eval("ResidentFirstName")+ " " + Eval("ResidentLastName") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make link)" />
+                                                <asp:TemplateField HeaderText="Resident">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" OnClick="lnkViewOutstandingInteraction_Click">View this Interaction</asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
                                     </div>
@@ -129,7 +133,11 @@
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="InteractionID" HeaderText="Interaction(Make Link)" />
+                                                <asp:TemplateField HeaderText="Resident">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" OnClick="lnkViewCompletedInteraction_Click">View this Interaction</asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
                                     </div>
@@ -160,20 +168,29 @@
                         </div>
                     </div>
                     <div class="col m-3">
+                        <%-- Event Tracker Start --%>
                         <div class="card mt-5">
                             <div class="card-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
-                                    Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis 
-                                    ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia 
-                                    arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos 
-                                    himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque 
-                                    nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut 
-                                    ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
-                                    Fusce ac turpis quis ligula lacinia aliquet. 
-                                </p>
+                                <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Event(Click to View)">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkToEvent" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
+                                        <asp:BoundField DataField="EventStartTime" HeaderText="Event Start Time" />
+
+                                        <%--                                        <asp:TemplateField HeaderText="Event Host">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblChwName" runat="server" Text='<%#Eval("UserFirstName")+ " " + Eval("UserLastName")%>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                    </Columns>
+                                </asp:GridView>
                             </div>
                         </div>
+                        <%-- Event Tracker End --%>
                     </div>
                 </div>
             </div>
@@ -195,6 +212,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var table = $('#MainContent_gvOutstandingFollowUps').DataTable();
+        });
+    </script>
+    <%-- Events Tracker --%>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#MainContent_gvEvents').DataTable();
         });
     </script>
 </asp:Content>
