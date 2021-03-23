@@ -170,7 +170,7 @@
                     <div class="col m-3">
                         <%-- Event Tracker Start --%>
                         <div class="card mt-5">
-                            <div class="card-body">
+                            <div class="card-body UCEventsCard">
                                 <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Event(Click to View)">
