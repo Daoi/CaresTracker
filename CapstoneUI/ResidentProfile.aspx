@@ -182,4 +182,21 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#MainContent_ddlRegion").select2({
+
+                placeholder: "Select Item",
+                allowClear: false,
+                selectOnClose: true
+            });
+
+            $("#MainContent_ddlHousingDevelopment").select2({
+
+                placeholder: "Select Item",
+                allowClear: false,
+                selectOnClose: true
+            });
+        });
+    </script>
 </asp:Content>
