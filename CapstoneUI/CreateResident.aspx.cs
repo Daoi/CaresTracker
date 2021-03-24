@@ -142,6 +142,9 @@ namespace CapstoneUI
             housingDivs.ForEach(ed => ed.Visible = false); //Turn off all divs
             (housingDivs.Find(ed => ed.ID.Equals(selectedId)) as HtmlGenericControl).Visible = true; //Turn selected div on
 
+            string select2Params = selectedId == "divHouse" ? "'#MainContent_ddlRegion', 'Select Region'" : "'#MainContent_ddlDevelopments', 'Select Development'";
+            string select2Call = $"setupSelect2({select2Params});";
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "select2Call", select2Call, true);
             upHousing.Update();//Update the page without doing full postback using update panel
         }
     }
