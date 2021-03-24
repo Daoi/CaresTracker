@@ -53,11 +53,11 @@ namespace CapstoneUI
 
                 gvInteractionList.DataSource = dt;
                 gvInteractionList.DataBind();
-                Session["InteractionListDT"] = dt;
+                ViewState["InteractionListDT"] = dt;
             }
 
-            if (Session["InteractionListDT"] != null)
-                dt = Session["InteractionListDT"] as DataTable;
+            if (ViewState["InteractionListDT"] != null)
+                dt = ViewState["InteractionListDT"] as DataTable;
         }
 
 
@@ -71,8 +71,8 @@ namespace CapstoneUI
         protected void btnViewInteraction_Click(object sender, EventArgs e)
         {
 
-            if (Session["InteractionListDT"] != null)
-               dt = Session["InteractionListDT"] as DataTable;
+            if (ViewState["InteractionListDT"] != null)
+               dt = ViewState["InteractionListDT"] as DataTable;
             else
             {
                 //Error handling
