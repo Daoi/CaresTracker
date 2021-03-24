@@ -1,5 +1,6 @@
 ﻿using CapstoneUI.DataAccess.DataAccessors;
 using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
+using CapstoneUI.DataAccess.DataAccessors.DevelopmentAccessors;
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 using System;
@@ -33,8 +34,8 @@ namespace CapstoneUI
                 ToggleControls(); //Set page to disabled status
                 if (Session["DevelopmentDT"] == null)
                 {
-                    GetAllDevelopments GAD = new GetAllDevelopments();
-                    DataTable developmentDT = GAD.ExecuteCommand();
+                    CARESUser user = Session["User"] as CARESUser;
+                    DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
                     // Bind to drop down list
                     ddlHousingDevelopment.DataSource = developmentDT;
                     ddlHousingDevelopment.DataValueField = "DevelopmentID";
