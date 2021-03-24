@@ -516,5 +516,12 @@ namespace CapstoneUI
             return isValid;
         }
 
+        protected void btnEditCancel_Click(object sender, EventArgs e)
+        {
+            lblModalError.Text = string.Empty;
+            string hideModalCall = "$('#modalEditReason').modal('hide');";
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideEditModal", hideModalCall, true);
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showEditModal", "", true);
+        }
     }
 }
