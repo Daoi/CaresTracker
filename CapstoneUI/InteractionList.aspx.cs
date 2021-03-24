@@ -19,21 +19,9 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
+            user = Session["User"] as CARESUser;
             if (!IsPostBack)
             {
-                try
-                {
-                    user = Session["User"] as CARESUser;
-                }
-                catch(Exception ex)
-                {
-                    
-                    Response.Redirect("Login.aspx");
-                }
-
-
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
                 {
                     Resident res = Session["Resident"] as Resident;
