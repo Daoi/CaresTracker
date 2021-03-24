@@ -44,14 +44,12 @@ namespace CapstoneUI
                     dt = new GetAllInteractionsByWorkerID().RunCommand(user.UserID);
                 }
 
-                if (dt.Rows.Count != 0)
+                if (dt.Rows.Count == 0) { return; }
+
+                gvInteractionList.DataBound += (object o, EventArgs ev) =>
                 {
-                    //Adds table head tag to visual studio html output so gridview format will work DataTables
-                    gvInteractionList.DataBound += (object o, EventArgs ev) =>
-                    {
-                        gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
-                    };
-                }
+                    gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
 
                 gvInteractionList.DataSource = dt;
                 gvInteractionList.DataBind();
