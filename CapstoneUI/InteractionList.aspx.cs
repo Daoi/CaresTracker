@@ -20,6 +20,7 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
             user = Session["User"] as CARESUser;
+
             if (!IsPostBack)
             {
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
@@ -34,19 +35,13 @@ namespace CapstoneUI
                 }
 
 
-                if (user.UserType == "C")
+                if (user.UserType == "T") // temple admins can see all interactions
                 {
-                    GetAllInteractionsByWorkerID gi = new GetAllInteractionsByWorkerID();
-                    dt = gi.RunCommand(user.UserID);
-                    gvInteractionList.DataSource = dt;
-
+                    dt = new GetAllInteractions().ExecuteCommand();
                 }
-                else
+                else // filter by user's organization
                 {
-                    //Need to add organization filtering
-                    GetAllInteractions getAllInteractions = new GetAllInteractions();
-                    dt = getAllInteractions.ExecuteCommand();
-                    gvInteractionList.DataSource = dt;
+                    dt = new GetAllInteractionsByWorkerID().RunCommand(user.UserID);
                 }
 
                 if (dt.Rows.Count != 0)
@@ -58,8 +53,9 @@ namespace CapstoneUI
                     };
                 }
 
-                Session["InteractionListDT"] = dt;
+                gvInteractionList.DataSource = dt;
                 gvInteractionList.DataBind();
+                Session["InteractionListDT"] = dt;
             }
 
             if (Session["InteractionListDT"] != null)
