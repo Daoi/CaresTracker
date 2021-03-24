@@ -222,10 +222,11 @@ namespace CapstoneUI
 
             AddHouse AH = new AddHouse(res.Home);
             object AddHouseResult = AH.ExecuteCommand();
+            res.Home.HouseID = Convert.ToInt32(AddHouseResult);
 
             // Update Resident's HouseID to match new House
             UpdateHouseID UHI = new UpdateHouseID();
-            UHI.ExecuteCommand(res.ResidentID, Convert.ToInt32(AddHouseResult));
+            UHI.ExecuteCommand(res.ResidentID, res.Home.HouseID);
 
             Session["Resident"] = res;
             //Update the resident values
@@ -235,6 +236,7 @@ namespace CapstoneUI
                 ToggleControls();
                 btnEditProfile.Visible = true;
                 btnSaveEdits.Visible = false;
+                lblErrorMessage.Text = string.Empty;
             }
             catch(Exception ex)
             {
