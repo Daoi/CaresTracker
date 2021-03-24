@@ -214,7 +214,9 @@ namespace CapstoneUI
             TogglePanels(); // Should be disabled now
             lnkBtnEdit.Text = $"<i class='fas fa-edit' id='icoEdit' runat='server'  style='margin-right: .5rem'></i> Edit Interaction";
 
+            lblModalError.Text = string.Empty;
             lblSave.Text = "Interaction updated succesfully!";
+            Response.Redirect("ResidentInteractionForm.aspx?from=SaveSuccessful");
         }
 
         private void SaveInteraction()
