@@ -260,16 +260,20 @@
                 <div class="modal-header">
                     <h4>Edit Submission</h4>
                 </div>
-                <div class="modal-body px-5 pb-3">
-                    <h5>Reason For Edit</h5>
-                    <asp:Label ID="lblModalError" runat="server" Text="" CssClass="alert-danger modalError"></asp:Label>
-                    <br />
-                    <textarea id="taEditReason" class="inputTextArea" cols="50" rows="5" runat="server"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <asp:Button ID="btnEditCancel" CssClass="btn btn-danger mr-3" runat="server" Text="Cancel" />
-                    <asp:Button ID="btnEditSubmit" CssClass="btn btn-primary" runat="server" Text="Save Edit" OnClick="btnEditSubmit_Click" />
-                </div>
+                <asp:UpdatePanel ID="pnlModalControls" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="modal-body px-5 pb-3">
+                            <h5>Reason For Edit</h5>
+                            <asp:Label ID="lblModalError" runat="server" Text="" CssClass="alert-danger modalError"></asp:Label>
+                            <br />
+                            <textarea id="taEditReason" class="inputTextArea" cols="50" rows="5" runat="server"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnEditCancel" CssClass="btn btn-danger mr-3" runat="server" Text="Cancel" OnClick="btnEditCancel_Click" />
+                            <asp:Button ID="btnEditSubmit" CssClass="btn btn-primary" runat="server" Text="Save Edit" OnClick="btnEditSubmit_Click" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
         </div>
     </div>

@@ -214,7 +214,9 @@ namespace CapstoneUI
             TogglePanels(); // Should be disabled now
             lnkBtnEdit.Text = $"<i class='fas fa-edit' id='icoEdit' runat='server'  style='margin-right: .5rem'></i> Edit Interaction";
 
+            lblModalError.Text = string.Empty;
             lblSave.Text = "Interaction updated succesfully!";
+            Response.Redirect("ResidentInteractionForm.aspx?from=SaveSuccessful");
         }
 
         private void SaveInteraction()
@@ -514,5 +516,12 @@ namespace CapstoneUI
             return isValid;
         }
 
+        protected void btnEditCancel_Click(object sender, EventArgs e)
+        {
+            lblModalError.Text = string.Empty;
+            string hideModalCall = "$('#modalEditReason').modal('hide');";
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideEditModal", hideModalCall, true);
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showEditModal", "", true);
+        }
     }
 }
