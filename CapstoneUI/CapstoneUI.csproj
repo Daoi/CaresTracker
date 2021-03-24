@@ -267,6 +267,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />
     <Compile Include="DataAccess\DataAccessors\EventParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\HostWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
