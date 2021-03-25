@@ -231,4 +231,13 @@
             </div>
         </div>
     </div>
+    <script>
+        function setupSelect2(selectID, placeHolder) {
+            $(selectID).select2({
+                placeholder: placeHolder,
+                allowClear: false,
+                selectOnClose: true
+            });
+        }
+    </script>
 </asp:Content>

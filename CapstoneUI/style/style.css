@@ -299,11 +299,11 @@ thead {
     overflow-y: scroll;
 }
 
-.followup-tracker{
+.followup-tracker, .UCEventsCard{
     overflow-y: scroll;
 }
 
-#MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter {
+#MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter, #MainContent_gvEvents_filter {
     margin-right: 9.7em;
 }
 
