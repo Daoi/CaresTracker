@@ -23,7 +23,7 @@
                         <asp:FileUpload runat="server"></asp:FileUpload>
                     </div>
                 </div>
-                <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="btn btn-lg cherryBackground" />
+                <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" />
             </div>
             <div class="card-footer text-muted">
             CARES Tracker

@@ -27,7 +27,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Location</label>
+                        <label>Event Location: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtEventLocation" placeholder="Event Location" runat="server" CssClass="form-control"></asp:TextBox><br />
@@ -59,7 +59,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Select Health Workers to Host Event</label>
+                        <label>Select Health Workers to Host Event:</label>
                         <div id="userCBLDiv" class="DataboundCBLOverflow row">
                             <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal">
                             </asp:CheckBoxList>
@@ -141,14 +141,14 @@
                 </asp:UpdatePanel>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Description and Notes</label>
+                        <label>Event Description and Notes:</label>
                     </div>
                     <div class="col-7">
                         <textarea class="w-100 form-control" id="txtDescription" rows="6" runat="server"></textarea>
                     </div>
                 </div>
                 <div class="row m-3">
-                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-lg cherryBackground" OnClick="btnSubmit_Click" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="buttonStyle" OnClick="btnSubmit_Click" />
                 </div>
             </div>
         </div>

@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="row m-3">
-                    <asp:Button ID="btnSubmit" CssClass="btn btn-lg cherryBackground" Text="Create CHW Profile" OnClick="btnSubmit_Click" runat="server" />
+                    <asp:Button ID="btnSubmit" CssClass="buttonStyle" Text="Create CHW Profile" OnClick="btnSubmit_Click" runat="server" />
                 </div>
             </div>
         </div>

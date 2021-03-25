@@ -43,7 +43,7 @@
                                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Password"></asp:TextBox>
                             </div>
                         </div>
-                        <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-lg cherryBackground" OnClick="btnLogin_Click" />
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="buttonStyle" OnClick="btnLogin_Click" />
                         <br />
                         <asp:Button ID="btnForgotPassword" runat="server" CssClass="btn btn-link font-weight-bold cherryFont" Text="Forgot Password?" OnClick="switchPanels" />
                     </asp:Panel>
@@ -90,15 +90,15 @@
                                     </div>
                                 </div>
                                 <br />
-                                <asp:Button ID="btnPRConfirm" runat="server" Text="Change Password" CssClass="btn-secondary btn-lg" OnClick="btnPRConfirm_Click" Enabled="false" />
+                                <asp:Button ID="btnPRConfirm" runat="server" Text="Change Password" CssClass="buttonStyle" OnClick="btnPRConfirm_Click" Enabled="false" />
                                 <br />
-                                <asp:Button ID="btnPRGoBack" runat="server" CssClass="btn btn-link font-weight-bold h3 mt-2" Text="Back to Login" OnClick="switchPanels" />
+                                <asp:Button ID="btnPRGoBack" runat="server" CssClass="btn btn-link font-weight-bold h3 mt-2 cherryFont" Text="Back to Login" OnClick="switchPanels" />
                             </div>
                             <div class="col-sm-3 text-left">
                                 <br />
                                 <br />
                                 <br />
-                                <asp:Button ID="btnPRSendCode" runat="server" CssClass="btn btn-warning" Text="Send Code" OnClick="btnPRSendCode_Click" />
+                                <asp:Button ID="btnPRSendCode" runat="server" CssClass="buttonStyle" Text="Send Code" OnClick="btnPRSendCode_Click" />
                             </div>
                         </div>
                     </asp:Panel>

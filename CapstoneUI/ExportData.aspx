@@ -27,12 +27,12 @@
                             <asp:ListItem>Greater Philadelphia</asp:ListItem>
                         </asp:DropDownList><br />
                         Initial Date:<br />
-                        <asp:TextBox ID="txtDateInitial" CssClass="form-control" TextMode="DateTimeLocal" runat="server"></asp:TextBox><br />
+                        <asp:TextBox ID="txtDateInitial" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
                         Final Date:<br />
-                        <asp:TextBox ID="txtDateFinal" CssClass="form-control" TextMode="DateTimeLocal" runat="server"></asp:TextBox><br />
+                        <asp:TextBox ID="txtDateFinal" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
                     </div>
                 </div>
-                <asp:Button ID="btnSubmitImport" runat="server" Text="Generate Report" CssClass="btn btn-larger cherryBackground" />
+                <asp:Button ID="btnSubmitImport" runat="server" Text="Generate Report" CssClass="buttonStyle" />
             </div>
             <div class="card-footer text-muted">
                 CARES Tracker

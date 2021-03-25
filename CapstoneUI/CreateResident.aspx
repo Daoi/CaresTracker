@@ -211,7 +211,7 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <div class="row m-3">
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-lg cherryBackground" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click1" />
+                        <asp:Button ID="btnSubmit" CssClass="buttonStyle" Text="Create Resident Profile" runat="server" OnClick="btnSubmit_Click1" />
                     </div>
                     <%-- House End --%>
 

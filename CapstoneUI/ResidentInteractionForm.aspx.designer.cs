@@ -13,6 +13,24 @@ namespace CapstoneUI {
     public partial class ResidentInteractionForm {
         
         /// <summary>
+        /// lnkHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkHome;
+        
+        /// <summary>
+        /// lblPageInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPageInfo;
+        
+        /// <summary>
         /// residentInfo control.
         /// </summary>
         /// <remarks>
@@ -155,24 +173,6 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSave;
-        
-        /// <summary>
-        /// lnkBtnHome control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBtnHome;
-        
-        /// <summary>
-        /// warningHome control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl warningHome;
         
         /// <summary>
         /// lblHome control.

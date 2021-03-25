@@ -12,7 +12,6 @@
                             <li class="breadcrumb-item active" aria-current="page">Interaction List</li>
                         </ol>
                     </nav>
-                    <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 58%">Interaction List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered thead-dark">

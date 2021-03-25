@@ -12,7 +12,6 @@
                             <li class="breadcrumb-item active" aria-current="page">Event List</li>
                         </ol>
                     </nav>
-                    <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 56%">Event List</asp:Label>
                 </div>
                 <div class="container-fluid mt-2">
                     <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >

@@ -243,5 +243,10 @@ namespace CapstoneUI
             }
             
         }
+
+        protected void lnkResidentLookup_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ResidentLookup.aspx");
+        }
     }
 }
