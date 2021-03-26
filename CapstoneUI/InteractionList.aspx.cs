@@ -19,21 +19,10 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            user = Session["User"] as CARESUser;
 
             if (!IsPostBack)
             {
-                try
-                {
-                    user = Session["User"] as CARESUser;
-                }
-                catch(Exception ex)
-                {
-                    
-                    Response.Redirect("Login.aspx");
-                }
-
-
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
                 {
                     Resident res = Session["Resident"] as Resident;
@@ -46,36 +35,29 @@ namespace CapstoneUI
                 }
 
 
-                if (user.UserType == "C")
+                if (user.UserType == "T") // temple admins can see all interactions
                 {
-                    GetAllInteractionsByWorkerID gi = new GetAllInteractionsByWorkerID();
-                    dt = gi.RunCommand(user.UserID);
-                    gvInteractionList.DataSource = dt;
-
+                    dt = new GetAllInteractions().ExecuteCommand();
                 }
-                else
+                else // filter by user's organization
                 {
-                    //Need to add organization filtering
-                    GetAllInteractions getAllInteractions = new GetAllInteractions();
-                    dt = getAllInteractions.ExecuteCommand();
-                    gvInteractionList.DataSource = dt;
+                    dt = new GetAllInteractionsByWorkerID().RunCommand(user.UserID);
                 }
 
-                if (dt.Rows.Count != 0)
-                {
-                    //Adds table head tag to visual studio html output so gridview format will work DataTables
-                    gvInteractionList.DataBound += (object o, EventArgs ev) =>
-                    {
-                        gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
-                    };
-                }
+                if (dt.Rows.Count == 0) { return; }
 
-                Session["InteractionListDT"] = dt;
+                gvInteractionList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvInteractionList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+
+                gvInteractionList.DataSource = dt;
                 gvInteractionList.DataBind();
+                ViewState["InteractionListDT"] = dt;
             }
 
-            if (Session["InteractionListDT"] != null)
-                dt = Session["InteractionListDT"] as DataTable;
+            if (ViewState["InteractionListDT"] != null)
+                dt = ViewState["InteractionListDT"] as DataTable;
         }
 
 
@@ -89,8 +71,8 @@ namespace CapstoneUI
         protected void btnViewInteraction_Click(object sender, EventArgs e)
         {
 
-            if (Session["InteractionListDT"] != null)
-               dt = Session["InteractionListDT"] as DataTable;
+            if (ViewState["InteractionListDT"] != null)
+               dt = ViewState["InteractionListDT"] as DataTable;
             else
             {
                 //Error handling
