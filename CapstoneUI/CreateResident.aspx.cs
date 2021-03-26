@@ -26,6 +26,7 @@ namespace CapstoneUI
                 ddlDevelopments.DataSource = developmentDT;
                 ddlDevelopments.DataValueField = "DevelopmentID";
                 ddlDevelopments.DataTextField = "DevelopmentName";
+                // Store list in session
                 Session["DevelopmentDT"] = developmentDT;
 
                 ddlDevelopments.DataBind();
@@ -44,12 +45,7 @@ namespace CapstoneUI
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
             // Check that address is selected from the API predictions list
-            if (hdnfldFormattedAddress.Value.Equals(""))
-            {
-                lblWrongAddressInput.Visible = true;
-                return;
-            }
-            else if (!hdnfldFormattedAddress.Value.Equals(txtAddress.Value))
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldFormattedAddress.Value.Equals(txtAddress.Value))
             {
                 lblWrongAddressInput.Visible = true;
                 return;
