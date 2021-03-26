@@ -1,4 +1,9 @@
-﻿let autocomplete;
+﻿
+/// Attaches the Google Places Autocomplete API to a textbox given the textbox's name as a string
+/// (remember to add "MainContent_" before the textbox's name)
+function loadPlacesAPI(textBoxName) {
+
+let autocomplete;
 
 // Center of Philadelphia, will be used to bias search results
 const center = { lat: 39.951668, lng: -75.163743 };
@@ -19,9 +24,8 @@ const options = {
     strictBounds: true
 }
 
-// Callback function for api
-function initMap() {
-    autocomplete = new google.maps.places.Autocomplete(document.getElementById("MainContent_txtAddress"), options);
+// Attach the API to a textbox provided by parameter
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById(textBoxName), options);
 
     autocomplete.addListener('place_changed', function () {
         const place = autocomplete.getPlace();
@@ -30,4 +34,4 @@ function initMap() {
         document.getElementById("hdnfldFormattedAddress").value = place.formatted_address;
     });
 
-};
+}
