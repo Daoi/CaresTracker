@@ -108,6 +108,7 @@
                                     <div class="tab-pane active" id="outstanding" role="tabpanel">
                                         <asp:Label ID="lblOutstandingMsg" runat="server" Text=""></asp:Label>
                                         <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                            <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
                                                 <asp:TemplateField HeaderText="Resident">
