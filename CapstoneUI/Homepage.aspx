@@ -108,6 +108,7 @@
                                     <div class="tab-pane active" id="outstanding" role="tabpanel">
                                         <asp:Label ID="lblOutstandingMsg" runat="server" Text=""></asp:Label>
                                         <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                            <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
                                                 <asp:TemplateField HeaderText="Resident">
@@ -159,15 +160,16 @@
                                     <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Event (Click to View)">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkToEvent" CssClass="text-dark" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="EventName" HeaderText="Event Name" />
                                             <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
                                             <asp:TemplateField HeaderText="Start Time">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="View Event">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='View This Event' CssClass="text-dark" OnClick="lnkToEvent_Click"></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <%--<asp:TemplateField HeaderText="Event Host">
