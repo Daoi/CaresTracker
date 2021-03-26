@@ -152,15 +152,16 @@
                 <div class="row">
                     <div class="col m-3">
                         <%-- Event Tracker Start --%>
-                        <div class="card-body border">
+                        <div class="card-body border text-dark offwhiteBackground">
                             <h4 class="card-title">Upcoming Events</h4>
                             <div class="card mt-5">
                                 <div class="card-body UCEventsCard">
                                     <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                        <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Event (Click to View)">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkToEvent" CssClass="text-dark" runat="server" Text='<%#Eval("EventName")%>' OnClick="lnkToEvent_Click"></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
