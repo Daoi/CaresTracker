@@ -1,8 +1,81 @@
-﻿
-.backgroundblue {
-    background-color: #157CB6;
+﻿.backgroundImage {
     overflow: auto;
     min-height: 100vh;
+    background-image: url("../img/master-wen-lpLRwDZigvc-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.cherryFont{
+    color: #A41E35;
+}
+
+.cherryFont:active{
+    color: black;
+}
+
+.cherryBackground {
+    color: white;
+    background-color: #A41E35;
+}
+
+.offwhiteBackground {
+    background-color: #F2EFE8;
+}
+
+a {
+    color: #A41E35;
+}
+
+.rblItem label {
+    margin-left: 5px;
+}
+
+.buttonStyle {
+    color: white;
+    background-color: #A41E35;
+    width: 195px;
+    height: 40px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.buttonStyle:hover {
+    background-color: #a82f44;
+    text-decoration: none;
+}
+
+.inputCheckBox {
+    display: inline-table;
+}
+
+.inputCheckBox input[type="checkbox"] {
+    margin-right: .15em;
+}
+
+@media (max-width: 1024px) {
+    .inputCheckBox input[type="checkbox"] {
+        margin-right: 5em;
+    }
+}
+
+.residentHealth {
+    transition: opacity 0.5s ease-in;
+    overflow-x: hidden;
 }
 
 .homepage {
@@ -143,9 +216,6 @@
     margin-bottom: 2rem
 }
 
-/*.eventControlBG{
-}*/
-
 .dataTables_filter {
     justify-content: center;
 }
@@ -181,7 +251,7 @@ thead {
 }
 
 #divrblGender input[type="radio"]{
-    margin-left: 4px;
+    margin-right: 5px;
 }
 
 .DataboundCBLOverflow{
@@ -190,15 +260,15 @@ thead {
     width: 100%;
 }
 
-    .DataboundCBLOverflow label {
-        display: inline;
+.DataboundCBLOverflow label {
+    display: inline;
 
-    }
+}
 
-    .DataboundCBLOverflow input[type=checkbox] {
-        display: inline-table;
-        vertical-align: -.01em;
-    }
+.DataboundCBLOverflow input[type=checkbox] {
+    display: inline-table;
+    vertical-align: -.01em;
+}
 
 /*Landscape*/
 @media (max-height: 768px) {
@@ -241,30 +311,34 @@ thead {
     padding-left: .5em;
 }
 
-.cblServices {
-    overflow-y: scroll;
-    font-size: .70em;
+.services {
+    transition: opacity 0.5s ease-in;
+    position: absolute;
     width: 80%;
-    height: 70%;
+    height: 90%;
 }
+
+.cblServices {
+    overflow-y: hidden;
+}
+
 .cblServices label{
     padding-left: .2em;
 }
 
 .cblServicesCompleted {
     overflow-y: scroll;
-    font-size: .70em;
     width: 80%;
     height: 30%;
 }
 
-    .cblServicesCompleted label {
-        padding-left: .2em;
-    }
+.cblServicesCompleted label {
+    padding-left: .2em;
+}
+
 .homepageCard {
     margin: auto;
-    width: 100%;
-    height: 125%;
+    height: 170px;
 }
 
 .homepageCol{

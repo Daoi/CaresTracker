@@ -215,6 +215,7 @@ input {
 }
 
     .inputCheckBox {
+        margin-left: 5px;
         display: inline-table;
     }
 

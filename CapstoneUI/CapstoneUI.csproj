@@ -121,6 +121,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\actionvance-guy5aS3GvgA-unsplash.jpg" />
+    <Content Include="img\logo-white.png" />
+    <Content Include="img\master-wen-lpLRwDZigvc-unsplash.jpg" />
+    <Content Include="img\Temple_University_logo.png" />
     <Content Include="InteractionList.aspx" />
     <Content Include="CHWManagement.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -137,7 +141,6 @@
     <Content Include="EventList.aspx" />
     <Content Include="ExportData.aspx" />
     <Content Include="Homepage.aspx" />
-    <Content Include="img\FallAndBluePrint.jpg" />
     <Content Include="img\pha_logonew.png" />
     <Content Include="ImportData.aspx" />
     <Content Include="ResidentInteractionForm.aspx" />
