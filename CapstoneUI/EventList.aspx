@@ -23,12 +23,20 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
-                            <asp:BoundField DataField="EventDescription" HeaderText="Event Description:" />
-                            <asp:BoundField DataField="EventType" HeaderText="Event Type:" />
-                            <asp:BoundField DataField="EventLocation" HeaderText="Location: " />
-                            <asp:BoundField DataField="EventDate" HeaderText="Date:" />
-                            <asp:BoundField DataField="EventStartTime" HeaderText="Start Time:" />
-                            <asp:BoundField DataField="EventEndTime" HeaderText="End Time:" />
+                            <asp:BoundField DataField="EventDescription" HeaderText="Event Description" />
+                            <asp:BoundField DataField="EventType" HeaderText="Event Type" />
+                            <asp:BoundField DataField="EventLocation" HeaderText="Location" />
+                            <asp:BoundField DataField="EventDate" HeaderText="Date" />
+                            <asp:TemplateField HeaderText="Start Time">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="End Time">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblEndTime" Text='<%# DateTime.Parse(Eval("EventEndTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>

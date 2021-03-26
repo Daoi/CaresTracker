@@ -151,23 +151,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col m-3">
-                        <div class="card mt-5">
-                            <div class="card-body">
-                                <h2 class="text-dark">Helpful Links</h2>
-                                <p class="font-weight-bold cherryFont">
-                                    <a href="http://www.pha.phila.gov/">Philadelphia Housing Authority Website</a>
-                                    <br />
-                                    <a href="https://templelnpwi.org/"><span>Temple Lenfest North Philadelphia Work Initiative</span></a>
-                                    <br />
-                                    <a href="https://www.templehealth.org/"><span>Temple Health</span></a>
-                                    <br />
-                                    <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html"><span>CDC Coronavirus Guidelines</span></a>
-                                    <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col m-3">
                         <%-- Event Tracker Start --%>
                         <div class="card-body border">
                             <h4 class="card-title">Upcoming Events</h4>
