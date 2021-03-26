@@ -14,8 +14,9 @@
                     </nav>
                     <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 70%"></asp:Label>
 
-                    <!-- Hidden field for JavaScript + C# variable passing -->
+                    <!-- Hidden fields for JavaScript + C# variable passing -->
                     <asp:HiddenField ID="hdnfldFormattedAddress" ClientIDMode="Static" runat="server" />
+                    <asp:HiddenField ID="hdnfldName" ClientIDMode="Static" runat="server" />
                 </div>
                 <%-- Resident Info Start --%>
                 <div class="container mt-5 w-75 mr-5 mb-5">

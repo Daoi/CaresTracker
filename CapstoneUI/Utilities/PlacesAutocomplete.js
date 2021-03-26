@@ -32,6 +32,7 @@ const options = {
 
         // Set hidden variable to place result to retrieve in serverside code
         document.getElementById("hdnfldFormattedAddress").value = place.formatted_address;
+        document.getElementById("hdnfldName").value = document.getElementById(textBoxName).value
     });
 
 }

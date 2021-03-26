@@ -45,7 +45,7 @@ namespace CapstoneUI
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
             // Check that address is selected from the API predictions list
-            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldFormattedAddress.Value.Equals(txtAddress.Value))
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
             {
                 lblWrongAddressInput.Visible = true;
                 return;
