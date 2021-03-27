@@ -27,7 +27,7 @@ namespace CapstoneUI
 
         public void FillEventInfo()
         {
-            lblEventName.Text = theEvent.EventName;
+            txtEventName.Text = theEvent.EventName;
             txtEventType.Text = theEvent.EventType;
             txtLocation.Text = theEvent.EventLocation;
             txtEventDate.Text = theEvent.EventDate;
@@ -63,14 +63,27 @@ namespace CapstoneUI
 
         private void EnableDisableControls()
         {
+            string defaultCSS = "h3 border-0 bg-transparent text-dark";
+            string textboxCSS = "form-control w-50";
             foreach (Control c in form.Controls)
             {
                 if (c is TextBox)
                 {
                     TextBox temp = c as TextBox;
+                    if (temp.ID == "txtEventName")
+                    { 
+                        if(temp.CssClass == defaultCSS)
+                        {
+                            temp.CssClass = temp.CssClass.Replace(defaultCSS, textboxCSS);
+                        }
+                        else
+                        {
+                            temp.CssClass = temp.CssClass.Replace(textboxCSS, defaultCSS);
+                        }
+                    }
                     temp.Enabled = !temp.Enabled;
                 }
-                if (c is DropDownList)
+                else if (c is DropDownList)
                 {
                     DropDownList temp = c as DropDownList;
                     temp.Enabled = !temp.Enabled;

@@ -21,7 +21,7 @@
             <div id="form" class="container-fluid" runat="server">
                 <div class="container w-75 mr-5 mt-5">
                     <div class="row">
-                        <asp:Label ID="lblEventName" CssClass="h3" runat="server"></asp:Label>
+                        <asp:TextBox ID="txtEventName" CssClass="h3 border-0 bg-transparent text-dark" Enabled="false" runat="server"></asp:TextBox>
                     </div>
                     <div class="row w-75 border-bottom">
                         <div class="col">

@@ -49,13 +49,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl form;
         
         /// <summary>
-        /// lblEventName control.
+        /// txtEventName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEventName;
+        protected global::System.Web.UI.WebControls.TextBox txtEventName;
         
         /// <summary>
         /// txtDescription control.
