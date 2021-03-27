@@ -121,22 +121,22 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtEndTime;
         
         /// <summary>
-        /// rptHealthWorkers control.
+        /// gvCHWList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptHealthWorkers;
+        protected global::System.Web.UI.WebControls.GridView gvCHWList;
         
         /// <summary>
-        /// rptResidents control.
+        /// gvResidentList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptResidents;
+        protected global::System.Web.UI.WebControls.GridView gvResidentList;
         
         /// <summary>
         /// btnEdit control.

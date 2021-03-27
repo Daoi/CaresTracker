@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapstoneUI.DataModels;
+using System.Data;
 
 namespace CapstoneUI
 {
@@ -35,11 +36,11 @@ namespace CapstoneUI
             txtEndTime.Text = theEvent.EventEndTime;
             txtDescription.Text = theEvent.EventDescription;
 
-            rptHealthWorkers.DataSource = theEvent.Hosts;
-            rptHealthWorkers.DataBind();
+            gvCHWList.DataSource = theEvent.Hosts;
+            gvCHWList.DataBind();
 
-            rptResidents.DataSource = theEvent.Attendees;
-            rptResidents.DataBind();
+            gvResidentList.DataSource = theEvent.Attendees;
+            gvResidentList.DataBind();
 
             if (!IsPostBack)
             {
@@ -114,6 +115,24 @@ namespace CapstoneUI
             btnEdit.Visible = true;
             btnSave.Visible = false;
             btnCancel.Visible = false;
+        }
+
+        protected void btnViewWorker_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            int index = row.RowIndex;
+            Session["Worker"] = theEvent.Hosts[index];
+            Response.Redirect("./CHWManagement.aspx");
+        }
+
+        protected void btnViewResident_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            int index = row.RowIndex;
+            Session["Resident"] = theEvent.Attendees[index];
+            Response.Redirect("./ResidentProfile.aspx");
         }
     }
 }

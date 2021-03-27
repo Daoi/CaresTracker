@@ -27,7 +27,7 @@
                         <div class="col">
                             <div class="row m-3">
                                 <b>Description:</b>
-                                <asp:TextBox ID="txtDescription" Enabled="false" CssClass="form-control mt-2"  TextMode="MultiLine" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtDescription" Enabled="false" CssClass="form-control mt-2" TextMode="MultiLine" runat="server"></asp:TextBox>
                             </div>
                             <div class="row m-3">
                                 <div class="col-3 p-0">
@@ -87,15 +87,18 @@
                                 <b>Health Workers:</b>
                             </div>
                             <div class="row justify-content-center">
-                                <ul class="eventLists">
-                                    <asp:Repeater ID="rptHealthWorkers" runat="server">
-                                        <ItemTemplate>
-                                            <li>
-                                                <asp:Label ID="lblHealthWorkerName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </ul>
+                                <div class="container-fluid mt-2">
+                                    <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                                        <HeaderStyle CssClass="cherryBackground" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="View Worker Profile">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btnViewWorker" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName")%>' OnClick="btnViewWorker_Click" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
                         </div>
                         <div class="col">
@@ -103,15 +106,15 @@
                                 <b>Attendees:</b>
                             </div>
                             <div class="row justify-content-center">
-                                <ul class="eventLists">
-                                    <asp:Repeater ID="rptResidents" runat="server">
-                                        <ItemTemplate>
-                                            <li>
-                                                <asp:Label ID="lblResidentName" runat="server" Text='<%# Bind("FullName") %>'></asp:Label>
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </ul>
+                                <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="View Resident Profile">
+                                            <ItemTemplate>
+                                                <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName") %>' OnClick="btnViewResident_Click" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
                             </div>
                         </div>
                     </div>
