@@ -15,14 +15,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="loginContainer d-flex ">
+        <div class="backgroundImage d-flex ">
             <div class="card mb-3 text-center mx-auto verifyCard my-auto ">
-                <div class="card-header forestGreen">
-                    PHA and Lenfest North Covid-19 Tracker
+                <div class="card-header cherryBackground">
+                    PHA and Lenfest North CARES Tracker
                 </div>
                 <br />
-                <div>
-                    <img src="img/pha_logonew.png" class="loginImg" />
+                <div class="my-3">
+                    <img src="img/Temple_University_logo.png" class="w-50" />
                 </div>
                 <div class="card-body row">
                     <div class="col-sm-3 text-left">
@@ -51,7 +51,7 @@
                                 <asp:TextBox ID="txtRetypePassword" TextMode="Password" runat="server" CssClass="form-control" placeholder="Confirm New Password"></asp:TextBox>
                             </div>
                         </div>
-                        <asp:Button ID="btnConfirm" runat="server" Text="Verify" CssClass="btn-primary btn-lg" OnClick="btnConfirm_Click" />
+                        <asp:Button ID="btnConfirm" runat="server" Text="Verify" CssClass="buttonStyle" OnClick="btnConfirm_Click" />
 
                     </div>
                     <div class="col-sm-3"></div>

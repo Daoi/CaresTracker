@@ -110,35 +110,36 @@
                                         <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                             <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
-                                                <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
+                                                <asp:TemplateField HeaderText="View Interaction">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkViewOutstandingInteraction_Click">View this Interaction</asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Resident">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%# Eval("ResidentFirstName")+ " " + Eval("ResidentLastName") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="View Interaction">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" OnClick="lnkViewOutstandingInteraction_Click">View this Interaction</asp:LinkButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>
                                     <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
                                         <asp:Label ID="lblCompletedMsg" runat="server" Text=""></asp:Label>
                                         <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                            <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
-                                                <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
+                                                <asp:TemplateField HeaderText="View Interaction">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="lnkViewCompletedInteraction_Click">View this Interaction</asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Resident">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="View Interaction">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" OnClick="lnkViewCompletedInteraction_Click">View this Interaction</asp:LinkButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>
@@ -149,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid mt-5">
                 <div class="row">
                     <div class="col m-3">
                         <%-- Event Tracker Start --%>
@@ -160,16 +161,16 @@
                                     <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
+                                            <asp:TemplateField HeaderText="View Event">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='View This Event' CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkToEvent_Click"></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
                                             <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
                                             <asp:TemplateField HeaderText="Start Time">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="View Event">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='View This Event' CssClass="text-dark" OnClick="lnkToEvent_Click"></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <%--<asp:TemplateField HeaderText="Event Host">
