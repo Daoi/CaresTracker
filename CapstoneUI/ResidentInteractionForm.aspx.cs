@@ -137,7 +137,7 @@ namespace CapstoneUI
                 if (completedServices.Count != interaction.CompletedServices.Count) //If these are equal no new services have been completed
                     new UpdateInteractionServices(completedServices, interaction.InteractionID).ExecuteCommand();
 
-                if (ddlFollowUpStatus.SelectedValue.Equals("1"))
+                if (ddlFollowUpStatus.SelectedValue.Equals("complete"))
                 {
                     string date = DateTime.Today.ToString("yyyy-MM-dd");
                     new UpdateFollowUpCompleted().ExecuteCommand(date, interaction.InteractionID);
@@ -297,7 +297,7 @@ namespace CapstoneUI
                 .ForEach(li => services.Add(new Service(li.Text, int.Parse(li.Value))));
             newInteraction.RequestedServices = services;
             newInteraction.CompletedServices = new List<Service>();
-            newInteraction.RequiresFollowUp = ddlFollowUp.SelectedValue.Equals("1"); //A service should imply requires follow up
+            newInteraction.RequiresFollowUp = ddlFollowUp.SelectedValue.Equals("true");
             return newInteraction;
         }
 
