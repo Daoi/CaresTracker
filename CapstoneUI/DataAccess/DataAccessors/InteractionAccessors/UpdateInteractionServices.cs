@@ -11,11 +11,17 @@ namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
     {
         string command;
         int IntID;
-        public UpdateInteractionServices(List<Service> updates, int id)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="updates">The services</param>
+        /// <param name="id">Id of the inteaction</param>
+        /// <param name="completion">0 for incomplete 1 for completed</param>
+        public UpdateInteractionServices(List<Service> updates, int id, int completion)
         {
             //Build Update Command for multiple rows
             IntID = id;
-            StringBuilder sCommand = new StringBuilder($"UPDATE InteractionService SET IsCompleted = '1' WHERE InteractionID = '{MySqlHelper.EscapeString(id.ToString())}' AND (");
+            StringBuilder sCommand = new StringBuilder($"UPDATE InteractionService SET IsCompleted = '{completion}' WHERE InteractionID = '{MySqlHelper.EscapeString(id.ToString())}' AND (");
             List<string> rows = new List<string>(); //The rows to insert
             foreach (Service s in updates)
             {

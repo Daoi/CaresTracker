@@ -43,9 +43,12 @@ namespace CapstoneUI
                 {
                     FillResidentInfo();
                     ViewState["OldInteraction"] = false;
+                    divFollowUpStatus.Visible = false;
+                    divFollowUpRequired.Visible = true;
                 }
                 else if (Session["Interaction"] != null && (url.Contains("InteractionList") || url.Contains("SaveSuccessful")))//Old interaction
                 {
+                    interaction = Session["Interaction"] as Interaction;
                     FillResidentInfo();
                     FillInteractionInfo();
                     ViewState["PanelState"] = true;
@@ -65,6 +68,11 @@ namespace CapstoneUI
                         lblHome.Text = "Interaction saved.";
                         lblHome.Visible = true;
                     }
+
+                    //Show if follow up is required and not completed
+                    divFollowUpStatus.Visible = interaction.RequiresFollowUp && string.IsNullOrEmpty(interaction.FollowUpCompleted);
+                    
+                    divFollowUpRequired.Visible = false;
                 }
             }
 
@@ -122,11 +130,21 @@ namespace CapstoneUI
                 .ToList()
                 .ForEach(li => completedServices.Add(new Service(li.Text, int.Parse(li.Value), true)));
 
+            List<Service> incompleteServices = new List<Service>();
+            cblCompletedServices.Items.OfType<ListItem>()
+                .ToList().Where(li => !li.Selected)
+                .ToList()
+                .ForEach(li => incompleteServices.Add(new Service(li.Text, int.Parse(li.Value), false)));
+
             try
             {
-                new UpdateInteractionServices(completedServices, interaction.InteractionID).ExecuteCommand();
+                if (completedServices.Count > 0) 
+                    new UpdateInteractionServices(completedServices, interaction.InteractionID, 1).ExecuteCommand();
 
-                if (cblCompletedServices.Items.Count == completedServices.Count)
+                if (incompleteServices.Count > 0)
+                    new UpdateInteractionServices(incompleteServices, interaction.InteractionID, 0).ExecuteCommand();
+
+                if (ddlFollowUpStatus.SelectedValue.Equals("complete"))
                 {
                     string date = DateTime.Today.ToString("yyyy-MM-dd");
                     new UpdateFollowUpCompleted().ExecuteCommand(date, interaction.InteractionID);
@@ -285,7 +303,8 @@ namespace CapstoneUI
                 .ToList()
                 .ForEach(li => services.Add(new Service(li.Text, int.Parse(li.Value))));
             newInteraction.RequestedServices = services;
-            newInteraction.RequiresFollowUp = services.Count > 0; //A service should imply requires follow up
+            newInteraction.CompletedServices = new List<Service>();
+            newInteraction.RequiresFollowUp = ddlFollowUp.SelectedValue.Equals("true");
             return newInteraction;
         }
 
@@ -512,6 +531,20 @@ namespace CapstoneUI
                 lblErrorActionPlan.Visible = false;
                 icErrorActionPlan.Visible = false;
             }
+
+            //FollowUp
+            if (ddlFollowUp.SelectedIndex == 0)
+            {
+                isValid = false;
+                icServices.Visible = true;
+                lblFollowUpError.Visible = true;
+            }
+            else
+            {
+                icServices.Visible = false;
+                lblFollowUpError.Visible = false;
+            }
+
 
             return isValid;
         }

@@ -22,7 +22,7 @@
                             <asp:LinkButton ID="housingInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Housing Information</asp:LinkButton>
                             <asp:LinkButton ID="meetingInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Meeting Information<i id="icErrorMeetingInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
                             <asp:LinkButton ID="residentHealth" CssClass="active my-3" runat="server" OnClick="formNav_Click">Resident Health<i id="icErrorResidentHealth" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
-                            <asp:LinkButton ID="services" CssClass="active my-3" runat="server" OnClick="formNav_Click">Services</asp:LinkButton>
+                            <asp:LinkButton ID="services" CssClass="active my-3" runat="server" OnClick="formNav_Click">Services<i id="icServices" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
                             <asp:LinkButton ID="vaccineInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
                             <asp:LinkButton ID="otherInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
                             <asp:LinkButton ID="lnkBtnSave" CssClass="active my-3" runat="server" OnClick="lnkBtnSave_Click"><i id="icoSave" runat="server" class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
@@ -197,19 +197,35 @@
                         </asp:Panel>
                         <%-- Resident Health Form End --%>
                         <%-- Services Form Start --%>
-                        <asp:Panel ID="pnlServicesForm" class="services overflow-auto" runat="server">
+                        <asp:Panel ID="pnlServicesForm" class="services" runat="server">
                             <h5>Social Services</h5>
-                            <div class="row m-3">
-                                <div id="divNewInteractionServices" class="cblServices" runat="server">
+                            <div class="row m-3 h-100">
+                                <div id="divNewInteractionServices" class="cblServices overflow-auto h-100 w-100" runat="server">
                                     <label>Services</label>
                                     <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
-                                <div id="divOldInteractionServices" class="cblServicesCompleted" runat="server">
+                                <div id="divOldInteractionServices" class="cblServicesCompleted overflow-auto h-75" runat="server">
                                     <label>Services Requested (Check if completed)</label>
                                     <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
+                                <div id="divFollowUpRequired" class="row m-3" runat="server">
+                                    <asp:Label ID="lblFollowUp" for="ddlFollowUp" runat="server" Text="Does this interaction require a follow up?"></asp:Label>
+                                    <asp:DropDownList ID="ddlFollowUp" CssClass="form-control" runat="server">
+                                        <asp:ListItem>Select Option</asp:ListItem>
+                                        <asp:ListItem Value="false">Doesn't Require Follow Up</asp:ListItem>
+                                        <asp:ListItem Value="true">Requires Follow up</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:Label ID="lblFollowUpError" runat="server" CssClass="h4 alert-danger" Text="Must select whether the service requires follow up."></asp:Label>
+                                </div>
+                                <div id="divFollowUpStatus" class="row m-3" runat="server">
+                                    <asp:Label ID="lblFollowUpStatus" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up?"></asp:Label>
+                                    <asp:DropDownList ID="ddlFollowUpStatus" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="incomplete">Still requires follow up</asp:ListItem>
+                                        <asp:ListItem Value="complete">Follow up completed</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                                 <div class="row m-3">
-                                    <asp:Button ID="btnUpdateServices" CssClass="buttonStyle" runat="server" Text="Update Services" Visible="False" OnClick="btnUpdateServices_Click" />
+                                    <asp:Button ID="btnUpdateServices" CssClass="buttonStyle" runat="server" Text="Update Services Status" Visible="False" OnClick="btnUpdateServices_Click" />
                                     <asp:Label ID="lblUpdateServices" CssClass="ml-1" runat="server" Text="" Visible="false"></asp:Label>
                                 </div>
                             </div>
