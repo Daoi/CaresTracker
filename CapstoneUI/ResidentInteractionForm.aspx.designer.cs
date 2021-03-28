@@ -571,6 +571,60 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.CheckBoxList cblCompletedServices;
         
         /// <summary>
+        /// divFollowUpRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFollowUpRequired;
+        
+        /// <summary>
+        /// lblFollowUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFollowUp;
+        
+        /// <summary>
+        /// ddlFollowUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFollowUp;
+        
+        /// <summary>
+        /// divFollowUpStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFollowUpStatus;
+        
+        /// <summary>
+        /// lblFollowUpStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFollowUpStatus;
+        
+        /// <summary>
+        /// ddlFollowUpStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFollowUpStatus;
+        
+        /// <summary>
         /// btnUpdateServices control.
         /// </summary>
         /// <remarks>
