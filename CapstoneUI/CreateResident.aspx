@@ -181,7 +181,7 @@
                                         <asp:ListItem Value="7">West</asp:ListItem>
                                         <asp:ListItem Value="8">Central</asp:ListItem>
                                         <asp:ListItem Value="9">South</asp:ListItem>
-                                        <asp:ListItem Value="10">Lower Soutwest</asp:ListItem>
+                                        <asp:ListItem Value="10">Lower Southwest</asp:ListItem>
                                         <asp:ListItem Value="11">University Southwest</asp:ListItem>
                                         <asp:ListItem Value="12">North Delaware</asp:ListItem>
                                         <asp:ListItem Value="13">River Wards</asp:ListItem>
