@@ -11,7 +11,7 @@ namespace CapstoneUI.DataAccess.DataAccessors
         public GetAllInteractionsByWorkerID()
         {
             //ConnectionString = GetConnectionString("dbConnectionString");
-            CommandText = "GetAllInteractionsByResidentAttributes ";
+            CommandText = "GetAllInteractionsByWorkerID";
             CommandType = CommandType.StoredProcedure;
         }
         /// <summary>

@@ -37,15 +37,18 @@ namespace CapstoneUI
                 cblServices.DataTextField = "ServiceName";
                 cblServices.DataBind();
                 divOldInteractionServices.Visible = false;
-
+                string url = HttpContext.Current.Request.Url.ToString();
                 //initialize form values
-                if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile")) //Should be a new interaction in this case
+                if (Session["Resident"] != null && url.Contains("ResidentProfile")) //Should be a new interaction in this case
                 {
                     FillResidentInfo();
-                    Session["InteractionSaved"] = false;
+                    ViewState["OldInteraction"] = false;
+                    divFollowUpStatus.Visible = false;
+                    divFollowUpRequired.Visible = true;
                 }
-                else if (Session["Interaction"] != null && HttpContext.Current.Request.Url.ToString().Contains("InteractionList"))//Old interaction
+                else if (Session["Interaction"] != null && (url.Contains("InteractionList") || url.Contains("SaveSuccessful")))//Old interaction
                 {
+                    interaction = Session["Interaction"] as Interaction;
                     FillResidentInfo();
                     FillInteractionInfo();
                     ViewState["PanelState"] = true;
@@ -56,10 +59,20 @@ namespace CapstoneUI
                     ddlVaccineEligibility.Enabled = false;
                     ddlVaccineInterest.Enabled = false;
                     //Services
-                    btnUpdateServices.Visible = true;
                     //Side Bar
                     lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
                     lnkBtnEdit.Visible = true;
+                    ViewState["OldInteraction"] = true;
+                    if (url.Contains("SaveSuccessful"))
+                    {
+                        lblHome.Text = "Interaction saved.";
+                        lblHome.Visible = true;
+                    }
+
+                    //Show if follow up is required and not completed
+                    divFollowUpStatus.Visible = interaction.RequiresFollowUp && string.IsNullOrEmpty(interaction.FollowUpCompleted);
+                    
+                    divFollowUpRequired.Visible = false;
                 }
             }
 
@@ -86,14 +99,6 @@ namespace CapstoneUI
 
         protected void lnkBtnHome_Click(object sender, EventArgs e)
         {
-            if(Session["InteractionSaved"] != null && (bool)Session["InteractionSaved"] == false)
-            {
-                lblHome.Text = "Interaction not saved yet. Click Home again to leave without saving.";
-                warningHome.Visible = true;
-                Session["InteractionSaved"] = null;
-                return;
-            }
-
             Response.Redirect("~/Homepage.aspx");
         }
 
@@ -125,13 +130,23 @@ namespace CapstoneUI
                 .ToList()
                 .ForEach(li => completedServices.Add(new Service(li.Text, int.Parse(li.Value), true)));
 
+            List<Service> incompleteServices = new List<Service>();
+            cblCompletedServices.Items.OfType<ListItem>()
+                .ToList().Where(li => !li.Selected)
+                .ToList()
+                .ForEach(li => incompleteServices.Add(new Service(li.Text, int.Parse(li.Value), false)));
+
             try
             {
-                new UpdateInteractionServices(completedServices, interaction.InteractionID).ExecuteCommand();
+                if (completedServices.Count > 0) 
+                    new UpdateInteractionServices(completedServices, interaction.InteractionID, 1).ExecuteCommand();
 
-                if (cblCompletedServices.Items.Count == completedServices.Count)
+                if (incompleteServices.Count > 0)
+                    new UpdateInteractionServices(incompleteServices, interaction.InteractionID, 0).ExecuteCommand();
+
+                if (ddlFollowUpStatus.SelectedValue.Equals("complete"))
                 {
-                    string date = DateTime.Today.ToString("yyyy-mm-dd");
+                    string date = DateTime.Today.ToString("yyyy-MM-dd");
                     new UpdateFollowUpCompleted().ExecuteCommand(date, interaction.InteractionID);
                 }
                 lblUpdateServices.Text = $"Services updated succesfully";
@@ -182,7 +197,7 @@ namespace CapstoneUI
             pnlResidentHealthForm.Controls.OfType<TextBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
-            //Other FOrm
+            //Other Form
             if (!state)
             {
                 nextSteps.Attributes.Remove("readonly");
@@ -197,13 +212,15 @@ namespace CapstoneUI
 
         private void SaveEdits(string reason)
         {
-            Interaction interaction = GenerateInteraction();
-            interaction.InteractionID = (Session["Interaction"] as Interaction).InteractionID;
+            Interaction newInteraction = GenerateInteraction();
+            int userId = (Session["User"] as CARESUser).UserID;
+            newInteraction.InteractionID = (Session["Interaction"] as Interaction).InteractionID;
             string date = DateTime.Today.ToString("yyyy-MM-dd");
             try
             {
-                new UpdateInteraction(interaction).ExecuteCommand();
-                new InsertInteractionEdit().ExecuteCommand(date, reason, interaction.InteractionID);
+                new UpdateInteraction(newInteraction).ExecuteCommand();
+                
+                new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID, userId);
             }
             catch(Exception e)
             {
@@ -215,17 +232,19 @@ namespace CapstoneUI
             TogglePanels(); // Should be disabled now
             lnkBtnEdit.Text = $"<i class='fas fa-edit' id='icoEdit' runat='server'  style='margin-right: .5rem'></i> Edit Interaction";
 
+            lblModalError.Text = string.Empty;
             lblSave.Text = "Interaction updated succesfully!";
+            Response.Redirect("ResidentInteractionForm.aspx?from=SaveSuccessful");
         }
 
         private void SaveInteraction()
         {
             res = Session["Resident"] as Resident;
-            Interaction interaction = GenerateInteraction();
+            Interaction newInteraction = GenerateInteraction();
 
             try
             {
-                new InteractionWriter(interaction).ExecuteCommand();
+                new InteractionWriter(newInteraction).ExecuteCommand();
             }
             catch (Exception e)
             {
@@ -236,42 +255,57 @@ namespace CapstoneUI
 
             //Update Resident vaccine values
             bool interest = ddlVaccineInterest.SelectedIndex == 1;
-            bool eligibility = ddlVaccineEligibility.SelectedIndex == 1;
+            int eligibility = int.Parse(ddlVaccineEligibility.SelectedValue);//First index doesn't count
             string date = tbVaccineAppointmentDate.Text;
 
             new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
 
             Session["InteractionSaved"] = true;
+            Session["Interaction"] = newInteraction;
+            //Switch buttons to edit
+            Response.Redirect("ResidentInteractionForm.aspx?from=SaveSuccessful");
         }
 
         private Interaction GenerateInteraction()
         {
-            Interaction interaction = new Interaction();
+            Interaction newInteraction = new Interaction();
             res = Session["Resident"] as Resident;
             //ID Values
-            interaction.HealthWorkerID = (Session["User"] as CARESUser).UserID;
-            interaction.ResidentID = res.ResidentID;
+            if (!(bool)ViewState["OldInteraction"]) //If interaction is new
+            {
+                newInteraction.HealthWorkerID = (Session["User"] as CARESUser).UserID; //Interaction is being created now, use current user ID
+            }
+
+            newInteraction.ResidentID = res.ResidentID;
             //Form Values
-            interaction.DateOfContact = tbDoC.Text;
-            interaction.MethodOfContact = ddlMeetingType.SelectedValue;
-            interaction.LocationOfContact = tbLocation.Text;
-            interaction.COVIDTestLocation = tbTestingLocation.Text;
-            interaction.COVIDTestResult = ddlTestResult.SelectedValue;
-            interaction.SymptomStartDate = tbSymptomDates.Text;
-            interaction.ActionPlan = nextSteps.InnerText;
+            newInteraction.DateOfContact = tbDoC.Text;
+            newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
+            newInteraction.LocationOfContact = tbLocation.Text;
+            newInteraction.COVIDTestLocation = tbTestingLocation.Text.Equals("N/A") ? "" : tbTestingLocation.Text;
+            if(ddlTestResult.SelectedIndex == 0)
+            {
+                newInteraction.COVIDTestResult = string.Empty;
+            }
+            else
+            {
+                newInteraction.COVIDTestResult = ddlTestResult.SelectedValue;
+            }
+            newInteraction.SymptomStartDate = tbSymptomDates.Text;
+            newInteraction.ActionPlan = nextSteps.InnerText;
             //Symptoms
             List<CheckBox> checkedBoxes = pnlResidentHealthForm.Controls.OfType<CheckBox>().Where(cb => cb.Checked).ToList();
             List<Symptom> symptoms = new List<Symptom>();
             checkedBoxes.ForEach(cb => symptoms.Add(new Symptom(cb.Text, int.Parse(cb.ID.Split('_')[1]))));
-            interaction.Symptoms = symptoms;
+            newInteraction.Symptoms = symptoms;
             //Services
             List<Service> services = new List<Service>();
             cblServices.Items.OfType<ListItem>().Where(li => li.Selected)
                 .ToList()
                 .ForEach(li => services.Add(new Service(li.Text, int.Parse(li.Value))));
-            interaction.RequestedServices = services;
-            interaction.RequiresFollowUp = services.Count > 0; //A service should imply requires follow up
-            return interaction;
+            newInteraction.RequestedServices = services;
+            newInteraction.CompletedServices = new List<Service>();
+            newInteraction.RequiresFollowUp = ddlFollowUp.SelectedValue.Equals("true");
+            return newInteraction;
         }
 
         private void FillResidentInfo()
@@ -353,9 +387,14 @@ namespace CapstoneUI
                 .ToList()
                 .ForEach(cb => cb.Checked = true);
 
-            tbSymptomDates.Text = TextModeDateFormatter.Format(interaction.SymptomStartDate);
+            if (!string.IsNullOrEmpty(interaction.SymptomStartDate))
+                tbSymptomDates.Text = interaction.SymptomStartDate;
 
-            if (interaction.COVIDTestResult.Equals("No Recent Test"))
+            if (string.IsNullOrEmpty(interaction.COVIDTestResult))
+            {
+                ddlTestResult.SelectedIndex = 0;
+            }
+            else if(interaction.COVIDTestResult.Equals("No Recent Test"))
             {
                 tbTestingLocation.Text = "N/A";
                 ddlTestResult.SelectedValue = "No Recent Test";
@@ -368,22 +407,38 @@ namespace CapstoneUI
 
             //Services
             divOldInteractionServices.Visible = true;
+            btnUpdateServices.Visible = true;
             divNewInteractionServices.Visible = false;
 
-            List<Service> interactionServices = interaction.RequestedServices.Concat(interaction.CompletedServices).ToList(); //Completed and Uncompleted services
-            cblCompletedServices.DataSource = interactionServices;
+            List<Service> allServices = new List<Service>();
+            bool someServicesAreComplete = false;
+
+            if (interaction.RequestedServices != null && interaction.RequestedServices.Count > 0)
+            {
+                allServices = allServices.Concat(interaction.RequestedServices).ToList();
+            }
+
+            if (interaction.CompletedServices != null && interaction.CompletedServices.Count > 0)
+            {
+                allServices = allServices.Concat(interaction.CompletedServices).ToList();   
+                someServicesAreComplete = true;
+            }
+
+            cblCompletedServices.DataSource = allServices;
             cblCompletedServices.DataTextField = "ServiceName";
             cblCompletedServices.DataValueField = "ServiceID";
-            cblCompletedServices.DataBind();
+            cblCompletedServices.DataBind();    
 
-            List<string> interactionCompletedServices = new List<string>();
-            interaction.CompletedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
+            if (someServicesAreComplete)
+            {
+                List<string> interactionCompletedServices = new List<string>();
+                interaction.CompletedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
 
-            cblCompletedServices.Items.Cast<ListItem>().ToList()
-            .Where(li => interactionCompletedServices.Contains(li.Text))
-            .ToList()
-            .ForEach(li => li.Selected = true);
-
+                cblCompletedServices.Items.Cast<ListItem>().ToList()
+                .Where(li => interactionCompletedServices.Contains(li.Text))
+                .ToList()
+                .ForEach(li => li.Selected = true);
+            }
             //Action Plan
             nextSteps.InnerText = interaction.ActionPlan;
         }
@@ -477,8 +532,29 @@ namespace CapstoneUI
                 icErrorActionPlan.Visible = false;
             }
 
+            //FollowUp
+            if (ddlFollowUp.SelectedIndex == 0)
+            {
+                isValid = false;
+                icServices.Visible = true;
+                lblFollowUpError.Visible = true;
+            }
+            else
+            {
+                icServices.Visible = false;
+                lblFollowUpError.Visible = false;
+            }
+
+
             return isValid;
         }
 
+        protected void btnEditCancel_Click(object sender, EventArgs e)
+        {
+            lblModalError.Text = string.Empty;
+            string hideModalCall = "$('#modalEditReason').modal('hide');";
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideEditModal", hideModalCall, true);
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showEditModal", "", true);
+        }
     }
 }
