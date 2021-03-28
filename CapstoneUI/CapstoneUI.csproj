@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminSettings.aspx" />
     <Content Include="img\actionvance-guy5aS3GvgA-unsplash.jpg" />
     <Content Include="img\logo-white.png" />
     <Content Include="img\master-wen-lpLRwDZigvc-unsplash.jpg" />
@@ -268,6 +269,13 @@
     <Content Include="CapstoneUI.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSettings.aspx.cs">
+      <DependentUpon>AdminSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSettings.aspx.designer.cs">
+      <DependentUpon>AdminSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />
