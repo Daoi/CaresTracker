@@ -55,8 +55,8 @@ namespace CapstoneUI.DataModels
             Symptoms = Symptom.CreateSymptomList(new GetSymptomsByInteractionID().RunCommand(InteractionID));
 
             var services = Service.CreateServiceLists(new GetServicesByInteractionID().RunCommand(InteractionID));
-            RequestedServices = services.requested;
-            CompletedServices = services.completed;
+            RequestedServices = services.requested != null ? services.requested : new List<Service>();
+            CompletedServices = services.completed != null ? services.completed : new List<Service>();
         }
 
     }
