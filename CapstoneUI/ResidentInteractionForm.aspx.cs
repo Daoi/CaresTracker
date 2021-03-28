@@ -134,15 +134,15 @@ namespace CapstoneUI
             cblCompletedServices.Items.OfType<ListItem>()
                 .ToList().Where(li => !li.Selected)
                 .ToList()
-                .ForEach(li => completedServices.Add(new Service(li.Text, int.Parse(li.Value), false)));
+                .ForEach(li => incompleteServices.Add(new Service(li.Text, int.Parse(li.Value), false)));
 
             try
             {
-                if (completedServices.Count > 0) //If these are equal no new services have been completed
+                if (completedServices.Count > 0) 
                     new UpdateInteractionServices(completedServices, interaction.InteractionID, 1).ExecuteCommand();
 
                 if (incompleteServices.Count > 0)
-                    new UpdateInteractionServices(completedServices, interaction.InteractionID, 0).ExecuteCommand();
+                    new UpdateInteractionServices(incompleteServices, interaction.InteractionID, 0).ExecuteCommand();
 
                 if (ddlFollowUpStatus.SelectedValue.Equals("complete"))
                 {
