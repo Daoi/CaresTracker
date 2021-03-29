@@ -126,15 +126,6 @@ namespace CapstoneUI
             btnCancel.Visible = false;
         }
 
-        protected void btnViewWorker_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            GridViewRow row = (GridViewRow)btn.NamingContainer;
-            int index = row.RowIndex;
-            Session["Worker"] = theEvent.Hosts[index];
-            Response.Redirect("./CHWManagement.aspx");
-        }
-
         protected void btnViewResident_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
