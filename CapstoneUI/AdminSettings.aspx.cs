@@ -57,5 +57,33 @@ namespace CapstoneUI
             // set this region's assigned organization
             ddlOrgs.SelectedValue = gvRegions.DataKeys[e.Row.RowIndex]["OrganizationID"].ToString(); // null org id evaluates to ""
         }
+
+        protected void btnRegionUpdate_Click(object sender, EventArgs e)
+        {
+            // get all pairs of regions and orgs
+            List<(int regionID, int? orgID)> pairs = new List<(int regionID, int? orgID)>();
+            gvRegions.Rows.Cast<GridViewRow>().ToList().ForEach(row =>
+            {
+                int? orgID = null; // unassigned
+                string ddlVal = ((DropDownList)row.Cells[1].FindControl("ddlOrganizations")).SelectedValue;
+                if (!string.IsNullOrEmpty(ddlVal)) { orgID = int.Parse(ddlVal); }
+
+                pairs.Add((int.Parse(gvRegions.DataKeys[row.RowIndex]["RegionID"].ToString()), orgID));
+            });
+            try
+            {
+                if (new UpdateRegionAssignments(pairs).ExecuteCommand() > 0)
+                {
+                    // update success
+                    Response.Redirect("./AdminSettings.aspx", false);
+                }
+
+                // failed
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

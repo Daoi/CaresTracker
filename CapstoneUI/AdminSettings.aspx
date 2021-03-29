@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="AdminSettings.aspx.cs" Inherits="CapstoneUI.AdminSettings" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        // use before postback to process all GV values
+        function expandTable(gv) {
+            $(`#MainContent_${gv}`).DataTable().page.len(-1).draw();
+        }
+    </script>
     <div class="mx-auto homepage px-0 pt-0 pb-5">
         <div class="row modal-header no-gutters offwhiteBackground" style="height: auto; font-size: large">
             <nav aria-label="breadcrumb w-75">
@@ -35,7 +41,7 @@
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Assign regions to partner organizations, or leave them unassigned. Click update below to save your changes.</p>
-                                <asp:Button ID="btnRegionUpdate" runat="server" Text="Update Regions" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnRegionUpdate" runat="server" Text="Update Regions" CssClass="btn btn-primary" OnClick="btnRegionUpdate_Click" OnClientClick="expandTable('gvRegions');" />
                             </div>
                         </div>
                     </div>
