@@ -31,8 +31,13 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <div class="col">
-                        <asp:Button ID="btnRegionUpdate" runat="server" Text="Update Regions" />
+                    <div class="col align-self-center">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <p class="card-text">Assign regions to partner organizations, or leave them unassigned. Click update below to save your changes.</p>
+                                <asp:Button ID="btnRegionUpdate" runat="server" Text="Update Regions" CssClass="btn btn-primary" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row border-bottom mb-5 pb-5">
@@ -51,8 +56,13 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <div class="col">
-                        <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" />
+                    <div class="col align-self-center">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <p class="card-text">Select which developments should be shown as options on the resident profile creation page. Click update below to save your changes.</p>
+                                <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" CssClass="btn btn-primary" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -70,8 +80,13 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <div class="col">
-                        <asp:Button ID="btnServiceUpdate" runat="server" Text="Update Services" />
+                    <div class="col align-self-center">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <p class="card-text">Select which services should be shown as options on the interaction form. Click update below to save your changes.</p>
+                                <asp:Button ID="btnServiceUpdate" runat="server" Text="Update Services" CssClass="btn btn-primary" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
