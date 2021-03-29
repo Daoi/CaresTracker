@@ -24,7 +24,7 @@
                                 <asp:TemplateField HeaderText="Organization">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlOrganizations" runat="server" CssClass="form-control" AppendDataBoundItems="True">
-                                            <asp:ListItem Text="Not Assigned" Value=""></asp:ListItem>
+                                            <asp:ListItem Text="Unassigned" Value=""></asp:ListItem>
                                         </asp:DropDownList>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -43,12 +43,12 @@
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
                         <h3>Manage Developments</h3>
-                        <asp:GridView ID="gvHousingDevelopments" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                        <asp:GridView ID="gvHousingDevelopments" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
                                 <asp:BoundField DataField="DevelopmentName" HeaderText="Development" />
                                 <asp:BoundField DataField="RegionName" HeaderText="Region" />
-                                <asp:TemplateField HeaderText="Enable">
+                                <asp:TemplateField HeaderText="Enabled">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkDevelopmentEnabled" runat="server" CssClass="form-check" Checked='<%# Eval("DevelopmentIsEnabled") %>' />
                                     </ItemTemplate>
@@ -67,12 +67,12 @@
                 </div>
                 <div class="row">
                     <div class="col-8">
-                    <h3>Manage Services</h3>
-                        <asp:GridView ID="gvServices" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                        <h3>Manage Services</h3>
+                        <asp:GridView ID="gvServices" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
                                 <asp:BoundField DataField="ServiceName" HeaderText="Service" />
-                                <asp:TemplateField HeaderText="Enable">
+                                <asp:TemplateField HeaderText="Enabled">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkServiceEnabled" runat="server" CssClass="form-check" Checked='<%# Eval("ServiceIsEnabled") %>' />
                                     </ItemTemplate>
