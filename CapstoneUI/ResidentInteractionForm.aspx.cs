@@ -1,6 +1,7 @@
-﻿using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
+﻿using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
+using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
+using CapstoneUI.DataAccess.DataAccessors.ServiceAccessors;
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 using System;

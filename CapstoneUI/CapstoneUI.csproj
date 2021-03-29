@@ -253,7 +253,6 @@
     <Content Include="style\InteractionFormStyle.css" />
     <Content Include="style\loginStyle.css" />
     <Content Include="style\style.css" />
-    <Content Include="TestPage.aspx" />
     <Content Include="Utilities\PlacesAutocomplete.js" />
     <Content Include="Verify.aspx" />
     <Content Include="Web.config" />
@@ -277,16 +276,17 @@
     <Compile Include="AdminSettings.aspx.designer.cs">
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />
-    <Compile Include="DataAccess\DataAccessors\EventParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\EventParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\CHWParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\CHWWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\GenericAccessors\UpdateRecordIsEnabled.cs" />
-    <Compile Include="DataAccess\DataAccessors\HostWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventHosts.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetWorkerStats.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkerStats.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\DeleteOldInteractionSymptoms.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InsertInteractionEdit.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionParameters.cs" />
@@ -295,7 +295,7 @@
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InteractionWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\ServicesInsertWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\SymptomsInsertSQLWriter.cs" />
-    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateFollowUpCompleted.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\FollowUps\UpdateFollowUpCompleted.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteraction.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionServices.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionSymptoms.cs" />
@@ -306,14 +306,14 @@
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\InsertService.cs" />
-    <Compile Include="DataAccess\DataAccessors\UpdateHouseID.cs" />
-    <Compile Include="DataAccess\DataAccessors\UpdateUserStatus.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllServices.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetResidentByID.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetSymptomsByInteractionID.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetServicesByInteractionID.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetWorkersByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\HouseAccessors\UpdateHouseID.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\UpdateUserStatus.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\GetAllInteractionsByWorkerID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetAllServices.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetResidentByID.cs" />
+    <Compile Include="DataAccess\DataAccessors\SymptomAccessors\GetSymptomsByInteractionID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetServicesByInteractionID.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkersByUserID.cs" />
     <Compile Include="InteractionList.aspx.cs">
       <DependentUpon>InteractionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -343,27 +343,24 @@
       <DependentUpon>CreateResident.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccess.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllInteractions.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByResidentAttributes.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllResident.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\GetAllInteractions.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\GetAllInteractionsByResidentAttributes.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetAllResident.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentByID.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetHouseByID.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetUncompletedFollowUps.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetCompletedFollowUps.cs" />
-    <Compile Include="DataAccess\DataAccessors\AddHouse.cs" />
-    <Compile Include="DataAccess\DataAccessors\Examples\CHWParameters.cs" />
-    <Compile Include="DataAccess\DataAccessors\Examples\CHWWriter.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetHouse.cs" />
-    <Compile Include="DataAccess\DataAccessors\HouseParameters.cs" />
-    <Compile Include="DataAccess\DataAccessors\Examples\LookUpUser.cs" />
+    <Compile Include="DataAccess\DataAccessors\HouseAccessors\GetHouseByID.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\FollowUps\GetUncompletedFollowUps.cs" />
+    <Compile Include="DataAccess\DataAccessors\InteractionAccessors\FollowUps\GetCompletedFollowUps.cs" />
+    <Compile Include="DataAccess\DataAccessors\HouseAccessors\AddHouse.cs" />
+    <Compile Include="DataAccess\DataAccessors\HouseAccessors\GetHouse.cs" />
+    <Compile Include="DataAccess\DataAccessors\HouseAccessors\HouseParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetAllDevelopments.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetUser.cs" />
-    <Compile Include="DataAccess\DataAccessors\ResidentWriter.cs" />
-    <Compile Include="DataAccess\DataAccessors\UpdateLastLogin.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetUser.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\ResidentWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\UpdateLastLogin.cs" />
     <Compile Include="DataAccess\DataSupport.cs" />
     <Compile Include="DataAccess\ExecuteData.cs" />
-    <Compile Include="DataAccess\ResidentParameters.cs" />
-    <Compile Include="DataAccess\DataAccessors\GetAllCHW.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\ResidentParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetAllCHW.cs" />
     <Compile Include="DataModels\CARESUser.cs" />
     <Compile Include="DataModels\Event.cs" />
     <Compile Include="DataModels\House.cs" />
@@ -459,13 +456,6 @@
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AWSCognitoManager.cs" />
-    <Compile Include="TestPage.aspx.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestPage.aspx.designer.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\TextModeDateFormatter.cs" />
     <Compile Include="Utilities\Validation.cs" />
     <Compile Include="Verify.aspx.cs">

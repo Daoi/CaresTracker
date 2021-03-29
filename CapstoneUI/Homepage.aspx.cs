@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using CapstoneUI.Utilities;
-using CapstoneUI.DataAccess;
 using System.Data;
-using CapstoneUI.DataAccess.DataAccessors;
 using System.Web.UI.WebControls;
 using CapstoneUI.DataModels;
 using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
-using System.Linq;
+using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 
 namespace CapstoneUI
 {

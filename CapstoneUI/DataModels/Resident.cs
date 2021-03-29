@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataAccess.DataAccessors.HouseAccessors;
 
 namespace CapstoneUI.DataModels
 {

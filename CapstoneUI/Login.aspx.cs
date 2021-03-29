@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
 
