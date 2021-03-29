@@ -45,7 +45,7 @@
                                 <asp:BoundField DataField="RegionName" HeaderText="Region" />
                                 <asp:TemplateField HeaderText="Enable">
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="chkDevelopmentEnabled" runat="server" CssClass="form-check" />
+                                        <asp:CheckBox ID="chkDevelopmentEnabled" runat="server" CssClass="form-check" Checked='<%# Eval("DevelopmentIsEnabled") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -58,13 +58,13 @@
                 <div class="row">
                     <div class="col-8">
                     <h3>Manage Services</h3>
-                        <asp:GridView ID="gvServices" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                        <asp:GridView ID="gvServices" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
                                 <asp:BoundField DataField="ServiceName" HeaderText="Service" />
                                 <asp:TemplateField HeaderText="Enable">
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="chkServiceEnabled" runat="server" CssClass="form-check" />
+                                        <asp:CheckBox ID="chkServiceEnabled" runat="server" CssClass="form-check" Checked='<%# Eval("ServiceIsEnabled") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
