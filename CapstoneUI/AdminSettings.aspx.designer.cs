@@ -31,6 +31,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.GridView gvRegions;
         
         /// <summary>
+        /// btnRegionUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegionUpdate;
+        
+        /// <summary>
         /// gvHousingDevelopments control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.GridView gvHousingDevelopments;
         
         /// <summary>
+        /// btnDevelopmentUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDevelopmentUpdate;
+        
+        /// <summary>
         /// gvServices control.
         /// </summary>
         /// <remarks>
@@ -47,5 +65,14 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvServices;
+        
+        /// <summary>
+        /// btnServiceUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnServiceUpdate;
     }
 }
