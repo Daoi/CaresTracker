@@ -17,16 +17,16 @@ namespace CapstoneUI
         protected void Page_Load(object sender, EventArgs e)
         {
             // try to autofill username from email link
-            //if (Request.QueryString["usr"] != null && Request.QueryString["pwd"] != null)
-            //{
-            //    usr = Request.QueryString["usr"];
-            //    pwd = Request.QueryString["pwd"];
-            //    lblUsername.Text = $"Hello, {usr}!";
-            //}
-            //else
-            //{
-            //    Response.Redirect("./Login.aspx");
-            //}
+            if (Request.QueryString["usr"] != null && Request.QueryString["pwd"] != null)
+            {
+                usr = Request.QueryString["usr"];
+                pwd = Request.QueryString["pwd"];
+                lblUsername.Text = $"Hello, {usr}!";
+            }
+            else
+            {
+                Response.Redirect("./Login.aspx");
+            }
         }
 
         protected async void btnConfirm_Click(object sender, EventArgs e)
