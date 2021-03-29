@@ -253,6 +253,7 @@
     <Content Include="style\loginStyle.css" />
     <Content Include="style\style.css" />
     <Content Include="TestPage.aspx" />
+    <Content Include="Utilities\PlacesAutocomplete.js" />
     <Content Include="Verify.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
