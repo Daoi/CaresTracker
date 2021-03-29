@@ -297,6 +297,7 @@
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteraction.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionServices.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionSymptoms.cs" />
+    <Compile Include="DataAccess\DataAccessors\OrganizationAccessors\GetAllOrganizations.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\GetAllRegions.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
