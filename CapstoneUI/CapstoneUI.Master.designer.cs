@@ -31,15 +31,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.ScriptManager smMaster;
         
         /// <summary>
-        /// lnkBrand control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkBrand;
-        
-        /// <summary>
         /// lnkHome control.
         /// </summary>
         /// <remarks>
@@ -85,13 +76,13 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.HyperLink lnkInteractionForm;
         
         /// <summary>
-        /// lnkPatientLookup control.
+        /// lnkAdminSettings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPatientLookup;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAdminSettings;
         
         /// <summary>
         /// lnkBtnLogout control.

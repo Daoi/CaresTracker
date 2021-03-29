@@ -13,22 +13,22 @@ namespace CapstoneUI {
     public partial class ResidentProfile {
         
         /// <summary>
-        /// btnReviewPastInteractions control.
+        /// lnkHome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReviewPastInteractions;
+        protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
-        /// btnCreateNewInteraction control.
+        /// lnkResidentLookup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateNewInteraction;
+        protected global::System.Web.UI.WebControls.LinkButton lnkResidentLookup;
         
         /// <summary>
         /// lblRecordedInteractions control.
@@ -40,6 +40,15 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.Label lblRecordedInteractions;
         
         /// <summary>
+        /// btnReviewPastInteractions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReviewPastInteractions;
+        
+        /// <summary>
         /// lblRequestedServices control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRequestedServices;
+        
+        /// <summary>
+        /// btnCreateNewInteraction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateNewInteraction;
         
         /// <summary>
         /// lblFirstName control.

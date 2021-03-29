@@ -10,7 +10,7 @@
 namespace CapstoneUI {
     
     
-    public partial class Event {
+    public partial class AdminSettings {
         
         /// <summary>
         /// lnkHome control.
@@ -22,138 +22,147 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
-        /// lnkEventList control.
+        /// gvRegions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEventList;
+        protected global::System.Web.UI.WebControls.GridView gvRegions;
         
         /// <summary>
-        /// form control.
+        /// pnlRegionCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl form;
+        protected global::System.Web.UI.UpdatePanel pnlRegionCtrls;
         
         /// <summary>
-        /// txtEventName control.
+        /// lblRegionError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEventName;
+        protected global::System.Web.UI.WebControls.Label lblRegionError;
         
         /// <summary>
-        /// ddlMainHost control.
+        /// btnRegionUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMainHost;
+        protected global::System.Web.UI.WebControls.Button btnRegionUpdate;
         
         /// <summary>
-        /// txtDescription control.
+        /// gvHousingDevelopments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.WebControls.GridView gvHousingDevelopments;
         
         /// <summary>
-        /// txtEventType control.
+        /// pnlDevelopmentCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEventType;
+        protected global::System.Web.UI.UpdatePanel pnlDevelopmentCtrls;
         
         /// <summary>
-        /// txtLocation control.
+        /// lblDevelopmentError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocation;
+        protected global::System.Web.UI.WebControls.Label lblDevelopmentError;
         
         /// <summary>
-        /// txtEventDate control.
+        /// btnDevelopmentUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEventDate;
+        protected global::System.Web.UI.WebControls.Button btnDevelopmentUpdate;
         
         /// <summary>
-        /// txtStartTime control.
+        /// gvServices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStartTime;
+        protected global::System.Web.UI.WebControls.GridView gvServices;
         
         /// <summary>
-        /// txtEndTime control.
+        /// pnlServiceCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndTime;
+        protected global::System.Web.UI.UpdatePanel pnlServiceCtrls;
         
         /// <summary>
-        /// btnEdit control.
+        /// lblServiceError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.Label lblServiceError;
         
         /// <summary>
-        /// btnSave control.
+        /// btnServiceUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button btnServiceUpdate;
         
         /// <summary>
-        /// btnCancel control.
+        /// pnlAddServiceCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.UpdatePanel pnlAddServiceCtrls;
         
         /// <summary>
-        /// gvCHWList control.
+        /// lblAddServiceError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCHWList;
+        protected global::System.Web.UI.WebControls.Label lblAddServiceError;
         
         /// <summary>
-        /// gvResidentList control.
+        /// txtServiceName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvResidentList;
+        protected global::System.Web.UI.WebControls.TextBox txtServiceName;
+        
+        /// <summary>
+        /// btnAddService control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddService;
     }
 }

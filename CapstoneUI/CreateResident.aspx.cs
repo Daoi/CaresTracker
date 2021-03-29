@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataAccess.DataAccessors.Examples;
+using CapstoneUI.DataAccess.DataAccessors.DevelopmentAccessors;
 using CapstoneUI.DataModels;
 
 namespace CapstoneUI
@@ -15,17 +15,20 @@ namespace CapstoneUI
     public partial class CreateResident : System.Web.UI.Page
     {
         DataTable developmentDT;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Get list of all developments
-                GetAllDevelopments GAD = new GetAllDevelopments();
-                DataTable developmentDT = GAD.ExecuteCommand();
+                // Get list of developments
+                CARESUser user = Session["User"] as CARESUser;
+                DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
+
                 // Bind to drop down list
                 ddlDevelopments.DataSource = developmentDT;
                 ddlDevelopments.DataValueField = "DevelopmentID";
                 ddlDevelopments.DataTextField = "DevelopmentName";
+                // Store list in session
                 Session["DevelopmentDT"] = developmentDT;
 
                 ddlDevelopments.DataBind();
@@ -43,6 +46,12 @@ namespace CapstoneUI
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
+            // Check that address is selected from the API predictions list
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                lblWrongAddressInput.Visible = true;
+                return;
+            }
 
             // Build Resident object
             Resident newResident = new Resident();
@@ -66,17 +75,26 @@ namespace CapstoneUI
                 lblUniqueResident.Visible = true;
                 return;
             }
-            // If resident was posted, do the rest of the operations
 
             //Build House object
             House residentHouse = new House();
-            residentHouse.Address = txtAddress.Text;
-            residentHouse.ZipCode = txtZipCode.Text;
+
+            // Slice up formatted address from Google API
+            string formatted_address = hdnfldFormattedAddress.Value;
+            string[] list = formatted_address.Split(',');
+
+            string Address = list[0];
+            // Remove "PA" from zipcode string
+            string ZipCode = list[2].Remove(0, 4);
+
+            residentHouse.ZipCode = ZipCode;
+            residentHouse.Address = Address;
             residentHouse.UnitNumber = txtUnitNumber.Text;
             if (ddlHousing.SelectedIndex == 1)
             {
                 residentHouse.HouseType = "Housing Choice Voucher";
                 residentHouse.RegionID = Int32.Parse(ddlRegion.SelectedValue); // Requires validation to ensure input is a number
+                residentHouse.DevelopmentID = -1;
             }
             else
             {
@@ -140,6 +158,9 @@ namespace CapstoneUI
             housingDivs.ForEach(ed => ed.Visible = false); //Turn off all divs
             (housingDivs.Find(ed => ed.ID.Equals(selectedId)) as HtmlGenericControl).Visible = true; //Turn selected div on
 
+            string select2Params = selectedId == "divHouse" ? "'#MainContent_ddlRegion', 'Select Region'" : "'#MainContent_ddlDevelopments', 'Select Development'";
+            string select2Call = $"setupSelect2({select2Params});";
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "select2Call", select2Call, true);
             upHousing.Update();//Update the page without doing full postback using update panel
         }
     }

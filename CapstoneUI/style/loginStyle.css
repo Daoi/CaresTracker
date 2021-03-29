@@ -1,21 +1,13 @@
 ﻿.loginImg{
-    margin-top: 40px;
-    max-width: 100%;
-    height: auto;
-    
+    width: 50%;   
 }
-
 
 .loginContainer {
-    background-image: url('../img/FallAndBluePrint.jpg');
-    background-size: cover;
-    height: 100vh;
-    max-width: 100%;
-    width: 100%;
-}
-
-.forestGreen {
-    background-color: #13752a;
+    overflow: auto;
+    min-height: 100vh;
+    background-image: url("../img/master-wen-lpLRwDZigvc-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;   
 }
 
 .loginCard {

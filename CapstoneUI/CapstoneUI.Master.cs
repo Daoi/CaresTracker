@@ -27,25 +27,27 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (user.UserType == "C")
+            // temple/partner admins, supervisors
+            if (!user.UserType.Equals("C"))
             {
-                lnkImport.Visible = true;
-                lnkImport.Enabled = true;
-                lnkInteractionForm.Enabled = true;
-                lnkInteractionForm.Visible = true;
-            }
-            else
-            {
-                lnkImport.Visible = true;
                 lnkManagement.Visible = true;
-                lnkData.Visible = true;
-                lnkImport.Enabled = true;
                 lnkManagement.Enabled = true;
+                lnkData.Visible = true;
                 lnkData.Enabled = true;
-                lnkInteractionForm.Enabled = true;
-                lnkInteractionForm.Visible = true;
             }
 
+            // only temple admins
+            if (user.UserType == "T")
+            {
+                lnkAdminSettings.Visible = true;
+                lnkAdminSettings.Enabled = true;
+            }
+
+            // standard options
+            lnkImport.Visible = true;
+            lnkImport.Enabled = true;
+            lnkInteractionForm.Enabled = true;
+            lnkInteractionForm.Visible = true;
             lnkBtnLogout.Visible = true;
             lnkBtnLogout.Enabled = true;
         }
