@@ -14,17 +14,17 @@
         </div>
         <div class="container-fluid p-0">
             <div class="container my-5">
-
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
                         <h3>Manage Regions</h3>
-                        <asp:GridView ID="gvRegions" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                        <asp:GridView ID="gvRegions" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowDataBound="gvRegions_RowDataBound">
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
                                 <asp:BoundField DataField="RegionName" HeaderText="Region" />
                                 <asp:TemplateField HeaderText="Organization">
                                     <ItemTemplate>
-                                        <asp:DropDownList ID="ddlOrganizations" runat="server" CssClass="form-control">
+                                        <asp:DropDownList ID="ddlOrganizations" runat="server" CssClass="form-control" AppendDataBoundItems="True">
+                                            <asp:ListItem Text="Not Assigned" Value=""></asp:ListItem>
                                         </asp:DropDownList>
                                     </ItemTemplate>
                                 </asp:TemplateField>
