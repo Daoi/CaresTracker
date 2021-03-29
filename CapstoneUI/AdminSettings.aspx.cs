@@ -10,6 +10,7 @@ using CapstoneUI.DataAccess.DataAccessors.RegionAccessors;
 using CapstoneUI.DataAccess.DataAccessors.OrganizationAccessors;
 using CapstoneUI.DataAccess.DataAccessors.GenericAccessors;
 using CapstoneUI.DataAccess.DataAccessors.ServiceAccessors;
+using CapstoneUI.DataModels;
 
 namespace CapstoneUI
 {
@@ -21,6 +22,9 @@ namespace CapstoneUI
         // make sure any controls expected to cause postbacks are in UpdatePanels
         protected void Page_Load(object sender, EventArgs e)
         {
+            // redirect non-Temple Admins
+            if (!(Session["User"] as CARESUser).UserType.Equals("T")) { Response.Redirect("./Homepage.aspx"); }
+
             if (!IsPostBack)
             {
                 new List<GridView>() { gvRegions, gvServices, gvHousingDevelopments }.ForEach(gv =>
