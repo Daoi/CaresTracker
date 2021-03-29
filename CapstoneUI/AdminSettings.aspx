@@ -37,18 +37,12 @@
                 </div>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
-
                         <h3>Manage Developments</h3>
-                        <asp:GridView ID="gvHousingDevelopments" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                        <asp:GridView ID="gvHousingDevelopments" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
                                 <asp:BoundField DataField="DevelopmentName" HeaderText="Development" />
-                                <asp:TemplateField HeaderText="Region">
-                                    <ItemTemplate>
-                                        <asp:DropDownList ID="ddlRegions" runat="server" CssClass="form-control">
-                                        </asp:DropDownList>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                <asp:BoundField DataField="RegionName" HeaderText="Region" />
                                 <asp:TemplateField HeaderText="Enable">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkDevelopmentEnabled" runat="server" CssClass="form-check" />
@@ -82,7 +76,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
