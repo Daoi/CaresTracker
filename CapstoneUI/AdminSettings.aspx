@@ -90,7 +90,7 @@
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Select which services should be shown as options on the interaction form. Click update below to save your changes.</p>
-                                <asp:Button ID="btnServiceUpdate" runat="server" Text="Update Services" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnServiceUpdate" runat="server" Text="Update Services" CssClass="btn btn-primary" OnClick="btnServiceUpdate_Click" OnClientClick="expandTable('gvServices');" />
                             </div>
                         </div>
                     </div>

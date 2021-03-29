@@ -107,6 +107,23 @@ namespace CapstoneUI
             }
         }
 
+        protected void btnServiceUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvServices, "ServiceID", "chkServiceEnabled", 1);
+                if (new UpdateRecordIsEnabled("Service", "ServiceID", "ServiceIsEnabled", pairs).ExecuteCommand() > 0)
+                {
+                    // update success
+                    Response.Redirect("./AdminSettings.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private List<(int id, bool isEnabled)> GetIsEnabledPairs(GridView gv, string idCol, string chkID, int chkIndex)
         {
             List<(int id, bool isEnabled)> pairs = new List<(int id, bool isEnabled)>();
