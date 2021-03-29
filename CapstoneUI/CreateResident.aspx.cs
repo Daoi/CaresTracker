@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors;
 using CapstoneUI.DataAccess.DataAccessors.DevelopmentAccessors;
+using CapstoneUI.DataAccess.DataAccessors.HouseAccessors;
+using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
 using CapstoneUI.DataModels;
 
 namespace CapstoneUI

@@ -1,5 +1,7 @@
 ﻿using CapstoneUI.DataAccess;
 using CapstoneUI.DataAccess.DataAccessors;
+using CapstoneUI.DataAccess.DataAccessors.ServiceAccessors;
+using CapstoneUI.DataAccess.DataAccessors.SymptomAccessors;
 using System;
 using System.Collections.Generic;
 using System.Data;

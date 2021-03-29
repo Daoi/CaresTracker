@@ -1,11 +1,7 @@
-﻿using CapstoneUI.DataAccess.DataAccessors;
+﻿using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
 using CapstoneUI.DataModels;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CapstoneUI

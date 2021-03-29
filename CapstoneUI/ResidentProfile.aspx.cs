@@ -1,5 +1,4 @@
-﻿using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
+﻿using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
 using CapstoneUI.DataAccess.DataAccessors.DevelopmentAccessors;
 using CapstoneUI.DataModels;
 using CapstoneUI.Utilities;
@@ -10,6 +9,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataAccess.DataAccessors.HouseAccessors;
+using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
 
 namespace CapstoneUI
 {

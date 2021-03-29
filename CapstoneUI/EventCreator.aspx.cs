@@ -1,11 +1,12 @@
-﻿using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataModels;
+﻿using CapstoneUI.DataModels;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
+using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
 
 namespace CapstoneUI
 {

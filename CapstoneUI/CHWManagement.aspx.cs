@@ -2,8 +2,8 @@
 using System.Data;
 using CapstoneUI.Utilities;
 using CapstoneUI.DataModels;
-using CapstoneUI.DataAccess.DataAccessors;
 using System.Collections.Generic;
+using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
 
 namespace CapstoneUI
 {
