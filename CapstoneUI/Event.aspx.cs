@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapstoneUI.DataModels;
+using System.Data;
 
 namespace CapstoneUI
 {
@@ -13,7 +15,7 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["Event"] != null)
+            if (Session["Event"] != null)
             {
                 theEvent = (DataModels.Event)Session["Event"];
             }
@@ -26,20 +28,37 @@ namespace CapstoneUI
 
         public void FillEventInfo()
         {
-            lblEventName.Text = theEvent.EventName;
+            txtEventName.Text = theEvent.EventName;
             txtEventType.Text = theEvent.EventType;
             txtLocation.Text = theEvent.EventLocation;
             txtEventDate.Text = theEvent.EventDate;
             txtStartTime.Text = theEvent.EventStartTime;
             txtEndTime.Text = theEvent.EventEndTime;
-
-            rptHealthWorkers.DataSource = theEvent.Hosts;
-            rptHealthWorkers.DataBind();
-
-            rptResidents.DataSource = theEvent.Attendees;
-            rptResidents.DataBind();
-            
             txtDescription.Text = theEvent.EventDescription;
+
+            gvCHWList.DataBound += (object o, EventArgs ev) =>
+            {
+                gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
+            };
+            gvCHWList.DataSource = theEvent.Hosts;
+            gvCHWList.DataBind();
+
+            if (theEvent.Attendees != null && theEvent.Attendees.Count != 0)
+            {
+                gvResidentList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
+
+                gvResidentList.DataSource = theEvent.Attendees;
+                gvResidentList.DataBind();
+            }
+
+            ddlMainHost.DataSource = theEvent.Hosts;
+            ddlMainHost.DataTextField = "FullName";
+            ddlMainHost.DataValueField = "UserID";
+            ddlMainHost.DataBind();
+            ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -54,11 +73,29 @@ namespace CapstoneUI
 
         private void EnableDisableControls()
         {
+            string defaultCSS = "h3 border-0 bg-transparent text-dark";
+            string textboxCSS = "form-control w-50";
             foreach (Control c in form.Controls)
             {
                 if (c is TextBox)
                 {
                     TextBox temp = c as TextBox;
+                    if (temp.ID == "txtEventName")
+                    { 
+                        if(temp.CssClass == defaultCSS)
+                        {
+                            temp.CssClass = temp.CssClass.Replace(defaultCSS, textboxCSS);
+                        }
+                        else
+                        {
+                            temp.CssClass = temp.CssClass.Replace(textboxCSS, defaultCSS);
+                        }
+                    }
+                    temp.Enabled = !temp.Enabled;
+                }
+                else if (c is DropDownList)
+                {
+                    DropDownList temp = c as DropDownList;
                     temp.Enabled = !temp.Enabled;
                 }
             }
@@ -87,6 +124,15 @@ namespace CapstoneUI
             btnEdit.Visible = true;
             btnSave.Visible = false;
             btnCancel.Visible = false;
+        }
+
+        protected void btnViewResident_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            int index = row.RowIndex;
+            Session["Resident"] = theEvent.Attendees[index];
+            Response.Redirect("./ResidentProfile.aspx");
         }
     }
 }

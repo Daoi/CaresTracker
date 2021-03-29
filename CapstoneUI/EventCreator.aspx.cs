@@ -79,6 +79,7 @@ namespace CapstoneUI
                     newEvent.Hosts.Add(UserList.ElementAt(index));
                 }
             }
+            newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
             newEvent.EventType = ddlEventType.SelectedItem.Text;
             newEvent.EventDescription = txtDescription.InnerText;
 
@@ -89,6 +90,23 @@ namespace CapstoneUI
                 Session["Event"] = newEvent;
                 Response.Redirect("Event.aspx");
             }
+        }
+
+        protected void cblUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<CARESUser> hosts = new List<CARESUser>();
+            foreach(ListItem item in cblUsers.Items)
+            {
+                if (item.Selected)
+                {
+                    int index = cblUsers.Items.IndexOf(item);
+                    hosts.Add(UserList.ElementAt(index));
+                }
+            }
+            ddlMainHost.DataSource = hosts;
+            ddlMainHost.DataTextField = "FullName";
+            ddlMainHost.DataValueField = "UserID";
+            ddlMainHost.DataBind();
         }
     }
 }

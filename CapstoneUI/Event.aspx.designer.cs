@@ -40,13 +40,22 @@ namespace CapstoneUI {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl form;
         
         /// <summary>
-        /// lblEventName control.
+        /// txtEventName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEventName;
+        protected global::System.Web.UI.WebControls.TextBox txtEventName;
+        
+        /// <summary>
+        /// ddlMainHost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMainHost;
         
         /// <summary>
         /// txtDescription control.
@@ -103,24 +112,6 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.TextBox txtEndTime;
         
         /// <summary>
-        /// rptHealthWorkers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptHealthWorkers;
-        
-        /// <summary>
-        /// rptResidents control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptResidents;
-        
-        /// <summary>
         /// btnEdit control.
         /// </summary>
         /// <remarks>
@@ -146,5 +137,23 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+        
+        /// <summary>
+        /// gvCHWList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCHWList;
+        
+        /// <summary>
+        /// gvResidentList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResidentList;
     }
 }
