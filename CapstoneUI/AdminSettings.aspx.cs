@@ -14,7 +14,6 @@ namespace CapstoneUI
     public partial class AdminSettings : System.Web.UI.Page
     {
         DataTable dtOrganizations;
-        DataTable dtRegions;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,8 +29,10 @@ namespace CapstoneUI
 
                 // get orgs for dropdown
                 dtOrganizations = new GetAllOrganizations().ExecuteCommand();
-                dtRegions = new GetAllRegions().ExecuteCommand();
-                gvRegions.DataSource = dtRegions;
+                gvRegions.DataSource = new GetAllRegions().ExecuteCommand();
+
+                // store hidden region id
+                gvRegions.DataKeyNames = new string[] { "RegionID", "OrganizationID" };
                 gvRegions.DataBind();
 
                 gvHousingDevelopments.DataSource = new GetAllDevelopments().ExecuteCommand();
@@ -42,7 +43,7 @@ namespace CapstoneUI
             }
         }
 
-        // sets values for org ddl
+        // sets values for region org ddl
         protected void gvRegions_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             DropDownList ddlOrgs = ((DropDownList)e.Row.FindControl("ddlOrganizations"));
@@ -53,10 +54,8 @@ namespace CapstoneUI
             ddlOrgs.DataValueField = "OrganizationID";
             ddlOrgs.DataBind();
 
-            // find this region's assigned organization
-            ddlOrgs.SelectedValue = dtRegions.Rows.Cast<DataRow>()
-                .First(r => r.Field<string>("RegionName") == e.Row.Cells[0].Text)
-                .Field<int?>("OrganizationID").ToString(); // null org id evaluates to ""
+            // set this region's assigned organization
+            ddlOrgs.SelectedValue = gvRegions.DataKeys[e.Row.RowIndex]["OrganizationID"].ToString(); // null org id evaluates to ""
         }
     }
 }
