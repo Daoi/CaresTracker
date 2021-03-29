@@ -10,25 +10,7 @@
 namespace CapstoneUI {
     
     
-    public partial class Site1 {
-        
-        /// <summary>
-        /// frmMain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmMain;
-        
-        /// <summary>
-        /// smMaster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager smMaster;
+    public partial class AdminSettings {
         
         /// <summary>
         /// lnkHome control.
@@ -37,168 +19,150 @@ namespace CapstoneUI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkHome;
+        protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
-        /// lnkData control.
+        /// gvRegions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkData;
+        protected global::System.Web.UI.WebControls.GridView gvRegions;
         
         /// <summary>
-        /// lnkManagement control.
+        /// pnlRegionCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkManagement;
+        protected global::System.Web.UI.UpdatePanel pnlRegionCtrls;
         
         /// <summary>
-        /// lnkImport control.
+        /// lblRegionError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkImport;
+        protected global::System.Web.UI.WebControls.Label lblRegionError;
         
         /// <summary>
-        /// lnkInteractionForm control.
+        /// btnRegionUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkInteractionForm;
+        protected global::System.Web.UI.WebControls.Button btnRegionUpdate;
         
         /// <summary>
-        /// lnkAdminSettings control.
+        /// gvHousingDevelopments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkAdminSettings;
+        protected global::System.Web.UI.WebControls.GridView gvHousingDevelopments;
         
         /// <summary>
-        /// lnkBtnLogout control.
+        /// pnlDevelopmentCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBtnLogout;
+        protected global::System.Web.UI.UpdatePanel pnlDevelopmentCtrls;
         
         /// <summary>
-        /// tmrSessionTimeout control.
+        /// lblDevelopmentError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer tmrSessionTimeout;
+        protected global::System.Web.UI.WebControls.Label lblDevelopmentError;
         
         /// <summary>
-        /// pnlTimeLeft control.
+        /// btnDevelopmentUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel pnlTimeLeft;
+        protected global::System.Web.UI.WebControls.Button btnDevelopmentUpdate;
         
         /// <summary>
-        /// lblTimeLeft control.
+        /// gvServices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTimeLeft;
+        protected global::System.Web.UI.WebControls.GridView gvServices;
         
         /// <summary>
-        /// pnlModalControls control.
+        /// pnlServiceCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel pnlModalControls;
+        protected global::System.Web.UI.UpdatePanel pnlServiceCtrls;
         
         /// <summary>
-        /// lblTriesLeft control.
+        /// lblServiceError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTriesLeft;
+        protected global::System.Web.UI.WebControls.Label lblServiceError;
         
         /// <summary>
-        /// lblModalError control.
+        /// btnServiceUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModalError;
+        protected global::System.Web.UI.WebControls.Button btnServiceUpdate;
         
         /// <summary>
-        /// txtModalUsername control.
+        /// pnlAddServiceCtrls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModalUsername;
+        protected global::System.Web.UI.UpdatePanel pnlAddServiceCtrls;
         
         /// <summary>
-        /// txtModalPassword control.
+        /// lblAddServiceError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModalPassword;
+        protected global::System.Web.UI.WebControls.Label lblAddServiceError;
         
         /// <summary>
-        /// btnModalLogout control.
+        /// txtServiceName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModalLogout;
+        protected global::System.Web.UI.WebControls.TextBox txtServiceName;
         
         /// <summary>
-        /// btnModalLogin control.
+        /// btnAddService control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModalLogin;
-        
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-        
-        /// <summary>
-        /// HyperLink1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Button btnAddService;
     }
 }

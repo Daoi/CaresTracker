@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminSettings.aspx" />
     <Content Include="img\actionvance-guy5aS3GvgA-unsplash.jpg" />
     <Content Include="img\logo-white.png" />
     <Content Include="img\master-wen-lpLRwDZigvc-unsplash.jpg" />
@@ -269,10 +270,18 @@
     <Content Include="CapstoneUI.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSettings.aspx.cs">
+      <DependentUpon>AdminSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSettings.aspx.designer.cs">
+      <DependentUpon>AdminSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />
     <Compile Include="DataAccess\DataAccessors\EventParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\GenericAccessors\UpdateRecordIsEnabled.cs" />
     <Compile Include="DataAccess\DataAccessors\HostWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
@@ -290,9 +299,13 @@
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteraction.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionServices.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\UpdateInteractionSymptoms.cs" />
+    <Compile Include="DataAccess\DataAccessors\OrganizationAccessors\GetAllOrganizations.cs" />
+    <Compile Include="DataAccess\DataAccessors\RegionAccessors\GetAllRegions.cs" />
+    <Compile Include="DataAccess\DataAccessors\RegionAccessors\UpdateRegionAssignments.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
+    <Compile Include="DataAccess\DataAccessors\ServiceAccessors\InsertService.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateHouseID.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateUserStatus.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
