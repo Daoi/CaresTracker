@@ -43,21 +43,21 @@ namespace CapstoneUI
             gvCHWList.DataSource = theEvent.Hosts;
             gvCHWList.DataBind();
 
-            gvResidentList.DataBound += (object o, EventArgs ev) =>
+            if(theEvent.Attendees != null && theEvent.Attendees.Count != 0)
             {
-                gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-            gvResidentList.DataSource = theEvent.Attendees;
-            gvResidentList.DataBind();
+                gvResidentList.DataBound += (object o, EventArgs ev) =>
+                {
+                    gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                };
 
-
-            if (!IsPostBack)
-            {
-                ddlMainHost.DataSource = theEvent.Hosts;
-                ddlMainHost.DataTextField = "FullName";
-                ddlMainHost.DataValueField = "UserID";
-                ddlMainHost.DataBind();
+                gvResidentList.DataSource = theEvent.Attendees;
+                gvResidentList.DataBind();
             }
+
+            ddlMainHost.DataSource = theEvent.Hosts;
+            ddlMainHost.DataTextField = "FullName";
+            ddlMainHost.DataValueField = "UserID";
+            ddlMainHost.DataBind();
             ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
         }
 
