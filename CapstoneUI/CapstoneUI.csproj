@@ -280,6 +280,7 @@
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />
     <Compile Include="DataAccess\DataAccessors\EventParameters.cs" />
+    <Compile Include="DataAccess\DataAccessors\GenericAccessors\UpdateRecordIsEnabled.cs" />
     <Compile Include="DataAccess\DataAccessors\HostWriter.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
