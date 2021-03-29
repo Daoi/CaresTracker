@@ -98,12 +98,31 @@
                 </div>
                 <div class="container my-3">
                     <div class="row mt-5">
+                        <div class="col border-right">
+                            <div class="row justify-content-center">
+                                <b>Health Workers:</b>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="container-fluid mt-2">
+                                    <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                                        <HeaderStyle CssClass="cherryBackground" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Event Hosts">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="btnViewWorker" CssClass="w-100 text-center font-weight-bold" runat="server" Text='<%# Bind("FullName")%>'/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col">
                             <div class="row justify-content-center">
                                 <b>Attendees:</b>
                             </div>
                             <div class="row justify-content-center">
-                                <div class="container-fluid">
+                                <div class="container-fluid mt-2">
                                     <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>

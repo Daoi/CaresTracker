@@ -36,7 +36,14 @@ namespace CapstoneUI
             txtEndTime.Text = theEvent.EventEndTime;
             txtDescription.Text = theEvent.EventDescription;
 
-            if(theEvent.Attendees != null && theEvent.Attendees.Count != 0)
+            gvCHWList.DataBound += (object o, EventArgs ev) =>
+            {
+                gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
+            };
+            gvCHWList.DataSource = theEvent.Hosts;
+            gvCHWList.DataBind();
+
+            if (theEvent.Attendees != null && theEvent.Attendees.Count != 0)
             {
                 gvResidentList.DataBound += (object o, EventArgs ev) =>
                 {
