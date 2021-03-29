@@ -27,18 +27,20 @@ namespace CapstoneUI
                     };
                 });
 
-                // get orgs for dropdown
-                dtOrganizations = new GetAllOrganizations().ExecuteCommand();
+                // set up Regions
+                dtOrganizations = new GetAllOrganizations().ExecuteCommand(); // get orgs for dropdown
                 gvRegions.DataSource = new GetAllRegions().ExecuteCommand();
-
-                // store hidden region id
-                gvRegions.DataKeyNames = new string[] { "RegionID", "OrganizationID" };
+                gvRegions.DataKeyNames = new string[] { "RegionID", "OrganizationID" }; // store hidden ids
                 gvRegions.DataBind();
 
+                // set up HousingDevelopments
                 gvHousingDevelopments.DataSource = new GetAllDevelopments().ExecuteCommand();
+                gvHousingDevelopments.DataKeyNames = new string[] { "DevelopmentID" };
                 gvHousingDevelopments.DataBind();
 
+                // set up Services
                 gvServices.DataSource = new GetAllServices().ExecuteCommand();
+                gvServices.DataKeyNames = new string[] { "ServiceID" };
                 gvServices.DataBind();
             }
         }
@@ -70,6 +72,7 @@ namespace CapstoneUI
 
                 pairs.Add((int.Parse(gvRegions.DataKeys[row.RowIndex]["RegionID"].ToString()), orgID));
             });
+
             try
             {
                 if (new UpdateRegionAssignments(pairs).ExecuteCommand() > 0)
