@@ -13,7 +13,7 @@
                 </nav>
                 <asp:Label ID="lblPageInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2 px-0" Style="width: 76%"></asp:Label>
             </div>
-            <div id="eventControlBG" >
+            <div id="eventControlBG">
                 <h2>Event General Details</h2>
                 <asp:TextBox ID="txtEventName" placeholder="Event Name" runat="server" CssClass="form-control"></asp:TextBox><br />
                 <asp:TextBox ID="txtEventLocation" placeholder="Event Location" runat="server" CssClass="form-control"></asp:TextBox><br />
@@ -33,9 +33,16 @@
                         <asp:AsyncPostBackTrigger ControlID="cblUsers" EventName="SelectedIndexChanged" />
                     </Triggers>
                     <ContentTemplate>
-                        <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
-                            <asp:ListItem Value="default">Select Main Host</asp:ListItem>
-                        </asp:DropDownList>
+                        <div class="row m-3">
+                            <div class="col">
+                                <label>Main Host:</label>
+                            </div>
+                            <div class="col-7">
+                                <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="default">Select Main Host</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
