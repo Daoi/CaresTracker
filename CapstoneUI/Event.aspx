@@ -31,13 +31,13 @@
                                 <div class="col-9">
                                     <asp:DropDownList ID="ddlMainHost" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
                                 </div>
-                             </div>
-                             <div class="row m-3">
+                            </div>
+                            <div class="row m-3">
                                 <div class="col">
                                     <label>Description:</label>
                                 </div>
                                 <div class="col-9">
-                                    <asp:TextBox ID="txtDescription" Enabled="false" CssClass="form-control"  TextMode="MultiLine" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtDescription" Enabled="false" CssClass="form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row m-3">
@@ -98,25 +98,6 @@
                 </div>
                 <div class="container my-3">
                     <div class="row mt-5">
-                        <div class="col border-right">
-                            <div class="row justify-content-center">
-                                <b>Health Workers:</b>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="container-fluid mt-2">
-                                    <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
-                                        <HeaderStyle CssClass="cherryBackground" />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="View Worker Profile">
-                                                <ItemTemplate>
-                                                    <asp:Button ID="btnViewWorker" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName")%>' OnClick="btnViewWorker_Click" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col">
                             <div class="row justify-content-center">
                                 <b>Attendees:</b>

@@ -15,7 +15,7 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["Event"] != null)
+            if (Session["Event"] != null)
             {
                 theEvent = (DataModels.Event)Session["Event"];
             }
@@ -35,13 +35,6 @@ namespace CapstoneUI
             txtStartTime.Text = theEvent.EventStartTime;
             txtEndTime.Text = theEvent.EventEndTime;
             txtDescription.Text = theEvent.EventDescription;
-
-            gvCHWList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-            gvCHWList.DataSource = theEvent.Hosts;
-            gvCHWList.DataBind();
 
             if(theEvent.Attendees != null && theEvent.Attendees.Count != 0)
             {
