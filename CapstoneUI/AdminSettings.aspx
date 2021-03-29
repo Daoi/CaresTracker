@@ -66,7 +66,7 @@
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Select which developments should be shown as options on the resident profile creation page. Click update below to save your changes.</p>
-                                <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" CssClass="btn btn-primary" OnClick="btnDevelopmentUpdate_Click" OnClientClick="expandTable('gvHousingDevelopments');" />
                             </div>
                         </div>
                     </div>

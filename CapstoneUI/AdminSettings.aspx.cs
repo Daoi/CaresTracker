@@ -8,6 +8,7 @@ using System.Data;
 using CapstoneUI.DataAccess.DataAccessors;
 using CapstoneUI.DataAccess.DataAccessors.RegionAccessors;
 using CapstoneUI.DataAccess.DataAccessors.OrganizationAccessors;
+using CapstoneUI.DataAccess.DataAccessors.GenericAccessors;
 
 namespace CapstoneUI
 {
@@ -82,6 +83,23 @@ namespace CapstoneUI
                 }
 
                 // failed
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        protected void btnDevelopmentUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvHousingDevelopments, "DevelopmentID", "chkDevelopmentEnabled", 2);
+                if (new UpdateRecordIsEnabled("HousingDevelopment", "DevelopmentID", "DevelopmentIsEnabled", pairs).ExecuteCommand() > 0)
+                {
+                    // update success
+                    Response.Redirect("./AdminSettings.aspx", false);
+                }
             }
             catch (Exception ex)
             {
