@@ -43,6 +43,5 @@ namespace CapstoneUI.DataModels
             IsCompleted = flag;
         }
 
-
     }
 }
