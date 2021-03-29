@@ -80,7 +80,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container w-50">
+                    <div class="row my-3 text-center">
+                        <div class="col">
+                            <asp:Button ID="btnEdit" CssClass="btn btn-primary btn-lg" Text="Edit" OnClick="btnEdit_Click" runat="server" />
+                        </div>
+                        <div class="col">
+                            <asp:Button ID="btnSave" CssClass="btn btn-primary btn-lg" Text="Save" Visible="false" OnClick="btnSave_Click" runat="server" />
+                        </div>
+                        <div class="col">
+                            <asp:Button ID="btnCancel" CssClass="btn btn-danger btn-lg" Text="Cancel" Visible="false" OnClick="btnCancel_Click" runat="server" />
+                        </div>
+                    </div>
+                </div>
+                <div class="container my-3">
                     <div class="row mt-5">
                         <div class="col border-right">
                             <div class="row justify-content-center">
@@ -106,28 +119,18 @@
                                 <b>Attendees:</b>
                             </div>
                             <div class="row justify-content-center">
-                                <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="View Resident Profile">
-                                            <ItemTemplate>
-                                                <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName") %>' OnClick="btnViewResident_Click" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container w-50">
-                        <div class="row my-3 text-center">
-                            <div class="col">
-                                <asp:Button ID="btnEdit" CssClass="btn btn-primary btn-lg" Text="Edit" OnClick="btnEdit_Click" runat="server" />
-                            </div>
-                            <div class="col">
-                                <asp:Button ID="btnSave" CssClass="btn btn-primary btn-lg" Text="Save" Visible="false" OnClick="btnSave_Click" runat="server" />
-                            </div>
-                            <div class="col">
-                                <asp:Button ID="btnCancel" CssClass="btn btn-danger btn-lg" Text="Cancel" Visible="false" OnClick="btnCancel_Click" runat="server" />
+                                <div class="container-fluid">
+                                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
+                                        <HeaderStyle CssClass="cherryBackground" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="View Resident Profile">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName") %>' OnClick="btnViewResident_Click" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -135,4 +138,10 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#MainContent_gvCHWList').DataTable({ searching: false });
+            $('#MainContent_gvResidentList').DataTable({ searching: false });
+        });
+    </script>
 </asp:Content>
