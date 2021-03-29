@@ -26,10 +26,11 @@
                         <div class="col">
                             <div class="row m-3">
                                 <div class="col">
-                                    <label>Main Host:<label>
+                                    <label>Main Host:</label>
                                 </div>
                                 <div class="col-9">
                                     <asp:DropDownList ID="ddlMainHost" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
+                                </div>
                              </div>
                              <div class="row m-3">
                                 <div class="col">
@@ -85,13 +86,13 @@
                 <div class="container w-50">
                     <div class="row my-3 text-center">
                         <div class="col">
-                            <asp:Button ID="btnEdit" CssClass="btn btn-primary btn-lg" Text="Edit" OnClick="btnEdit_Click" runat="server" />
+                            <asp:Button ID="btnEdit" CssClass="buttonStyle" Text="Edit" OnClick="btnEdit_Click" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:Button ID="btnSave" CssClass="btn btn-primary btn-lg" Text="Save" Visible="false" OnClick="btnSave_Click" runat="server" />
+                            <asp:Button ID="btnSave" CssClass="buttonStyle" Text="Save" Visible="false" OnClick="btnSave_Click" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:Button ID="btnCancel" CssClass="btn btn-danger btn-lg" Text="Cancel" Visible="false" OnClick="btnCancel_Click" runat="server" />
+                            <asp:Button ID="btnCancel" CssClass="buttonStyle" Text="Cancel" Visible="false" OnClick="btnCancel_Click" runat="server" />
                         </div>
                     </div>
                 </div>

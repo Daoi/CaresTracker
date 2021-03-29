@@ -57,14 +57,23 @@
                         <asp:TextBox ID="txtEventTimeEnd" placeholder="Event Time End" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
                     </div>
                 </div>
-                          <asp:UpdatePanel ID="upMainHost" UpdateMode="Conditional" runat="server">
+                <div class="row m-3">
+                    <div class="col">
+                        <label>Select Health Workers to Host Event:</label>
+                        <div id="userCBLDiv" class="DataboundCBLOverflow row">
+                            <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged">
+                            </asp:CheckBoxList>
+                        </div>
+                    </div>
+                </div>
+                <asp:UpdatePanel ID="upMainHost" UpdateMode="Conditional" runat="server">
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="cblUsers" EventName="SelectedIndexChanged" />
                     </Triggers>
                     <ContentTemplate>
                         <div class="row m-3">
                             <div class="col">
-                                <label>Main Host:</label>
+                                <label>Select Main Host</label>
                             </div>
                             <div class="col-7">
                                 <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
@@ -74,15 +83,6 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <div class="row m-3">
-                    <div class="col">
-                        <label>Select Health Workers to Host Event:</label>
-                        <div id="userCBLDiv" class="DataboundCBLOverflow row">
-                            <asp:CheckBoxList ID="cblUsers" runat="server" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal">
-                            </asp:CheckBoxList>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <h5>Event Specific Details</h5>
                 </div>
