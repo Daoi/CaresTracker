@@ -135,5 +135,10 @@ namespace CapstoneUI
 
             return pairs;
         }
+
+        protected void btnAddService_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
