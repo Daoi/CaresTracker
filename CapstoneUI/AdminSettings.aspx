@@ -96,8 +96,13 @@
                         <div class="card mt-4">
                             <div class="card-body">
                                 <p class="card-text">Enter the name of a new service in the textbox, then click below to add it to the list.</p>
-                                <asp:TextBox ID="txtServiceName" runat="server" Placeholder="Service Name..." CssClass="form-control"></asp:TextBox>
-                                <asp:Button ID="btnAddService" runat="server" Text="Add New Service" CssClass="btn btn-primary mt-3" OnClick="btnAddService_Click" />
+                                <asp:UpdatePanel ID="pnlAddServiceCtrls" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblAddServiceError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:TextBox ID="txtServiceName" runat="server" Placeholder="Service Name..." CssClass="form-control"></asp:TextBox>
+                                        <asp:Button ID="btnAddService" runat="server" Text="Add New Service" CssClass="btn btn-primary mt-3" OnClick="btnAddService_Click" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </div>

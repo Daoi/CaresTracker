@@ -9,6 +9,7 @@ using CapstoneUI.DataAccess.DataAccessors;
 using CapstoneUI.DataAccess.DataAccessors.RegionAccessors;
 using CapstoneUI.DataAccess.DataAccessors.OrganizationAccessors;
 using CapstoneUI.DataAccess.DataAccessors.GenericAccessors;
+using CapstoneUI.DataAccess.DataAccessors.ServiceAccessors;
 
 namespace CapstoneUI
 {
@@ -138,7 +139,32 @@ namespace CapstoneUI
 
         protected void btnAddService_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtServiceName.Text))
+            {
+                lblAddServiceError.Text = "Service Name cannot be empty.";
+                lblAddServiceError.Visible = true;
+                return;
+            }
 
+            lblAddServiceError.Text = string.Empty;
+            lblAddServiceError.Visible = false;
+
+            try
+            {
+                if (new InsertService(txtServiceName.Text).ExecuteCommand() > 0)
+                {
+                    // insert success
+                    Response.Redirect("./AdminSettings.aspx", false);
+                }
+
+                lblAddServiceError.Text = "An unknown error occurred. Please try again later.";
+                lblAddServiceError.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                lblAddServiceError.Text = ex.Message;
+                lblAddServiceError.Visible = true;
+            }
         }
     }
 }
