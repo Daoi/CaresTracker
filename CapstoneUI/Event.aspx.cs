@@ -88,5 +88,11 @@ namespace CapstoneUI
             btnSave.Visible = false;
             btnCancel.Visible = false;
         }
+
+        protected void btnAddResidentAttendees_Click(object sender, EventArgs e)
+        {
+            Session["Event"] = theEvent;
+            Response.Redirect("AddResidentAttendees.aspx");
+        }
     }
 }

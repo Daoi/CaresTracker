@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddResidentAttendees.aspx" />
     <Content Include="img\actionvance-guy5aS3GvgA-unsplash.jpg" />
     <Content Include="img\logo-white.png" />
     <Content Include="img\master-wen-lpLRwDZigvc-unsplash.jpg" />
@@ -268,6 +269,14 @@
     <Content Include="CapstoneUI.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddResidentAttendees.aspx.cs">
+      <DependentUpon>AddResidentAttendees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddResidentAttendees.aspx.designer.cs">
+      <DependentUpon>AddResidentAttendees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DataAccessors\AddAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />

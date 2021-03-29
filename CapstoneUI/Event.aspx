@@ -107,6 +107,9 @@
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </ul>
+                                <div class="container text-center my-3">
+                                    <asp:Button ID="btnAddResidentAttendees" CssClass="buttonStyle" Text="Add Resident" OnClick="btnAddResidentAttendees_Click" runat="server"/>
+                                </div>
                             </div>
                         </div>
                     </div>
