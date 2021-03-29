@@ -88,5 +88,17 @@ namespace CapstoneUI
 
             }
         }
+
+        private List<(int id, bool isEnabled)> GetIsEnabledPairs(GridView gv, string idCol, string chkID, int chkIndex)
+        {
+            List<(int id, bool isEnabled)> pairs = new List<(int id, bool isEnabled)>();
+            gv.Rows.Cast<GridViewRow>().ToList().ForEach(row =>
+            {
+                pairs.Add((int.Parse(gv.DataKeys[row.RowIndex][idCol].ToString()),
+                    ((CheckBox)row.Cells[chkIndex].FindControl(chkID)).Checked));
+            });
+
+            return pairs;
+        }
     }
 }
