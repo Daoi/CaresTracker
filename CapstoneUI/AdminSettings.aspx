@@ -41,7 +41,12 @@
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Assign regions to partner organizations, or leave them unassigned. Click update below to save your changes.</p>
-                                <asp:Button ID="btnRegionUpdate" runat="server" Text="Update Regions" CssClass="btn btn-primary" OnClick="btnRegionUpdate_Click" OnClientClick="expandTable('gvRegions');" />
+                                <asp:UpdatePanel ID="pnlRegionCtrls" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblRegionError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Button ID="btnRegionUpdate" runat="server" Text="Update Regions" CssClass="btn btn-primary" OnClick="btnRegionUpdate_Click" OnClientClick="expandTable('gvRegions');" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </div>
@@ -66,7 +71,12 @@
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Select which developments should be shown as options on the resident profile creation page. Click update below to save your changes.</p>
-                                <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" CssClass="btn btn-primary" OnClick="btnDevelopmentUpdate_Click" OnClientClick="expandTable('gvHousingDevelopments');" />
+                                <asp:UpdatePanel ID="pnlDevelopmentCtrls" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblDevelopmentError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" CssClass="btn btn-primary" OnClick="btnDevelopmentUpdate_Click" OnClientClick="expandTable('gvHousingDevelopments');" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </div>
@@ -90,7 +100,12 @@
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Select which services should be shown as options on the interaction form. Click update below to save your changes.</p>
-                                <asp:Button ID="btnServiceUpdate" runat="server" Text="Update Services" CssClass="btn btn-primary" OnClick="btnServiceUpdate_Click" OnClientClick="expandTable('gvServices');" />
+                                <asp:UpdatePanel ID="pnlServiceCtrls" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblServiceError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Button ID="btnServiceUpdate" runat="server" Text="Update Services" CssClass="btn btn-primary" OnClick="btnServiceUpdate_Click" OnClientClick="expandTable('gvServices');" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                         <div class="card mt-4">

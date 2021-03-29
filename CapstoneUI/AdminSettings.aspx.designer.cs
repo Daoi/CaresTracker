@@ -31,6 +31,24 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.GridView gvRegions;
         
         /// <summary>
+        /// pnlRegionCtrls control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnlRegionCtrls;
+        
+        /// <summary>
+        /// lblRegionError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRegionError;
+        
+        /// <summary>
         /// btnRegionUpdate control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,24 @@ namespace CapstoneUI {
         protected global::System.Web.UI.WebControls.GridView gvHousingDevelopments;
         
         /// <summary>
+        /// pnlDevelopmentCtrls control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnlDevelopmentCtrls;
+        
+        /// <summary>
+        /// lblDevelopmentError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDevelopmentError;
+        
+        /// <summary>
         /// btnDevelopmentUpdate control.
         /// </summary>
         /// <remarks>
@@ -65,6 +101,24 @@ namespace CapstoneUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvServices;
+        
+        /// <summary>
+        /// pnlServiceCtrls control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnlServiceCtrls;
+        
+        /// <summary>
+        /// lblServiceError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblServiceError;
         
         /// <summary>
         /// btnServiceUpdate control.

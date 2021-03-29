@@ -83,11 +83,13 @@ namespace CapstoneUI
                     Response.Redirect("./AdminSettings.aspx", false);
                 }
 
-                // failed
+                lblRegionError.Text = "An unknown error occurred. Please try again later.";
+                lblRegionError.Visible = true;
             }
             catch (Exception ex)
             {
-
+                lblRegionError.Text = ex.Message;
+                lblRegionError.Visible = true;
             }
         }
 
@@ -101,10 +103,14 @@ namespace CapstoneUI
                     // update success
                     Response.Redirect("./AdminSettings.aspx", false);
                 }
+
+                lblDevelopmentError.Text = "An unknown error occurred. Please try again later.";
+                lblDevelopmentError.Visible = true;
             }
             catch (Exception ex)
             {
-
+                lblDevelopmentError.Text = ex.Message;
+                lblDevelopmentError.Visible = true;
             }
         }
 
@@ -118,10 +124,14 @@ namespace CapstoneUI
                     // update success
                     Response.Redirect("./AdminSettings.aspx", false);
                 }
+
+                lblServiceError.Text = "An unknown error occurred. Please try again later.";
+                lblServiceError.Visible = true;
             }
             catch (Exception ex)
             {
-
+                lblServiceError.Text = ex.Message;
+                lblServiceError.Visible = true;
             }
         }
 
