@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors
+namespace CaresTracker.DataAccess.DataAccessors
 {
     public class GetAllDevelopments : DataSupport, IData
     {

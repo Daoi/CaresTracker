@@ -1,14 +1,14 @@
-﻿using CapstoneUI.DataAccess;
-using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataAccess.DataAccessors.ServiceAccessors;
-using CapstoneUI.DataAccess.DataAccessors.SymptomAccessors;
+﻿using CaresTracker.DataAccess;
+using CaresTracker.DataAccess.DataAccessors;
+using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
+using CaresTracker.DataAccess.DataAccessors.SymptomAccessors;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataModels
+namespace CaresTracker.DataModels
 {
     public class Interaction
     {

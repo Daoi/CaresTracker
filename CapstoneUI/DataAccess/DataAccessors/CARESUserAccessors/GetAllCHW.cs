@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors
+namespace CaresTracker.DataAccess.DataAccessors.CARESUserAccessors
 {
     /// <summary>
     /// Retrieve a DataTable containing the UserId, Username, First name and last name of all CARESUsers.

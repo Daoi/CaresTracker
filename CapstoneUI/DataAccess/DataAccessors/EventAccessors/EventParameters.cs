@@ -3,9 +3,9 @@ using MySql.Data.MySqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using CapstoneUI.DataModels;
+using CaresTracker.DataModels;
 
-namespace CapstoneUI.DataAccess.DataAccessors.EventAccessors
+namespace CaresTracker.DataAccess.DataAccessors.EventAccessors
 {
     public class EventParameters
     {

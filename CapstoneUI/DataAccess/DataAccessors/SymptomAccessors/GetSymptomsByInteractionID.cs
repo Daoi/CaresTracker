@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.SymptomAccessors
+namespace CaresTracker.DataAccess.DataAccessors.SymptomAccessors
 {
     public class GetSymptomsByInteractionID : DataSupport,  IData
     {

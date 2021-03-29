@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors.EventAccessors
+namespace CaresTracker.DataAccess.DataAccessors.EventAccessors
 {
     public class GetAllEvents : DataSupport, IData
     {

@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors.FollowUps
+namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps
 {
     /// <summary>
     /// Get the follow ups marked as uncompleted for the current CARESUser

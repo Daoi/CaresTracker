@@ -1,9 +1,9 @@
 ﻿using System;
-using CapstoneUI.Utilities;
-using CapstoneUI.DataModels;
-using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.Utilities;
+using CaresTracker.DataModels;
+using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class Verify : System.Web.UI.Page
     {

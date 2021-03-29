@@ -4,7 +4,7 @@ using System.Web.Configuration;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess
+namespace CaresTracker.DataAccess
 {
     /// <summary>
     /// Provides default implementation of IData so you only have to change what is needed for your use.

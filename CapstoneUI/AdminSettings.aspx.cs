@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using System.Data;
-using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataAccess.DataAccessors.RegionAccessors;
-using CapstoneUI.DataAccess.DataAccessors.OrganizationAccessors;
-using CapstoneUI.DataAccess.DataAccessors.GenericAccessors;
-using CapstoneUI.DataAccess.DataAccessors.ServiceAccessors;
-using CapstoneUI.DataModels;
+using CaresTracker.DataAccess.DataAccessors;
+using CaresTracker.DataAccess.DataAccessors.RegionAccessors;
+using CaresTracker.DataAccess.DataAccessors.OrganizationAccessors;
+using CaresTracker.DataAccess.DataAccessors.GenericAccessors;
+using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
+using CaresTracker.DataModels;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class AdminSettings : System.Web.UI.Page
     {

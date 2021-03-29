@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors
+namespace CaresTracker.DataAccess.DataAccessors.CARESUserAccessors
 {
     /// <summary>
     /// Class to handle creating/filling the parameters for the CHW creation SQL Command

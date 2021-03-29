@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
 {
     public class GetAllInteractionsByWorkerID : DataSupport, IData
     {

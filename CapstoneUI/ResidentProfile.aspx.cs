@@ -1,7 +1,7 @@
-﻿using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
-using CapstoneUI.DataAccess.DataAccessors.DevelopmentAccessors;
-using CapstoneUI.DataModels;
-using CapstoneUI.Utilities;
+﻿using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
+using CaresTracker.DataAccess.DataAccessors.DevelopmentAccessors;
+using CaresTracker.DataModels;
+using CaresTracker.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,10 +9,10 @@ using System.Linq;
 using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors.HouseAccessors;
-using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
+using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
+using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class ResidentProfile : System.Web.UI.Page
     {

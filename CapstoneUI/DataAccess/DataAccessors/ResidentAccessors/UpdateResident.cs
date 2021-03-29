@@ -1,11 +1,11 @@
-﻿using CapstoneUI.DataModels;
+﻿using CaresTracker.DataModels;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.ResidentAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
 {
     public class UpdateResident : DataSupport, IData
     {

@@ -1,4 +1,4 @@
-﻿using CapstoneUI.DataModels;
+﻿using CaresTracker.DataModels;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
 {
     public class SymptomsInsertSQLWriter
     {

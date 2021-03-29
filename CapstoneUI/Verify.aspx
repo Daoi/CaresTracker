@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Verify.aspx.cs" Inherits="CapstoneUI.Verify" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Verify.aspx.cs" Inherits="CaresTracker.Verify" Async="true" %>
 
 <!DOCTYPE html>
 

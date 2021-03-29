@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapstoneUI {
+namespace CaresTracker {
     
     
     public partial class Verify {

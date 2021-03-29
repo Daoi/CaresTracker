@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors.OrganizationAccessors
+namespace CaresTracker.DataAccess.DataAccessors.OrganizationAccessors
 {
     public class GetAllOrganizations : DataSupport, IData
     {

@@ -3,10 +3,10 @@ using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CapstoneUI.DataAccess.DataAccessors;
-using CapstoneUI.DataAccess.DataAccessors.HouseAccessors;
+using CaresTracker.DataAccess.DataAccessors;
+using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
 
-namespace CapstoneUI.DataModels
+namespace CaresTracker.DataModels
 {
     public class Resident
     {

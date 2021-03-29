@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using Amazon.CognitoIdentity.Model;
 
-namespace CapstoneUI.Utilities
+namespace CaresTracker.Utilities
 {
     /// <summary>
     /// Class to manage interactions with AWS Cognito services.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors.ResidentAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
 {
     /// <summary>
     /// Retrieve a DataTable containing the all Residents fromt the Resident table.

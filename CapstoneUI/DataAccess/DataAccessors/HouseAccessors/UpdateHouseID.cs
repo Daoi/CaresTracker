@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
-using CapstoneUI.DataModels;
+using CaresTracker.DataModels;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.HouseAccessors
+namespace CaresTracker.DataAccess.DataAccessors.HouseAccessors
 {
     /// <summary>
     /// This class updates the HouseID for Residents

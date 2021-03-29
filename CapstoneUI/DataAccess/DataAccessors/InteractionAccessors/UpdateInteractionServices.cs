@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using CapstoneUI.DataModels;
+using CaresTracker.DataModels;
 using System.Text;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
 {
     public class UpdateInteractionServices
     {

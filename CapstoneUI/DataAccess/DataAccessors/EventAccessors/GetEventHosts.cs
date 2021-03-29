@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.EventAccessors
+namespace CaresTracker.DataAccess.DataAccessors.EventAccessors
 {
     public class GetEventHosts : DataSupport, IData
     {

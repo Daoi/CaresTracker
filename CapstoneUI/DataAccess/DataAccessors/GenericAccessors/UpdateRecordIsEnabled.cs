@@ -5,7 +5,7 @@ using System.Web;
 using System.Text;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.GenericAccessors
+namespace CaresTracker.DataAccess.DataAccessors.GenericAccessors
 {
     public class UpdateRecordIsEnabled
     {

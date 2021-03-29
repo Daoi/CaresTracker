@@ -1,7 +1,7 @@
 ﻿using System.Data;
-using CapstoneUI.DataModels;
+using CaresTracker.DataModels;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
 {
     public class UpdateInteraction : DataSupport, IData
     {

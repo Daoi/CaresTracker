@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.Utilities
+namespace CaresTracker.Utilities
 {
     public class TextModeDateFormatter
     {

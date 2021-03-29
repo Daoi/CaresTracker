@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using CapstoneUI.Utilities;
-using CapstoneUI.DataModels;
-using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.Utilities;
+using CaresTracker.DataModels;
+using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class CreateCHW : System.Web.UI.Page
     {

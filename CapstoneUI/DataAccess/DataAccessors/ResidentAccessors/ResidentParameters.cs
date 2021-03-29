@@ -1,4 +1,4 @@
-﻿using CapstoneUI.DataModels;
+﻿using CaresTracker.DataModels;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.ResidentAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
 {
     /// <summary>
     /// Class to handle creating/filling the parameters for the CHW creation SQL Command

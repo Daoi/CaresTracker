@@ -1,12 +1,12 @@
-﻿using CapstoneUI.DataModels;
+﻿using CaresTracker.DataModels;
 using System;
 using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
+using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class InteractionList : Page
     {

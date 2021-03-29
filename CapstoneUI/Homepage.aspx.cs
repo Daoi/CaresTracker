@@ -1,12 +1,12 @@
 ﻿using System;
-using CapstoneUI.Utilities;
+using CaresTracker.Utilities;
 using System.Data;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataModels;
-using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
-using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
+using CaresTracker.DataModels;
+using CaresTracker.DataAccess.DataAccessors.EventAccessors;
+using CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class h : System.Web.UI.Page
     {

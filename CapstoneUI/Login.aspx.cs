@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
-using CapstoneUI.DataModels;
-using CapstoneUI.Utilities;
+using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.DataModels;
+using CaresTracker.Utilities;
 
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class WebForm1 : System.Web.UI.Page
     {

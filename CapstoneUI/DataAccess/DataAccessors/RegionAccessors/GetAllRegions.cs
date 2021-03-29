@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors.RegionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.RegionAccessors
 {
     public class GetAllRegions : DataSupport, IData
     {

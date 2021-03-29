@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.RegionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.RegionAccessors
 {
     /// <summary>
     /// Update accessor for editing the organizations assigned

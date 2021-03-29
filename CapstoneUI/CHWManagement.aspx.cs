@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Data;
-using CapstoneUI.Utilities;
-using CapstoneUI.DataModels;
+using CaresTracker.Utilities;
+using CaresTracker.DataModels;
 using System.Collections.Generic;
-using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class CHWManagement : System.Web.UI.Page
     {

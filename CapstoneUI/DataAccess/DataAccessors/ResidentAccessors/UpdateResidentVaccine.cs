@@ -5,7 +5,7 @@ using System.Web;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors.ResidentAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
 {
     public class UpdateResidentVaccine : DataSupport, IData
     {

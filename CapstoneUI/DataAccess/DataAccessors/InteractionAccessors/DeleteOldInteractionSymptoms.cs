@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
-using CapstoneUI.DataModels;
+using CaresTracker.DataModels;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
 {
     public class DeleteOldInteractionSymptoms : DataSupport, IData
     {

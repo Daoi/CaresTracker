@@ -1,9 +1,9 @@
-﻿using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors;
-using CapstoneUI.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
-using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
-using CapstoneUI.DataAccess.DataAccessors.ServiceAccessors;
-using CapstoneUI.DataModels;
-using CapstoneUI.Utilities;
+﻿using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
+using CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
+using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
+using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
+using CaresTracker.DataModels;
+using CaresTracker.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,7 +12,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class ResidentInteractionForm : Page
     {

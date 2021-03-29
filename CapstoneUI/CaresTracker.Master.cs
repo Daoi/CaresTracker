@@ -1,11 +1,11 @@
-﻿using CapstoneUI.DataModels;
-using CapstoneUI.Utilities;
+﻿using CaresTracker.DataModels;
+using CaresTracker.Utilities;
 using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {

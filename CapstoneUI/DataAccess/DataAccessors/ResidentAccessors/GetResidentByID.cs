@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
-namespace CapstoneUI.DataAccess.DataAccessors.ResidentAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
 {
     public class GetResidentByID : DataSupport, IData
     {

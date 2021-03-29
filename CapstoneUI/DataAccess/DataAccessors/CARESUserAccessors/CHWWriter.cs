@@ -1,4 +1,4 @@
-﻿using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
+﻿using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors
+namespace CaresTracker.DataAccess.DataAccessors.CARESUserAccessors
 {
     public class CHWWriter : DataSupport, IData
     {

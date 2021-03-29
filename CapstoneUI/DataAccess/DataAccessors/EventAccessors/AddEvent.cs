@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
-using CapstoneUI.DataModels;
+using CaresTracker.DataModels;
 using System.Text;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.EventAccessors
+namespace CaresTracker.DataAccess.DataAccessors.EventAccessors
 {
     public class AddEvent : DataSupport, IData
     {

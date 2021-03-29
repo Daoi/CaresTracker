@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors
+namespace CaresTracker.DataAccess.DataAccessors.CARESUserAccessors
 {
     public class GetWorkerStats : DataSupport, IData
     {

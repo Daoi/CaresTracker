@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.ServiceAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ServiceAccessors
 {
     public class InsertService : DataSupport, IData
     {

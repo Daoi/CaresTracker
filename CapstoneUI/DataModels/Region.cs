@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataModels
+namespace CaresTracker.DataModels
 {
     public class Region
     {

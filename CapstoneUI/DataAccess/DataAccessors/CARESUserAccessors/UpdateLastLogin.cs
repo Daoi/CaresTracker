@@ -5,7 +5,7 @@ using System.Web;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors
+namespace CaresTracker.DataAccess.DataAccessors.CARESUserAccessors
 {
     public class UpdateLastLogin : DataSupport, IData
     {

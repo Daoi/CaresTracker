@@ -2,7 +2,7 @@
 using System.Data;
 
 
-namespace CapstoneUI.DataAccess.DataAccessors.InteractionAccessors.FollowUps
+namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps
 {
     public class UpdateFollowUpCompleted : DataSupport, IData
     {

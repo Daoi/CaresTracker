@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace CapstoneUI.DataAccess.DataAccessors.ServiceAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ServiceAccessors
 {
     public class GetServicesByInteractionID : DataSupport, IData
     {

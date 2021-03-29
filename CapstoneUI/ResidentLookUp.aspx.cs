@@ -2,10 +2,10 @@
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataModels;
-using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
+using CaresTracker.DataModels;
+using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class ResidentLookUp : Page
     {

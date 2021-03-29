@@ -3,7 +3,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class Event : System.Web.UI.Page
     {

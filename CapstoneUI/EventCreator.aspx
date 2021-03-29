@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/CapstoneUI.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CapstoneUI.EventCreator" Async="true" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/CaresTracker.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CaresTracker.EventCreator" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">

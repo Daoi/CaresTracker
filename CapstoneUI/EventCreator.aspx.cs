@@ -1,14 +1,14 @@
-﻿using CapstoneUI.DataModels;
+﻿using CaresTracker.DataModels;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
-using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
+using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.DataAccess.DataAccessors.EventAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class EventCreator : System.Web.UI.Page
     {

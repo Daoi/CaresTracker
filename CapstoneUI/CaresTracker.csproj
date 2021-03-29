@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CapstoneUI</RootNamespace>
-    <AssemblyName>CapstoneUI</AssemblyName>
+    <RootNamespace>CaresTracker</RootNamespace>
+    <AssemblyName>CaresTracker</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -266,7 +266,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="CapstoneUI.Master" />
+    <Content Include="CaresTracker.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminSettings.aspx.cs">
@@ -420,12 +420,12 @@
       <DependentUpon>ImportData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CapstoneUI.Master.cs">
-      <DependentUpon>CapstoneUI.Master</DependentUpon>
+    <Compile Include="CaresTracker.Master.cs">
+      <DependentUpon>CaresTracker.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CapstoneUI.Master.designer.cs">
-      <DependentUpon>CapstoneUI.Master</DependentUpon>
+    <Compile Include="CaresTracker.Master.designer.cs">
+      <DependentUpon>CaresTracker.Master</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

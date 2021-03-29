@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace CapstoneUI.DataAccess.DataAccessors
+namespace CaresTracker.DataAccess.DataAccessors
 {
     public class CTextWriter : DataSupport, IData
     {

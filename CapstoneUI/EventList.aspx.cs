@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.UI.WebControls;
 using System.Data;
-using CapstoneUI.DataAccess.DataAccessors.EventAccessors;
+using CaresTracker.DataAccess.DataAccessors.EventAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class EventList : System.Web.UI.Page
     {

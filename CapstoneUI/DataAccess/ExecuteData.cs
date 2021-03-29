@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess
+namespace CaresTracker.DataAccess
 {
     public class ExecuteQuery : ExecuteBase
     {

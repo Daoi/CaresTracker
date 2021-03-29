@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.DevelopmentAccessors
+namespace CaresTracker.DataAccess.DataAccessors.DevelopmentAccessors
 {
     public class GetDevelopmentsByUserID : DataSupport, IData
     {

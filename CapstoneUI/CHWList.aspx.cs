@@ -1,10 +1,10 @@
-﻿using CapstoneUI.DataAccess.DataAccessors.CARESUserAccessors;
-using CapstoneUI.DataModels;
+﻿using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.DataModels;
 using System;
 using System.Data;
 using System.Web.UI.WebControls;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class CHWList : System.Web.UI.Page
     {

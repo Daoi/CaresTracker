@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess.DataAccessors.HouseAccessors
+namespace CaresTracker.DataAccess.DataAccessors.HouseAccessors
 {
     public class GetHouseByID : DataSupport, IData
     {

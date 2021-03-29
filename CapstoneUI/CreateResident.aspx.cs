@@ -5,12 +5,12 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors.DevelopmentAccessors;
-using CapstoneUI.DataAccess.DataAccessors.HouseAccessors;
-using CapstoneUI.DataAccess.DataAccessors.ResidentAccessors;
-using CapstoneUI.DataModels;
+using CaresTracker.DataAccess.DataAccessors.DevelopmentAccessors;
+using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
+using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
+using CaresTracker.DataModels;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class CreateResident : System.Web.UI.Page
     {

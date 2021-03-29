@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace CapstoneUI.DataAccess
+namespace CaresTracker.DataAccess
 {
     public interface IData
     {
