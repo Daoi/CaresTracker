@@ -10,7 +10,7 @@ namespace CapstoneUI.DataAccess.DataAccessors.EventAccessors
     {
         public GetUpcomingEvents()
     {
-        CommandText = "GetAllEvents";
+        CommandText = "GetUpcomingEvents";
         CommandType = CommandType.StoredProcedure;
     }
 
