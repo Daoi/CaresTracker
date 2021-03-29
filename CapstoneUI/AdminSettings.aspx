@@ -20,9 +20,9 @@
         </div>
         <div class="container-fluid p-0">
             <div class="container my-5">
+                <h3>Manage Regions</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
-                        <h3>Manage Regions</h3>
                         <asp:GridView ID="gvRegions" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" OnRowDataBound="gvRegions_RowDataBound">
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
@@ -37,7 +37,7 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <div class="col align-self-center">
+                    <div class="col pt-5">
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Assign regions to partner organizations, or leave them unassigned. Click update below to save your changes.</p>
@@ -46,9 +46,9 @@
                         </div>
                     </div>
                 </div>
+                <h3>Manage Developments</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
-                        <h3>Manage Developments</h3>
                         <asp:GridView ID="gvHousingDevelopments" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
@@ -62,7 +62,7 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <div class="col align-self-center">
+                    <div class="col pt-5">
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Select which developments should be shown as options on the resident profile creation page. Click update below to save your changes.</p>
@@ -71,9 +71,9 @@
                         </div>
                     </div>
                 </div>
+                <h3>Manage Services</h3>
                 <div class="row">
                     <div class="col-8">
-                        <h3>Manage Services</h3>
                         <asp:GridView ID="gvServices" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
@@ -86,7 +86,7 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <div class="col align-self-center">
+                    <div class="col pt-5">
                         <div class="card mx-auto">
                             <div class="card-body">
                                 <p class="card-text">Select which services should be shown as options on the interaction form. Click update below to save your changes.</p>
