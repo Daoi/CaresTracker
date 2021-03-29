@@ -195,25 +195,14 @@
             e.preventDefault()
             $(this).tab('show')
         })</script>
-    <%-- Completed follow ups Data Table --%>
+    <%-- Create DataTables --%>
     <script type="text/javascript">
         $(document).ready(function () {
-            var table = $('#MainContent_gvCompletedFollowUps').DataTable();
-        });
-    </script>
-    <%-- Uncompleted follow ups Data Table --%>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var table = $('#MainContent_gvOutstandingFollowUps').DataTable();
-        });
-    </script>
-    <%-- Events Tracker --%>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var table = $('#MainContent_gvEvents').DataTable({
-                "lengthMenu": [5]
+            ['gvCompletedFollowUps', 'gvOutstandingFollowUps', 'gvEvents'].forEach(gv => {
+                $(`#MainContent_${gv}`).DataTable({
+                "lengthMenu": [5, 10]
+                });
             });
-
         });
     </script>
 </asp:Content>
