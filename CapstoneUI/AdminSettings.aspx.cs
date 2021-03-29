@@ -17,6 +17,8 @@ namespace CapstoneUI
     {
         DataTable dtOrganizations;
 
+        // the DataTables plugin is very picky about postbacks and storing TemplateField ctrl data
+        // make sure any controls expected to cause postbacks are in UpdatePanels
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -135,6 +137,7 @@ namespace CapstoneUI
             }
         }
 
+        // gets the values that IsEnabled should be set to for each PK id for the given GridView
         private List<(int id, bool isEnabled)> GetIsEnabledPairs(GridView gv, string idCol, string chkID, int chkIndex)
         {
             List<(int id, bool isEnabled)> pairs = new List<(int id, bool isEnabled)>();

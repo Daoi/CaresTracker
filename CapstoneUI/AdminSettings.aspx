@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         // use before postback to process all GV values
+        // TemplateField ctrl values aren't accurate otherwise
         function expandTable(gv) {
             $(`#MainContent_${gv}`).DataTable().page.len(-1).draw();
         }
