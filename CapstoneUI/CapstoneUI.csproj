@@ -304,6 +304,7 @@
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
+    <Compile Include="DataAccess\DataAccessors\ServiceAccessors\InsertService.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateHouseID.cs" />
     <Compile Include="DataAccess\DataAccessors\UpdateUserStatus.cs" />
     <Compile Include="DataAccess\DataAccessors\GetAllInteractionsByWorkerID.cs" />
