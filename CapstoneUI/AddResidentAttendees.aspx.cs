@@ -26,14 +26,12 @@ namespace CapstoneUI
             {
                 attendees = (List<Resident>)Session["Attendees"];
             }
-            else
-            {
-                attendees = new List<Resident>();
-            }
 
             if (!IsPostBack)
             {
                 Session["Attendees"] = null;
+                attendees = new List<Resident>();
+                Session["Attendees"] = attendees;
 
                 DataTable dt;
 
