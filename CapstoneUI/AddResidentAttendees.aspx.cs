@@ -17,18 +17,11 @@ namespace CapstoneUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // on first page load empty temporary attendees list and bind resident list
-            if (!IsPostBack)
-            {
-                Session["Attendees"] = null;
-                BindResidents();
-            }
-            // grab event object from session storage
             if (Session["Event"] != null)
             {
                 theEvent = (DataModels.Event)Session["Event"];
             }
-            // persist attendees list across async postbacks or instantiate for first time
+
             if (Session["Attendees"] != null)
             {
                 attendees = (List<Resident>)Session["Attendees"];
@@ -37,50 +30,44 @@ namespace CapstoneUI
             {
                 attendees = new List<Resident>();
             }
-        }
 
-        public void BindResidents()
-        {
-            DataTable dt;
-            // check if residentlist in session already exists if not create it   
-            if(Session["ResidentList"] != null)
+            if (!IsPostBack)
             {
-                dt = (DataTable)Session["ResidentList"];
+                Session["Attendees"] = null;
+
+                DataTable dt;
+
+                if (Session["ResidentList"] != null)
+                {
+                    dt = (DataTable)Session["ResidentList"];
+                }
+                else
+                {
+                    GetAllResident getAllResident = new GetAllResident();
+                    dt = getAllResident.RunCommand();
+                    Session["ResidentList"] = dt;
+                }
+
+                gvResidentList.DataSource = dt;
+                gvResidentList.DataBind();
             }
-            else
-            {
-                GetAllResident getAllResident = new GetAllResident();
-                dt = getAllResident.RunCommand();
-                Session["ResidentList"] = dt;
-            }
 
-            gvResidentList.DataSource = dt;
-
-            gvResidentList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-
-            gvResidentList.DataBind();
+            gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void btnAddResident_Click(object sender, EventArgs e)
         {
-            // grab the resident object from the bound control
             Button btn = (Button)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             DataRow dr = (Session["ResidentList"] as DataTable).Rows[row.DataItemIndex];
             Resident res = new Resident(dr);
 
-            // tried list.contain and list.find both didnt work
-            // query the temporary attendee list and the event attendees list to prevent duplicates
-            if (attendees.FindIndex(r => r.ResidentID == res.ResidentID) == -1 && 
-                theEvent.Attendees.FindIndex(r => r.ResidentID == res.ResidentID) == -1)
+            if (!attendees.Any(r => r.ResidentID == res.ResidentID) && !theEvent.Attendees.Any(r => r.ResidentID == res.ResidentID))
             {
-                // persist attendees list across async postbacks
-                // make error label invisible if triggered
                 lblError.Visible = false;
                 attendees.Add(res);
+                rptAttendees.DataSource = attendees;
+                rptAttendees.DataBind();
                 Session["Attendees"] = attendees;
             }
             else
@@ -88,35 +75,18 @@ namespace CapstoneUI
                 lblError.Visible = true;
                 lblError.Text = "Resident already exists in list of attendees";
             }
-            //had to bind resident list each time so that datatable controls still exist across postbacks
-            BindResidents();
-            // update the repeater with the new attendee
-            rptAttendees.DataSource = attendees;
-            rptAttendees.DataBind();
         }
 
-        // attach a postbacktrigger to each button in the gridview
-        protected void gvResidentList_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Button addResident = e.Row.FindControl("btnAddResident") as Button;
-                ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(addResident);
-            }
-        }
-
-        // remove resident from temp list
         protected void btnResidents_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             int id = int.Parse(btn.CommandArgument);
-            attendees.RemoveAt(attendees.FindIndex(r => r.ResidentID == id));
+            attendees.RemoveAll(r => r.ResidentID == id);
             Session["Attendees"] = attendees;
             rptAttendees.DataSource = attendees;
             rptAttendees.DataBind();
         }
 
-        // combine temp list with event attendees list
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             if(attendees.Count != 0)
@@ -134,7 +104,6 @@ namespace CapstoneUI
             {
                 lblError.Visible = true;
                 lblError.Text = "Select at least one Resident to add to Event";
-                BindResidents();
             }
         }
 

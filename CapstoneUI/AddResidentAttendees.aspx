@@ -21,7 +21,7 @@
             </div>
             <div class="container">
                 <div class="container mt-5">
-                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True" OnRowDataBound="gvResidentList_RowDataBound">
+                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True" >
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
                             <asp:TemplateField HeaderText="View Resident Profile">
@@ -34,6 +34,9 @@
                         </Columns>
                     </asp:GridView>
                     <asp:UpdatePanel ID="upAddResidents" runat="server">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="gvResidentList" />
+                        </Triggers>
                         <ContentTemplate>
                             <div class="container mt-3 pt-3 border-top">
                                 <div class="container w-50">
@@ -43,7 +46,7 @@
                                         <asp:Repeater ID="rptAttendees" runat="server">
                                             <ItemTemplate>
                                                 <li>
-                                                    <asp:Button ID="btnResidents" CssClass="btn btn-outline-danger my-2 mx-2" CommandArgument='<%# Eval("ResidentID") %>' Text='<%# Bind("FullName") %>' OnClick="btnResidents_Click" runat="server" />
+                                                    <asp:Button ID="btnResidents" CssClass="btn btn-danger my-2 mx-2" CommandArgument='<%# Eval("ResidentID") %>' Text='<%# Bind("FullName") %>' OnClick="btnResidents_Click" runat="server" />
                                                 </li>
                                             </ItemTemplate>
                                         </asp:Repeater>
