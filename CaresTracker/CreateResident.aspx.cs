@@ -101,7 +101,9 @@ namespace CaresTracker
                 residentHouse.HouseType = "Development";
                 residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
                 // Retrieve RegionID of Development
-                residentHouse.RegionID = developmentDT.Rows[0].Field<int>("RegionID");
+                residentHouse.RegionID = developmentDT.Rows.Cast<DataRow>().ToList()
+                    .Where(dr => (int)dr["DevelopmentID"] == residentHouse.DevelopmentID)
+                    .Select(dr => dr.Field<int>("RegionID")).ElementAt(0);
             }
 
             // Attach newly created house to resident for session storage
