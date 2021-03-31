@@ -121,8 +121,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddResidentAttendees.aspx" />
     <Content Include="AdminSettings.aspx" />
-    <Content Include="appSettings.config" />
     <Content Include="img\actionvance-guy5aS3GvgA-unsplash.jpg" />
     <Content Include="img\logo-white.png" />
     <Content Include="img\master-wen-lpLRwDZigvc-unsplash.jpg" />
@@ -172,6 +172,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Login.aspx" />
+    <Content Include="appSettings.config" />
     <Content Include="connections.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
@@ -269,6 +270,13 @@
     <Content Include="CaresTracker.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddResidentAttendees.aspx.cs">
+      <DependentUpon>AddResidentAttendees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddResidentAttendees.aspx.designer.cs">
+      <DependentUpon>AddResidentAttendees.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSettings.aspx.cs">
       <DependentUpon>AdminSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -276,6 +284,7 @@
     <Compile Include="AdminSettings.aspx.designer.cs">
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\AddAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />

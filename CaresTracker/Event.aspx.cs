@@ -130,5 +130,11 @@ namespace CaresTracker
             Session["Resident"] = theEvent.Attendees[index];
             Response.Redirect("./ResidentProfile.aspx");
         }
+
+        protected void btnAddResidentAttendees_Click(object sender, EventArgs e)
+        {
+            Session["Event"] = theEvent;
+            Response.Redirect("AddResidentAttendees.aspx");
+        }
     }
 }
