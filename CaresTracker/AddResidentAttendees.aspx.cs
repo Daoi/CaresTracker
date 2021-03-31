@@ -13,7 +13,7 @@ namespace CaresTracker
     public partial class AddResidentAttendees : System.Web.UI.Page
     {
         DataModels.Event theEvent;
-        List<Resident> attendees;
+        DataTable dtResidents;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,80 +22,58 @@ namespace CaresTracker
                 theEvent = (DataModels.Event)Session["Event"];
             }
 
-            if (Session["Attendees"] != null)
-            {
-                attendees = (List<Resident>)Session["Attendees"];
-            }
-
             if (!IsPostBack)
             {
-                Session["Attendees"] = null;
-                attendees = new List<Resident>();
-                Session["Attendees"] = attendees;
-
-                DataTable dt;
-
                 if (Session["ResidentList"] != null)
                 {
-                    dt = (DataTable)Session["ResidentList"];
+                    dtResidents = (DataTable)Session["ResidentList"];
                 }
                 else
                 {
-                    GetAllResident getAllResident = new GetAllResident();
-                    dt = getAllResident.RunCommand();
-                    Session["ResidentList"] = dt;
+                    dtResidents = new GetAllResident().RunCommand();
                 }
 
-                gvResidentList.DataSource = dt;
+                gvResidentList.DataSource = dtResidents;
+                Session["ResidentList"] = dtResidents;
+
                 gvResidentList.DataBind();
             }
 
             gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-        }
-
-        protected void btnAddResident_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            GridViewRow row = (GridViewRow)btn.NamingContainer;
-            DataRow dr = (Session["ResidentList"] as DataTable).Rows[row.DataItemIndex];
-            Resident res = new Resident(dr);
-
-            if (!attendees.Any(r => r.ResidentID == res.ResidentID) && !theEvent.Attendees.Any(r => r.ResidentID == res.ResidentID))
-            {
-                lblError.Visible = false;
-                attendees.Add(res);
-                rptAttendees.DataSource = attendees;
-                rptAttendees.DataBind();
-                Session["Attendees"] = attendees;
-            }
-            else
-            {
-                lblError.Visible = true;
-                lblError.Text = "Resident already exists in list of attendees";
-            }
-        }
-
-        protected void btnResidents_Click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            int id = int.Parse(btn.CommandArgument);
-            attendees.RemoveAll(r => r.ResidentID == id);
-            Session["Attendees"] = attendees;
-            rptAttendees.DataSource = attendees;
-            rptAttendees.DataBind();
+            dtResidents = Session["ResidentList"] as DataTable;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            List<Resident> attendees = new List<Resident>();
+            foreach(GridViewRow row in gvResidentList.Rows)
+            {
+                CheckBox chk = row.FindControl("chkAddResident") as CheckBox;
+                if (chk.Checked)
+                {
+                    DataRow dr = dtResidents.Rows[row.RowIndex];
+                    Resident res = new Resident(dr);
+                    if(!theEvent.Attendees.Any(r => r.ResidentID == res.ResidentID))
+                    {
+                        attendees.Add(res);
+                    }
+                    else
+                    {
+                        lblError.Visible = true;
+                        lblError.Text = "One or more residents is already in list of attendees";
+                        return;
+                    }
+                }
+            }
+
             if(attendees.Count != 0)
             {
                 theEvent.Attendees.AddRange(attendees);
                 CTextWriter writer = new CTextWriter(AddAttendees.WriteSQL(theEvent, attendees));
                 int ret = writer.ExecuteCommand();
-                if(ret > 0)
+                if (ret > 0)
                 {
                     Session["Event"] = theEvent;
-                    Session["Attendees"] = null;
                     Response.Redirect("Event.aspx");
                 }
             }

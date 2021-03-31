@@ -24,39 +24,22 @@
                     <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True" >
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
-                            <asp:TemplateField HeaderText="View Resident Profile">
+                            <asp:TemplateField HeaderText="Add Resident to Event">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnAddResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="Add Resident to Event" OnClick="btnAddResident_Click" />
+                                    <asp:CheckBox ID="chkAddResident" CssClass="form-check" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
                             <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
                         </Columns>
                     </asp:GridView>
-                    <asp:UpdatePanel ID="upAddResidents" runat="server">
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="gvResidentList" />
-                        </Triggers>
-                        <ContentTemplate>
-                            <div class="container mt-3 pt-3 border-top">
-                                <div class="container w-50">
-                                    <h5>Residents to be added:</h5>
-                                    <asp:Label ID="lblError" CssClass="h6 text-danger" Visible="false" runat="server"></asp:Label>
-                                    <ul class="addResidentList">
-                                        <asp:Repeater ID="rptAttendees" runat="server">
-                                            <ItemTemplate>
-                                                <li>
-                                                    <asp:Button ID="btnResidents" CssClass="btn btn-danger my-2 mx-2" CommandArgument='<%# Eval("ResidentID") %>' Text='<%# Bind("FullName") %>' OnClick="btnResidents_Click" runat="server" />
-                                                </li>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
-                                </div>
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
                     <div class="container text-center">
-                        <asp:Button ID="btnSubmit" CssClass="buttonStyle" Text="Add Residents" OnClick="btnSubmit_Click" runat="server" />
+                        <div class="row">
+                            <asp:Label ID="lblError" CssClass="h6 alert-danger" runat="server"></asp:Label>
+                        </div>
+                        <div class="row">
+                            <asp:Button ID="btnSubmit" CssClass="buttonStyle" Text="Add Residents" OnClick="btnSubmit_Click" runat="server" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,6 +64,5 @@
             });
 
         });
-
     </script>
 </asp:Content>
