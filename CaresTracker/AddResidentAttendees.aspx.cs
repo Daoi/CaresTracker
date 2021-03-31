@@ -95,6 +95,7 @@ namespace CaresTracker
                 if(ret > 0)
                 {
                     Session["Event"] = theEvent;
+                    Session["Attendees"] = null;
                     Response.Redirect("Event.aspx");
                 }
             }
