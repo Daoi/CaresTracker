@@ -7,6 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using CaresTracker.DataAccess.DataAccessors.EventAccessors;
+using CaresTracker.Utilities;
 
 namespace CaresTracker
 {
@@ -40,56 +41,36 @@ namespace CaresTracker
             }
         }
 
-        protected void ddlEventType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<HtmlGenericControl> eventDivs = new List<HtmlGenericControl>() { divResourceTableEvent, divHealthEducationEvent,
-                                                                                  divFluShotEvent, divOnlineEvent };
-            DropDownList ddl = (DropDownList)sender;
-            string selectedId = ddl.SelectedValue;
-            if (ddl.SelectedIndex == 0)
-            {
-                eventDivs.ForEach(ed => ed.Visible = false);
-                return; // They haven't selected an event Type so don't change anything/show error message/whatever
-            }
-
-            eventDivs.ForEach(ed => ed.Visible = false); //Turn off all divs
-            (eventDivs.Find(ed => ed.ID.Equals(selectedId)) as HtmlGenericControl).Visible = true; //Turn selected div on
-            
-            upEvents.Update();//Update the page without doing full postback using update panel
-        }
-
-        protected void lnkHome_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Homepage.aspx");
-        }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            DataModels.Event newEvent = new DataModels.Event();
-            newEvent.EventName = txtEventName.Text;
-            newEvent.EventLocation = txtEventLocation.Text;
-            newEvent.EventDate = txtEventDate.Text;
-            newEvent.EventStartTime = txtEventTimeStart.Text;
-            newEvent.EventEndTime = txtEventTimeEnd.Text;
-            newEvent.Hosts = new List<CARESUser>();
-            foreach(ListItem item in cblUsers.Items)
+            if (ValidateFields())
             {
-                if (item.Selected)
+                DataModels.Event newEvent = new DataModels.Event();
+                newEvent.EventName = txtEventName.Text;
+                newEvent.EventLocation = txtEventLocation.Text;
+                newEvent.EventDate = txtEventDate.Text;
+                newEvent.EventStartTime = txtEventTimeStart.Text;
+                newEvent.EventEndTime = txtEventTimeEnd.Text;
+                newEvent.Hosts = new List<CARESUser>();
+                foreach (ListItem item in cblUsers.Items)
                 {
-                    int index = cblUsers.Items.IndexOf(item);
-                    newEvent.Hosts.Add(UserList.ElementAt(index));
+                    if (item.Selected)
+                    {
+                        int index = cblUsers.Items.IndexOf(item);
+                        newEvent.Hosts.Add(UserList.ElementAt(index));
+                    }
                 }
-            }
-            newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
-            newEvent.EventType = ddlEventType.SelectedItem.Text;
-            newEvent.EventDescription = txtDescription.InnerText;
+                newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
+                newEvent.EventType = ddlEventType.SelectedItem.Text;
+                newEvent.EventDescription = txtDescription.InnerText;
 
-            AddEvent add = new AddEvent(newEvent);
-            int res = add.ExecuteCommand();
-            if(res == 1)
-            {
-                Session["Event"] = newEvent;
-                Response.Redirect("Event.aspx");
+                AddEvent add = new AddEvent(newEvent);
+                int res = add.ExecuteCommand();
+                if (res == 1)
+                {
+                    Session["Event"] = newEvent;
+                    Response.Redirect("Event.aspx");
+                }
             }
         }
 
@@ -108,6 +89,53 @@ namespace CaresTracker
             ddlMainHost.DataTextField = "FullName";
             ddlMainHost.DataValueField = "UserID";
             ddlMainHost.DataBind();
+        }
+
+        public bool ValidateFields()
+        {
+            if (Validation.IsEmpty(txtEventName.Text) || Validation.IsEmpty(txtEventLocation.Text) || Validation.IsEmpty(txtEventDate.Text) ||
+            Validation.IsEmpty(txtEventTimeStart.Text) || Validation.IsEmpty(txtEventTimeEnd.Text) || Validation.IsEmpty(txtDescription.InnerText))
+            {
+                lblError.Text = "Fill out all fields";
+                return false;
+            }
+
+            DateTime startTime = DateTime.Parse(txtEventTimeStart.Text);
+            DateTime endTime = DateTime.Parse(txtEventTimeEnd.Text);
+            if(TimeSpan.Compare(startTime.TimeOfDay, endTime.TimeOfDay) == -1 || TimeSpan.Compare(startTime.TimeOfDay, endTime.TimeOfDay) == 0)
+            {
+                lblError.Text = "Make sure that start and end time are correct";
+                return false;
+            }
+
+            bool oneChecked = false;
+            foreach(ListItem item in cblUsers.Items)
+            {
+                if (item.Selected)
+                {
+                    oneChecked = true;
+                    break;
+                }
+            }
+
+            if(oneChecked == false)
+            {
+                lblError.Text = "Please select at least one worker to host the event";
+                return false;
+            }
+
+            if(ddlEventType.SelectedValue == "Select Event Type")
+            {
+                lblError.Text = "Please select an event type";
+                return false;
+            }
+
+            return true;
+        }
+
+        protected void lnkHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Homepage.aspx");
         }
     }
 }
