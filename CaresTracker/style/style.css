@@ -1,0 +1,362 @@
+﻿.backgroundImage {
+    overflow: auto;
+    min-height: 100vh;
+    background-image: url("../img/master-wen-lpLRwDZigvc-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.cherryFont{
+    color: #A41E35;
+}
+
+.cherryFont:active{
+    color: black;
+}
+
+.cherryBackground {
+    color: white;
+    background-color: #A41E35;
+}
+
+.offwhiteBackground {
+    background-color: #F2EFE8;
+}
+
+a {
+    color: #A41E35;
+}
+
+.rblItem label {
+    margin-left: 5px;
+}
+
+.buttonStyle {
+    color: white;
+    background-color: #A41E35;
+    width: 195px;
+    height: 40px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.buttonStyle:hover {
+    background-color: #a82f44;
+    text-decoration: none;
+}
+
+.inputCheckBox {
+    display: inline-table;
+}
+
+.inputCheckBox input[type="checkbox"] {
+    margin-right: .15em;
+}
+
+@media (max-width: 1024px) {
+    .inputCheckBox input[type="checkbox"] {
+        margin-right: 5em;
+    }
+}
+
+.residentHealth {
+    transition: opacity 0.5s ease-in;
+    overflow-x: hidden;
+}
+
+.homepage {
+    background-color: white;
+    width: 90%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding-bottom: 5%;
+}
+
+.managementContainer {
+    background-color: white;
+    width: 70%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding-bottom: 5%;
+}
+
+.textContainer {
+    background-color: lightgrey;
+    color: black;
+    height: 100%;
+    width: 100%;
+}
+.textContainerTwo {
+    background-color: lightgrey;
+    color: black;
+    height: 25%;
+    width: 100%;
+}
+.textContainerThree {
+    background-color: lightgrey;
+    color: black;
+    height: 25%;
+    width: 60%;
+    margin-left: 6em;
+}
+.btnContainer {
+    height: 25%;
+    width: 60%;
+    margin-left: 6em;
+}
+
+.managementContainer {
+    position: relative;
+    height: 50%;
+}
+
+.chwInfo {
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+.sectionTitle {
+    border-style: solid;
+    border-color: blue;
+    position: relative;
+}
+
+.sectionTitleText {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.quickAccess {
+    margin-top: 4vh;
+}
+
+.white{
+    background-color: white;
+}
+
+.softblue {
+    background-color: #E2F1FF;
+}
+
+.homeBtn{
+    color: black;
+    font-weight: bold;
+    white-space: normal;
+}
+
+.footerCon {
+    background-color: #F7F7F7;
+}
+
+.loginContainer {
+    background-image: url('../img/FallAndBluePrint.jpg');
+    background-size: cover;
+    height: 100vh;
+    max-width: 100%;
+    width: 100%;
+}
+
+.forestGreen {
+    background-color: #13752a;
+}
+
+.loginCard {
+    height: auto;
+    background-color: white;
+    width: 50vw;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.verifyCard {
+    height: auto;
+    background-color: white;
+    width: 65vw;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.chwImg {
+    width: 20vw
+}
+
+
+.residentProfile, .newResident {
+    background-color: lightgrey;
+}
+
+.residentParagraph {
+    position: relative;
+    left: 33%;
+}
+
+.eventCreator {
+    height: 100vh;
+    background-color: white;
+    margin-top: 2rem;
+    margin-bottom: 2rem
+}
+
+.dataTables_filter {
+    justify-content: center;
+}
+
+/*Ids for table's search bar div*/
+#MainContent_gvInteractionList_filter, #MainContent_gvResidentList_filter, #MainContent_gvEventList_filter {
+    justify-content: center;
+    text-align: center;
+}
+
+.dataTables_filter input {
+    width: 150% !important;
+    border-color: black;
+}
+
+thead {
+    background-color: #31749B;
+    color: white;
+}
+.tableContainer {
+    background-color: white !important;
+    margin-top: 2%
+}
+
+@media only screen and (max-height: 768px) {
+    .helpfulLinks {
+        display: none;
+    }
+}
+
+.myCheckBoxList label {
+    padding-left: 5px;
+}
+
+#divrblGender input[type="radio"]{
+    margin-right: 5px;
+}
+
+.DataboundCBLOverflow{
+    display: inline-flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.DataboundCBLOverflow label {
+    display: inline;
+
+}
+
+.DataboundCBLOverflow input[type=checkbox] {
+    display: inline-table;
+    vertical-align: -.01em;
+}
+
+/*Landscape*/
+@media (max-height: 768px) {
+    .btn-responsive {
+        padding: .3em .2em;
+        font-size: 90%;
+        line-height: 1.5;
+    }
+}
+/*Portrait*/
+@media (min-width: 769px) and (max-width: 992px) {
+    .btn-responsive {
+        padding: .5em .1em;
+        font-size: 90%;
+        line-height: 1.2;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.error-label{
+    color: red;
+}
+
+.homepage-bottom-row{
+    overflow-y: scroll;
+}
+
+.followup-tracker, .UCEventsCard{
+    overflow-y: scroll;
+}
+
+#MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter,
+    #MainContent_gvEvents_filter, #MainContent_gvRegions_filter, #MainContent_gvHousingDevelopments_filter, #MainContent_gvServices_filter {
+    margin-right: 9.7em;
+}
+
+.rp-gender label {
+    padding-left: .5em;
+}
+
+.services {
+    transition: opacity 0.5s ease-in;
+    position: absolute;
+    width: 80%;
+    height: 90%;
+}
+
+.cblServices {
+    overflow-y: hidden;
+}
+
+.cblServices label{
+    padding-left: .2em;
+}
+
+.cblServicesCompleted {
+    overflow-y: scroll;
+    width: 80%;
+    height: 30%;
+}
+
+.cblServicesCompleted label {
+    padding-left: .2em;
+}
+
+.homepageCard {
+    margin: auto;
+    height: 170px;
+}
+
+.homepageCol{
+    padding-bottom:30px;
+}
+
+@media (max-width: 1366px) {
+    .homepageCard {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.eventLists {
+    list-style-type: none;
+}
+
+.addResidentList {
+    list-style-type: none;
+}
