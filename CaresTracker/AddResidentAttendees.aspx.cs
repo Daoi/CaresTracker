@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapstoneUI.DataAccess.DataAccessors;
+using CaresTracker.DataAccess.DataAccessors;
 using System.Data;
-using CapstoneUI.DataModels;
+using CaresTracker.DataModels;
+using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
+using CaresTracker.DataAccess.DataAccessors.EventAccessors;
 
-namespace CapstoneUI
+namespace CaresTracker
 {
     public partial class AddResidentAttendees : System.Web.UI.Page
     {

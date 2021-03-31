@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CapstoneUI.Master" CodeBehind="AddResidentAttendees.aspx.cs" Inherits="CapstoneUI.AddResidentAttendees" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CaresTracker.Master" CodeBehind="AddResidentAttendees.aspx.cs" Inherits="CaresTracker.AddResidentAttendees" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">
