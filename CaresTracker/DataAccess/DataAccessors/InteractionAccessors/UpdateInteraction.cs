@@ -20,6 +20,7 @@ namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
         public int ExecuteCommand()
         {
             new UpdateInteractionSymptoms(interaction.Symptoms, interaction.InteractionID).ExecuteCommand();
+
             ExecuteQuery eq = new ExecuteQuery();
             return eq.ExecuteNonQuery(this);
         }

@@ -200,7 +200,7 @@
                         <asp:Panel ID="pnlServicesForm" class="services" runat="server">
                             <h5>Social Services</h5>
                             <div class="row m-3 h-100">
-                                <div id="divNewInteractionServices" class="cblServices overflow-auto h-100 w-100" runat="server">
+                                <div id="divNewInteractionServices" class="cblServices overflow-auto h-75 w-100" runat="server">
                                     <label>Services</label>
                                     <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
@@ -210,12 +210,12 @@
                                 </div>
                                 <div id="divFollowUpRequired" class="row m-3" runat="server">
                                     <asp:Label ID="lblFollowUp" for="ddlFollowUp" runat="server" Text="Does this interaction require a follow up?"></asp:Label>
-                                    <asp:DropDownList ID="ddlFollowUp" CssClass="form-control" runat="server">
+                                    <asp:DropDownList ID="ddlFollowUp" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlFollowUp_SelectedIndexChanged">
                                         <asp:ListItem>Select Option</asp:ListItem>
                                         <asp:ListItem Value="false">Doesn't Require Follow Up</asp:ListItem>
                                         <asp:ListItem Value="true">Requires Follow up</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:Label ID="lblFollowUpError" runat="server" CssClass="h4 alert-danger" Text="Must select whether the service requires follow up."></asp:Label>
+                                    <asp:Label ID="lblFollowUpError" runat="server" CssClass="h4 alert-danger" Text="Must select whether the service requires follow up." Visible="false"></asp:Label>
                                 </div>
                                 <div id="divFollowUpStatus" class="row m-3" runat="server">
                                     <asp:Label ID="lblFollowUpStatus" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up?"></asp:Label>

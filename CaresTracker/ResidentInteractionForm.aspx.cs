@@ -1,4 +1,5 @@
-﻿using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
+﻿
+using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
 using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
@@ -46,6 +47,7 @@ namespace CaresTracker
                     ViewState["OldInteraction"] = false;
                     divFollowUpStatus.Visible = false;
                     divFollowUpRequired.Visible = true;
+                    ViewState["FollowUpRequired"] = null;
                 }
                 else if (Session["Interaction"] != null && (url.Contains("InteractionList") || url.Contains("SaveSuccessful")))//Old interaction
                 {
@@ -72,7 +74,7 @@ namespace CaresTracker
 
                     //Show if follow up is required and not completed
                     divFollowUpStatus.Visible = interaction.RequiresFollowUp && string.IsNullOrEmpty(interaction.FollowUpCompleted);
-                    
+                    ViewState["FollowUpRequired"] = 0; //Shouldn't matter what this is
                     divFollowUpRequired.Visible = false;
                 }
             }
@@ -388,10 +390,10 @@ namespace CaresTracker
                 .ToList()
                 .ForEach(cb => cb.Checked = true);
 
-            if (!string.IsNullOrEmpty(interaction.SymptomStartDate))
+            if (!string.IsNullOrWhiteSpace(interaction.SymptomStartDate))
                 tbSymptomDates.Text = interaction.SymptomStartDate;
 
-            if (string.IsNullOrEmpty(interaction.COVIDTestResult))
+            if (string.IsNullOrWhiteSpace(interaction.COVIDTestResult))
             {
                 ddlTestResult.SelectedIndex = 0;
             }
@@ -440,6 +442,9 @@ namespace CaresTracker
                 .ToList()
                 .ForEach(li => li.Selected = true);
             }
+
+            ddlFollowUp.SelectedValue = interaction.RequiresFollowUp.ToString();
+
             //Action Plan
             nextSteps.InnerText = interaction.ActionPlan;
         }
@@ -534,7 +539,7 @@ namespace CaresTracker
             }
 
             //FollowUp
-            if (ddlFollowUp.SelectedIndex == 0)
+            if (ViewState["FollowUpRequired"] == null)
             {
                 isValid = false;
                 icServices.Visible = true;
@@ -556,6 +561,18 @@ namespace CaresTracker
             string hideModalCall = "$('#modalEditReason').modal('hide');";
             ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "hideEditModal", hideModalCall, true);
             ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "showEditModal", "", true);
+        }
+
+        protected void ddlFollowUp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlFollowUp.SelectedIndex == 0)
+            {
+                ViewState["FollowUpRequired"] = null;
+            }
+            else
+            {
+                ViewState["FollowUpRequired"] = ddlFollowUp.SelectedValue;
+            }
         }
     }
 }
