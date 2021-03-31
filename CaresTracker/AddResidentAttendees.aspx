@@ -1,6 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/CaresTracker.Master" CodeBehind="AddResidentAttendees.aspx.cs" Inherits="CaresTracker.AddResidentAttendees" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        // use before postback to process all GV values
+        // TemplateField ctrl values aren't accurate otherwise
+        function expandTable(gv) {
+            $(`#MainContent_${gv}`).DataTable().page.len(-1).draw();
+        }
+    </script>
     <div class="container-fluid">
         <div class="container homepage">
             <div class="row modal-header pb-0 offwhiteBackground" style="height: 7%; font-size: large">
@@ -38,7 +45,7 @@
                             <asp:Label ID="lblError" CssClass="h6 alert-danger" runat="server"></asp:Label>
                         </div>
                         <div class="row">
-                            <asp:Button ID="btnSubmit" CssClass="buttonStyle" Text="Add Residents" OnClick="btnSubmit_Click" runat="server" />
+                            <asp:Button ID="btnSubmit" CssClass="buttonStyle" Text="Add Residents" OnClick="btnSubmit_Click" OnClientClick="expandTable('gvResidentList');" runat="server" />
                         </div>
                     </div>
                 </div>
@@ -48,21 +55,7 @@
     <asp:HiddenField ID="hfSearchInput" runat="server" />
     <script type="text/javascript">
         $(document).ready(function () {
-            var table = $('#MainContent_gvResidentList').DataTable();
-            table.on('draw', function () {
-                if (table.page.info().recordsDisplay <= 0) {
-                    var search = $('.dataTables_filter input').val();
-                    $('#MainContent_lblResidentNotFound').text(`Resident with the name ${search} not found`);
-                    $('#MainContent_lblResidentNotFound').removeClass('hidden');
-                    $('#MainContent_btnCreateNewResident').removeClass('hidden');
-                    $('#MainContent_hfSearchInput').val(`${search}`);
-                }
-                else {
-                    $('#MainContent_lblResidentNotFound').addClass('hidden');
-                    $('#MainContent_btnCreateNewResident').addClass('hidden');
-                }
-            });
-
+            $('#MainContent_gvResidentList').DataTable();
         });
     </script>
 </asp:Content>

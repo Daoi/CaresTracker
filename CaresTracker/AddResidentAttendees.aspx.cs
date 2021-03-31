@@ -24,15 +24,7 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                if (Session["ResidentList"] != null)
-                {
-                    dtResidents = (DataTable)Session["ResidentList"];
-                }
-                else
-                {
-                    dtResidents = new GetAllResident().RunCommand();
-                }
-
+                dtResidents = new GetAllResident().RunCommand();
                 gvResidentList.DataSource = dtResidents;
                 Session["ResidentList"] = dtResidents;
 
