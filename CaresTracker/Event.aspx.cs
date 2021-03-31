@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CaresTracker.DataAccess.DataAccessors.EventAccessors;
 
 
 namespace CaresTracker
@@ -111,6 +112,19 @@ namespace CaresTracker
             btnEdit.Visible = true;
             btnSave.Visible = false;
             btnCancel.Visible = false;
+
+            // Create new event to replace old one
+            DataModels.Event editedEvent = new DataModels.Event();
+            editedEvent.EventName = txtEventName.Text;
+            editedEvent.EventDescription = txtDescription.Text;
+            editedEvent.EventType = txtEventType.Text;
+            editedEvent.EventLocation = txtLocation.Text;
+            editedEvent.EventDate = txtEventDate.Text;
+            editedEvent.EventStartTime = txtStartTime.Text;
+            editedEvent.EventEndTime = txtEndTime.Text;
+            editedEvent.MainHostID = Int32.Parse(ddlMainHost.SelectedValue);
+            editedEvent.EventID = theEvent.EventID;
+            new UpdateEvent(editedEvent).ExecuteCommand();
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
