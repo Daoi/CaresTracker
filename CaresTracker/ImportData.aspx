@@ -29,7 +29,7 @@
                     <asp:FileUpload CssClass="fileUpload" ID="fileUpload" runat="server"></asp:FileUpload>
                 </div>
                 <div class="row justify-content-center mt-3">
-                    <asp:DropDownList ID="ddlDevelopments" CssClass="form-control w-25" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlDevelopments" CssClass="developmentsID" runat="server"></asp:DropDownList>
                 </div>
                 <div class="row justify-content-center mt-5">
                     <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" OnClick="btnSubmitImport_Click" />
