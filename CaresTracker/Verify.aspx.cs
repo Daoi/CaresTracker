@@ -2,6 +2,7 @@
 using CaresTracker.Utilities;
 using CaresTracker.DataModels;
 using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.DataAccess.DataAccessors;
 
 namespace CaresTracker
 {
@@ -70,6 +71,9 @@ namespace CaresTracker
                     // record login
                     UpdateLastLogin updater = new UpdateLastLogin();
                     updater.ExecuteCommand(usr, DateTime.Now.ToString());
+
+                    new CreateSQLUser(Session["User"] as CARESUser);
+
 
                     Response.Redirect("./Homepage.aspx", false);
                 }
