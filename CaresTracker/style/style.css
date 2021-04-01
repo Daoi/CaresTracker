@@ -186,6 +186,15 @@ a {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.importCard {
+    height: auto;
+    background-color: white;
+    width: 50vw;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .verifyCard {
     height: auto;
     background-color: white;
@@ -355,4 +364,8 @@ thead {
 
 .eventLists {
     list-style-type: none;
+}
+
+#MainContent_fileUpload{
+    margin-left: .75rem;
 }
