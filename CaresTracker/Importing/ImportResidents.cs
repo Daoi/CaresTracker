@@ -42,7 +42,7 @@ namespace CaresTracker.Importing
                 home.ZipCode = record.Zipcode;
                 home.DevelopmentID = devID;
                 home.RegionID = regionID;
-                home.UnitNumber = record.SecondaryAddress;
+                home.UnitNumber = string.IsNullOrWhiteSpace(record.SecondaryAddress) ? "N/A" : record.SecondaryAddress;
                 res.Home = home;
                 if (WriteResident(res))
                     successful++;
