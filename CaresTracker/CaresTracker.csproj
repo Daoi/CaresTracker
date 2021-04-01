@@ -253,6 +253,7 @@
     <Content Include="style\InteractionFormStyle.css" />
     <Content Include="style\loginStyle.css" />
     <Content Include="style\style.css" />
+    <Content Include="TestPage.aspx" />
     <Content Include="Utilities\PlacesAutocomplete.js" />
     <Content Include="Verify.aspx" />
     <Content Include="Web.config" />
@@ -276,6 +277,7 @@
     <Compile Include="AdminSettings.aspx.designer.cs">
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DataAccessors\CreateSQLUser.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetUpcomingEvents.cs" />
@@ -314,6 +316,7 @@
     <Compile Include="DataAccess\DataAccessors\SymptomAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetServicesByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkersByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\AddSQLUser.cs" />
     <Compile Include="InteractionList.aspx.cs">
       <DependentUpon>InteractionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -454,6 +457,13 @@
     </Compile>
     <Compile Include="ResidentProfile.aspx.designer.cs">
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AWSCognitoManager.cs" />
     <Compile Include="Utilities\TextModeDateFormatter.cs" />
