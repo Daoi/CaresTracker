@@ -112,6 +112,7 @@ namespace CaresTracker
             btnEdit.Visible = true;
             btnSave.Visible = false;
             btnCancel.Visible = false;
+            lblError.Visible = false;
 
             // Create new event to replace old one
             DataModels.Event editedEvent = new DataModels.Event();
@@ -124,7 +125,14 @@ namespace CaresTracker
             editedEvent.EventEndTime = txtEndTime.Text;
             editedEvent.MainHostID = Int32.Parse(ddlMainHost.SelectedValue);
             editedEvent.EventID = theEvent.EventID;
+            // Update event
+            try{
             new UpdateEvent(editedEvent).ExecuteCommand();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
