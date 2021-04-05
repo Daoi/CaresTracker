@@ -316,6 +316,15 @@
     <Compile Include="DataAccess\DataAccessors\OrganizationAccessors\GetAllOrganizations.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\GetAllRegions.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\UpdateRegionAssignments.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionContactReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionGenderReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionLanguageReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionServiceReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetReports.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalEventReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalGenderReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalLanguageReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalVaccineReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
