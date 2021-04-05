@@ -13,7 +13,7 @@ namespace CaresTracker
     public partial class Report : System.Web.UI.Page
     {
         protected string jsonReports;
-        private Dictionary<string, string> jsonDict;
+        private Dictionary<string, Dictionary<string, List<object>>> jsonDict;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,7 +23,7 @@ namespace CaresTracker
                 string endDate = Session["ReportEndDate"].ToString();
                 lblTimeframe.Text = $"{startDate} - {endDate}";
 
-                this.jsonDict = new Dictionary<string, string>();
+                this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
                 DataTable tblTemp;
 
                 tblTemp = new GetTotalGenderReport().ExecuteCommand(developmentID);
@@ -89,13 +89,13 @@ namespace CaresTracker
                     pairs.series.Add(int.Parse(row[1].ToString()));
                 });
 
-            this.jsonDict.Add(chartID, JsonConvert.SerializeObject(
+            this.jsonDict.Add(chartID,
                 new Dictionary<string, List<object>>()
                 {
                     { "labels", pairs.labels },
                     { "series", pairs.series}
                 }
-            ));
+            );
         }
 
         private DataTable CreateDataTableFromScalar(int scalarValue, string groupName)
