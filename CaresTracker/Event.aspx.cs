@@ -19,6 +19,17 @@ namespace CaresTracker
             if(!IsPostBack && Session["Event"] != null)
             {
                 FillEventInfo();
+                gvCHWList.DataSource = theEvent.Hosts;
+                gvCHWList.DataBind();
+                gvResidentList.DataSource = theEvent.Attendees;
+                gvResidentList.DataBind();
+            }
+
+            gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            if (theEvent.Attendees != null && theEvent.Attendees.Count != 0)
+            {
+                gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 
@@ -31,24 +42,6 @@ namespace CaresTracker
             txtStartTime.Text = theEvent.EventStartTime;
             txtEndTime.Text = theEvent.EventEndTime;
             txtDescription.Text = theEvent.EventDescription;
-
-            gvCHWList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-            gvCHWList.DataSource = theEvent.Hosts;
-            gvCHWList.DataBind();
-
-            if (theEvent.Attendees != null && theEvent.Attendees.Count != 0)
-            {
-                gvResidentList.DataBound += (object o, EventArgs ev) =>
-                {
-                    gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-                };
-
-                gvResidentList.DataSource = theEvent.Attendees;
-                gvResidentList.DataBind();
-            }
 
             ddlMainHost.DataSource = theEvent.Hosts;
             ddlMainHost.DataTextField = "FullName";

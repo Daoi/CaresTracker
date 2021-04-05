@@ -91,5 +91,9 @@ namespace CaresTracker
             Response.Redirect("Homepage.aspx");
         }
 
+        protected void btnCreateNewResident_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateResident.aspx");
+        }
     }
 }

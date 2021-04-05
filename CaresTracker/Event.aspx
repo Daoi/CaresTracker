@@ -146,8 +146,8 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#MainContent_gvCHWList').DataTable({ searching: false });
-            $('#MainContent_gvResidentList').DataTable({ searching: false });
+            $('#MainContent_gvCHWList').DataTable({ searching: false, "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]] });
+            $('#MainContent_gvResidentList').DataTable({ searching: false, "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]] });
         });
     </script>
 </asp:Content>
