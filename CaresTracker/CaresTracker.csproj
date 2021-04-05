@@ -148,6 +148,7 @@
     <Content Include="Homepage.aspx" />
     <Content Include="img\pha_logonew.png" />
     <Content Include="ImportData.aspx" />
+    <Content Include="Report.aspx" />
     <Content Include="ResidentInteractionForm.aspx" />
     <Content Include="ResidentLookUp.aspx" />
     <Content Include="ResidentProfile.aspx" />
@@ -445,6 +446,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResidentInteractionForm.aspx.cs">
       <DependentUpon>ResidentInteractionForm.aspx</DependentUpon>
