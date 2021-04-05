@@ -21,7 +21,7 @@ namespace CaresTracker
                 int developmentID = int.Parse(Session["ReportDevelopmentID"].ToString());
                 string startDate = Session["ReportStartDate"].ToString();
                 string endDate = Session["ReportEndDate"].ToString();
-                lblTimeframe.Text = $"{startDate} - {endDate}";
+                lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
 
                 this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
                 DataTable tblTemp;
@@ -79,6 +79,7 @@ namespace CaresTracker
             };
         }
 
+        // chartID should match the selector of the chart in the aspx markup
         private void AddDataToJsonDict(DataTable data, string chartID)
         {
             (List<object> labels, List<object> series) pairs = (new List<object>(), new List<object>());
