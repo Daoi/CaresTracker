@@ -65,17 +65,17 @@ namespace CaresTracker
 
                     // get user data from db
                     GetUser accessor = new GetUser();
-                    Session["User"] = new CARESUser(accessor.RunCommand(usr).Rows[0]);
+                    CARESUser user = new CARESUser(accessor.RunCommand(usr).Rows[0]);
+                    Session["User"] = user;
                     Session["CognitoManager"] = man;
 
                     // record login
                     UpdateLastLogin updater = new UpdateLastLogin();
                     updater.ExecuteCommand(usr, DateTime.Now.ToString());
 
-                    new CreateSQLUser(Session["User"] as CARESUser);
+                    new CreateSQLUser(user);
 
-
-                    Response.Redirect("./Homepage.aspx", false);
+                    Response.Redirect("./Login.aspx", false);
                 }
                 else
                 {
