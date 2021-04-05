@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using CaresTracker.DataModels;
+using CaresTracker.DataAccess.DataAccessors.DevelopmentAccessors;
 
 namespace CaresTracker
 {
@@ -11,12 +14,31 @@ namespace CaresTracker
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CARESUser user = Session["User"] as CARESUser;
 
+            // redirect unauthorized users
+            if (!(user.UserType.Equals("T") || user.UserType.Equals("A"))) { Response.Redirect("./Homepage.aspx"); }
+
+            if (!IsPostBack)
+            {
+                // get list of developments corresponding to this admin user
+                ddlHousingDevelopment.DataSource = new GetDevelopmentsByAdminID().ExecuteCommand(user.UserID);
+                ddlHousingDevelopment.DataBind();
+            }
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("./Homepage.aspx");
+        }
+
+        // collect inputs to generate report
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            Session["ReportDevelopmentID"] = ddlHousingDevelopment.SelectedValue;
+            Session["ReportStartDate"] = txtDateInitial.Text;
+            Session["ReportEndDate"] = txtDateFinal.Text;
+            Response.Redirect("./Report.aspx");
         }
     }
 }

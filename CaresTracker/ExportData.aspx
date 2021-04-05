@@ -20,11 +20,7 @@
                 <div class="form-group row justify-content-center">
                     <div class="col-md-6 text-secondary">
                         Region:<br />
-                        <asp:DropDownList ID="ddlRegion" CssClass="form-control" runat="server">
-                            <asp:ListItem>North Philadelphia</asp:ListItem>
-                            <asp:ListItem>West Philadelphia</asp:ListItem>
-                            <asp:ListItem>South Philadelphia</asp:ListItem>
-                            <asp:ListItem>Greater Philadelphia</asp:ListItem>
+                        <asp:DropDownList ID="ddlHousingDevelopment" CssClass="form-control" runat="server" DataTextField="DevelopmentName" DataValueField="DevelopmentID">
                         </asp:DropDownList><br />
                         Initial Date:<br />
                         <asp:TextBox ID="txtDateInitial" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
@@ -32,7 +28,7 @@
                         <asp:TextBox ID="txtDateFinal" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
                     </div>
                 </div>
-                <asp:Button ID="btnSubmitImport" runat="server" Text="Generate Report" CssClass="buttonStyle" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Generate Report" CssClass="buttonStyle" OnClick="btnSubmit_Click" />
             </div>
             <div class="card-footer text-muted">
                 CARES Tracker

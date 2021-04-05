@@ -22,13 +22,13 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
-        /// ddlRegion control.
+        /// ddlHousingDevelopment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHousingDevelopment;
         
         /// <summary>
         /// txtDateInitial control.
@@ -49,12 +49,12 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.TextBox txtDateFinal;
         
         /// <summary>
-        /// btnSubmitImport control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitImport;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }
