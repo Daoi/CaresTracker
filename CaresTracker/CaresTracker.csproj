@@ -320,7 +320,7 @@
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionGenderReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionLanguageReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionServiceReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetReports.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\ReportAccessor.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalEventReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalGenderReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalLanguageReport.cs" />
