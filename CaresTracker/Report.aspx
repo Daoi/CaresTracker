@@ -15,6 +15,7 @@
             <div class="container my-5">
                 <%-- Housing Development Level Report --%>
                 <h2><ins>Housing Development Totals</ins></h2>
+                <br />
                 <h3>Residents per Gender</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
@@ -45,7 +46,7 @@
                         </asp:GridView>
                     </div>
                 </div>
-                <h3>Residents per Vaccine Interest</h3>
+                <h3>Residents per Vaccine Status</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
                         <div id='chrtTotalVaccine' class="ct-chart ct-perfect-fourth"></div>
@@ -54,28 +55,13 @@
                         <asp:GridView ID="gvTotalVaccine" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
-                                <asp:BoundField DataField="labels" HeaderText="Contact Method" />
+                                <asp:BoundField DataField="labels" HeaderText="Vaccine Status" />
                                 <asp:BoundField DataField="series" HeaderText="# of Interactions" />
                             </Columns>
                         </asp:GridView>
                     </div>
                 </div>
-                <h3>All-time Services Rendered</h3>
-                <div class="row border-bottom mb-5 pb-5">
-                    <div class="col-8">
-                        <div id='chrtTotalService' class="ct-chart ct-perfect-fourth"></div>
-                    </div>
-                    <div class="col pt-5">
-                        <asp:GridView ID="gvTotalService" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                            <HeaderStyle CssClass="cherryBackground" />
-                            <Columns>
-                                <asp:BoundField DataField="labels" HeaderText="Contact Method" />
-                                <asp:BoundField DataField="series" HeaderText="# of Interactions" />
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                </div>
-                <h3>All-time Resident Event Attendance</h3>
+                <h3>Resident Event Attendance</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
                         <div id='chrtTotalEvent' class="ct-chart ct-perfect-fourth"></div>
@@ -84,14 +70,17 @@
                         <asp:GridView ID="gvTotalEvent" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
-                                <asp:BoundField DataField="labels" HeaderText="Contact Method" />
-                                <asp:BoundField DataField="series" HeaderText="# of Interactions" />
+                                <asp:BoundField DataField="labels" HeaderText="" />
+                                <asp:BoundField DataField="series" HeaderText="# of Attendees" />
                             </Columns>
                         </asp:GridView>
                     </div>
                 </div>
                 <%-- Interaction Level Report --%>
-                <h2><ins>Interaction Data for Selected Timeframe <asp:Label ID="lblTimeframe" runat="server" Text=""></asp:Label></ins></h2>
+                <h2><ins>Interaction Level Data</ins></h2>
+                <asp:Label ID="lblTimeframe" runat="server" Text="" CssClass="h5"></asp:Label>
+                <br />
+                <br />
                 <h3>Interactions per Gender</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
@@ -101,7 +90,7 @@
                         <asp:GridView ID="gvInteractionGender" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
-                                <asp:BoundField DataField="labels" HeaderText="Contact Method" />
+                                <asp:BoundField DataField="labels" HeaderText="Gender" />
                                 <asp:BoundField DataField="series" HeaderText="# of Interactions" />
                             </Columns>
                         </asp:GridView>
@@ -116,7 +105,7 @@
                         <asp:GridView ID="gvInteractionLanguage" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
-                                <asp:BoundField DataField="labels" HeaderText="Contact Method" />
+                                <asp:BoundField DataField="labels" HeaderText="Primary Language" />
                                 <asp:BoundField DataField="series" HeaderText="# of Interactions" />
                             </Columns>
                         </asp:GridView>
@@ -146,7 +135,7 @@
                         <asp:GridView ID="gvInteractionService" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                             <HeaderStyle CssClass="cherryBackground" />
                             <Columns>
-                                <asp:BoundField DataField="labels" HeaderText="Contact Method" />
+                                <asp:BoundField DataField="labels" HeaderText="Service" />
                                 <asp:BoundField DataField="series" HeaderText="# of Interactions" />
                             </Columns>
                         </asp:GridView>
@@ -165,6 +154,13 @@
                     "searching": false
                 });
             });
+        });
+
+        // chartist: http://gionkunz.github.io/chartist-js/api-documentation.html#chartistbar-declaration-defaultoptions
+        var json = <%= jsonReports %>; // from codebehind
+        Object.keys(json).forEach(key => {
+            var formatted = { labels: json[key].labels, series: [json[key].series] }; // series must be nested
+            new Chartist.Bar(key, formatted);
         });
     </script>
 </asp:Content>
