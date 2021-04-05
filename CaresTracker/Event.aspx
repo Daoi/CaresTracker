@@ -123,7 +123,7 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="container-fluid mt-2">
-                                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
+                                    <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="View Resident Profile">
@@ -133,6 +133,9 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
+                                    <div class="container text-center my-3">
+                                        <asp:Button ID="btnAddResidentAttendees" CssClass="buttonStyle" Text="Add Resident" OnClick="btnAddResidentAttendees_Click" runat="server"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

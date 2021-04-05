@@ -366,10 +366,14 @@ thead {
     list-style-type: none;
 }
 
+
 #MainContent_fileUpload{
     margin-left: .75rem;
 }
 
 .developmentsID{
     width: 33%;
+
+.addResidentList {
+    list-style-type: none;
 }
