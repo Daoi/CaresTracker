@@ -288,6 +288,7 @@
     <Compile Include="AdminSettings.aspx.designer.cs">
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByAdminID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddEvent.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByUserID.cs" />
