@@ -35,6 +35,20 @@ namespace CaresTracker
         // collect inputs to generate report
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtDateInitial.Text) || string.IsNullOrEmpty(txtDateFinal.Text))
+            {
+                lblError.Text = "Please fill out all fields.";
+                lblError.Visible = true;
+                return;
+            }
+            else if (!(DateTime.Parse(txtDateInitial.Text) <= DateTime.Parse(txtDateFinal.Text)))
+            {
+                lblError.Text = "End Date cannot be past Start Date.";
+                lblError.Visible = true;
+                return;
+            }
+
+            lblError.Visible = false;
             Session["ReportDevelopmentID"] = ddlHousingDevelopment.SelectedValue;
             Session["ReportStartDate"] = txtDateInitial.Text;
             Session["ReportEndDate"] = txtDateFinal.Text;
