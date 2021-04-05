@@ -1,6 +1,8 @@
 ﻿using System.Configuration;
 using System.Data;
+using System.Web;
 using System.Web.Configuration;
+using CaresTracker.DataModels;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -15,7 +17,31 @@ namespace CaresTracker.DataAccess
 
         public DataSupport()
         {
-            ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
+            CARESUser user;
+
+            if (HttpContext.Current.Session["User"] != null)
+            {
+                user = HttpContext.Current.Session["User"] as CARESUser;
+
+                if (user.UserType.Equals("T"))
+                    ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
+                else
+                {
+
+                    try
+                    {
+                        ConnectionString = ConfigurationManager.ConnectionStrings[user.Username].ConnectionString;
+                    }
+                    catch
+                    {
+                        ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
+                    }
+                }
+            }
+            else
+            {
+                ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
+            }
         }
 
         /// <summary>
