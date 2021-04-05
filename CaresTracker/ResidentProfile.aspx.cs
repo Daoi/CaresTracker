@@ -75,7 +75,7 @@ namespace CaresTracker
             tbFirstName.Text = currentRes.ResidentFirstName;
             tbLastName.Text = currentRes.ResidentLastName;
             tbDoB.Text = TextModeDateFormatter.Format(currentRes.DateOfBirth);
-            tbPhone.Text = currentRes.ResidentPhoneNumber.Insert(3, "-").Insert(7, "-");
+            tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
             //Family size still needed?
