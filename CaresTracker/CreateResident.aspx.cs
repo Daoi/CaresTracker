@@ -90,15 +90,15 @@ namespace CaresTracker
             residentHouse.ZipCode = ZipCode;
             residentHouse.Address = Address;
             residentHouse.UnitNumber = txtUnitNumber.Text;
+            // If HCV is selected
             if (ddlHousing.SelectedIndex == 1)
             {
-                residentHouse.HouseType = "Housing Choice Voucher";
                 residentHouse.RegionID = Int32.Parse(ddlRegion.SelectedValue); // Requires validation to ensure input is a number
                 residentHouse.DevelopmentID = -1;
             }
+            // If Development is selected
             else
             {
-                residentHouse.HouseType = "Development";
                 residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
                 // Retrieve RegionID of Development
                 residentHouse.RegionID = developmentDT.Rows.Cast<DataRow>().ToList()
@@ -122,7 +122,7 @@ namespace CaresTracker
                 newResident.ResidentID = Convert.ToInt32(AddResidentResult);
 
                 // Create Development object if development is selected house type
-                if (residentHouse.HouseType == "Development")
+                if (ddlHousing.SelectedIndex != 1)
                 {
                     //Get the row matching the currently selected Housing Development Name
                     DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
