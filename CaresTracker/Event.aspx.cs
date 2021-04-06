@@ -90,7 +90,7 @@ namespace CaresTracker
                     }
                     temp.Enabled = !temp.Enabled;
                 }
-                else if (c is DropDownList && c.ID != "ddlMainHost")
+                else if (c is DropDownList)
                 {
                     DropDownList temp = c as DropDownList;
                     temp.Enabled = !temp.Enabled;
