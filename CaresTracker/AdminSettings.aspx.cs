@@ -9,6 +9,7 @@ using CaresTracker.DataAccess.DataAccessors.OrganizationAccessors;
 using CaresTracker.DataAccess.DataAccessors.GenericAccessors;
 using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
 using CaresTracker.DataModels;
+using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
 
 namespace CaresTracker
 {
@@ -25,7 +26,7 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                new List<GridView>() { gvRegions, gvServices, gvHousingDevelopments }.ForEach(gv =>
+                new List<GridView>() { gvRegions, gvServices, gvHousingDevelopments, gvEventTypes }.ForEach(gv =>
                 {
                     gv.DataBound += (object o, EventArgs ev) =>
                     {
@@ -48,6 +49,11 @@ namespace CaresTracker
                 gvServices.DataSource = new GetAllServices().ExecuteCommand();
                 gvServices.DataKeyNames = new string[] { "ServiceID" };
                 gvServices.DataBind();
+
+                // set up EventTypes
+                gvEventTypes.DataSource = new GetAllEventTypes().ExecuteCommand();
+                gvEventTypes.DataKeyNames = new string[] { "EventTypeID" };
+                gvEventTypes.DataBind();
             }
         }
 
@@ -179,6 +185,57 @@ namespace CaresTracker
             {
                 lblAddServiceError.Text = ex.Message;
                 lblAddServiceError.Visible = true;
+            }
+        }
+
+        protected void btnEventTypeUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvEventTypes, "EventTypeID", "chkEventTypeIsEnabled", 1);
+                if (new UpdateRecordIsEnabled("EventType", "EventTypeID", "EventTypeIsEnabled", pairs).ExecuteCommand() > 0)
+                {
+                    // update success
+                    Response.Redirect("./AdminSettings.aspx", false);
+                }
+
+                lblServiceError.Text = "An unknown error occurred. Please try again later.";
+                lblServiceError.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                lblServiceError.Text = ex.Message;
+                lblServiceError.Visible = true;
+            }
+        }
+
+        protected void btnAddEventType_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEventTypeName.Text))
+            {
+                lblAddServiceError.Text = "Event Type Name cannot be empty.";
+                lblAddServiceError.Visible = true;
+                return;
+            }
+
+            lblAddEventTypeError.Text = string.Empty;
+            lblAddEventTypeError.Visible = false;
+
+            try
+            {
+                if (new InsertEventType(txtEventTypeName.Text).ExecuteCommand() > 0)
+                {
+                    // insert success
+                    Response.Redirect("./AdminSettings.aspx", false);
+                }
+
+                lblAddEventTypeError.Text = "An unknown error occurred. Please try again later.";
+                lblAddEventTypeError.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                lblAddEventTypeError.Text = ex.Message;
+                lblAddEventTypeError.Visible = true;
             }
         }
     }

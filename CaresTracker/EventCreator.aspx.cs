@@ -7,6 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using CaresTracker.DataAccess.DataAccessors.EventAccessors;
+using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
 
 namespace CaresTracker
 {
@@ -14,6 +15,7 @@ namespace CaresTracker
     {
         DataTable CHWDataSet;
         List<CARESUser> UserList;
+        DataTable dtEventTypes;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,29 +35,20 @@ namespace CaresTracker
                 cblUsers.DataTextField = "FullName";
                 cblUsers.DataValueField = "UserID";
                 cblUsers.DataBind();
+
+                dtEventTypes = new GetAllEventTypes().ExecuteCommand()
+                    .AsEnumerable()
+                    .Where(row => Convert.ToSByte(row["EventTypeIsEnabled"]) == 1)
+                    .CopyToDataTable();
+                ddlEventType.DataSource = dtEventTypes;
+                ddlEventType.DataTextField = "EventTypeName";
+                ddlEventType.DataValueField = "EventTypeID";
+                ddlEventType.DataBind();
             }
             else
             {
                 UserList = (List<CARESUser>)Session["CHWUserList"];
             }
-        }
-
-        protected void ddlEventType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<HtmlGenericControl> eventDivs = new List<HtmlGenericControl>() { divResourceTableEvent, divHealthEducationEvent,
-                                                                                  divFluShotEvent, divOnlineEvent };
-            DropDownList ddl = (DropDownList)sender;
-            string selectedId = ddl.SelectedValue;
-            if (ddl.SelectedIndex == 0)
-            {
-                eventDivs.ForEach(ed => ed.Visible = false);
-                return; // They haven't selected an event Type so don't change anything/show error message/whatever
-            }
-
-            eventDivs.ForEach(ed => ed.Visible = false); //Turn off all divs
-            (eventDivs.Find(ed => ed.ID.Equals(selectedId)) as HtmlGenericControl).Visible = true; //Turn selected div on
-            
-            upEvents.Update();//Update the page without doing full postback using update panel
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -81,7 +74,8 @@ namespace CaresTracker
                 }
             }
             newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
-            newEvent.EventType = ddlEventType.SelectedItem.Text;
+            DataRow dr = dtEventTypes.Rows[ddlEventType.SelectedIndex];
+            newEvent.EventType = new EventType(dr);
             newEvent.EventDescription = txtDescription.InnerText;
 
             AddEvent add = new AddEvent(newEvent);

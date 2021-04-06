@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <h3>Manage Services</h3>
-                <div class="row">
+                <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
                         <asp:GridView ID="gvServices" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                             <HeaderStyle CssClass="cherryBackground" />
@@ -123,12 +123,53 @@
                         </div>
                     </div>
                 </div>
+                <h3>Manage Event Types</h3>
+                <div class="row">
+                    <div class="col-8">
+                        <asp:GridView ID="gvEventTypes" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                            <HeaderStyle CssClass="cherryBackground" />
+                            <Columns>
+                                <asp:BoundField DataField="EventTypeName" HeaderText="Event Type" />
+                                <asp:TemplateField HeaderText="Enabled">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chkEventTypeIsEnabled" runat="server" CssClass="form-check" Checked='<%# Eval("EventTypeIsEnabled") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                    <div class="col pt-5">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <p class="card-text">Select which event types should be shown as event creation and editing. Click update below to save your changes.</p>
+                                <asp:UpdatePanel ID="pnlEventTypeCtrls" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblEventTypeError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Button ID="btnEventTypeUpdate" runat="server" Text="Update Event Types" CssClass="buttonStyle" OnClick="btnEventTypeUpdate_Click" OnClientClick="expandTable('gvEventTypes');" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                        </div>
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <p class="card-text">Enter the name of a new event type in the textbox, then click below to add it to the list.</p>
+                                <asp:UpdatePanel ID="pnlAddEventTypeCtrls" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblAddEventTypeError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:TextBox ID="txtEventTypeName" runat="server" Placeholder="Event Type Name..." CssClass="form-control"></asp:TextBox>
+                                        <asp:Button ID="btnAddEventType" runat="server" Text="Add New Event Type" CssClass="buttonStyle mt-3" OnClick="btnAddEventType_Click" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            ['gvRegions', 'gvHousingDevelopments', 'gvServices'].forEach(gv => {
+            ['gvRegions', 'gvHousingDevelopments', 'gvServices', 'gvEventTypes'].forEach(gv => {
                 $(`#MainContent_${gv}`).DataTable({
                     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
                 });

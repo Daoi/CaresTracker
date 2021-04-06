@@ -313,7 +313,7 @@ thead {
 }
 
 #MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter,
-    #MainContent_gvEvents_filter, #MainContent_gvRegions_filter, #MainContent_gvHousingDevelopments_filter, #MainContent_gvServices_filter {
+    #MainContent_gvEvents_filter, #MainContent_gvRegions_filter, #MainContent_gvHousingDevelopments_filter, #MainContent_gvServices_filter, #MainContent_gvEventTypes_filter {
     margin-right: 9.7em;
 }
 
