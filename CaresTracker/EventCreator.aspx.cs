@@ -74,8 +74,8 @@ namespace CaresTracker
                 }
             }
             newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
-            DataRow dr = dtEventTypes.Rows[ddlEventType.SelectedIndex];
-            newEvent.EventType = new EventType(dr);
+            // change this once we add fk to event table
+            newEvent.EventType = ddlEventType.SelectedItem.Text;
             newEvent.EventDescription = txtDescription.InnerText;
 
             AddEvent add = new AddEvent(newEvent);
