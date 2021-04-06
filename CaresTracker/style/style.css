@@ -371,9 +371,15 @@ thead {
     margin-left: .75rem;
 }
 
-.developmentsID{
+.developmentsID {
     width: 33%;
+}
 
-.addResidentList {
+.addResidentList
+{
     list-style-type: none;
+}
+
+.warningIcon{
+    color: orangered;
 }
