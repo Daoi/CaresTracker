@@ -104,6 +104,13 @@ namespace CaresTracker
                 residentHouse.RegionID = developmentDT.Rows.Cast<DataRow>().ToList()
                     .Where(dr => (int)dr["DevelopmentID"] == residentHouse.DevelopmentID)
                     .Select(dr => dr.Field<int>("RegionID")).ElementAt(0);
+                //Create Development object for resident object
+                DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                    .First(r => r.Field<string>("DevelopmentName")
+                    .Equals(ddlDevelopments.SelectedItem.ToString()));
+
+                newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
+
             }
 
             // Attach newly created house to resident for session storage
@@ -121,16 +128,6 @@ namespace CaresTracker
 
                 newResident.ResidentID = Convert.ToInt32(AddResidentResult);
 
-                // Create Development object if development is selected house type
-                if (ddlHousing.SelectedIndex != 1)
-                {
-                    //Get the row matching the currently selected Housing Development Name
-                    DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
-                        .First(r => r.Field<string>("DevelopmentName")
-                        .Equals(ddlDevelopments.SelectedItem.ToString()));
-
-                    newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
-                }
                 //Store new resident in Session to use to redirect/populate resident profile
                 Session["Resident"] = newResident;
 
