@@ -323,6 +323,8 @@
     <Compile Include="DataAccess\DataAccessors\EventAccessors\EventParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\CHWParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\CHWWriter.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\UpdateEvent.cs" />
+    <Compile Include="DataAccess\DataAccessors\EventAccessors\UpdateEventParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\GenericAccessors\UpdateRecordIsEnabled.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetAllEvents.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
