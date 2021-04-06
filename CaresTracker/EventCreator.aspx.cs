@@ -73,6 +73,7 @@ namespace CaresTracker
                     newEvent.Hosts.Add(UserList.ElementAt(index));
                 }
             }
+            newEvent.Attendees = new List<Resident>();
             newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
             // change this once we add fk to event table
             newEvent.EventType = ddlEventType.SelectedItem.Text;
