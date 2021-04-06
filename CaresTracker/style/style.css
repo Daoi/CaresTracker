@@ -230,7 +230,7 @@ a {
 }
 
 /*Ids for table's search bar div*/
-#MainContent_gvInteractionList_filter, #MainContent_gvResidentList_filter, #MainContent_gvEventList_filter {
+#MainContent_gvInteractionList_filter, #MainContent_gvResidentList_filter, #MainContent_gvEventList_filter, #MainContent_gvCHWList_filter {
     justify-content: center;
     text-align: center;
 }
