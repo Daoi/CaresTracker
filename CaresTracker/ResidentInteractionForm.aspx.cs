@@ -328,7 +328,6 @@ namespace CaresTracker
             tbGender.Text = res.Gender;
             tbPhone.Text = res.ResidentPhoneNumber;
             tbEmail.Text = res.ResidentEmail;
-            tbDoC.Text = today.ToString("yyyy-MM-dd");
             //Housing Info(Second Tab)
             //tbResidenceOccupants.Text = res.Home.NumOfOccupants; NOT IMPLEMENTED ON HOUSE/RESIDENT YET. Change TB NAME
             if (res.Home.DevelopmentID == -1)
@@ -381,7 +380,7 @@ namespace CaresTracker
             //Meeting Information
             ddlMeetingType.SelectedValue = interaction.MethodOfContact;
             tbLocation.Text = interaction.LocationOfContact;
-
+            tbDoC.Text = interaction.DateOfContact;
             //Resident Health
             List<CheckBox> formSymptoms = pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList(); //Get all Symptom Checkboxes
             List<string> interactionSymptoms = new List<string>();  //Get all symptom names in interaction 
