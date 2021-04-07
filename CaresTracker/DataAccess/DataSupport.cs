@@ -17,31 +17,7 @@ namespace CaresTracker.DataAccess
 
         public DataSupport()
         {
-            CARESUser user;
-
-            if (HttpContext.Current.Session["User"] != null)
-            {
-                user = HttpContext.Current.Session["User"] as CARESUser;
-
-                if (user.UserType.Equals("T"))
-                    ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
-                else
-                {
-
-                    try
-                    {
-                        ConnectionString = ConfigurationManager.ConnectionStrings[user.Username].ConnectionString;
-                    }
-                    catch
-                    {
-                        ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
-                    }
-                }
-            }
-            else
-            {
-                ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
-            }
+            ConnectionString = ConfigurationManager.ConnectionStrings[defaultConnection].ConnectionString;
         }
 
         /// <summary>
