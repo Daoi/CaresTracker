@@ -429,21 +429,34 @@ namespace CaresTracker
                 someServicesAreComplete = true;
             }
 
-            cblCompletedServices.DataSource = allServices;
-            cblCompletedServices.DataTextField = "ServiceName";
-            cblCompletedServices.DataValueField = "ServiceID";
-            cblCompletedServices.DataBind();    
-
-            if (someServicesAreComplete)
+            if (allServices.Count > 0)
             {
-                List<string> interactionCompletedServices = new List<string>();
-                interaction.CompletedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
+                cblCompletedServices.DataSource = allServices;
+                cblCompletedServices.DataTextField = "ServiceName";
+                cblCompletedServices.DataValueField = "ServiceID";
+                cblCompletedServices.DataBind();
 
-                cblCompletedServices.Items.Cast<ListItem>().ToList()
-                .Where(li => interactionCompletedServices.Contains(li.Text))
-                .ToList()
-                .ForEach(li => li.Selected = true);
+                if (someServicesAreComplete)
+                {
+                    List<string> interactionCompletedServices = new List<string>();
+                    interaction.CompletedServices.ForEach(s => interactionCompletedServices.Add(s.ServiceName));
+
+                    cblCompletedServices.Items.Cast<ListItem>().ToList()
+                    .Where(li => interactionCompletedServices.Contains(li.Text))
+                    .ToList()
+                    .ForEach(li => li.Selected = true);
+                }
             }
+            else
+            {
+                lblServicesInfo.Text = "This interaction has no services to display.";
+                if (!string.IsNullOrEmpty(interaction.FollowUpCompleted) || !interaction.RequiresFollowUp)
+                {
+                    btnUpdateServices.Visible = false;
+                }
+            }
+
+
 
             ddlFollowUp.SelectedValue = interaction.RequiresFollowUp.ToString();
 

@@ -49,6 +49,7 @@ namespace CaresTracker
             ddlMainHost.DataValueField = "UserID";
             ddlMainHost.DataBind();
             ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
+            txtMainHostEmail.Text = theEvent.Hosts.Find(host => host.UserID == theEvent.MainHostID).UserEmail;
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -70,6 +71,7 @@ namespace CaresTracker
                 if (c is TextBox)
                 {
                     TextBox temp = c as TextBox;
+                    if (temp.ID == "txtMainHostEmail") { continue; }
                     if (temp.ID == "txtEventName")
                     { 
                         if(temp.CssClass == defaultCSS)
@@ -150,6 +152,12 @@ namespace CaresTracker
         {
             Session["Event"] = theEvent;
             Response.Redirect("AddResidentAttendees.aspx");
+        }
+
+        protected void ddlMainHost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int newMainHostID = Int32.Parse(ddlMainHost.SelectedValue);
+            txtMainHostEmail.Text = theEvent.Hosts.Find(host => host.UserID == newMainHostID).UserEmail;
         }
     }
 }

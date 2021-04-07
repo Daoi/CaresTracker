@@ -45,8 +45,6 @@ namespace CaresTracker
             // standard options
             lnkImport.Visible = true;
             lnkImport.Enabled = true;
-            lnkInteractionForm.Enabled = true;
-            lnkInteractionForm.Visible = true;
             lnkBtnLogout.Visible = true;
             lnkBtnLogout.Enabled = true;
         }
