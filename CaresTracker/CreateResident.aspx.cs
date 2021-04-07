@@ -208,6 +208,10 @@ namespace CaresTracker
                 lblValidationGender.Text = "Please select a value for gender";
                 lblValidationGender.Visible = true;
             }
+            else
+            {
+                lblValidationGender.Visible = false;
+            }
 
 
             if(ddlHousing.SelectedIndex == 0)
