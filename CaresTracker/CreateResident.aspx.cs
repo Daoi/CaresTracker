@@ -89,7 +89,7 @@ namespace CaresTracker
 
             residentHouse.ZipCode = ZipCode;
             residentHouse.Address = Address;
-            residentHouse.UnitNumber = txtUnitNumber.Text;
+            residentHouse.UnitNumber = string.IsNullOrWhiteSpace(txtUnitNumber.Text) ? "N/A" : txtUnitNumber.Text;
             // If HCV is selected
             if (ddlHousing.SelectedIndex == 1)
             {
