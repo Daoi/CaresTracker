@@ -23,7 +23,7 @@ namespace CaresTracker
                 UserList = new List<CARESUser>();
                 CHWDataSet = new GetAllCHW().RunCommand();
                 UserList = CARESUser.CreateEventHostList(CHWDataSet);
-                Session["CHWUserList"] = UserList;
+                ViewState["CHWUserList"] = UserList;
 
                 cblUsers.DataSource = UserList;
                 cblUsers.DataTextField = "FullName";
@@ -41,7 +41,7 @@ namespace CaresTracker
             }
             else
             {
-                UserList = (List<CARESUser>)Session["CHWUserList"];
+                UserList = (List<CARESUser>)ViewState["CHWUserList"];
             }
         }
 

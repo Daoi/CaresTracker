@@ -6,6 +6,7 @@ using System.Web;
 
 namespace CaresTracker.DataModels
 {
+    [Serializable]
     public class CARESUser
     {
         public int UserID { get; set; }
