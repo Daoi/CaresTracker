@@ -20,6 +20,8 @@
     <script src="Utilities/PlacesAutocomplete.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"/>
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
     <form id="frmMain" runat="server" class="">
@@ -38,10 +40,9 @@
                 <div class="collapse navbar-collapse font-weight-bold text-right" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
                         <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="nav-item nav-link text-white">Dashboard</asp:HyperLink>
-                        <asp:HyperLink ID="lnkData" runat="server" NavigateUrl="~/ExportData.aspx" CssClass="nav-item nav-link text-white" Enabled="False" Visible="False">Data Extracts</asp:HyperLink>
+                        <asp:HyperLink ID="lnkData" runat="server" NavigateUrl="~/ExportData.aspx" CssClass="nav-item nav-link text-white" Enabled="False" Visible="False">Reporting</asp:HyperLink>
                         <asp:HyperLink ID="lnkManagement" runat="server" NavigateUrl="~/CHWList.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Worker Management</asp:HyperLink>
                         <asp:HyperLink ID="lnkImport" runat="server" NavigateUrl="~/ImportData.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Import Data</asp:HyperLink>
-                        <asp:HyperLink ID="lnkInteractionForm" runat="server" NavigateUrl="~/ResidentInteractionForm.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Interaction Form</asp:HyperLink>
                         <asp:HyperLink ID="lnkAdminSettings" runat="server" NavigateUrl="~/AdminSettings.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Admin Settings</asp:HyperLink>
                         <asp:LinkButton ID="lnkBtnLogout" runat="server" Enabled="false" Visible="false" CssClass="nav-item nav-link text-white ml-4" OnClick="lnkBtnLogout_Click">Logout</asp:LinkButton>
                     </div>
