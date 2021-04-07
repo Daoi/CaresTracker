@@ -237,6 +237,8 @@ namespace CaresTracker
 
             lblModalError.Text = string.Empty;
             lblSave.Text = "Interaction updated succesfully!";
+
+            Session["Interaction"] = newInteraction;
             Response.Redirect("ResidentInteractionForm.aspx?from=SaveSuccessful");
         }
 
