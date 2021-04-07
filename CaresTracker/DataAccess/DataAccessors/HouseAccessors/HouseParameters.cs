@@ -27,7 +27,6 @@ namespace CaresTracker.DataAccess.DataAccessors.HouseAccessors
             {
                 new MySqlParameter("@RegionID", MySqlDbType.Int64),
                 new MySqlParameter("@Address", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@HouseType", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@DevelopmentID", MySqlDbType.Int64),
                 new MySqlParameter("@ZipCode", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@UnitNumber", MySqlDbType.VarChar, 50),
@@ -46,19 +45,18 @@ namespace CaresTracker.DataAccess.DataAccessors.HouseAccessors
             // Done manually for now, couldn't figure out how to pass in house object and iterate through the object to fill in parameters
             Parameters[0].Value = house.RegionID;
             Parameters[1].Value = house.Address;
-            Parameters[2].Value = house.HouseType;
-            Parameters[3].Value = house.DevelopmentID;
-            Parameters[4].Value = house.ZipCode;
-            Parameters[5].Value = house.UnitNumber;
+            Parameters[2].Value = house.DevelopmentID;
+            Parameters[3].Value = house.ZipCode;
+            Parameters[4].Value = house.UnitNumber;
 
             // If IDs are 0, null is entered into the DB
             if (house.RegionID == 0)
             {
                 Parameters[0].Value = null;
             }
-            if (house.DevelopmentID == 0)
+            if (house.DevelopmentID == -1)
             {
-                Parameters[3].Value = null;
+                Parameters[2].Value = null;
             }
 
 
