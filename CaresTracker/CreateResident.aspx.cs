@@ -53,12 +53,6 @@ namespace CaresTracker
                 return;
             }
 
-            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
-            {
-                lblWrongAddressInput.Visible = true;
-                return;
-            }
-
             // Build Resident object
             Resident newResident = new Resident();
 
@@ -223,6 +217,17 @@ namespace CaresTracker
             else
             {
                 lblValidationHousing.Visible = false;
+            }
+
+            // Check that address is selected from the API predictions list
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                isFormValid = false;
+                lblWrongAddressInput.Visible = true;
+            }
+            else
+            {
+                lblWrongAddressInput.Visible = true;
             }
 
             return isFormValid;
