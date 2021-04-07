@@ -48,28 +48,20 @@ namespace CaresTracker
                     }
 
                     AddDataToJsonDict(tblTemp, "#chrtTotalGender");
-                    gvTotalGender.DataSource = tblTemp;
-                    gvTotalGender.DataBind();
-                    gvTotalGender.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvTotalGender, tblTemp);
 
                     tblTemp = new GetTotalLanguageReport().ExecuteCommand(developmentID);
                     AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
-                    gvTotalLanguage.DataSource = tblTemp;
-                    gvTotalLanguage.DataBind();
-                    gvTotalLanguage.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvTotalLanguage, tblTemp);
 
                     tblTemp = new GetTotalVaccineReport().ExecuteCommand(developmentID);
                     AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
-                    gvTotalVaccine.DataSource = tblTemp;
-                    gvTotalVaccine.DataBind();
-                    gvTotalVaccine.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvTotalVaccine, tblTemp);
 
                     int numAttendees = new GetTotalEventReport().ExecuteCommand(developmentID);
                     DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendances");
                     AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
-                    gvTotalEvent.DataSource = dtEvent;
-                    gvTotalEvent.DataBind();
-                    gvTotalEvent.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvTotalEvent, dtEvent);
                 }
                 catch (Exception ex)
                 {
@@ -92,27 +84,19 @@ namespace CaresTracker
                     }
 
                     AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
-                    gvInteractionGender.DataSource = tblTemp;
-                    gvInteractionGender.DataBind();
-                    gvInteractionGender.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvInteractionGender, tblTemp);
 
                     tblTemp = new GetInteractionLanguageReport().ExecuteCommand(developmentID, startDate, endDate);
                     AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
-                    gvInteractionLanguage.DataSource = tblTemp;
-                    gvInteractionLanguage.DataBind();
-                    gvInteractionLanguage.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvInteractionLanguage, tblTemp);
 
                     tblTemp = new GetInteractionContactReport().ExecuteCommand(developmentID, startDate, endDate);
                     AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
-                    gvInteractionContact.DataSource = tblTemp;
-                    gvInteractionContact.DataBind();
-                    gvInteractionContact.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvInteractionContact, tblTemp);
 
                     tblTemp = new GetInteractionServiceReport().ExecuteCommand(developmentID, startDate, endDate);
                     AddDataToJsonDict(tblTemp, "#chrtInteractionService");
-                    gvInteractionService.DataSource = tblTemp;
-                    gvInteractionService.DataBind();
-                    gvInteractionService.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    SetUpGridView(gvInteractionService, tblTemp);
                 }
                 catch (Exception ex)
                 {
@@ -127,6 +111,7 @@ namespace CaresTracker
         private void AddDataToJsonDict(DataTable data, string chartID)
         {
             (List<object> labels, List<object> series) pairs = (new List<object>(), new List<object>());
+
             data.Rows.Cast<DataRow>().ToList()
                 .ForEach(row =>
                 {
@@ -155,6 +140,13 @@ namespace CaresTracker
             tbl.Rows.Add(newRow);
 
             return tbl;
+        }
+
+        private void SetUpGridView(GridView gv, DataTable data)
+        {
+            gv.DataSource = data;
+            gv.DataBind();
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
     }
 }
