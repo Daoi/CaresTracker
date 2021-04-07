@@ -80,6 +80,10 @@
                                     <asp:TextBox ID="txtEndTime" CssClass="form-control mb-3" Enabled="false" TextMode="Time" runat="server"></asp:TextBox>
                                 </div>
                             </div>
+                            <div class="row">
+                                <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblError" role="alert" Visible="false">
+                                </asp:Label>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Web;
+using CaresTracker.DataModels;
 
 namespace CaresTracker.DataAccess
 {
@@ -44,12 +46,25 @@ namespace CaresTracker.DataAccess
         /// <returns>Count of rows affected</returns>
         public int ExecuteNonQuery(IData cmdInfo)
         {
+            string username;
+
             using (MySqlConnection cn = new MySqlConnection(cmdInfo.ConnectionString))
             {
                 cn.Open();
                 using (MySqlCommand cmd = new MySqlCommand(cmdInfo.CommandText, cn))
                 {
                     ConfigureCommand(cmd, cmdInfo);
+
+                    if (HttpContext.Current.Session["User"] != null)
+                    {
+                        username = (HttpContext.Current.Session["User"] as CARESUser).Username;
+                    }
+                    else
+                    {
+                        username = "System";
+                    }
+
+                    cmd.Parameters.Add(new MySqlParameter("CurrentUser", username));
 
                     cmdInfo.Count = cmd.ExecuteNonQuery();
                     cmd.Parameters.Clear();
@@ -65,12 +80,27 @@ namespace CaresTracker.DataAccess
         public object ExecuteScalar(IData cmdInfo)
         {
             object dataObj = null;
+            string username;
+        
+
             using (MySqlConnection cn = new MySqlConnection(cmdInfo.ConnectionString))
             {
                 cn.Open();
                 using (MySqlCommand cmd = new MySqlCommand(cmdInfo.CommandText, cn))
                 {
                     ConfigureCommand(cmd, cmdInfo);
+
+                    if (HttpContext.Current.Session["User"] != null)
+                    {
+                        username = (HttpContext.Current.Session["User"] as CARESUser).Username;
+                    }
+                    else
+                    {
+                        username = "System";
+                    }
+
+                    cmd.Parameters.Add(new MySqlParameter("CurrentUser", username));
+
                     try
                     {
                         dataObj = cmd.ExecuteScalar();

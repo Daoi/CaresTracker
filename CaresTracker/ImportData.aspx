@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="loginContainer justify-content-center d-flex py-5">
-        <div class="card mb-3 text-center loginCard my-auto ">
+        <div class="card mb-3 text-center importCard my-auto ">
             <div class="card-header cherryBackground" style="font-size: 18px">
                 Import Data
             </div>
@@ -16,18 +16,39 @@
                         </ol>
                     </nav>
                 </div>
-
-                <div class="form-group row justify-content-center">
-                    <div class="col-md-6 text-secondary">
-                        Select file:<br />
-                        <asp:FileUpload runat="server"></asp:FileUpload>
-                    </div>
+                <h4>Instructions</h4>
+                <div class="row justify-content-center">
+                    <p class="w-50">
+                        Click browse to select a file to upload. The file must be a .csv file.
+                        After you choose the file, select the development this file relates to
+                        from the dropdown box.
+                    </p>
                 </div>
-                <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" />
+                <div class="row justify-content-center text-secondary mt-3">
+                    Select file:<br />
+                    <asp:FileUpload CssClass="fileUpload" ID="fileUpload" runat="server"></asp:FileUpload>
+                </div>
+                <div class="row justify-content-center mt-3">
+                    <asp:DropDownList ID="ddlDevelopments" CssClass="developmentsID" runat="server"></asp:DropDownList>
+                </div>
+                <div class="row justify-content-center mt-5">
+                    <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" OnClick="btnSubmitImport_Click" />
+                </div>
+                <div class="row justify-content-center mt-5"></div>
+                <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
             </div>
             <div class="card-footer text-muted">
-            CARES Tracker
+                CARES Tracker
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#MainContent_ddlDevelopments").select2({
+                placeholder: "Select Development",
+                allowClear: true,
+                selectOnClose: true
+            });
+        });
+    </script>
 </asp:Content>

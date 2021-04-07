@@ -20,11 +20,11 @@
                         <nav class="nav flex-column">
                             <asp:LinkButton ID="residentInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Resident Information</asp:LinkButton>
                             <asp:LinkButton ID="housingInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Housing Information</asp:LinkButton>
-                            <asp:LinkButton ID="meetingInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Meeting Information<i id="icErrorMeetingInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
-                            <asp:LinkButton ID="residentHealth" CssClass="active my-3" runat="server" OnClick="formNav_Click">Resident Health<i id="icErrorResidentHealth" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
-                            <asp:LinkButton ID="services" CssClass="active my-3" runat="server" OnClick="formNav_Click">Services<i id="icServices" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
-                            <asp:LinkButton ID="vaccineInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
-                            <asp:LinkButton ID="otherInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle" style="margin-left: .5rem; color: yellow;"></i></asp:LinkButton>
+                            <asp:LinkButton ID="meetingInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Meeting Information<i id="icErrorMeetingInfo" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
+                            <asp:LinkButton ID="residentHealth" CssClass="active my-3" runat="server" OnClick="formNav_Click">Resident Health<i id="icErrorResidentHealth" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
+                            <asp:LinkButton ID="services" CssClass="active my-3" runat="server" OnClick="formNav_Click">Services<i id="icServices" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
+                            <asp:LinkButton ID="vaccineInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
+                            <asp:LinkButton ID="otherInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
                             <asp:LinkButton ID="lnkBtnSave" CssClass="active my-3" runat="server" OnClick="lnkBtnSave_Click"><i id="icoSave" runat="server" class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
                             <asp:LinkButton ID="lnkBtnEdit" CssClass="active my-3" runat="server" Visible="false" OnClick="lnkBtnEdit_Click">
                                 <i class="fas fa-edit" id="icoEdit" style="margin-right: .5rem" runat="server"></i>
@@ -205,7 +205,7 @@
                                     <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
                                 <div id="divOldInteractionServices" class="cblServicesCompleted overflow-auto h-75" runat="server">
-                                    <label>Services Requested (Check if completed)</label>
+                                    <asp:Label ID="lblServicesInfo" runat="server" Text="Label">Services Requested (Check if completed)</asp:Label>
                                     <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
                                 <div id="divFollowUpRequired" class="row m-3" runat="server">
