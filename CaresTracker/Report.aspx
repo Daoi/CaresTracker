@@ -36,6 +36,21 @@
                             </asp:GridView>
                         </div>
                     </div>
+                    <h3>Residents per Age</h3>
+                    <div class="row border-bottom mb-5 pb-5">
+                        <div class="col-8">
+                            <div id='chrtTotalAge' class="ct-chart ct-perfect-fourth"></div>
+                        </div>
+                        <div class="col pt-5">
+                            <asp:GridView ID="gvTotalAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                <HeaderStyle CssClass="cherryBackground" />
+                                <Columns>
+                                    <asp:BoundField DataField="labels" HeaderText="Age" />
+                                    <asp:BoundField DataField="series" HeaderText="# of Residents" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
                     <h3>Residents per Primary Language</h3>
                     <div class="row border-bottom mb-5 pb-5">
                         <div class="col-8">
@@ -104,6 +119,21 @@
                             </asp:GridView>
                         </div>
                     </div>
+                    <h3>Interactions per Age</h3>
+                    <div class="row border-bottom mb-5 pb-5">
+                        <div class="col-8">
+                            <div id='chrtInteractionAge' class="ct-chart ct-perfect-fourth"></div>
+                        </div>
+                        <div class="col pt-5">
+                            <asp:GridView ID="gvInteractionAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                <HeaderStyle CssClass="cherryBackground" />
+                                <Columns>
+                                    <asp:BoundField DataField="labels" HeaderText="Age" />
+                                    <asp:BoundField DataField="series" HeaderText="# of Residents" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
                     <h3>Interactions per Primary Language</h3>
                     <div class="row border-bottom mb-5 pb-5">
                         <div class="col-8">
@@ -155,8 +185,8 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            ['gvTotalGender', 'gvTotalLanguage', 'gvTotalVaccine', 'gvTotalService', 'gvTotalEvent',
-                'gvInteractionGender', 'gvInteractionLanguage', 'gvInteractionService','gvInteractionContact'].forEach(gv => {
+            ['gvTotalGender', 'gvTotalAge', 'gvTotalLanguage', 'gvTotalVaccine', 'gvTotalService', 'gvTotalEvent',
+                'gvInteractionGender', 'gvInteractionAge', 'gvInteractionLanguage', 'gvInteractionService','gvInteractionContact'].forEach(gv => {
                 $(`#MainContent_${gv}`).DataTable({
                     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                     "searching": false

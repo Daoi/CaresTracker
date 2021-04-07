@@ -50,6 +50,10 @@ namespace CaresTracker
                     AddDataToJsonDict(tblTemp, "#chrtTotalGender");
                     SetUpGridView(gvTotalGender, tblTemp);
 
+                    tblTemp = new GetTotalAgeReport().ExecuteCommand(developmentID);
+                    AddDataToJsonDict(tblTemp, "#chrtTotalAge");
+                    SetUpGridView(gvTotalAge, tblTemp);
+
                     tblTemp = new GetTotalLanguageReport().ExecuteCommand(developmentID);
                     AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
                     SetUpGridView(gvTotalLanguage, tblTemp);
@@ -85,6 +89,10 @@ namespace CaresTracker
 
                     AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
                     SetUpGridView(gvInteractionGender, tblTemp);
+
+                    tblTemp = new GetInteractionAgeReport().ExecuteCommand(developmentID, startDate, endDate);
+                    AddDataToJsonDict(tblTemp, "#chrtInteractionAge");
+                    SetUpGridView(gvInteractionAge, tblTemp);
 
                     tblTemp = new GetInteractionLanguageReport().ExecuteCommand(developmentID, startDate, endDate);
                     AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");

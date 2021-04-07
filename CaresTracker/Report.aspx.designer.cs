@@ -58,6 +58,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.GridView gvTotalGender;
         
         /// <summary>
+        /// gvTotalAge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTotalAge;
+        
+        /// <summary>
         /// gvTotalLanguage control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvInteractionGender;
+        
+        /// <summary>
+        /// gvInteractionAge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvInteractionAge;
         
         /// <summary>
         /// gvInteractionLanguage control.
