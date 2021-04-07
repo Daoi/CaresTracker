@@ -13,6 +13,24 @@ namespace CaresTracker {
     public partial class ResidentProfile {
         
         /// <summary>
+        /// hdnfldFormattedAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnfldFormattedAddress;
+        
+        /// <summary>
+        /// hdnfldName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnfldName;
+        
+        /// <summary>
         /// lnkHome control.
         /// </summary>
         /// <remarks>
@@ -283,13 +301,22 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Label lblAddress;
         
         /// <summary>
-        /// tbAddress control.
+        /// lblWrongAddressInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAddress;
+        protected global::System.Web.UI.WebControls.Label lblWrongAddressInput;
+        
+        /// <summary>
+        /// txtAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAddress;
         
         /// <summary>
         /// lblUnitNumber control.
