@@ -70,7 +70,7 @@ namespace CaresTracker
             ResidentWriter RW = new ResidentWriter(newResident);
             object AddResidentResult = RW.ExecuteCommand();
 
-            if (AddResidentResult == null) //If null Resident is NOT unique
+            if (AddResidentResult.GetType().Equals(typeof(DBNull))) //If null Resident is NOT unique
             {
                 lblUniqueResident.Visible = true;
                 return;
@@ -89,19 +89,28 @@ namespace CaresTracker
 
             residentHouse.ZipCode = ZipCode;
             residentHouse.Address = Address;
-            residentHouse.UnitNumber = txtUnitNumber.Text;
+            residentHouse.UnitNumber = string.IsNullOrWhiteSpace(txtUnitNumber.Text) ? "N/A" : txtUnitNumber.Text;
+            // If HCV is selected
             if (ddlHousing.SelectedIndex == 1)
             {
-                residentHouse.HouseType = "Housing Choice Voucher";
                 residentHouse.RegionID = Int32.Parse(ddlRegion.SelectedValue); // Requires validation to ensure input is a number
                 residentHouse.DevelopmentID = -1;
             }
+            // If Development is selected
             else
             {
-                residentHouse.HouseType = "Development";
                 residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
                 // Retrieve RegionID of Development
-                residentHouse.RegionID = developmentDT.Rows[0].Field<int>("RegionID");
+                residentHouse.RegionID = developmentDT.Rows.Cast<DataRow>().ToList()
+                    .Where(dr => (int)dr["DevelopmentID"] == residentHouse.DevelopmentID)
+                    .Select(dr => dr.Field<int>("RegionID")).ElementAt(0);
+                //Create Development object for resident object
+                DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                    .First(r => r.Field<string>("DevelopmentName")
+                    .Equals(ddlDevelopments.SelectedItem.ToString()));
+
+                newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
+
             }
 
             // Attach newly created house to resident for session storage
@@ -119,16 +128,6 @@ namespace CaresTracker
 
                 newResident.ResidentID = Convert.ToInt32(AddResidentResult);
 
-                // Create Development object if development is selected house type
-                if (residentHouse.HouseType == "Development")
-                {
-                    //Get the row matching the currently selected Housing Development Name
-                    DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
-                        .First(r => r.Field<string>("DevelopmentName")
-                        .Equals(ddlDevelopments.SelectedItem.ToString()));
-
-                    newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
-                }
                 //Store new resident in Session to use to redirect/populate resident profile
                 Session["Resident"] = newResident;
 

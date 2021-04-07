@@ -37,6 +37,12 @@
                                     <asp:Label ID="lblEndTime" Text='<%# DateTime.Parse(Eval("EventEndTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Event Host">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblChwName" runat="server" Text='<%#Eval("UserFirstName")+ " " + Eval("UserLastName")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="UserEmail" HeaderText="Host Email" />
                         </Columns>
                     </asp:GridView>
                 </div>

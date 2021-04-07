@@ -13,9 +13,11 @@ namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
 
         string command;
         int IntID;
+        List<Symptom> symptoms;
         public UpdateInteractionSymptoms(List<Symptom> updates, int id)
         {
             //Build Update Command for multiple rows
+            symptoms = updates;
             IntID = id;
             command = SymptomsInsertSQLWriter.WriteSQL(updates, id);
         }
@@ -29,7 +31,11 @@ namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
             try
             {
                 new DeleteOldInteractionSymptoms().ExecuteCommand(IntID);
-                return new CTextWriter(command.ToString()).ExecuteCommand();
+
+                if (symptoms.Count > 0)
+                    return new CTextWriter(command.ToString()).ExecuteCommand();
+                else
+                    return 0;
             }
             catch (Exception e)
             {

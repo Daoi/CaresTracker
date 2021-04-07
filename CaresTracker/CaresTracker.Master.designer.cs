@@ -67,15 +67,6 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.HyperLink lnkImport;
         
         /// <summary>
-        /// lnkInteractionForm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkInteractionForm;
-        
-        /// <summary>
         /// lnkAdminSettings control.
         /// </summary>
         /// <remarks>

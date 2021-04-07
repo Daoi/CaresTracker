@@ -2,6 +2,7 @@
 using CaresTracker.Utilities;
 using CaresTracker.DataModels;
 using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
+using CaresTracker.DataAccess.DataAccessors;
 
 namespace CaresTracker
 {
@@ -64,7 +65,8 @@ namespace CaresTracker
 
                     // get user data from db
                     GetUser accessor = new GetUser();
-                    Session["User"] = new CARESUser(accessor.RunCommand(usr).Rows[0]);
+                    CARESUser user = new CARESUser(accessor.RunCommand(usr).Rows[0]);
+                    Session["User"] = user;
                     Session["CognitoManager"] = man;
 
                     // record login

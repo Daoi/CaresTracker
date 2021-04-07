@@ -10,7 +10,7 @@
 namespace CaresTracker {
     
     
-    public partial class ImportData {
+    public partial class AddResidentAttendees {
         
         /// <summary>
         /// lnkHome control.
@@ -22,39 +22,57 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
-        /// fileUpload control.
+        /// lnkEventList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
+        protected global::System.Web.UI.WebControls.LinkButton lnkEventList;
         
         /// <summary>
-        /// ddlDevelopments control.
+        /// lnkEvent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDevelopments;
+        protected global::System.Web.UI.WebControls.LinkButton lnkEvent;
         
         /// <summary>
-        /// btnSubmitImport control.
+        /// gvResidentList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitImport;
+        protected global::System.Web.UI.WebControls.GridView gvResidentList;
         
         /// <summary>
-        /// lblMessage control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// hfSearchInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSearchInput;
     }
 }

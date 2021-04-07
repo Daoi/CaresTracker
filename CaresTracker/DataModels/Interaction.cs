@@ -44,15 +44,7 @@ namespace CaresTracker.DataModels
             SymptomStartDate = dr["SymptomStartDate"].ToString();
             RequiresFollowUp = (bool)dr["RequiresFollowUp"];
             FollowUpCompleted = dr["FollowUpCompleted"].ToString();
-            try
-            {
-                DateTime.Parse(SymptomStartDate);
-            }
-            catch(Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine($"Invalid date format for interaction ID: {InteractionID}");
-                SymptomStartDate = DateTime.Today.ToString();
-            }
+
             //Create Symptom list from DataTable of Symptoms associated with interaction ID
             Symptoms = Symptom.CreateSymptomList(new GetSymptomsByInteractionID().RunCommand(InteractionID));
 

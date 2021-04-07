@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CaresTracker.DataAccess.DataAccessors.EventAccessors;
 
 
 namespace CaresTracker
@@ -55,6 +56,7 @@ namespace CaresTracker
             ddlMainHost.DataValueField = "UserID";
             ddlMainHost.DataBind();
             ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
+            txtMainHostEmail.Text = theEvent.Hosts.Find(host => host.UserID == theEvent.MainHostID).UserEmail;
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -76,6 +78,7 @@ namespace CaresTracker
                 if (c is TextBox)
                 {
                     TextBox temp = c as TextBox;
+                    if (temp.ID == "txtMainHostEmail") { continue; }
                     if (temp.ID == "txtEventName")
                     { 
                         if(temp.CssClass == defaultCSS)
@@ -111,6 +114,27 @@ namespace CaresTracker
             btnEdit.Visible = true;
             btnSave.Visible = false;
             btnCancel.Visible = false;
+            lblError.Visible = false;
+
+            // Create new event to replace old one
+            DataModels.Event editedEvent = new DataModels.Event();
+            editedEvent.EventName = txtEventName.Text;
+            editedEvent.EventDescription = txtDescription.Text;
+            editedEvent.EventType = txtEventType.Text;
+            editedEvent.EventLocation = txtLocation.Text;
+            editedEvent.EventDate = txtEventDate.Text;
+            editedEvent.EventStartTime = txtStartTime.Text;
+            editedEvent.EventEndTime = txtEndTime.Text;
+            editedEvent.MainHostID = Int32.Parse(ddlMainHost.SelectedValue);
+            editedEvent.EventID = theEvent.EventID;
+            // Update event
+            try{
+            new UpdateEvent(editedEvent).ExecuteCommand();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -129,6 +153,18 @@ namespace CaresTracker
             int index = row.RowIndex;
             Session["Resident"] = theEvent.Attendees[index];
             Response.Redirect("./ResidentProfile.aspx");
+        }
+
+        protected void btnAddResidentAttendees_Click(object sender, EventArgs e)
+        {
+            Session["Event"] = theEvent;
+            Response.Redirect("AddResidentAttendees.aspx");
+        }
+
+        protected void ddlMainHost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int newMainHostID = Int32.Parse(ddlMainHost.SelectedValue);
+            txtMainHostEmail.Text = theEvent.Hosts.Find(host => host.UserID == newMainHostID).UserEmail;
         }
     }
 }

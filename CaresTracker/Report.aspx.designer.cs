@@ -10,7 +10,7 @@
 namespace CaresTracker {
     
     
-    public partial class Event {
+    public partial class Report {
         
         /// <summary>
         /// lnkHome control.
@@ -22,165 +22,156 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
-        /// lnkEventList control.
+        /// lnkData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEventList;
+        protected global::System.Web.UI.WebControls.LinkButton lnkData;
         
         /// <summary>
-        /// form control.
+        /// lblErrorDevelopmentTotals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl form;
+        protected global::System.Web.UI.WebControls.Label lblErrorDevelopmentTotals;
         
         /// <summary>
-        /// txtEventName control.
+        /// pnlDevelopmentTotals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEventName;
+        protected global::System.Web.UI.WebControls.Panel pnlDevelopmentTotals;
         
         /// <summary>
-        /// ddlMainHost control.
+        /// gvTotalGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMainHost;
+        protected global::System.Web.UI.WebControls.GridView gvTotalGender;
         
         /// <summary>
-        /// txtMainHostEmail control.
+        /// gvTotalAge control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMainHostEmail;
+        protected global::System.Web.UI.WebControls.GridView gvTotalAge;
         
         /// <summary>
-        /// txtDescription control.
+        /// gvTotalLanguage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.WebControls.GridView gvTotalLanguage;
         
         /// <summary>
-        /// txtEventType control.
+        /// gvTotalVaccine control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEventType;
+        protected global::System.Web.UI.WebControls.GridView gvTotalVaccine;
         
         /// <summary>
-        /// txtLocation control.
+        /// gvTotalEvent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocation;
+        protected global::System.Web.UI.WebControls.GridView gvTotalEvent;
         
         /// <summary>
-        /// txtEventDate control.
+        /// pnlInteractionDataHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEventDate;
+        protected global::System.Web.UI.WebControls.Panel pnlInteractionDataHeader;
         
         /// <summary>
-        /// txtStartTime control.
+        /// lblTimeframe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStartTime;
+        protected global::System.Web.UI.WebControls.Label lblTimeframe;
         
         /// <summary>
-        /// txtEndTime control.
+        /// lblErrorInteractionData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndTime;
+        protected global::System.Web.UI.WebControls.Label lblErrorInteractionData;
         
         /// <summary>
-        /// lblError control.
+        /// pnlInteractionData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Panel pnlInteractionData;
         
         /// <summary>
-        /// btnEdit control.
+        /// gvInteractionGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.GridView gvInteractionGender;
         
         /// <summary>
-        /// btnSave control.
+        /// gvInteractionAge control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.GridView gvInteractionAge;
         
         /// <summary>
-        /// btnCancel control.
+        /// gvInteractionLanguage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.GridView gvInteractionLanguage;
         
         /// <summary>
-        /// gvCHWList control.
+        /// gvInteractionContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCHWList;
+        protected global::System.Web.UI.WebControls.GridView gvInteractionContact;
         
         /// <summary>
-        /// gvResidentList control.
+        /// gvInteractionService control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvResidentList;
-        
-        /// <summary>
-        /// btnAddResidentAttendees control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddResidentAttendees;
+        protected global::System.Web.UI.WebControls.GridView gvInteractionService;
     }
 }
