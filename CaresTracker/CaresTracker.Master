@@ -43,7 +43,6 @@
                         <asp:HyperLink ID="lnkData" runat="server" NavigateUrl="~/ExportData.aspx" CssClass="nav-item nav-link text-white" Enabled="False" Visible="False">Reporting</asp:HyperLink>
                         <asp:HyperLink ID="lnkManagement" runat="server" NavigateUrl="~/CHWList.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Worker Management</asp:HyperLink>
                         <asp:HyperLink ID="lnkImport" runat="server" NavigateUrl="~/ImportData.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Import Data</asp:HyperLink>
-                        <asp:HyperLink ID="lnkInteractionForm" runat="server" NavigateUrl="~/ResidentInteractionForm.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Interaction Form</asp:HyperLink>
                         <asp:HyperLink ID="lnkAdminSettings" runat="server" NavigateUrl="~/AdminSettings.aspx" CssClass="nav-item nav-link text-white" Visible="False" Enabled="False">Admin Settings</asp:HyperLink>
                         <asp:LinkButton ID="lnkBtnLogout" runat="server" Enabled="false" Visible="false" CssClass="nav-item nav-link text-white ml-4" OnClick="lnkBtnLogout_Click">Logout</asp:LinkButton>
                     </div>
