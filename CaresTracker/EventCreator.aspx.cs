@@ -20,8 +20,8 @@ namespace CaresTracker
             if (!IsPostBack)
             {
                 CHWDataSet = new GetAllCHW().RunCommand();
-                ViewState["CHWDataSet"] = CHWDataSet;
                 CHWDataSet.Columns.Add("FullName", typeof(string), "UserFirstName+' '+UserLastName");
+                ViewState["CHWDataSet"] = CHWDataSet;
 
                 cblUsers.DataSource = CHWDataSet;
                 cblUsers.DataTextField = "FullName";
