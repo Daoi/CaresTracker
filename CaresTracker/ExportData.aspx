@@ -20,8 +20,8 @@
                 <div class="form-group row justify-content-center">
                     <div class="col-md-6 text-secondary">
                         Region:<br />
-                        <asp:DropDownList ID="ddlHousingDevelopment" CssClass="form-control" runat="server" DataTextField="DevelopmentName" DataValueField="DevelopmentID">
-                        </asp:DropDownList><br />
+                        <asp:DropDownList ID="ddlHousingDevelopment" CssClass="form-control w-100" runat="server" DataTextField="DevelopmentName" DataValueField="DevelopmentID">
+                        </asp:DropDownList><br /><br />
                         Initial Date:<br />
                         <asp:TextBox ID="txtDateInitial" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
                         Final Date:<br />
@@ -36,4 +36,10 @@
             </div>
         </div>
     </div>
+    <script>
+        $('#MainContent_ddlHousingDevelopment').select2({
+            allowClear: false,
+            selectOnClose: true
+        });
+    </script>
 </asp:Content>
