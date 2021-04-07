@@ -148,5 +148,15 @@ namespace CaresTracker
             gv.DataBind();
             gv.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
+
+        protected void lnkHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./Homepage.aspx");
+        }
+
+        protected void lnkData_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./ExportData.aspx");
+        }
     }
 }
