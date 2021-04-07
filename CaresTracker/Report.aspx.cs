@@ -25,58 +25,96 @@ namespace CaresTracker
 
                 this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
                 DataTable tblTemp;
+                try
+                {
+                    tblTemp = new GetTotalGenderReport().ExecuteCommand(developmentID);
 
-                tblTemp = new GetTotalGenderReport().ExecuteCommand(developmentID);
-                AddDataToJsonDict(tblTemp, "#chrtTotalGender");
-                gvTotalGender.DataSource = tblTemp;
-                gvTotalGender.DataBind();
-                gvTotalGender.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    // if one is empty, then all will be empty since these demographics are
+                    // aggregated using all residents in a development
+                    if (tblTemp.Rows.Count == 0)
+                    {
+                        lblErrorDevelopmentTotals.Visible = true;
+                        lblErrorDevelopmentTotals.Text = "There are no residents from this housing development in the system.";
+                        pnlDevelopmentTotals.Visible = false;
+                        pnlInteractionDataHeader.Visible = false;
+                        pnlInteractionData.Visible = false;
+                        return;
+                    }
 
-                tblTemp = new GetTotalLanguageReport().ExecuteCommand(developmentID);
-                AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
-                gvTotalLanguage.DataSource = tblTemp;
-                gvTotalLanguage.DataBind();
-                gvTotalLanguage.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    AddDataToJsonDict(tblTemp, "#chrtTotalGender");
+                    gvTotalGender.DataSource = tblTemp;
+                    gvTotalGender.DataBind();
+                    gvTotalGender.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                tblTemp = new GetTotalVaccineReport().ExecuteCommand(developmentID);
-                AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
-                gvTotalVaccine.DataSource = tblTemp;
-                gvTotalVaccine.DataBind();
-                gvTotalVaccine.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    tblTemp = new GetTotalLanguageReport().ExecuteCommand(developmentID);
+                    AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
+                    gvTotalLanguage.DataSource = tblTemp;
+                    gvTotalLanguage.DataBind();
+                    gvTotalLanguage.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                int numAttendees = new GetTotalEventReport().ExecuteCommand(developmentID);
-                DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendees");
-                AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
-                gvTotalEvent.DataSource = dtEvent;
-                gvTotalEvent.DataBind();
-                gvTotalEvent.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    tblTemp = new GetTotalVaccineReport().ExecuteCommand(developmentID);
+                    AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
+                    gvTotalVaccine.DataSource = tblTemp;
+                    gvTotalVaccine.DataBind();
+                    gvTotalVaccine.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                tblTemp = new GetInteractionGenderReport().ExecuteCommand(developmentID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
-                gvInteractionGender.DataSource = tblTemp;
-                gvInteractionGender.DataBind();
-                gvInteractionGender.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    int numAttendees = new GetTotalEventReport().ExecuteCommand(developmentID);
+                    DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendances");
+                    AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
+                    gvTotalEvent.DataSource = dtEvent;
+                    gvTotalEvent.DataBind();
+                    gvTotalEvent.HeaderRow.TableSection = TableRowSection.TableHeader;
+                }
+                catch (Exception ex)
+                {
+                    lblErrorDevelopmentTotals.Text = ex.Message;
+                }
 
-                tblTemp = new GetInteractionLanguageReport().ExecuteCommand(developmentID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
-                gvInteractionLanguage.DataSource = tblTemp;
-                gvInteractionLanguage.DataBind();
-                gvInteractionLanguage.HeaderRow.TableSection = TableRowSection.TableHeader;
+                try
+                {
+                    tblTemp = new GetInteractionGenderReport().ExecuteCommand(developmentID, startDate, endDate);
 
-                tblTemp = new GetInteractionContactReport().ExecuteCommand(developmentID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
-                gvInteractionContact.DataSource = tblTemp;
-                gvInteractionContact.DataBind();
-                gvInteractionContact.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    // if one of these is empty, then the rest will be empty since these counts are
+                    // aggregated using all interactions with residents in a development
+                    if (tblTemp.Rows.Count == 0)
+                    {
+                        lblErrorInteractionData.Visible = true;
+                        lblErrorInteractionData.Text = "There were no interactions at this housing development during the selected timeframe.";
+                        pnlInteractionData.Visible = false;
+                        this.jsonReports = JsonConvert.SerializeObject(this.jsonDict); // just show the development level data
+                        return;
+                    }
 
-                tblTemp = new GetInteractionServiceReport().ExecuteCommand(developmentID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionService");
-                gvInteractionService.DataSource = tblTemp;
-                gvInteractionService.DataBind();
-                gvInteractionService.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
+                    gvInteractionGender.DataSource = tblTemp;
+                    gvInteractionGender.DataBind();
+                    gvInteractionGender.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                    tblTemp = new GetInteractionLanguageReport().ExecuteCommand(developmentID, startDate, endDate);
+                    AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
+                    gvInteractionLanguage.DataSource = tblTemp;
+                    gvInteractionLanguage.DataBind();
+                    gvInteractionLanguage.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                    tblTemp = new GetInteractionContactReport().ExecuteCommand(developmentID, startDate, endDate);
+                    AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
+                    gvInteractionContact.DataSource = tblTemp;
+                    gvInteractionContact.DataBind();
+                    gvInteractionContact.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                    tblTemp = new GetInteractionServiceReport().ExecuteCommand(developmentID, startDate, endDate);
+                    AddDataToJsonDict(tblTemp, "#chrtInteractionService");
+                    gvInteractionService.DataSource = tblTemp;
+                    gvInteractionService.DataBind();
+                    gvInteractionService.HeaderRow.TableSection = TableRowSection.TableHeader;
+                }
+                catch (Exception ex)
+                {
+                    lblErrorInteractionData.Text = ex.Message;
+                }
 
                 this.jsonReports = JsonConvert.SerializeObject(this.jsonDict);
-            };
+            }
         }
 
         // chartID should match the selector of the chart in the aspx markup
