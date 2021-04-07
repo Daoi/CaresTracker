@@ -29,7 +29,15 @@
                                     <label>Main Host:</label>
                                 </div>
                                 <div class="col-9">
-                                    <asp:DropDownList ID="ddlMainHost" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlMainHost" CssClass="form-control" Enabled="false" runat="server" OnSelectedIndexChanged="ddlMainHost_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <div class="col">
+                                    <label>Main Host Email:</label>
+                                </div>
+                                <div class="col-9">
+                                    <asp:TextBox ID="txtMainHostEmail" CssClass="form-control" Enabled="false" runat="server"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row m-3">
