@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.ReportAccessors;
+using CaresTracker.DataModels;
 
 namespace CaresTracker
 {
@@ -16,6 +17,11 @@ namespace CaresTracker
         private Dictionary<string, Dictionary<string, List<object>>> jsonDict;
         protected void Page_Load(object sender, EventArgs e)
         {
+            CARESUser user = Session["User"] as CARESUser;
+
+            // redirect unauthorized users
+            if (!(user.UserType.Equals("T") || user.UserType.Equals("A"))) { Response.Redirect("./Homepage.aspx"); }
+
             if (!IsPostBack)
             {
                 int developmentID = int.Parse(Session["ReportDevelopmentID"].ToString());
