@@ -456,7 +456,7 @@ namespace CaresTracker
             bool isValid = true;
 
             // meeting info
-            if (Validation.IsEmpty(tbLocation.Text) || ddlMeetingType.SelectedIndex == 0)
+            if (Validation.IsEmpty(tbLocation.Text) || ddlMeetingType.SelectedIndex == 0 || string.IsNullOrWhiteSpace(tbDoC.Text))
             {
                 isValid = false;
                 lblErrorMeetingInfo.Visible = true;
