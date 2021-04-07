@@ -73,8 +73,6 @@ namespace CaresTracker
                     UpdateLastLogin updater = new UpdateLastLogin();
                     updater.ExecuteCommand(usr, DateTime.Now.ToString());
 
-                    new CreateSQLUser(user);
-
                     Response.Redirect("./Login.aspx", false);
                 }
                 else
