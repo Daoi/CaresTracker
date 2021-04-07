@@ -32,7 +32,7 @@ namespace CaresTracker
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
 
         protected void btnSubmitImport_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace CaresTracker
                     sb.Append($" Uploading file: {fileUpload.FileName}");
 
                     //saving the file
-                    string path = Server.MapPath($"~/Importing/Files/") + fileUpload.FileName;
+                    string path = Server.MapPath($"./Importing/Files/") + fileUpload.FileName;
                     fileUpload.SaveAs(path);
 
 
@@ -55,6 +55,7 @@ namespace CaresTracker
                 catch (Exception ex)
                 {
                     sb.Append($"Error uploading file: {ex.Message}");
+                    lblMessage.Text = sb.ToString();
                 }
             }
             else
@@ -100,16 +101,7 @@ namespace CaresTracker
 
         private bool FileIsValid(FileUpload fileUpload)
         {
-            if (!fileUpload.HasFile)
-            {
-                return false;
-            }
-            if (fileUpload.PostedFile.ContentType == "application/vnd.ms-excel") //Make sure it's a csv
-            {
-                return true;
-            }
-
-            return false;
+            return fileUpload.PostedFile.ContentType == "application/vnd.ms-excel" && fileUpload.HasFile; //Make sure theres a CSV file selected
         }
 
     }
