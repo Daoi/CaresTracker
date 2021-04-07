@@ -4,7 +4,7 @@
     <div class="loginContainer justify-content-center d-flex py-5">
         <div class="card mb-3 text-center loginCard my-auto ">
             <div class="card-header cherryBackground" style="font-size: 18px">
-                Export Data
+                Create Report
             </div>
             <div class="card-body justify-content-center">
                 <div class="row" style="height: 7%; font-size: large">
@@ -12,7 +12,7 @@
                         <ol class="breadcrumb bg-white">
                             <li class="breadcrumb-item">
                                 <asp:LinkButton ID="lnkHome" NavigateUrl="./Homepage.aspx" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton></li>
-                            <li class="breadcrumb-item active bg-white" aria-current="page">Data Extracts</li>
+                            <li class="breadcrumb-item active bg-white" aria-current="page">Create Report</li>
                         </ol>
                     </nav>
                 </div>

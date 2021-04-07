@@ -8,7 +8,7 @@
                         <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" CssClass="cherryFont" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton>
                     </li>
                     <li class="breadcrumb-item">
-                        <asp:LinkButton ID="lnkData" NavigateUrl="~/ExportData.aspx" CssClass="cherryFont" runat="server" OnClick="lnkData_Click">Export Data</asp:LinkButton>
+                        <asp:LinkButton ID="lnkData" NavigateUrl="~/ExportData.aspx" CssClass="cherryFont" runat="server" OnClick="lnkData_Click">Create Report</asp:LinkButton>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Report</li>
                 </ol>
