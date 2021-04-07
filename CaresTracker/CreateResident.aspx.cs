@@ -70,7 +70,7 @@ namespace CaresTracker
             ResidentWriter RW = new ResidentWriter(newResident);
             object AddResidentResult = RW.ExecuteCommand();
 
-            if (AddResidentResult == null) //If null Resident is NOT unique
+            if (AddResidentResult.GetType().Equals(typeof(DBNull))) //If null Resident is NOT unique
             {
                 lblUniqueResident.Visible = true;
                 return;
