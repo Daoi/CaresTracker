@@ -14,18 +14,16 @@ namespace CaresTracker
     public partial class EventCreator : System.Web.UI.Page
     {
         DataTable CHWDataSet;
-        List<CARESUser> UserList;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                UserList = new List<CARESUser>();
                 CHWDataSet = new GetAllCHW().RunCommand();
-                UserList = CARESUser.CreateEventHostList(CHWDataSet);
-                ViewState["CHWUserList"] = UserList;
+                ViewState["CHWDataSet"] = CHWDataSet;
+                CHWDataSet.Columns.Add("FullName", typeof(string), "UserFirstName+' '+UserLastName");
 
-                cblUsers.DataSource = UserList;
+                cblUsers.DataSource = CHWDataSet;
                 cblUsers.DataTextField = "FullName";
                 cblUsers.DataValueField = "UserID";
                 cblUsers.DataBind();
@@ -41,7 +39,7 @@ namespace CaresTracker
             }
             else
             {
-                UserList = (List<CARESUser>)ViewState["CHWUserList"];
+                CHWDataSet = (DataTable)ViewState["CHWDataSet"];
             }
         }
 
@@ -63,8 +61,11 @@ namespace CaresTracker
             {
                 if (item.Selected)
                 {
-                    int index = cblUsers.Items.IndexOf(item);
-                    newEvent.Hosts.Add(UserList.ElementAt(index));
+                    int userid = int.Parse(item.Value);
+                    newEvent.Hosts.Add(new CARESUser(CHWDataSet
+                        .AsEnumerable()
+                        .Where(row => int.Parse(row["UserID"].ToString()) == userid)
+                        .First()));
                 }
             }
             newEvent.Attendees = new List<Resident>();
@@ -89,8 +90,11 @@ namespace CaresTracker
             {
                 if (item.Selected)
                 {
-                    int index = cblUsers.Items.IndexOf(item);
-                    hosts.Add(UserList.ElementAt(index));
+                    int userid = int.Parse(item.Value);
+                    hosts.Add(new CARESUser(CHWDataSet
+                        .AsEnumerable()
+                        .Where(row => int.Parse(row["UserID"].ToString()) == userid)
+                        .First()));
                 }
             }
             ddlMainHost.DataSource = hosts;
