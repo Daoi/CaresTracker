@@ -22,6 +22,24 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
+        /// lblErrorDevelopmentTotals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorDevelopmentTotals;
+        
+        /// <summary>
+        /// pnlDevelopmentTotals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDevelopmentTotals;
+        
+        /// <summary>
         /// gvTotalGender control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.GridView gvTotalEvent;
         
         /// <summary>
+        /// pnlInteractionDataHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInteractionDataHeader;
+        
+        /// <summary>
         /// lblTimeframe control.
         /// </summary>
         /// <remarks>
@@ -65,6 +92,24 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTimeframe;
+        
+        /// <summary>
+        /// lblErrorInteractionData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorInteractionData;
+        
+        /// <summary>
+        /// pnlInteractionData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInteractionData;
         
         /// <summary>
         /// gvInteractionGender control.
