@@ -70,7 +70,7 @@ namespace CaresTracker
             ResidentWriter RW = new ResidentWriter(newResident);
             object AddResidentResult = RW.ExecuteCommand();
 
-            if (AddResidentResult == null) //If null Resident is NOT unique
+            if (AddResidentResult.GetType().Equals(typeof(DBNull))) //If null Resident is NOT unique
             {
                 lblUniqueResident.Visible = true;
                 return;
@@ -89,7 +89,7 @@ namespace CaresTracker
 
             residentHouse.ZipCode = ZipCode;
             residentHouse.Address = Address;
-            residentHouse.UnitNumber = txtUnitNumber.Text;
+            residentHouse.UnitNumber = string.IsNullOrWhiteSpace(txtUnitNumber.Text) ? "N/A" : txtUnitNumber.Text;
             // If HCV is selected
             if (ddlHousing.SelectedIndex == 1)
             {

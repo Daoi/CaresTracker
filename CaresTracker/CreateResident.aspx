@@ -233,7 +233,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUR5TUQYRQwObVxISNpIi7RlFTsg6NQcI&libraries=places&callback=initMap"></script>
     <!-- Attach API to txtAddress -->
     <script type="text/javascript">loadPlacesAPI("MainContent_txtAddress");</script>
-    <script></script>
     <script>
         function setupSelect2(selectID, placeHolder) {
             $(selectID).select2({
