@@ -26,18 +26,6 @@ namespace CaresTracker.DataModels
 
         }
 
-        /// <summary>
-        /// Used for Event Page, temporary?
-        /// </summary>
-        /// <param name="dataRow"></param>
-        public CARESUser(object[] dataRow)
-        {
-            UserID = (int)dataRow[0];
-            Username = dataRow[1].ToString();
-            UserFirstName = dataRow[2].ToString();
-            UserLastName = dataRow[3].ToString();
-        }
-
         public CARESUser(DataRow dataRow)
         {
             UserID = int.Parse(dataRow["UserID"].ToString());
@@ -50,7 +38,6 @@ namespace CaresTracker.DataModels
             UserStatus = dataRow["UserStatus"].ToString();
             UserType = dataRow["UserType"].ToString();
             OrganizationID = int.Parse(dataRow["OrganizationID"].ToString());
-            OrganizationName = dataRow["OrganizationName"].ToString();
         }
 
         /// <summary>

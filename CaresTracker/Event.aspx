@@ -53,7 +53,7 @@
                                     <label>Type:</label>
                                 </div>
                                 <div class="col-9">
-                                    <asp:TextBox ID="txtEventType" CssClass="form-control" Enabled="false" runat="server"></asp:TextBox>
+                                    <asp:DropDownList ID="ddlEventType" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="row m-3">

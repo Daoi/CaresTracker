@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.EventAccessors;
-
+using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
 
 namespace CaresTracker
 {
@@ -37,7 +38,17 @@ namespace CaresTracker
         public void FillEventInfo()
         {
             txtEventName.Text = theEvent.EventName;
-            txtEventType.Text = theEvent.EventType;
+
+            DataTable dtEventTypes = new GetAllEventTypes().ExecuteCommand()
+                    .AsEnumerable()
+                    .Where(row => Convert.ToSByte(row["EventTypeIsEnabled"]) == 1)
+                    .CopyToDataTable();
+            ddlEventType.DataSource = dtEventTypes;
+            ddlEventType.DataTextField = "EventTypeName";
+            ddlEventType.DataValueField = "EventTypeID";
+            ddlEventType.DataBind();
+            ddlEventType.SelectedIndex = ddlEventType.Items.IndexOf(ddlEventType.Items.FindByValue(theEvent.EventTypeID.ToString()));
+
             txtLocation.Text = theEvent.EventLocation;
             txtEventDate.Text = theEvent.EventDate;
             txtStartTime.Text = theEvent.EventStartTime;
@@ -113,7 +124,7 @@ namespace CaresTracker
             DataModels.Event editedEvent = new DataModels.Event();
             editedEvent.EventName = txtEventName.Text;
             editedEvent.EventDescription = txtDescription.Text;
-            editedEvent.EventType = txtEventType.Text;
+            editedEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
             editedEvent.EventLocation = txtLocation.Text;
             editedEvent.EventDate = txtEventDate.Text;
             editedEvent.EventStartTime = txtStartTime.Text;

@@ -15,7 +15,6 @@ namespace CaresTracker
     {
         DataTable CHWDataSet;
         List<CARESUser> UserList;
-        DataTable dtEventTypes;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,12 +22,7 @@ namespace CaresTracker
             {
                 UserList = new List<CARESUser>();
                 CHWDataSet = new GetAllCHW().RunCommand();
-                Session["CHWDataSet"] = CHWDataSet;
-                foreach (DataRow row in CHWDataSet.Rows)
-                {
-                    CARESUser temp = new CARESUser(row.ItemArray);
-                    UserList.Add(temp);
-                }
+                UserList = CARESUser.CreateEventHostList(CHWDataSet);
                 Session["CHWUserList"] = UserList;
 
                 cblUsers.DataSource = UserList;
@@ -36,7 +30,7 @@ namespace CaresTracker
                 cblUsers.DataValueField = "UserID";
                 cblUsers.DataBind();
 
-                dtEventTypes = new GetAllEventTypes().ExecuteCommand()
+                DataTable dtEventTypes = new GetAllEventTypes().ExecuteCommand()
                     .AsEnumerable()
                     .Where(row => Convert.ToSByte(row["EventTypeIsEnabled"]) == 1)
                     .CopyToDataTable();
@@ -75,13 +69,13 @@ namespace CaresTracker
             }
             newEvent.Attendees = new List<Resident>();
             newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
-            // change this once we add fk to event table
-            newEvent.EventType = ddlEventType.SelectedItem.Text;
+            newEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
+            newEvent.EventTypeName = ddlEventType.SelectedItem.Text;
             newEvent.EventDescription = txtDescription.InnerText;
 
             AddEvent add = new AddEvent(newEvent);
             int res = add.ExecuteCommand();
-            if(res == 1)
+            if (res == 1)
             {
                 Session["Event"] = newEvent;
                 Response.Redirect("Event.aspx");
