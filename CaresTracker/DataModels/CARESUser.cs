@@ -38,10 +38,7 @@ namespace CaresTracker.DataModels
             UserStatus = dataRow["UserStatus"].ToString();
             UserType = dataRow["UserType"].ToString();
             OrganizationID = int.Parse(dataRow["OrganizationID"].ToString());
-            if(dataRow.Table.Columns.Contains("OrganizationName"))
-            {
-                OrganizationName = dataRow["OrganizationName"].ToString();
-            }
+            OrganizationName = dataRow["OrganizationName"].ToString();
         }
 
         /// <summary>
