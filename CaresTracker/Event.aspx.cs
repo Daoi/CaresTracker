@@ -195,7 +195,7 @@ namespace CaresTracker
 
             DateTime startTime = DateTime.Parse(txtStartTime.Text);
             DateTime endTime = DateTime.Parse(txtEndTime.Text);
-            if (DateTime.Compare(endTime, startTime) < 0 || TimeSpan.Compare(startTime.TimeOfDay, endTime.TimeOfDay) == 0)
+            if (DateTime.Compare(endTime, startTime) < 0 || DateTime.Compare(startTime, endTime) == 0)
             {
                 lblError.Visible = true;
                 lblError.Text = "Make sure that start and end time are correct";
