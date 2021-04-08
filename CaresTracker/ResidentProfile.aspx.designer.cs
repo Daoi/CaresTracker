@@ -58,13 +58,13 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Label lblRecordedInteractions;
         
         /// <summary>
-        /// btnReviewPastInteractions control.
+        /// ReviewPastInteractions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReviewPastInteractions;
+        protected global::System.Web.UI.WebControls.Button ReviewPastInteractions;
         
         /// <summary>
         /// lblRequestedServices control.
@@ -265,6 +265,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Button btnSaveEdits;
         
         /// <summary>
+        /// btnCancelEdits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelEdits;
+        
+        /// <summary>
         /// lblErrorMessage control.
         /// </summary>
         /// <remarks>
@@ -272,6 +281,15 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorMessage;
+        
+        /// <summary>
+        /// upHousingDevelopment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upHousingDevelopment;
         
         /// <summary>
         /// lblDevelopment control.
@@ -353,6 +371,15 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbZipcode;
+        
+        /// <summary>
+        /// upRegion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upRegion;
         
         /// <summary>
         /// lblRegionName control.
