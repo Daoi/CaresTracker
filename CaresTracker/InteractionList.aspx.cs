@@ -40,7 +40,12 @@ namespace CaresTracker
                     dt = new GetAllInteractionsByWorkerID().RunCommand(user.UserID);
                 }
 
-                if (dt.Rows.Count == 0) { return; }
+                if (dt.Rows.Count == 0)
+                {
+                    lblNoRows.Text = "Couldn't find any interactions to display.";
+                    divNoRows.Visible = true;
+                    return;
+                }
 
                 gvInteractionList.DataBound += (object o, EventArgs ev) =>
                 {

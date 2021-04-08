@@ -25,9 +25,16 @@ namespace CaresTracker
             if (!IsPostBack)
             {
                 dtResidents = new GetAllResident().RunCommand();
+
+                if (dtResidents.Rows.Count == 0)
+                {
+                    lblNoRows.Text = "Couldn't find any residents to display.";
+                    divNoRows.Visible = true;
+                    return;
+                }
+
                 gvResidentList.DataSource = dtResidents;
                 Session["ResidentList"] = dtResidents;
-
                 gvResidentList.DataBind();
             }
 

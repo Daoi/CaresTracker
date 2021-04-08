@@ -35,10 +35,16 @@ namespace CaresTracker
         public void InitializeEvents()
         {
             DataTable dt = new GetUpcomingEvents().ExecuteCommand();
-            BindHeader(gvEvents);
-            gvEvents.DataSource = dt;
-            gvEvents.DataBind();
-            ViewState["EventDT"] = dt;
+            if (dt.Rows.Count == 0)
+            {
+                lblEventMsg.Text = "No upcoming events to display.";
+            }
+            else
+            {
+                gvEvents.DataSource = dt;
+                BindGridview(gvEvents);
+                ViewState["EventDT"] = dt;
+            }
         }
 
         public void InitializeFollowUps()
@@ -55,9 +61,8 @@ namespace CaresTracker
             }
             else
             {
-                BindHeader(gvOutstandingFollowUps);
                 gvOutstandingFollowUps.DataSource = uncompleted;
-                gvOutstandingFollowUps.DataBind();
+                BindGridview(gvOutstandingFollowUps);
             }
 
             DataTable completed = new GetCompletedFollowUps().RunCommand(man.Username);
@@ -68,18 +73,18 @@ namespace CaresTracker
             }
             else
             {
-                BindHeader(gvCompletedFollowUps);
                 gvCompletedFollowUps.DataSource = completed;
-                gvCompletedFollowUps.DataBind();
+                BindGridview(gvCompletedFollowUps);
             }
         }
 
-        public void BindHeader(GridView gv)
+        public void BindGridview(GridView gv)
         {
             gv.DataBound += (object o, EventArgs ev) =>
             {
                 gv.HeaderRow.TableSection = TableRowSection.TableHeader;
             };
+            gv.DataBind();
         }
 
         protected void lnkToEvent_Click(object sender, EventArgs e)
