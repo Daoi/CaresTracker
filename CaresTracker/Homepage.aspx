@@ -92,18 +92,18 @@
                         <div class="card w-100">
                             <div class="card-header offwhiteBackground">
                                 <div class="row pl-1">
-                                    <ul class="nav nav-tabs card-header-tabs" id="follow-up-tracker"  role="tablist">
+                                    <ul class="nav nav-tabs card-header-tabs" id="follow-up-tracker" role="tablist">
                                         <li class="nav-item cherryFont">
                                             <a class="nav-link cherryFont active" href="#outstanding" role="tab" aria-controls="Outstanding" aria-selected="true">Oustanding</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link cherryFont" href="#completed" role="tab" aria-controls="Completed" aria-selected="false">Completed</a>
+                                            <a id="completedLink" class="nav-link cherryFont" href="#completed" role="tab" aria-controls="Completed" aria-selected="false">Completed</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body followup-tracker text-dark">
-                                <h4 class="card-title">Follow Ups</h4>
+                                <h4 id="headerFollowUps" class="card-title">Outstanding Follow Ups</h4>
                                 <div class="tab-content mt-3">
                                     <div class="tab-pane active" id="outstanding" role="tabpanel">
                                         <asp:Label ID="lblOutstandingMsg" runat="server" Text=""></asp:Label>
@@ -193,15 +193,26 @@
     <div style="margin-top: 2%; height: 2%; width: auto;"></div>
     <%-- Switch tabs for Follow Up Tracker --%>
     <script>$('#follow-up-tracker a').on('click', function (e) {
-            e.preventDefault()
-            $(this).tab('show')
-        })</script>
+            e.preventDefault();
+            $(this).tab('show');
+            var s = $(this).text();
+            console.log(s);
+
+            if ($(this).text() == 'Completed') {
+                $('#headerFollowUps').text('Completed Follow Ups (Past 2 weeks)');
+            }
+            else {
+                $('#headerFollowUps').text('Outstanding Follow Ups');
+            }
+        });
+
+    </script>
     <%-- Create DataTables --%>
     <script type="text/javascript">
         $(document).ready(function () {
             ['gvCompletedFollowUps', 'gvOutstandingFollowUps', 'gvEvents'].forEach(gv => {
                 $(`#MainContent_${gv}`).DataTable({
-                "lengthMenu": [5, 10]
+                    "lengthMenu": [5, 10]
                 });
             });
         });
