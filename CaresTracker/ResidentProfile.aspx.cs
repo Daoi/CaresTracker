@@ -37,6 +37,7 @@ namespace CaresTracker
                 {
                     CARESUser user = Session["User"] as CARESUser;
                     DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
+                    ViewState["DevelopmentDT"] = developmentDT;
                     // Bind to drop down list
                     ddlHousingDevelopment.DataSource = developmentDT;
                     ddlHousingDevelopment.DataValueField = "DevelopmentID";
@@ -51,9 +52,13 @@ namespace CaresTracker
                     ddlHousingDevelopment.DataValueField = "DevelopmentID";
                     ddlHousingDevelopment.DataTextField = "DevelopmentName";
                     ddlHousingDevelopment.DataBind();
-
+                    ViewState["DevelopmentDT"] = developmentDT;
                 }
             }
+
+            string select2Params = "'#MainContent_ddlHousingDevelopment', 'Select Development'";
+            string select2Call = $"setupSelect2({select2Params});";
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "select2Call", select2Call, true);
         }
 
 
@@ -147,8 +152,14 @@ namespace CaresTracker
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
             ToggleControls(); //Enable controls for editing
+            if (ddlHousingDevelopment.SelectedIndex == 0) //if hcv housing
+            {
+                ddlRegion.Enabled = true;
+            }
             ToggleHTMLInputElement();
+            ViewState["EditMode"] = true;
             btnSaveEdits.Visible = true;
+            btnCancelEdits.Visible = true;
             btnEditProfile.Visible = false;
         }
 
@@ -156,13 +167,13 @@ namespace CaresTracker
         private void ToggleControls(Control control = null)
         {
             List<Control> controls = control != null ? control.Controls.OfType<Control>().ToList() : Page.Controls.OfType<Control>().ToList();
-
+            List<string> excluded = new List<string>() { "tbZipcode", "ddlRegion" }; //Control Ids that should be excluded
             foreach (Control c in controls)
             {
                 Type type = c.GetType();
                 PropertyInfo prop = type.GetProperty("Enabled");
 
-                if (prop != null && type != typeof(Button) && !c.ID.Contains("lnk") && !c.ID.Equals("tbZipcode")) //Dont disable links or buttons
+                if ( prop != null && (type != typeof(Button) && !c.ID.Contains("lnk") && !excluded.Contains(c.ID))) //Dont disable links, buttons, or excluded controls
                 {
                     bool flag = (bool)prop.GetValue(c);
                     prop.SetValue(c, !flag, null);
@@ -277,6 +288,9 @@ namespace CaresTracker
                 lblErrorMessage.Visible = true;
                 lblErrorMessage.Text = $"Failed to update profile: {ex.Message}";
             }
+
+            ddlRegion.Enabled = false;
+            ViewState["EditMode"] = false;
             
         }
 
@@ -285,5 +299,35 @@ namespace CaresTracker
             Response.Redirect("ResidentLookup.aspx");
         }
 
+        protected void ddlHousingDevelopment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlHousingDevelopment.SelectedIndex == 0)
+            {
+                if(ViewState["EditMode"] != null && (bool)ViewState["EditMode"])
+                    ddlRegion.Enabled = true;
+            }
+            else
+            {
+                DataTable dt = ViewState["DevelopmentDT"] as DataTable;
+                ddlRegion.Enabled = false;
+                int devId = int.Parse(ddlHousingDevelopment.SelectedValue);
+                ddlRegion.SelectedValue = (dt.Rows.Cast<DataRow>().First(dr => dr.Field<int>("DevelopmentID") == devId) as DataRow).Field<int>("RegionID").ToString();
+            }
+
+            upRegion.Update();
+        }
+
+        protected void btnCancelEdits_Click(object sender, EventArgs e)
+        {
+            ToggleControls();
+            ToggleHTMLInputElement();
+            lblErrorMessage.Text = string.Empty;
+            btnEditProfile.Visible = true;
+            btnSaveEdits.Visible = false;
+            btnCancelEdits.Visible = false;
+            ddlRegion.Enabled = false;
+            ViewState["EditMode"] = false;
+            InitializeProfileValues();
+        }
     }
 }
