@@ -60,10 +60,10 @@
                 <div class="row m-3">
                     <div class="col">
                         <label>Select Health Workers to Host Event:</label>
-                        <div id="userCBLDiv" class="DataboundCBLOverflow row">
-                            <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged">
-                            </asp:CheckBoxList>
-                        </div>
+                    </div>
+                    <div id="userCBLDiv" class="col-7 cblWorker overflow-auto">
+                        <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="table" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged" RepeatDirection="Vertical">
+                        </asp:CheckBoxList>
                     </div>
                 </div>
                 <asp:UpdatePanel ID="upMainHost" UpdateMode="Conditional" runat="server">
