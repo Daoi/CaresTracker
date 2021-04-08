@@ -65,7 +65,7 @@ namespace CaresTracker
         public void InitializeProfileValues()
         {
             //Housing Stuff
-            tbAddress.Text = currentRes.Home.Address;
+            txtAddress.Value = currentRes.Home.Address;
             ddlHousingDevelopment.SelectedValue = currentRes.Home.DevelopmentID.ToString();
             tbUnitNumber.Text = currentRes.Home.UnitNumber;
             ddlRegion.SelectedValue = currentRes.Home.RegionID.ToString();
@@ -147,6 +147,7 @@ namespace CaresTracker
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
             ToggleControls(); //Enable controls for editing
+            ToggleHTMLInputElement();
             btnSaveEdits.Visible = true;
             btnEditProfile.Visible = false;
         }
@@ -161,7 +162,7 @@ namespace CaresTracker
                 Type type = c.GetType();
                 PropertyInfo prop = type.GetProperty("Enabled");
 
-                if (prop != null && type != typeof(Button) && !c.ID.Contains("lnk")) //Dont disable links or buttons
+                if (prop != null && type != typeof(Button) && !c.ID.Contains("lnk") && !c.ID.Equals("tbZipcode")) //Dont disable links or buttons
                 {
                     bool flag = (bool)prop.GetValue(c);
                     prop.SetValue(c, !flag, null);
@@ -173,9 +174,28 @@ namespace CaresTracker
                 }
             }
         }
+        // Toggle HTMLInput element used for API
+        private void ToggleHTMLInputElement()
+        {
+            
+            if (!txtAddress.Disabled)
+            {
+                txtAddress.Disabled = true;
+            }
+            else
+            {
+                txtAddress.Disabled = false;
+            }
+        }
 
         protected void btnSaveEdits_Click(object sender, EventArgs e)
         {
+            // Check that address is selected from the API predictions list
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                lblWrongAddressInput.Visible = true;
+                return;
+            }
 
             Resident res = new Resident();
             //Resident Info
@@ -206,13 +226,24 @@ namespace CaresTracker
             res.VaccineAppointmentDate = tbAppointmentDate.Text;
             //Housing Info
             res.Home = new House();
-                
-            res.Home.Address = tbAddress.Text;
+
+            // Slice up formatted address from Google API
+            string formatted_address = hdnfldFormattedAddress.Value;
+            string[] list = formatted_address.Split(',');
+
+            string Address = list[0];
+            // Remove "PA" from zipcode string
+            string ZipCode = list[2].Remove(0, 4);
+
+            res.Home.Address = Address;
             res.Home.UnitNumber = tbUnitNumber.Text;
             res.Home.RegionName = ddlRegion.SelectedItem.Text;
             res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
             res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
-            res.Home.ZipCode = tbZipcode.Text;
+            res.Home.ZipCode = ZipCode;
+
+            // Change txtZipCode to reflect new ZipCode
+            tbZipcode.Text = ZipCode;
 
             if (res.Home.DevelopmentID != -1) //If not HCV
             {
@@ -236,6 +267,7 @@ namespace CaresTracker
             {
                 new UpdateResident(res).ExecuteCommand();
                 ToggleControls();
+                ToggleHTMLInputElement();
                 btnEditProfile.Visible = true;
                 btnSaveEdits.Visible = false;
                 lblErrorMessage.Text = string.Empty;
@@ -252,5 +284,6 @@ namespace CaresTracker
         {
             Response.Redirect("ResidentLookup.aspx");
         }
+
     }
 }
