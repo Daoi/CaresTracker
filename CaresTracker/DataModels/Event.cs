@@ -12,7 +12,8 @@ namespace CaresTracker.DataModels
         public int EventID { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
-        public string EventType { get; set; }
+        public int EventTypeID { get; set; }
+        public string EventTypeName { get; set; }
         public string EventLocation { get; set; }
         public string EventDate { get; set; }
         public string EventStartTime { get; set; }
@@ -31,7 +32,8 @@ namespace CaresTracker.DataModels
             EventID = int.Parse(dataRow["EventID"].ToString());
             EventName = dataRow["EventName"].ToString();
             EventDescription = dataRow["EventDescription"].ToString();
-            EventType = dataRow["EventType"].ToString();
+            EventTypeID = int.Parse(dataRow["EventTypeID"].ToString());
+            EventTypeName = dataRow["EventTypeName"].ToString();
             EventLocation = dataRow["EventLocation"].ToString();
             EventDate = dataRow["EventDate"].ToString();
             EventStartTime = dataRow["EventStartTime"].ToString();
