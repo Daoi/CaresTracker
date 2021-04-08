@@ -71,19 +71,20 @@ namespace CaresTracker
                             .First()));
                     }
                 }
-            }
-            newEvent.Attendees = new List<Resident>();
-            newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
-            newEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
-            newEvent.EventTypeName = ddlEventType.SelectedItem.Text;
-            newEvent.EventDescription = txtDescription.InnerText;
 
-            AddEvent add = new AddEvent(newEvent);
-            int res = add.ExecuteCommand();
-            if (res == 1)
-            {
-                Session["Event"] = newEvent;
-                Response.Redirect("Event.aspx");
+                newEvent.Attendees = new List<Resident>();
+                newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
+                newEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
+                newEvent.EventTypeName = ddlEventType.SelectedItem.Text;
+                newEvent.EventDescription = txtDescription.InnerText;
+
+                AddEvent add = new AddEvent(newEvent);
+                int res = add.ExecuteCommand();
+                if (res == 1)
+                {
+                    Session["Event"] = newEvent;
+                    Response.Redirect("Event.aspx");
+                }
             }
         }
 
@@ -112,14 +113,23 @@ namespace CaresTracker
             if (Validation.IsEmpty(txtEventName.Text) || Validation.IsEmpty(txtEventLocation.Text) || Validation.IsEmpty(txtEventDate.Text) ||
             Validation.IsEmpty(txtEventTimeStart.Text) || Validation.IsEmpty(txtEventTimeEnd.Text) || Validation.IsEmpty(txtDescription.InnerText))
             {
+                lblError.Visible = true;
                 lblError.Text = "Fill out all fields";
+                return false;
+            }
+
+            if (!Validation.IsAlphanumeric(txtEventName.Text) || !Validation.IsAlphanumeric(txtEventLocation.Text))
+            {
+                lblError.Visible = true;
+                lblError.Text = "Can only accept alphanumeric characters(a-z, 0-9) for event name and location";
                 return false;
             }
 
             DateTime startTime = DateTime.Parse(txtEventTimeStart.Text);
             DateTime endTime = DateTime.Parse(txtEventTimeEnd.Text);
-            if(TimeSpan.Compare(startTime.TimeOfDay, endTime.TimeOfDay) == -1 || TimeSpan.Compare(startTime.TimeOfDay, endTime.TimeOfDay) == 0)
+            if(DateTime.Compare(endTime, startTime) < 0 || TimeSpan.Compare(startTime.TimeOfDay, endTime.TimeOfDay) == 0)
             {
+                lblError.Visible = true;
                 lblError.Text = "Make sure that start and end time are correct";
                 return false;
             }
@@ -136,22 +146,14 @@ namespace CaresTracker
 
             if(oneChecked == false)
             {
+                lblError.Visible = true;
                 lblError.Text = "Please select at least one worker to host the event";
                 return false;
             }
 
-            if(ddlEventType.SelectedValue == "Select Event Type")
-            {
-                lblError.Text = "Please select an event type";
-                return false;
-            }
-
+            lblError.Visible = false;
             return true;
         }
 
-        protected void lnkHome_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Homepage.aspx");
-        }
     }
 }

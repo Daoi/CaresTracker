@@ -98,7 +98,7 @@
                     <div class="col">
                         <label>Event Description and Notes:</label>
                     </div>
-                    <div class="col-7">
+                    <div class="col-7">                        
                         <textarea class="w-100 form-control" id="txtDescription" rows="6" runat="server"></textarea>
                     </div>
                 </div>
