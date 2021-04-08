@@ -91,13 +91,7 @@
                         <label>Event Type: </label>
                     </div>
                     <div class="col-7">
-                        <asp:DropDownList ID="ddlEventType" CssClass="form-control" runat="server">
-                            <asp:ListItem Value="Select Event Type">Select Event Type</asp:ListItem>
-                            <asp:ListItem Value="divResourceTableEvent">Resource Table Event</asp:ListItem>
-                            <asp:ListItem Value="divFluShotEvent">Flu Shot Event</asp:ListItem>
-                            <asp:ListItem Value="divHealthEducationEvent">Health Education Event</asp:ListItem>
-                            <asp:ListItem Value="divOnlineEvent">Online Event</asp:ListItem>
-                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlEventType" CssClass="form-control" runat="server"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="row m-3">

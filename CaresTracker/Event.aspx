@@ -53,7 +53,7 @@
                                     <label>Type:</label>
                                 </div>
                                 <div class="col-9">
-                                    <asp:TextBox ID="txtEventType" CssClass="form-control" Enabled="false" runat="server"></asp:TextBox>
+                                    <asp:DropDownList ID="ddlEventType" CssClass="form-control" Enabled="false" runat="server"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="row m-3">
@@ -158,8 +158,8 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#MainContent_gvCHWList').DataTable({ searching: false });
-            $('#MainContent_gvResidentList').DataTable({ searching: false });
+            $('#MainContent_gvCHWList').DataTable({ searching: false, "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]] });
+            $('#MainContent_gvResidentList').DataTable({ searching: false, "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]] });
         });
     </script>
 </asp:Content>

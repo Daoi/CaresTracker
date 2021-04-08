@@ -38,8 +38,18 @@
                             </asp:TemplateField>
                             <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
                             <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
+                            <asp:BoundField DataField="ResidentPhoneNumber" HeaderText="Resident Phone Number" />
+                            <asp:BoundField DataField="ResidentEmail" HeaderText="Resident Email" />
                         </Columns>
                     </asp:GridView>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <asp:Label ID="lblResidentNotFound" CssClass="hidden error-label" runat="server" Text=""></asp:Label>
+                            <asp:Button ID="btnCreateNewResident" CssClass="hidden buttonStyle" runat="server" Text="Create New Resident" OnClick="btnCreateNewResident_Click" />
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
                     <div class="container text-center">
                         <div class="row">
                             <asp:Label ID="lblError" CssClass="h6 alert-danger" runat="server"></asp:Label>
@@ -55,7 +65,21 @@
     <asp:HiddenField ID="hfSearchInput" runat="server" />
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#MainContent_gvResidentList').DataTable();
+            var table = $('#MainContent_gvResidentList').DataTable();
+            table.on('draw', function () {
+                if (table.page.info().recordsDisplay <= 0) {
+                    var search = $('.dataTables_filter input').val();
+                    $('#MainContent_lblResidentNotFound').text(`Resident with the name ${search} not found`);
+                    $('#MainContent_lblResidentNotFound').removeClass('hidden');
+                    $('#MainContent_btnCreateNewResident').removeClass('hidden');
+                    $('#MainContent_hfSearchInput').val(`${search}`);
+                }
+                else {
+                    $('#MainContent_lblResidentNotFound').addClass('hidden');
+                    $('#MainContent_btnCreateNewResident').addClass('hidden');
+                }
+            });
+
         });
     </script>
 </asp:Content>

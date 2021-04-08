@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">
+        <asp:HiddenField ID="hdnfldFormattedAddress" ClientIDMode="Static" runat="server" />
+        <asp:HiddenField ID="hdnfldName" ClientIDMode="Static" runat="server" />
         <div class="container homepage">
             <div class="row modal-header pb-0 offwhiteBackground" style="height: 7%; font-size: large">
                 <nav aria-label="breadcrumb">
@@ -147,13 +149,19 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label><asp:TextBox ID="tbAddress" placeholder="Street Address" CssClass="form-control" runat="server"></asp:TextBox>
+                                <div class="col m-0 p-0">
+                                    <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label>
+                                </div>
+                                <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblWrongAddressInput" role="alert" Visible="false">
+                                You must select an address from the list
+                                </asp:Label>
+                                <input id="txtAddress" type="text" runat="server" class="form-control" disabled="true" />
                             </div>
                             <div class="mt-3">
                                 <asp:Label ID="lblUnitNumber" CssClass="labels" runat="server" Text="Unit Number"></asp:Label><asp:TextBox ID="tbUnitNumber" placeholder="Unit Number" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblZipcode" CssClass="labels" runat="server" Text="Zipcode"></asp:Label><asp:TextBox ID="tbZipcode" placeholder="Zipcode" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblZipcode" CssClass="labels" runat="server" Text="Zipcode"></asp:Label><asp:TextBox ID="tbZipcode" placeholder="Zipcode" CssClass="form-control" runat="server" Enabled="False"></asp:TextBox>
                             </div>
                             <div class="mt-3">
                                 <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><br />
@@ -227,4 +235,8 @@
             });
         });
     </script>
+        <!-- Google Maps JavaScript library -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUR5TUQYRQwObVxISNpIi7RlFTsg6NQcI&libraries=places&callback=initMap"></script>
+    <!-- Attach API to txtAddress -->
+    <script type="text/javascript">loadPlacesAPI("MainContent_txtAddress");</script>
 </asp:Content>
