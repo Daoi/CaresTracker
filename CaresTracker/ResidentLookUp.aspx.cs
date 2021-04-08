@@ -27,7 +27,7 @@ namespace CaresTracker
 
                 if (ds.Rows.Count == 0)
                 {
-                    lblNoRows.Text = "Couldn't find any events to display.";
+                    lblNoRows.Text = "Couldn't find any Residents to display.";
                     divNoRows.Visible = true;
                     return;
                 }
