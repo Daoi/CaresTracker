@@ -49,6 +49,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.HiddenField hdnfldName;
         
         /// <summary>
+        /// lblValidationError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidationError;
+        
+        /// <summary>
         /// txtFirstName control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
+        /// lblValidationPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidationPhone;
+        
+        /// <summary>
         /// txtPhoneNumber control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRelationshipHOH;
+        
+        /// <summary>
+        /// lblValidationGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidationGender;
         
         /// <summary>
         /// rblGender control.
@@ -130,6 +157,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
         
         /// <summary>
+        /// lblValidationHousing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidationHousing;
+        
+        /// <summary>
         /// ddlHousing control.
         /// </summary>
         /// <remarks>
@@ -137,6 +173,15 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHousing;
+        
+        /// <summary>
+        /// lblWrongAddressInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWrongAddressInput;
         
         /// <summary>
         /// txtAddress control.
@@ -227,14 +272,5 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUniqueResident;
-        
-        /// <summary>
-        /// lblWrongAddressInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWrongAddressInput;
     }
 }

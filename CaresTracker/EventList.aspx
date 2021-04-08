@@ -24,7 +24,7 @@
                             </asp:TemplateField>
                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
                             <asp:BoundField DataField="EventDescription" HeaderText="Event Description" />
-                            <asp:BoundField DataField="EventType" HeaderText="Event Type" />
+                            <asp:BoundField DataField="EventTypeName" HeaderText="Event Type" />
                             <asp:BoundField DataField="EventLocation" HeaderText="Location" />
                             <asp:BoundField DataField="EventDate" HeaderText="Date" />
                             <asp:TemplateField HeaderText="Start Time">

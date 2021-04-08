@@ -20,7 +20,7 @@ namespace CaresTracker.DataAccess.DataAccessors.EventAccessors
             {
                 new MySqlParameter("@EventName", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@EventDescription", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@EventType", MySqlDbType.VarChar, 50),
+                new MySqlParameter("@EventTypeID", MySqlDbType.Int32),
                 new MySqlParameter("@EventLocation", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@EventDate", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@EventStartTime", MySqlDbType.VarChar, 50),
@@ -38,7 +38,7 @@ namespace CaresTracker.DataAccess.DataAccessors.EventAccessors
         {
             Parameters[0].Value = newEvent.EventName;
             Parameters[1].Value = newEvent.EventDescription;
-            Parameters[2].Value = newEvent.EventType;
+            Parameters[2].Value = newEvent.EventTypeID;
             Parameters[3].Value = newEvent.EventLocation;
             Parameters[4].Value = newEvent.EventDate;
             Parameters[5].Value = newEvent.EventStartTime;
