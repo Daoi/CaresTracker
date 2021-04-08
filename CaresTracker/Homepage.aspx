@@ -6,11 +6,11 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
-                        <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" CssClass="cherryFont" runat="server">Dashboard</asp:LinkButton>
+                        <asp:linkbutton id="lnkHome" navigateurl="~/Homepage.aspx" cssclass="cherryFont" runat="server">Dashboard</asp:linkbutton>
                     </li>
                 </ol>
             </nav>
-            <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h3 my-2" Style="width: 57%"></asp:Label>
+            <asp:label id="lblUserInfo" runat="server" enabled="true" visible="true" cssclass="h3 my-2" style="width: 57%"></asp:label>
         </div>
         <div class="jumbotron vertical-center bg-transparent cherryFont">
             <div class="container-fluid">
@@ -106,8 +106,8 @@
                                 <h4 id="headerFollowUps" class="card-title">Outstanding Follow Ups</h4>
                                 <div class="tab-content mt-3">
                                     <div class="tab-pane active" id="outstanding" role="tabpanel">
-                                        <asp:Label ID="lblOutstandingMsg" runat="server" Text=""></asp:Label>
-                                        <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                        <asp:label id="lblOutstandingMsg" runat="server" text=""></asp:label>
+                                        <asp:gridview id="gvOutstandingFollowUps" cssclass="table table-striped table-bordered thead-dark" runat="server" autogeneratecolumns="False">
                                             <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
@@ -122,11 +122,11 @@
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
                                             </Columns>
-                                        </asp:GridView>
+                                        </asp:gridview>
                                     </div>
                                     <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                                        <asp:Label ID="lblCompletedMsg" runat="server" Text=""></asp:Label>
-                                        <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                        <asp:label id="lblCompletedMsg" runat="server" text=""></asp:label>
+                                        <asp:gridview id="gvCompletedFollowUps" cssclass="table table-striped table-bordered thead-dark" runat="server" autogeneratecolumns="False">
                                             <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
@@ -141,7 +141,7 @@
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
                                             </Columns>
-                                        </asp:GridView>
+                                        </asp:gridview>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +158,8 @@
                             <h4 class="card-title">Upcoming Events</h4>
                             <div class="card mt-5">
                                 <div class="card-body UCEventsCard">
-                                    <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                    <asp:label id="lblEventMsg" runat="server" text=""></asp:label>
+                                    <asp:gridview id="gvEvents" cssclass="table table-striped table-bordered thead-dark" runat="server" autogeneratecolumns="False">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="View Event">
@@ -180,7 +181,7 @@
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="UserEmail" HeaderText="Host Email" />
                                         </Columns>
-                                    </asp:GridView>
+                                    </asp:gridview>
                                 </div>
                             </div>
                         </div>
