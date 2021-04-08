@@ -97,7 +97,7 @@
                                             <a class="nav-link cherryFont active" href="#outstanding" role="tab" aria-controls="Outstanding" aria-selected="true">Oustanding</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a id="completedLink" class="nav-link cherryFont" href="#completed" role="tab" aria-controls="Completed" aria-selected="false">Completed</a>
+                                            <a class="nav-link cherryFont" href="#completed" role="tab" aria-controls="Completed" aria-selected="false">Completed</a>
                                         </li>
                                     </ul>
                                 </div>
