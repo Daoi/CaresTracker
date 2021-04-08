@@ -14,6 +14,9 @@
                     </nav>
                 </div>
                 <div class="container-fluid mt-2">
+                    <div runat="server" id="divNoRows" visible="false" class="row w-auto justify-content-center" style="height: 10vh;">
+                    <asp:Label ID="lblNoRows" runat="server" Text=""></asp:Label>
+                        </div>
                     <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>

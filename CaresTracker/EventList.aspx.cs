@@ -20,7 +20,11 @@ namespace CaresTracker
 
                 dtEventList = new GetAllEvents().ExecuteCommand();
 
-                if (dtEventList.Rows.Count == 0) { return; }
+                if (dtEventList.Rows.Count == 0) {
+                    lblNoRows.Text = "Couldn't find any events to display.";
+                    divNoRows.Visible = true;
+                    return;
+                }
                 gvEventList.DataSource = dtEventList;
                 gvEventList.DataBind();
 
