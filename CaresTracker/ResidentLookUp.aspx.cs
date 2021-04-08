@@ -25,6 +25,13 @@ namespace CaresTracker
                     gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
                 };
 
+                if (ds.Rows.Count == 0)
+                {
+                    lblNoRows.Text = "Couldn't find any events to display.";
+                    divNoRows.Visible = true;
+                    return;
+                }
+
                 gvResidentList.DataBind();
             }
 
