@@ -195,8 +195,6 @@
     <script>$('#follow-up-tracker a').on('click', function (e) {
             e.preventDefault();
             $(this).tab('show');
-            var s = $(this).text();
-            console.log(s);
 
             if ($(this).text() == 'Completed') {
                 $('#headerFollowUps').text('Completed Follow Ups (Past 2 weeks)');
