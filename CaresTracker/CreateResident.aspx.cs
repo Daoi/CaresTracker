@@ -48,7 +48,7 @@ namespace CaresTracker
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
             // Check that address is selected from the API predictions list
-            if (ValidateForm())
+            if (!ValidateForm())
             {
                 return;
             }
