@@ -227,7 +227,7 @@ namespace CaresTracker
             }
             else
             {
-                lblWrongAddressInput.Visible = true;
+                lblWrongAddressInput.Visible = false;
             }
 
             return isFormValid;
