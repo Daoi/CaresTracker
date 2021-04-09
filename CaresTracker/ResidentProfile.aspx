@@ -237,17 +237,6 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-
-            $("#MainContent_ddlHousingDevelopment").select2({
-
-                placeholder: "Select Item",
-                allowClear: false,
-                selectOnClose: true
-            });
-        });
-    </script>
-    <script>
         function setupSelect2(selectID, placeHolder) {
             $(selectID).select2({
                 placeholder: placeHolder,
