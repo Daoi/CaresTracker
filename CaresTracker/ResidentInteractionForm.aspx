@@ -119,7 +119,7 @@
                             <h5>Resident Health</h5>
                             <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="h4 alert-danger"></asp:Label>
                             <%-- Symtpom List Start --%>
-                            <label class="pl-3">Covid-19 Possible Symptoms</label>
+                            <h5 class="pl-3">Covid-19 Possible Symptoms</h5>
                             <div class="row pl-3">
                                 <%-- Value after _ represents the ID, sorry future developers --%>
                                 <div class="col">
@@ -154,7 +154,7 @@
                                     <asp:CheckBox ID="cbCough_9" runat="server" CssClass="inputCheckBox" Text="Cough" Font-Size="Medium" />
                                 </div>
                             </div>
-                            <label class="pl-3">Critical Symptoms(Seek Immediate Medical Attention)</label>
+                            <h5 class="pl-3">Critical Symptoms(Seek Immediate Medical Attention)</h5>
                             <div class="row pl-3">
                                 <div class="col-sm-4 col-md-4">
                                     <asp:CheckBox ID="cbConfusion_10" runat="server" CssClass="inputCheckBox" Text="Confusion" Font-Size="Medium" />

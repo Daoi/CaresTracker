@@ -65,7 +65,7 @@ a {
 }
 
 .inputCheckBox input[type="checkbox"] {
-    margin-right: .15em;
+    margin-right: .5em;
 }
 
 @media (max-width: 1024px) {
