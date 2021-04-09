@@ -27,7 +27,12 @@ namespace CaresTracker
 
                 dtCHWList = new GetWorkersByUserID().RunCommand(user.UserID);
 
-                if (dtCHWList.Rows.Count == 0) { return; }
+                if (dtCHWList.Rows.Count == 0)
+                {
+                    lblNoRows.Text = "Couldn't find any Community Health Workers to display.";
+                    divNoRows.Visible = true;
+                    return;
+                }
                 gvCHWList.DataSource = dtCHWList;
                 gvCHWList.DataBind();
 

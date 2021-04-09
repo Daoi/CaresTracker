@@ -14,6 +14,9 @@
                     </nav>
                 </div>
                 <div class="container-fluid mt-2">
+                    <div runat="server" id="divNoRows" visible="false" class="row w-auto justify-content-center" style="height: 10vh;">
+                    <asp:Label ID="lblNoRows" runat="server" Text=""></asp:Label>
+                        </div>
                     <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
@@ -24,7 +27,7 @@
                             </asp:TemplateField>
                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
                             <asp:BoundField DataField="EventDescription" HeaderText="Event Description" />
-                            <asp:BoundField DataField="EventType" HeaderText="Event Type" />
+                            <asp:BoundField DataField="EventTypeName" HeaderText="Event Type" />
                             <asp:BoundField DataField="EventLocation" HeaderText="Location" />
                             <asp:BoundField DataField="EventDate" HeaderText="Date" />
                             <asp:TemplateField HeaderText="Start Time">
