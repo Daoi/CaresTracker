@@ -78,10 +78,15 @@ namespace CaresTracker
                     divFollowUpRequired.Visible = false;
                 }
                 // Populate gvEditHistory
-                DataTable editHistoryDT = new GetInteractionEditHistory().RunCommand(41);
+                DataTable editHistoryDT = new GetInteractionEditHistory().RunCommand(interaction.InteractionID);
                 gvEditHistory.DataSource = editHistoryDT;
                 gvEditHistory.DataBind();
 
+                // Hide Edit History tab if there is no edits to this interaction
+                if(editHistoryDT.Rows.Count == 0)
+                {
+                    editHistory.Visible = false;
+                }
             }
 
         }

@@ -751,15 +751,6 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Panel pnlEditHistory;
         
         /// <summary>
-        /// test control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label test;
-        
-        /// <summary>
         /// gvEditHistory control.
         /// </summary>
         /// <remarks>

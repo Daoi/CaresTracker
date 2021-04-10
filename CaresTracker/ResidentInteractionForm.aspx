@@ -262,15 +262,21 @@
                         </asp:Panel>
                         <%-- Vaccine Form End --%>
                         <%-- Edit History Start --%>
-                        <asp:Panel ID="pnlEditHistory" class="editHistory" runat="server">
-                            <asp:Label ID="test" runat="server" Text="This is working"></asp:Label>
-                            <asp:GridView ID="gvEditHistory" Width="100%" runat="server" CssClass="table table-light table-striped table-bordered thead-dark" AutoGenerateColumns="False">
-                                <Columns>
-                                    <asp:BoundField DataField="EditDate" HeaderText="Edit Date" />
-                                    <asp:BoundField DataField="Username" HeaderText="Editor Username" />
-                                    <asp:BoundField DataField="EditReason" HeaderText="Reason for Edit" />
-                                </Columns>
+                        <asp:Panel ID="pnlEditHistory" runat="server">
+                            <h5>Edit History</h5>
+                            <asp:GridView ID="gvEditHistory" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
                                 <HeaderStyle CssClass="cherryBackground" />
+                                <Columns>
+                                    <asp:BoundField DataField="EditDate" HeaderText="Edit Date" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Username" HeaderText="Editor Username" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="EditReason" HeaderText="Reason for Edit" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    </asp:BoundField>
+                                </Columns>
                             </asp:GridView>
                         </asp:Panel>
                         <%-- Vaccine Form End --%>
