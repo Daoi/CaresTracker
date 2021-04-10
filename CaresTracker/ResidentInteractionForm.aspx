@@ -25,6 +25,7 @@
                             <asp:LinkButton ID="services" CssClass="active my-3" runat="server" OnClick="formNav_Click">Services<i id="icServices" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
                             <asp:LinkButton ID="vaccineInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Vaccine Information<i id="icErrorVaxInfo" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
                             <asp:LinkButton ID="otherInfo" CssClass="active my-3" runat="server" OnClick="formNav_Click">Action Plan<i id="icErrorActionPlan" runat="server" visible="false" class="fas fa-exclamation-triangle warningIcon" style="margin-left: .5rem;"></i></asp:LinkButton>
+                            <asp:LinkButton ID="editHistory" CssClass="active my-3" runat="server" OnClick="formNav_Click"><i id="icoEditHistory" runat="server" class="fas fa-history" style="margin-right: .5rem"></i>View Edit History</asp:LinkButton>
                             <asp:LinkButton ID="lnkBtnSave" CssClass="active my-3" runat="server" OnClick="lnkBtnSave_Click"><i id="icoSave" runat="server" class="fas fa-save" style="margin-right: .5rem"></i>Save Interaction</asp:LinkButton>
                             <asp:LinkButton ID="lnkBtnEdit" CssClass="active my-3" runat="server" Visible="false" OnClick="lnkBtnEdit_Click">
                                 <i class="fas fa-edit" id="icoEdit" style="margin-right: .5rem" runat="server"></i>
@@ -258,6 +259,19 @@
                                 <label>Vaccine Appointment Date</label>
                                 <asp:TextBox ID="tbVaccineAppointmentDate" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                             </div>
+                        </asp:Panel>
+                        <%-- Vaccine Form End --%>
+                        <%-- Edit History Start --%>
+                        <asp:Panel ID="pnlEditHistory" class="editHistory" runat="server">
+                            <asp:Label ID="test" runat="server" Text="This is working"></asp:Label>
+                            <asp:GridView ID="gvEditHistory" Width="100%" runat="server" CssClass="table table-light table-striped table-bordered thead-dark" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:BoundField DataField="EditDate" HeaderText="Edit Date" />
+                                    <asp:BoundField DataField="Username" HeaderText="Editor Username" />
+                                    <asp:BoundField DataField="EditReason" HeaderText="Reason for Edit" />
+                                </Columns>
+                                <HeaderStyle CssClass="cherryBackground" />
+                            </asp:GridView>
                         </asp:Panel>
                         <%-- Vaccine Form End --%>
                         <%-- Other Form Start --%>

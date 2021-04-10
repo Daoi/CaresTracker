@@ -139,6 +139,24 @@ namespace CaresTracker {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl icErrorActionPlan;
         
         /// <summary>
+        /// editHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton editHistory;
+        
+        /// <summary>
+        /// icoEditHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl icoEditHistory;
+        
+        /// <summary>
         /// lnkBtnSave control.
         /// </summary>
         /// <remarks>
@@ -722,6 +740,33 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbVaccineAppointmentDate;
+        
+        /// <summary>
+        /// pnlEditHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEditHistory;
+        
+        /// <summary>
+        /// test control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label test;
+        
+        /// <summary>
+        /// gvEditHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvEditHistory;
         
         /// <summary>
         /// pnlOtherForm control.
