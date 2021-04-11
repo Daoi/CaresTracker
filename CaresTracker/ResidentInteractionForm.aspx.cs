@@ -76,17 +76,19 @@ namespace CaresTracker
                     divFollowUpStatus.Visible = interaction.RequiresFollowUp && string.IsNullOrEmpty(interaction.FollowUpCompleted);
                     ViewState["FollowUpRequired"] = 0; //Shouldn't matter what this is
                     divFollowUpRequired.Visible = false;
-                }
-                // Populate gvEditHistory
-                DataTable editHistoryDT = new GetInteractionEditHistory().RunCommand(interaction.InteractionID);
-                gvEditHistory.DataSource = editHistoryDT;
-                gvEditHistory.DataBind();
 
-                // Hide Edit History tab if there is no edits to this interaction
-                if(editHistoryDT.Rows.Count == 0)
-                {
-                    editHistory.Visible = false;
+                    // Populate gvEditHistory
+                    DataTable editHistoryDT = new GetInteractionEditHistory().RunCommand(interaction.InteractionID);
+                    gvEditHistory.DataSource = editHistoryDT;
+                    gvEditHistory.DataBind();
+
+                    // Hide Edit History tab if there is no edits to this interaction
+                    if (editHistoryDT.Rows.Count > 0)
+                    {
+                        editHistory.Visible = true;
+                    }
                 }
+
             }
 
         }
