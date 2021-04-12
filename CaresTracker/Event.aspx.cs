@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using CaresTracker.DataAccess.DataAccessors.EventAccessors;
+using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
 
 namespace CaresTracker
 {
@@ -19,42 +21,46 @@ namespace CaresTracker
             if(!IsPostBack && Session["Event"] != null)
             {
                 FillEventInfo();
+                gvCHWList.DataSource = theEvent.Hosts;
+                gvCHWList.DataBind();
+                gvResidentList.DataSource = theEvent.Attendees;
+                gvResidentList.DataBind();
+            }
+
+            gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            if (theEvent.Attendees != null && theEvent.Attendees.Count != 0)
+            {
+                gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 
         public void FillEventInfo()
         {
             txtEventName.Text = theEvent.EventName;
-            txtEventType.Text = theEvent.EventType;
+
+            DataTable dtEventTypes = new GetAllEventTypes().ExecuteCommand()
+                    .AsEnumerable()
+                    .Where(row => Convert.ToSByte(row["EventTypeIsEnabled"]) == 1)
+                    .CopyToDataTable();
+            ddlEventType.DataSource = dtEventTypes;
+            ddlEventType.DataTextField = "EventTypeName";
+            ddlEventType.DataValueField = "EventTypeID";
+            ddlEventType.DataBind();
+            ddlEventType.SelectedIndex = ddlEventType.Items.IndexOf(ddlEventType.Items.FindByValue(theEvent.EventTypeID.ToString()));
+
             txtLocation.Text = theEvent.EventLocation;
             txtEventDate.Text = theEvent.EventDate;
             txtStartTime.Text = theEvent.EventStartTime;
             txtEndTime.Text = theEvent.EventEndTime;
             txtDescription.Text = theEvent.EventDescription;
 
-            gvCHWList.DataBound += (object o, EventArgs ev) =>
-            {
-                gvCHWList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            };
-            gvCHWList.DataSource = theEvent.Hosts;
-            gvCHWList.DataBind();
-
-            if (theEvent.Attendees != null && theEvent.Attendees.Count != 0)
-            {
-                gvResidentList.DataBound += (object o, EventArgs ev) =>
-                {
-                    gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-                };
-
-                gvResidentList.DataSource = theEvent.Attendees;
-                gvResidentList.DataBind();
-            }
-
             ddlMainHost.DataSource = theEvent.Hosts;
             ddlMainHost.DataTextField = "FullName";
             ddlMainHost.DataValueField = "UserID";
             ddlMainHost.DataBind();
             ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
+            txtMainHostEmail.Text = theEvent.Hosts.Find(host => host.UserID == theEvent.MainHostID).UserEmail;
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -76,6 +82,7 @@ namespace CaresTracker
                 if (c is TextBox)
                 {
                     TextBox temp = c as TextBox;
+                    if (temp.ID == "txtMainHostEmail") { continue; }
                     if (temp.ID == "txtEventName")
                     { 
                         if(temp.CssClass == defaultCSS)
@@ -111,6 +118,27 @@ namespace CaresTracker
             btnEdit.Visible = true;
             btnSave.Visible = false;
             btnCancel.Visible = false;
+            lblError.Visible = false;
+
+            // Create new event to replace old one
+            DataModels.Event editedEvent = new DataModels.Event();
+            editedEvent.EventName = txtEventName.Text;
+            editedEvent.EventDescription = txtDescription.Text;
+            editedEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
+            editedEvent.EventLocation = txtLocation.Text;
+            editedEvent.EventDate = txtEventDate.Text;
+            editedEvent.EventStartTime = txtStartTime.Text;
+            editedEvent.EventEndTime = txtEndTime.Text;
+            editedEvent.MainHostID = Int32.Parse(ddlMainHost.SelectedValue);
+            editedEvent.EventID = theEvent.EventID;
+            // Update event
+            try{
+            new UpdateEvent(editedEvent).ExecuteCommand();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -129,6 +157,18 @@ namespace CaresTracker
             int index = row.RowIndex;
             Session["Resident"] = theEvent.Attendees[index];
             Response.Redirect("./ResidentProfile.aspx");
+        }
+
+        protected void btnAddResidentAttendees_Click(object sender, EventArgs e)
+        {
+            Session["Event"] = theEvent;
+            Response.Redirect("AddResidentAttendees.aspx");
+        }
+
+        protected void ddlMainHost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int newMainHostID = Int32.Parse(ddlMainHost.SelectedValue);
+            txtMainHostEmail.Text = theEvent.Hosts.Find(host => host.UserID == newMainHostID).UserEmail;
         }
     }
 }

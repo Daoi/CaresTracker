@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">
+        <asp:HiddenField ID="hdnfldFormattedAddress" ClientIDMode="Static" runat="server" />
+        <asp:HiddenField ID="hdnfldName" ClientIDMode="Static" runat="server" />
         <div class="container homepage">
             <div class="row modal-header pb-0 offwhiteBackground" style="height: 7%; font-size: large">
                 <nav aria-label="breadcrumb">
@@ -130,7 +132,11 @@
                             </div>
                             <div class="mt-5 text-center">
                                 <asp:Button ID="btnEditProfile" CssClass="buttonStyle" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" />
-                                <asp:Button ID="btnSaveEdits" CssClass="buttonStyle" Visible="false" runat="server" Text="Save Edits" OnClick="btnSaveEdits_Click" />
+                                <div class="btn-group">
+                                    <asp:Button ID="btnSaveEdits" CssClass="buttonStyle" Visible="false" runat="server" Text="Save Edits" OnClick="btnSaveEdits_Click" />
+                                    <asp:Button ID="btnCancelEdits" CssClass="buttonStyle ml-1" Visible="false" runat="server" Text="Cancel Editing" OnClick="btnCancelEdits_Click" />
+                                </div>
+
                                 <asp:Label ID="lblErrorMessage" runat="server" Text="" Visible="false"></asp:Label>
                             </div>
                         </div>
@@ -141,37 +147,57 @@
                                 <h5>Housing Info</h5>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblDevelopment" CssClass="labels" runat="server" Text="Development"></asp:Label><br />
-                                <asp:DropDownList ID="ddlHousingDevelopment" CssClass="form-control" runat="server" DataValueField='DevelopmentID' DataTextField='DevelopmentName' AppendDataBoundItems="True">
-                                    <asp:ListItem Value="-1">HCV Housing</asp:ListItem>
-                                </asp:DropDownList>
+                                <asp:UpdatePanel ID="upHousingDevelopment" runat="server">
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlHousingDevelopment" EventName="SelectedIndexChanged" />
+                                    </Triggers>
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblDevelopment" CssClass="labels" runat="server" Text="Development"></asp:Label><br />
+                                        <asp:DropDownList ID="ddlHousingDevelopment" CssClass="form-control" runat="server" DataValueField='DevelopmentID' DataTextField='DevelopmentName' AppendDataBoundItems="True" OnSelectedIndexChanged="ddlHousingDevelopment_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:ListItem Value="-1">HCV Housing</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label><asp:TextBox ID="tbAddress" placeholder="Street Address" CssClass="form-control" runat="server"></asp:TextBox>
+                                <div class="col m-0 p-0">
+                                    <asp:Label ID="lblAddress" CssClass="labels" runat="server" Text="Address"></asp:Label>
+                                </div>
+                                <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblWrongAddressInput" role="alert" Visible="false">
+                                You must select an address from the list
+                                </asp:Label>
+                                <input id="txtAddress" type="text" runat="server" class="form-control" disabled="true" />
                             </div>
                             <div class="mt-3">
                                 <asp:Label ID="lblUnitNumber" CssClass="labels" runat="server" Text="Unit Number"></asp:Label><asp:TextBox ID="tbUnitNumber" placeholder="Unit Number" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblZipcode" CssClass="labels" runat="server" Text="Zipcode"></asp:Label><asp:TextBox ID="tbZipcode" placeholder="Zipcode" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblZipcode" CssClass="labels" runat="server" Text="Zipcode"></asp:Label><asp:TextBox ID="tbZipcode" placeholder="Zipcode" CssClass="form-control" runat="server" Enabled="False"></asp:TextBox>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><br />
-                                <asp:DropDownList ID="ddlRegion" CssClass="form-control" runat="server">
-                                    <asp:ListItem Value="1">North</asp:ListItem>
-                                    <asp:ListItem Value="2">Upper North</asp:ListItem>
-                                    <asp:ListItem Value="3">Lower North</asp:ListItem>
-                                    <asp:ListItem Value="4">Upper Northwest</asp:ListItem>
-                                    <asp:ListItem Value="5">Lower Northwest</asp:ListItem>
-                                    <asp:ListItem Value="6">Lower Northeast</asp:ListItem>
-                                    <asp:ListItem Value="7">West</asp:ListItem>
-                                    <asp:ListItem Value="8">Central</asp:ListItem>
-                                    <asp:ListItem Value="9">South</asp:ListItem>
-                                    <asp:ListItem Value="10">Lower Soutwest</asp:ListItem>
-                                    <asp:ListItem Value="11">University Southwest</asp:ListItem>
-                                    <asp:ListItem Value="12">North Delaware</asp:ListItem>
-                                    <asp:ListItem Value="13">River Wards</asp:ListItem>
-                                </asp:DropDownList>
+                                <asp:UpdatePanel ID="upRegion" UpdateMode="Conditional" runat="server">
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlHousingDevelopment" EventName="SelectedIndexChanged" />
+                                    </Triggers>
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblRegionName" CssClass="labels" runat="server" Text="Region"></asp:Label><br />
+                                        <asp:DropDownList ID="ddlRegion" CssClass="form-control" Enabled="false" runat="server">
+                                            <asp:ListItem Value="1">North</asp:ListItem>
+                                            <asp:ListItem Value="2">Upper North</asp:ListItem>
+                                            <asp:ListItem Value="3">Lower North</asp:ListItem>
+                                            <asp:ListItem Value="4">Upper Northwest</asp:ListItem>
+                                            <asp:ListItem Value="5">Lower Northwest</asp:ListItem>
+                                            <asp:ListItem Value="6">Lower Northeast</asp:ListItem>
+                                            <asp:ListItem Value="7">West</asp:ListItem>
+                                            <asp:ListItem Value="8">Central</asp:ListItem>
+                                            <asp:ListItem Value="9">South</asp:ListItem>
+                                            <asp:ListItem Value="10">Lower Soutwest</asp:ListItem>
+                                            <asp:ListItem Value="11">University Southwest</asp:ListItem>
+                                            <asp:ListItem Value="12">North Delaware</asp:ListItem>
+                                            <asp:ListItem Value="13">River Wards</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <h5>Vaccine Info</h5>
@@ -211,20 +237,17 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $("#MainContent_ddlRegion").select2({
-
-                placeholder: "Select Item",
+        function setupSelect2(selectID, placeHolder) {
+            $(selectID).select2({
+                placeholder: placeHolder,
                 allowClear: false,
                 selectOnClose: true
             });
-
-            $("#MainContent_ddlHousingDevelopment").select2({
-
-                placeholder: "Select Item",
-                allowClear: false,
-                selectOnClose: true
-            });
-        });
+        }
     </script>
+
+    <!-- Google Maps JavaScript library -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUR5TUQYRQwObVxISNpIi7RlFTsg6NQcI&libraries=places&callback=initMap"></script>
+    <!-- Attach API to txtAddress -->
+    <script type="text/javascript">loadPlacesAPI("MainContent_txtAddress");</script>
 </asp:Content>

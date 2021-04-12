@@ -11,7 +11,6 @@ namespace CaresTracker.DataModels
         public int HouseID { get; set; }
         public int RegionID { get; set; }
         public string Address { get; set; }
-        public string HouseType { get; set; }
         public int DevelopmentID { get; set; }
         public string ZipCode { get; set; }
         public string RegionName { get; set; }
@@ -28,7 +27,6 @@ namespace CaresTracker.DataModels
             HouseID = int.Parse(dataRow["HouseID"].ToString());
             RegionID = int.Parse(dataRow["RegionID"].ToString());
             Address = dataRow["Address"].ToString();
-            HouseType = dataRow["HouseType"].ToString();
             ZipCode = dataRow["ZipCode"].ToString();
             RegionName = dataRow["RegionName"].ToString();
             if (dataRow["DevelopmentID"] == null || dataRow["DevelopmentID"] == DBNull.Value) //Not part of a development

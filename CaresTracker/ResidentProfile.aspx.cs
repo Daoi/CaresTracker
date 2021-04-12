@@ -37,6 +37,7 @@ namespace CaresTracker
                 {
                     CARESUser user = Session["User"] as CARESUser;
                     DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
+                    ViewState["DevelopmentDT"] = developmentDT;
                     // Bind to drop down list
                     ddlHousingDevelopment.DataSource = developmentDT;
                     ddlHousingDevelopment.DataValueField = "DevelopmentID";
@@ -51,9 +52,13 @@ namespace CaresTracker
                     ddlHousingDevelopment.DataValueField = "DevelopmentID";
                     ddlHousingDevelopment.DataTextField = "DevelopmentName";
                     ddlHousingDevelopment.DataBind();
-
+                    ViewState["DevelopmentDT"] = developmentDT;
                 }
             }
+
+            string select2Params = "'#MainContent_ddlHousingDevelopment', 'Select Development'";
+            string select2Call = $"setupSelect2({select2Params});";
+            ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "select2Call", select2Call, true);
         }
 
 
@@ -65,7 +70,7 @@ namespace CaresTracker
         public void InitializeProfileValues()
         {
             //Housing Stuff
-            tbAddress.Text = currentRes.Home.Address;
+            txtAddress.Value = currentRes.Home.Address;
             ddlHousingDevelopment.SelectedValue = currentRes.Home.DevelopmentID.ToString();
             tbUnitNumber.Text = currentRes.Home.UnitNumber;
             ddlRegion.SelectedValue = currentRes.Home.RegionID.ToString();
@@ -75,7 +80,7 @@ namespace CaresTracker
             tbFirstName.Text = currentRes.ResidentFirstName;
             tbLastName.Text = currentRes.ResidentLastName;
             tbDoB.Text = TextModeDateFormatter.Format(currentRes.DateOfBirth);
-            tbPhone.Text = currentRes.ResidentPhoneNumber.Insert(3, "-").Insert(7, "-");
+            tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
             //Family size still needed?
@@ -147,7 +152,14 @@ namespace CaresTracker
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
             ToggleControls(); //Enable controls for editing
+            if (ddlHousingDevelopment.SelectedIndex == 0) //if hcv housing
+            {
+                ddlRegion.Enabled = true;
+            }
+            ToggleHTMLInputElement();
+            ViewState["EditMode"] = true;
             btnSaveEdits.Visible = true;
+            btnCancelEdits.Visible = true;
             btnEditProfile.Visible = false;
         }
 
@@ -155,13 +167,13 @@ namespace CaresTracker
         private void ToggleControls(Control control = null)
         {
             List<Control> controls = control != null ? control.Controls.OfType<Control>().ToList() : Page.Controls.OfType<Control>().ToList();
-
+            List<string> excluded = new List<string>() { "tbZipcode", "ddlRegion" }; //Control Ids that should be excluded
             foreach (Control c in controls)
             {
                 Type type = c.GetType();
                 PropertyInfo prop = type.GetProperty("Enabled");
 
-                if (prop != null && type != typeof(Button) && !c.ID.Contains("lnk")) //Dont disable links or buttons
+                if ( prop != null && (type != typeof(Button) && !c.ID.Contains("lnk") && !excluded.Contains(c.ID))) //Dont disable links, buttons, or excluded controls
                 {
                     bool flag = (bool)prop.GetValue(c);
                     prop.SetValue(c, !flag, null);
@@ -173,9 +185,28 @@ namespace CaresTracker
                 }
             }
         }
+        // Toggle HTMLInput element used for API
+        private void ToggleHTMLInputElement()
+        {
+            
+            if (!txtAddress.Disabled)
+            {
+                txtAddress.Disabled = true;
+            }
+            else
+            {
+                txtAddress.Disabled = false;
+            }
+        }
 
         protected void btnSaveEdits_Click(object sender, EventArgs e)
         {
+            // Check that address is selected from the API predictions list
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                lblWrongAddressInput.Visible = true;
+                return;
+            }
 
             Resident res = new Resident();
             //Resident Info
@@ -206,13 +237,24 @@ namespace CaresTracker
             res.VaccineAppointmentDate = tbAppointmentDate.Text;
             //Housing Info
             res.Home = new House();
-                
-            res.Home.Address = tbAddress.Text;
+
+            // Slice up formatted address from Google API
+            string formatted_address = hdnfldFormattedAddress.Value;
+            string[] list = formatted_address.Split(',');
+
+            string Address = list[0];
+            // Remove "PA" from zipcode string
+            string ZipCode = list[2].Remove(0, 4);
+
+            res.Home.Address = Address;
             res.Home.UnitNumber = tbUnitNumber.Text;
             res.Home.RegionName = ddlRegion.SelectedItem.Text;
             res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
             res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
-            res.Home.ZipCode = tbZipcode.Text;
+            res.Home.ZipCode = ZipCode;
+
+            // Change txtZipCode to reflect new ZipCode
+            tbZipcode.Text = ZipCode;
 
             if (res.Home.DevelopmentID != -1) //If not HCV
             {
@@ -236,6 +278,7 @@ namespace CaresTracker
             {
                 new UpdateResident(res).ExecuteCommand();
                 ToggleControls();
+                ToggleHTMLInputElement();
                 btnEditProfile.Visible = true;
                 btnSaveEdits.Visible = false;
                 lblErrorMessage.Text = string.Empty;
@@ -245,12 +288,46 @@ namespace CaresTracker
                 lblErrorMessage.Visible = true;
                 lblErrorMessage.Text = $"Failed to update profile: {ex.Message}";
             }
+
+            ddlRegion.Enabled = false;
+            ViewState["EditMode"] = false;
             
         }
 
         protected void lnkResidentLookup_Click(object sender, EventArgs e)
         {
             Response.Redirect("ResidentLookup.aspx");
+        }
+
+        protected void ddlHousingDevelopment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlHousingDevelopment.SelectedIndex == 0)
+            {
+                if(ViewState["EditMode"] != null && (bool)ViewState["EditMode"])
+                    ddlRegion.Enabled = true;
+            }
+            else
+            {
+                DataTable dt = ViewState["DevelopmentDT"] as DataTable;
+                ddlRegion.Enabled = false;
+                int devId = int.Parse(ddlHousingDevelopment.SelectedValue);
+                ddlRegion.SelectedValue = (dt.Rows.Cast<DataRow>().First(dr => dr.Field<int>("DevelopmentID") == devId) as DataRow).Field<int>("RegionID").ToString();
+            }
+
+            upRegion.Update();
+        }
+
+        protected void btnCancelEdits_Click(object sender, EventArgs e)
+        {
+            ToggleControls();
+            ToggleHTMLInputElement();
+            lblErrorMessage.Text = string.Empty;
+            btnEditProfile.Visible = true;
+            btnSaveEdits.Visible = false;
+            btnCancelEdits.Visible = false;
+            ddlRegion.Enabled = false;
+            ViewState["EditMode"] = false;
+            InitializeProfileValues();
         }
     }
 }

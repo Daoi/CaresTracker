@@ -14,6 +14,9 @@
                     </nav>
                 </div>
                 <div class="container-fluid mt-2">
+                    <div runat="server" id="divNoRows" visible="false" class="row w-auto justify-content-center" style="height: 10vh;">
+                        <asp:Label ID="lblNoRows" runat="server" Text=""></asp:Label>
+                    </div>
                     <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
@@ -30,7 +33,7 @@
                     <div class="row">
                         <div class="col-md-8 mb-3">
                             <asp:Label ID="lblResidentNotFound" CssClass="hidden error-label" runat="server" Text=""></asp:Label>
-                            <asp:Button ID="btnCreateNewResident" CssClass="hidden btn btn-primary" runat="server" Text="Create New Resident" OnClick="NewResident_Click" />
+                            <asp:Button ID="btnCreateNewResident" CssClass="buttonStyle" runat="server" Text="Create New Resident" OnClick="NewResident_Click" />
                         </div>
                         <div class="col-md-4">
                         </div>
@@ -47,7 +50,7 @@
             table.on('draw', function () {
                 if (table.page.info().recordsDisplay <= 0) {
                     var search = $('.dataTables_filter input').val();
-                    $('#MainContent_lblResidentNotFound').text(`Resident with the name ${search} not found`);
+                    $('#MainContent_lblResidentNotFound').text(`Resident matching the search value ${search} not found`);
                     $('#MainContent_lblResidentNotFound').removeClass('hidden');
                     $('#MainContent_btnCreateNewResident').removeClass('hidden');
                     $('#MainContent_hfSearchInput').val(`${search}`);

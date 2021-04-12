@@ -91,71 +91,9 @@
                         <label>Event Type: </label>
                     </div>
                     <div class="col-7">
-                        <asp:DropDownList ID="ddlEventType" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlEventType_SelectedIndexChanged" AutoPostBack="True">
-                            <asp:ListItem Value="Select Event Type">Select Event Type</asp:ListItem>
-                            <asp:ListItem Value="divResourceTableEvent">Resource Table Event</asp:ListItem>
-                            <asp:ListItem Value="divFluShotEvent">Flu Shot Event</asp:ListItem>
-                            <asp:ListItem Value="divHealthEducationEvent">Health Education Event</asp:ListItem>
-                            <asp:ListItem Value="divOnlineEvent">Online Event</asp:ListItem>
-                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlEventType" CssClass="form-control" runat="server"></asp:DropDownList>
                     </div>
                 </div>
-                <asp:UpdatePanel ID="upEvents" runat="server" UpdateMode="Conditional">
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="ddlEventType" EventName="SelectedIndexChanged" />
-                    </Triggers>
-                    <ContentTemplate>
-                        <%-- Resource Table Event Start --%>
-                        <div id="divResourceTableEvent" runat="server" visible="false">
-                            <div class="row m-3">
-                                <div class="col">
-                                    <label>Table Event Topic: </label>
-                                </div>
-                                <div class="col-7">
-                                    <asp:TextBox ID="txtRTETopic" placeholder="Event Topic" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                </div>
-                            </div>
-                            <%-- Resource Table Event End --%>
-                            <%-- Flu Shot Event Start --%>
-                            <div id="divFluShotEvent" runat="server" visible="false">
-                                <div class="eventControlBG">
-                                    <asp:DropDownList ID="ddlFSENurse" CssClass="form-control" runat="server">
-                                        <asp:ListItem>Select Healthcare Provider</asp:ListItem>
-                                        <asp:ListItem>Jane Nurse</asp:ListItem>
-                                        <asp:ListItem>John Nurse</asp:ListItem>
-                                        <asp:ListItem>Unlisted</asp:ListItem>
-                                    </asp:DropDownList>
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                        <%-- Flu Shot Event End --%>
-                        <%-- Health Education Event Start --%>
-                        <div id="divHealthEducationEvent" runat="server" visible="false">
-                            <div class="row m-3">
-                                <div class="col">
-                                    <label>Health Education Event Topic: </label>
-                                </div>
-                                <div class="col-7">
-                                    <asp:TextBox ID="txtHEETopic" placeholder="Event Topic" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                </div>
-                            </div>
-                        </div>
-                        <%-- Health Education Event End --%>
-                        <%-- Online Event Start --%>
-                        <div id="divOnlineEvent" runat="server" visible="false">
-                            <div class="row m-3">
-                                <div class="col">
-                                    <label>Online Event Topic: </label>
-                                </div>
-                                <div class="col-7">
-                                    <asp:TextBox ID="txtOETopic" placeholder="Event Topic" runat="server" CssClass="form-control"></asp:TextBox><br />
-                                </div>
-                            </div>
-                        </div>
-                        <%-- Online Event End --%>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
                 <div class="row m-3">
                     <div class="col">
                         <label>Event Description and Notes:</label>

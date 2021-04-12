@@ -4,6 +4,7 @@
     background-image: url("../img/master-wen-lpLRwDZigvc-unsplash.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
 }
 
 .cherryFont{
@@ -64,7 +65,7 @@ a {
 }
 
 .inputCheckBox input[type="checkbox"] {
-    margin-right: .15em;
+    margin-right: .5em;
 }
 
 @media (max-width: 1024px) {
@@ -186,6 +187,15 @@ a {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.importCard {
+    height: auto;
+    background-color: white;
+    width: 50vw;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .verifyCard {
     height: auto;
     background-color: white;
@@ -221,7 +231,7 @@ a {
 }
 
 /*Ids for table's search bar div*/
-#MainContent_gvInteractionList_filter, #MainContent_gvResidentList_filter, #MainContent_gvEventList_filter {
+#MainContent_gvInteractionList_filter, #MainContent_gvResidentList_filter, #MainContent_gvEventList_filter, #MainContent_gvCHWList_filter {
     justify-content: center;
     text-align: center;
 }
@@ -304,7 +314,7 @@ thead {
 }
 
 #MainContent_gvOutstandingFollowUps_filter, #MainContent_gvCompletedFollowUps_filter,
-    #MainContent_gvEvents_filter, #MainContent_gvRegions_filter, #MainContent_gvHousingDevelopments_filter, #MainContent_gvServices_filter {
+    #MainContent_gvEvents_filter, #MainContent_gvRegions_filter, #MainContent_gvHousingDevelopments_filter, #MainContent_gvServices_filter, #MainContent_gvEventTypes_filter {
     margin-right: 9.7em;
 }
 
@@ -355,4 +365,22 @@ thead {
 
 .eventLists {
     list-style-type: none;
+}
+
+
+#MainContent_fileUpload{
+    margin-left: .75rem;
+}
+
+.developmentsID {
+    width: 33%;
+}
+
+.addResidentList
+{
+    list-style-type: none;
+}
+
+.warningIcon{
+    color: orangered;
 }

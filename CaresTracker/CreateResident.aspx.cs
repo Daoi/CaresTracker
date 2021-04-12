@@ -9,6 +9,7 @@ using CaresTracker.DataAccess.DataAccessors.DevelopmentAccessors;
 using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
 using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
 using CaresTracker.DataModels;
+using CaresTracker.Utilities;
 
 namespace CaresTracker
 {
@@ -47,9 +48,8 @@ namespace CaresTracker
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
             // Check that address is selected from the API predictions list
-            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            if (!ValidateForm())
             {
-                lblWrongAddressInput.Visible = true;
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace CaresTracker
             ResidentWriter RW = new ResidentWriter(newResident);
             object AddResidentResult = RW.ExecuteCommand();
 
-            if (AddResidentResult == null) //If null Resident is NOT unique
+            if (AddResidentResult.GetType().Equals(typeof(DBNull))) //If null Resident is NOT unique
             {
                 lblUniqueResident.Visible = true;
                 return;
@@ -89,19 +89,28 @@ namespace CaresTracker
 
             residentHouse.ZipCode = ZipCode;
             residentHouse.Address = Address;
-            residentHouse.UnitNumber = txtUnitNumber.Text;
+            residentHouse.UnitNumber = string.IsNullOrWhiteSpace(txtUnitNumber.Text) ? "N/A" : txtUnitNumber.Text;
+            // If HCV is selected
             if (ddlHousing.SelectedIndex == 1)
             {
-                residentHouse.HouseType = "Housing Choice Voucher";
                 residentHouse.RegionID = Int32.Parse(ddlRegion.SelectedValue); // Requires validation to ensure input is a number
                 residentHouse.DevelopmentID = -1;
             }
+            // If Development is selected
             else
             {
-                residentHouse.HouseType = "Development";
                 residentHouse.DevelopmentID = Int32.Parse(ddlDevelopments.SelectedValue);
                 // Retrieve RegionID of Development
-                residentHouse.RegionID = developmentDT.Rows[0].Field<int>("RegionID");
+                residentHouse.RegionID = developmentDT.Rows.Cast<DataRow>().ToList()
+                    .Where(dr => (int)dr["DevelopmentID"] == residentHouse.DevelopmentID)
+                    .Select(dr => dr.Field<int>("RegionID")).ElementAt(0);
+                //Create Development object for resident object
+                DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
+                    .First(r => r.Field<string>("DevelopmentName")
+                    .Equals(ddlDevelopments.SelectedItem.ToString()));
+
+                newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
+
             }
 
             // Attach newly created house to resident for session storage
@@ -119,16 +128,6 @@ namespace CaresTracker
 
                 newResident.ResidentID = Convert.ToInt32(AddResidentResult);
 
-                // Create Development object if development is selected house type
-                if (residentHouse.HouseType == "Development")
-                {
-                    //Get the row matching the currently selected Housing Development Name
-                    DataRow hdRecord = developmentDT.Rows.Cast<DataRow>()
-                        .First(r => r.Field<string>("DevelopmentName")
-                        .Equals(ddlDevelopments.SelectedItem.ToString()));
-
-                    newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
-                }
                 //Store new resident in Session to use to redirect/populate resident profile
                 Session["Resident"] = newResident;
 
@@ -149,6 +148,7 @@ namespace CaresTracker
             List<HtmlGenericControl> housingDivs = new List<HtmlGenericControl>() { divHouse, divDevelopmentUnit };
             DropDownList ddl = (DropDownList)sender;
             string selectedId = ddl.SelectedValue;
+
             if (ddl.SelectedIndex == 0)
             {
                 housingDivs.ForEach(ed => ed.Visible = false); //Hide all divs as user must select a housing type
@@ -163,5 +163,75 @@ namespace CaresTracker
             ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "select2Call", select2Call, true);
             upHousing.Update();//Update the page without doing full postback using update panel
         }
+
+        private bool ValidateForm()
+        {
+            bool isFormValid = true;
+
+            List<TextBox> mandatory = new List<TextBox>() { txtFirstName, txtLastName, txtDOB, txtPhoneNumber };
+
+            if (!mandatory.All(tb => !string.IsNullOrWhiteSpace(tb.Text)))
+            {
+                lblValidationError.Text = "First Name, Last Name, Date of Birth and Phone Number must be filled out";
+                lblValidationError.Visible = true;
+                isFormValid = false;
+            }
+            else
+            {
+                lblValidationError.Visible = false;
+            }
+
+            string phone;
+
+            (isFormValid, phone) = Validation.IsPhoneNumber(txtPhoneNumber.Text);
+
+            if (isFormValid)
+            {
+                txtPhoneNumber.Text = phone;
+                lblValidationPhone.Visible = false;
+            }
+            else
+            {
+                lblValidationPhone.Text = "Enter 10 digits or ###-###-####";
+                lblValidationPhone.Visible = true;
+            }
+
+            if(rblGender.SelectedItem == null)
+            {
+                isFormValid = false;
+                lblValidationGender.Text = "Please select a value for gender";
+                lblValidationGender.Visible = true;
+            }
+            else
+            {
+                lblValidationGender.Visible = false;
+            }
+
+
+            if(ddlHousing.SelectedIndex == 0)
+            {
+                isFormValid = false;
+                lblValidationHousing.Text = "Must select a housing type.";
+                lblValidationHousing.Visible = true;
+            }
+            else
+            {
+                lblValidationHousing.Visible = false;
+            }
+
+            // Check that address is selected from the API predictions list
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                isFormValid = false;
+                lblWrongAddressInput.Visible = true;
+            }
+            else
+            {
+                lblWrongAddressInput.Visible = false;
+            }
+
+            return isFormValid;
+        }
+
     }
 }
