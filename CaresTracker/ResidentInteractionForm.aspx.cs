@@ -27,7 +27,7 @@ namespace CaresTracker
             links = new Dictionary<string, Panel> {
                 { "residentInfo", pnlResidentInfoForm }, { "residentHealth", pnlResidentHealthForm },
                 { "meetingInfo", pnlMeetingInfoForm }, { "otherInfo", pnlOtherForm }, { "services", pnlServicesForm },
-                {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}
+                {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}, {"editHistory", pnlEditHistory}
                 };
 
             if (!IsPostBack)
@@ -57,7 +57,7 @@ namespace CaresTracker
                     ViewState["PanelState"] = true;
                     //Panels
                     TogglePanels();
-                   //Vaccines require a new interaction to be changed
+                    //Vaccines require a new interaction to be changed
                     tbVaccineAppointmentDate.Enabled = false;
                     ddlVaccineEligibility.Enabled = false;
                     ddlVaccineInterest.Enabled = false;
@@ -76,12 +76,24 @@ namespace CaresTracker
                     divFollowUpStatus.Visible = interaction.RequiresFollowUp && string.IsNullOrEmpty(interaction.FollowUpCompleted);
                     ViewState["FollowUpRequired"] = 0; //Shouldn't matter what this is
                     divFollowUpRequired.Visible = false;
+
+                    // Populate gvEditHistory
+                    DataTable editHistoryDT = new GetInteractionEditHistory().RunCommand(interaction.InteractionID);
+                    gvEditHistory.DataSource = editHistoryDT;
+                    gvEditHistory.DataBind();
+
+                    // Hide Edit History tab if there is no edits to this interaction
+                    if (editHistoryDT.Rows.Count > 0)
+                    {
+                        editHistory.Visible = true;
+                    }
                 }
+
             }
 
         }
-        
-        
+
+
         //EVENT HANDLERS
 
 
@@ -107,13 +119,13 @@ namespace CaresTracker
 
         protected void lnkBtnEdit_Click(object sender, EventArgs e)
         {
-            if(ViewState["EditMode"] == null)
+            if (ViewState["EditMode"] == null)
             {
                 ViewState["EditMode"] = true;
                 lnkBtnEdit.Text = $"<i class='fas fa-save' id='icoEditSave' runat='server'  style='margin-right: .5rem'></i> Save Edits";
                 TogglePanels();
             }
-            else if((bool)ViewState["EditMode"] == true)
+            else if ((bool)ViewState["EditMode"] == true)
             {
                 if (!IsFormValid()) { return; }
                 //Popup modal
@@ -122,7 +134,7 @@ namespace CaresTracker
             }
 
         }
-        
+
         protected void btnUpdateServices_Click(object sender, EventArgs e)
         {
             interaction = Session["Interaction"] as Interaction;
@@ -141,7 +153,7 @@ namespace CaresTracker
 
             try
             {
-                if (completedServices.Count > 0) 
+                if (completedServices.Count > 0)
                     new UpdateInteractionServices(completedServices, interaction.InteractionID, 1).ExecuteCommand();
 
                 if (incompleteServices.Count > 0)
@@ -155,7 +167,7 @@ namespace CaresTracker
                 lblUpdateServices.Text = $"Services updated succesfully";
                 lblUpdateServices.Visible = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblUpdateServices.Text = $"Problem updating services, please try again later. {ex}";
                 lblUpdateServices.Visible = true;
@@ -174,7 +186,7 @@ namespace CaresTracker
                 {
                     SaveEdits(taEditReason.InnerText);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     lblModalError.Text = "Error updating interaction, please try again later";
                     return;
@@ -222,10 +234,10 @@ namespace CaresTracker
             try
             {
                 new UpdateInteraction(newInteraction).ExecuteCommand();
-                
+
                 new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID, userId);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -287,7 +299,7 @@ namespace CaresTracker
             newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
             newInteraction.LocationOfContact = tbLocation.Text;
             newInteraction.COVIDTestLocation = tbTestingLocation.Text.Equals("N/A") ? "" : tbTestingLocation.Text;
-            if(ddlTestResult.SelectedIndex == 0)
+            if (ddlTestResult.SelectedIndex == 0)
             {
                 newInteraction.COVIDTestResult = string.Empty;
             }
@@ -398,7 +410,7 @@ namespace CaresTracker
             {
                 ddlTestResult.SelectedIndex = 0;
             }
-            else if(interaction.COVIDTestResult.Equals("No Recent Test"))
+            else if (interaction.COVIDTestResult.Equals("No Recent Test"))
             {
                 tbTestingLocation.Text = "N/A";
                 ddlTestResult.SelectedValue = "No Recent Test";
@@ -424,7 +436,7 @@ namespace CaresTracker
 
             if (interaction.CompletedServices != null && interaction.CompletedServices.Count > 0)
             {
-                allServices = allServices.Concat(interaction.CompletedServices).ToList();   
+                allServices = allServices.Concat(interaction.CompletedServices).ToList();
                 someServicesAreComplete = true;
             }
 
@@ -579,7 +591,7 @@ namespace CaresTracker
 
         protected void ddlFollowUp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ddlFollowUp.SelectedIndex == 0)
+            if (ddlFollowUp.SelectedIndex == 0)
             {
                 ViewState["FollowUpRequired"] = null;
             }
