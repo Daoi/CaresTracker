@@ -25,8 +25,10 @@
                     </p>
                 </div>
                 <div class="row justify-content-center text-secondary mt-3">
-                    Select file:<br />
-                    <asp:FileUpload CssClass="fileUpload" ID="fileUpload" runat="server"></asp:FileUpload>
+                    <div class="custom-file align-items-center">
+                        <asp:FileUpload CssClass="fileUpload custom-file-input" ID="fileUpload" runat="server"></asp:FileUpload>
+                        <label class="custom-file-label fileUpload" for="MainContent_fileUpload">Choose file</label>
+                    </div>
                 </div>
                 <div class="row justify-content-center mt-3">
                     <asp:DropDownList ID="ddlDevelopments" CssClass="developmentsID" runat="server"></asp:DropDownList>
@@ -51,4 +53,13 @@
             });
         });
     </script>
+    
+    <script>
+        //Change file label to file uploaded
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
 </asp:Content>
