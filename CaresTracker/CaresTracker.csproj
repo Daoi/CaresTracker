@@ -378,6 +378,7 @@
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkersByUserID.cs" />
     <Compile Include="Importing\FileManager.cs" />
     <Compile Include="Importing\FileModel\ImportFile.cs" />
+    <Compile Include="Importing\ImportError.cs" />
     <Compile Include="Importing\ImportResidents.cs" />
     <Compile Include="InteractionList.aspx.cs">
       <DependentUpon>InteractionList.aspx</DependentUpon>
