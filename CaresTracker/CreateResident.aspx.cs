@@ -130,8 +130,19 @@ namespace CaresTracker
 
                 //Store new resident in Session to use to redirect/populate resident profile
                 Session["Resident"] = newResident;
+                CARESUser user = Session["User"] as CARESUser;
 
-                Response.Redirect("ResidentProfile.aspx");
+                if (user.UserType == "A")
+                {
+                    lblFail.Visible = false;
+                    lblUniqueResident.Visible = false;
+                    lblWrongAddressInput.Visible = false;
+                    lblSuccess.Text = "Resident created succesfully";
+                }
+                else
+                {
+                    Response.Redirect("ResidentProfile.aspx");
+                }
             }
             catch (Exception ex) // If the House post fails, display error label
             {
