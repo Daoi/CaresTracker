@@ -18,6 +18,10 @@ namespace CaresTracker
             if (!IsPostBack)
             {
                 CARESUser user = Session["User"] as CARESUser;
+
+                if (!user.UserType.Equals("T"))
+                    Response.Redirect("Homepage.aspx");
+
                 DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
 
                 // Bind to drop down list
