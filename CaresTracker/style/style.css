@@ -384,3 +384,11 @@ thead {
 .warningIcon{
     color: orangered;
 }
+
+.cblWorker{
+    height: 20em;
+}
+
+.cblWorker label {
+    padding-left: .2em;
+}
