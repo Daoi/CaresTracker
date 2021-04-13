@@ -389,3 +389,11 @@ thead {
     height:250px;
     overflow-y: auto;
 }
+
+.cblWorker{
+    height: 20em;
+}
+
+.cblWorker label {
+    padding-left: .2em;
+}
