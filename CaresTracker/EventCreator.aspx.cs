@@ -76,7 +76,7 @@ namespace CaresTracker
                 newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
                 newEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
                 newEvent.EventTypeName = ddlEventType.SelectedItem.Text;
-                newEvent.EventDescription = txtDescription.InnerText;
+                newEvent.EventDescription = txtDescription.Text;
 
                 AddEvent add = new AddEvent(newEvent);
                 int res = add.ExecuteCommand();
@@ -110,18 +110,12 @@ namespace CaresTracker
 
         public bool ValidateFields()
         {
-            if (Validation.IsEmpty(txtEventName.Text) || Validation.IsEmpty(txtEventLocation.Text) || Validation.IsEmpty(txtEventDate.Text) ||
-            Validation.IsEmpty(txtEventTimeStart.Text) || Validation.IsEmpty(txtEventTimeEnd.Text) || Validation.IsEmpty(txtDescription.InnerText))
+
+            List<TextBox> mandatory = new List<TextBox> { txtEventName, txtEventLocation, txtEventDate, txtEventTimeStart, txtEventTimeEnd, txtDescription };
+            if(!mandatory.All(tb => !string.IsNullOrWhiteSpace(tb.Text)))
             {
                 lblError.Visible = true;
                 lblError.Text = "Fill out all fields";
-                return false;
-            }
-
-            if (!Validation.IsAlphanumeric(txtEventName.Text) || !Validation.IsAlphanumeric(txtEventLocation.Text))
-            {
-                lblError.Visible = true;
-                lblError.Text = "Can only accept alphanumeric characters(a-z, 0-9) for event name and location";
                 return false;
             }
 

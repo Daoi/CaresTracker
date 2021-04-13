@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.EventAccessors;
@@ -178,18 +180,11 @@ namespace CaresTracker
 
         public bool ValidateFields()
         {
-            if (Validation.IsEmpty(txtEventName.Text) || Validation.IsEmpty(txtLocation.Text) || Validation.IsEmpty(txtEventDate.Text) ||
-            Validation.IsEmpty(txtStartTime.Text) || Validation.IsEmpty(txtEndTime.Text) || Validation.IsEmpty(txtDescription.Text))
+            List<TextBox> mandatory = new List<TextBox> { txtEventName, txtLocation, txtEventDate, txtStartTime, txtEndTime, txtDescription };
+            if (!mandatory.All(tb => !string.IsNullOrWhiteSpace(tb.Text)))
             {
                 lblError.Visible = true;
                 lblError.Text = "Fill out all fields";
-                return false;
-            }
-
-            if (!Validation.IsAlphanumeric(txtEventName.Text) || !Validation.IsAlphanumeric(txtLocation.Text))
-            {
-                lblError.Visible = true;
-                lblError.Text = "Can only accept alphanumeric characters(a-z, 0-9) for event name and location";
                 return false;
             }
 

@@ -73,7 +73,7 @@
                     <ContentTemplate>
                         <div class="row m-3">
                             <div class="col">
-                                <label>Select Main Host</label>
+                                <label>Select Main Host:</label>
                             </div>
                             <div class="col-7">
                                 <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
@@ -98,8 +98,8 @@
                     <div class="col">
                         <label>Event Description and Notes:</label>
                     </div>
-                    <div class="col-7">                        
-                        <textarea class="w-100 form-control" id="txtDescription" rows="6" runat="server"></textarea>
+                    <div class="col-7">
+                        <asp:TextBox ID="txtDescription" CssClass="w-100 form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row m-3">
