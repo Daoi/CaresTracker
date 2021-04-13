@@ -33,7 +33,7 @@ namespace CaresTracker
             {
                 InitializeProfileValues();
                 // Provide initial values for hidden fields
-                hdnfldFormattedAddress.Value = "initial";
+                hdnfldFormattedAddress.Value = txtAddress.Value;
                 hdnfldName.Value = txtAddress.Value;
                 ToggleControls(); //Set page to disabled status
                 if (Session["DevelopmentDT"] == null)
@@ -237,7 +237,7 @@ namespace CaresTracker
             res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
             res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
 
-            if (!hdnfldFormattedAddress.Value.Equals("initial")) // If a new address was selected
+            if (!hdnfldFormattedAddress.Value.Equals(txtAddress.Value)) // If a new address was selected
             {
                 // Slice up formatted address from Google API
                 string formatted_address = hdnfldFormattedAddress.Value;
