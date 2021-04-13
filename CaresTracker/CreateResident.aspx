@@ -56,7 +56,7 @@
                         <label>Email: </label>
                     </div>
                     <div class="col-7">
-                        <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" TextMode="email" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row m-3">
