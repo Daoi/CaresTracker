@@ -134,17 +134,16 @@ namespace CaresTracker
                 try
                 {
                     new UpdateEvent(editedEvent).ExecuteCommand();
+                    EnableDisableControls();
+                    btnEdit.Visible = true;
+                    btnSave.Visible = false;
+                    btnCancel.Visible = false;
+                    lblError.Visible = false;
                 }
                 catch (Exception ex)
                 {
                     lblError.Text = ex.Message;
                 }
-
-                EnableDisableControls();
-                btnEdit.Visible = true;
-                btnSave.Visible = false;
-                btnCancel.Visible = false;
-                lblError.Visible = false;
             }
         }
 
