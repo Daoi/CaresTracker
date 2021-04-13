@@ -20,7 +20,13 @@ namespace CaresTracker
         DataTable interactions;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["Resident"] != null)
+            CARESUser user = Session["User"] as CARESUser;
+
+            if (user.UserType.Equals("A"))
+                Response.Redirect("Homepage.aspx");
+
+
+            if (Session["Resident"] != null)
             {
                 currentRes = (Resident)Session["Resident"];
             }
@@ -35,7 +41,6 @@ namespace CaresTracker
                 ToggleControls(); //Set page to disabled status
                 if (Session["DevelopmentDT"] == null)
                 {
-                    CARESUser user = Session["User"] as CARESUser;
                     DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
                     ViewState["DevelopmentDT"] = developmentDT;
                     // Bind to drop down list
@@ -55,6 +60,9 @@ namespace CaresTracker
                     ViewState["DevelopmentDT"] = developmentDT;
                 }
             }
+
+
+
 
             string select2Params = "'#MainContent_ddlHousingDevelopment', 'Select Development'";
             string select2Call = $"setupSelect2({select2Params});";

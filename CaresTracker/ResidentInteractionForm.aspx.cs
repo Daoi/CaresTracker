@@ -1,4 +1,5 @@
 ﻿
+using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
@@ -29,6 +30,7 @@ namespace CaresTracker
                 { "meetingInfo", pnlMeetingInfoForm }, { "otherInfo", pnlOtherForm }, { "services", pnlServicesForm },
                 {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}, {"editHistory", pnlEditHistory}
                 };
+            CARESUser user = Session["User"] as CARESUser;
 
             if (!IsPostBack)
             {
@@ -87,6 +89,14 @@ namespace CaresTracker
                     {
                         editHistory.Visible = true;
                     }
+                    //Edit Permissions
+                    if((user.UserType.Equals("C") && interaction.HealthWorkerID != user.UserID) || //If the current user is a CHW and not the creating user
+                       (user.UserType.Equals("A") && interaction.HealthWorkerID != user.UserID) || //If current user is a partner admin but not the creating user
+                       (user.UserType.Equals("S") && user.OrganizationID != new GetOrgIDByUserID().RunCommand(interaction.HealthWorkerID))//If current user is a supervisor but not a supervisor of the creating user
+                       )
+                    {
+                        lnkBtnEdit.Visible = false;
+                    }
                 }
 
             }
@@ -119,6 +129,14 @@ namespace CaresTracker
 
         protected void lnkBtnEdit_Click(object sender, EventArgs e)
         {
+            CARESUser user = Session["User"] as CARESUser;
+            Interaction interaction = Session["Interaction"] as Interaction;
+
+            if (interaction.HealthWorkerID != user.UserID || user.UserType.Equals("A"))
+            {
+                return;
+            }
+
             if (ViewState["EditMode"] == null)
             {
                 ViewState["EditMode"] = true;
@@ -176,6 +194,8 @@ namespace CaresTracker
 
         protected void btnEditSubmit_Click(object sender, EventArgs e)
         {
+
+
             if (string.IsNullOrWhiteSpace(taEditReason.InnerText))
             {
                 lblModalError.Text = "Reason for edit is required";
