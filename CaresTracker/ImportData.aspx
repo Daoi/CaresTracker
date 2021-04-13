@@ -36,8 +36,9 @@
                 <div class="row justify-content-center mt-5">
                     <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" OnClick="btnSubmitImport_Click" />
                 </div>
-                <div class="row justify-content-center mt-5"></div>
-                <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+                <div runat="server" visible="false" id="divUploadErrors" class="row justify-content-center mt-5 fileUploadErrors">
+                    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+                </div>
             </div>
             <div class="card-footer text-muted">
                 CARES Tracker
@@ -53,7 +54,7 @@
             });
         });
     </script>
-    
+
     <script>
         //Change file label to file uploaded
         $(".custom-file-input").on("change", function () {
