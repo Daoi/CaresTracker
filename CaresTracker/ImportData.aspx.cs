@@ -54,7 +54,7 @@ namespace CaresTracker
                 }
                 catch (Exception ex)
                 {
-                    sb.Append($"Error uploading file: {ex.Message}");
+                    sb.Append($"Error uploading file: {ex.Message}.");
                     lblMessage.Text = sb.ToString();
                 }
             }
@@ -76,18 +76,31 @@ namespace CaresTracker
                 int regionID = developmentDT.Rows.Cast<DataRow>().ToList()
                 .Where(dr => (int)dr["DevelopmentID"] == devID)
                 .Select(dr => dr.Field<int>("RegionID")).ElementAt(0);
+                List<ImportFile> results = new List<ImportFile>();
 
-                FileManager fm = new FileManager(path);
+                try
+                {
+                    FileManager fm = new FileManager(path);
+                    results = fm.results;
+                }
+                catch(Exception e)
+                {
+                    lblMessage.Text = e.Message.Split(new string[] { "If" }, StringSplitOptions.None)[0];
+                    divUploadErrors.Visible = true;
+                    return;
+                }
 
-                (int inserts, List<int> errors) = ImportResidents.Import(fm.results, devID, regionID);
+
+                (int inserts, List<ImportError> errors) = ImportResidents.Import(results, devID, regionID);
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append($"Succesfully inserted {inserts} out of {fm.results.Count} residents from the file. ");
-                if(errors.Count > 0)
+                sb.Append($"Succesfully inserted {inserts} out of {results.Count} residents from the file. ");
+
+                if (errors.Count > 0)
                 {
                     divUploadErrors.Visible = true;
                     sb.Append("The following rows had errors: <br />");
-                    errors.ForEach(i => sb.Append($"Row #{i} Resident Name: {fm.results[i-1].ResidentFirstName} {fm.results[i - 1].ResidentLastName} <br />"));
+                    errors.ForEach(i => sb.Append($"{i.ToString()} <br />"));
                 }
                 lblMessage.Text = sb.ToString();
             }
