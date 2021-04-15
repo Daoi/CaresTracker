@@ -237,22 +237,15 @@
                         <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
                             <h5>Vaccine Info</h5>
                             <div class="row m-3">
-                                <asp:Label ID="lblErrorVaccine" runat="server" Text="Please fill out vaccine interest and eligibility." CssClass="h4 alert-danger" Visible="false"></asp:Label>
-                                <label>Vaccine Interest</label>
-                                <asp:DropDownList ID="ddlVaccineInterest" CssClass="form-control" runat="server">
-                                    <asp:ListItem>Select Vaccine Interest</asp:ListItem>
-                                    <asp:ListItem Value="True">Interested in vaccine</asp:ListItem>
-                                    <asp:ListItem Value="False">Not interested in vaccine</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="row m-3">
-                                <label>Vaccine Phase</label>
-                                <asp:DropDownList ID="ddlVaccineEligibility" CssClass="form-control" runat="server">
-                                    <asp:ListItem>Select Eligibility</asp:ListItem>
-                                    <asp:ListItem Value="0">Phase1A</asp:ListItem>
-                                    <asp:ListItem Value="1">Phase1B</asp:ListItem>
-                                    <asp:ListItem Value="2">Phase1C</asp:ListItem>
-                                    <asp:ListItem Value="3">Phase2</asp:ListItem>
+                                <label>Vaccine Status</label>
+                                <asp:Label ID="lblErrorVaccine" runat="server" Text="Please fill out vaccine status and appointment date if known." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                                <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
+                                    <asp:ListItem>Select Vaccine Status</asp:ListItem>
+                                    <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
+                                    <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
+                                    <asp:ListItem Value="Interested in vaccine, no appointment">Interested in vaccine, no appointment</asp:ListItem>
+                                    <asp:ListItem Value="Appointment Shcheduled">Appointment Shcheduled</asp:ListItem>
+                                    <asp:ListItem Value="Vaccinated">Vaccinated</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div runat="server" id="divVaccineAppointment" class="row m-3">
@@ -266,14 +259,14 @@
                             <h5>Edit History</h5>
                             <asp:GridView ID="gvEditHistory" Width="100%" runat="server" AutoGenerateColumns="False" class="table table-light table-striped table-bordered thead-dark">
                                 <Columns>
-                                    <asp:BoundField DataField="EditDate" HeaderText="Edit Date" >
-                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <asp:BoundField DataField="EditDate" HeaderText="Edit Date">
+                                        <HeaderStyle CssClass="cherryBackground" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="Username" HeaderText="Editor Username" >
-                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <asp:BoundField DataField="Username" HeaderText="Editor Username">
+                                        <HeaderStyle CssClass="cherryBackground" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="EditReason" HeaderText="Reason for Edit" >
-                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <asp:BoundField DataField="EditReason" HeaderText="Reason for Edit">
+                                        <HeaderStyle CssClass="cherryBackground" />
                                     </asp:BoundField>
                                 </Columns>
                             </asp:GridView>

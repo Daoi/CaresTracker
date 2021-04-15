@@ -59,8 +59,7 @@ namespace CaresTracker
                     TogglePanels();
                     //Vaccines require a new interaction to be changed
                     tbVaccineAppointmentDate.Enabled = false;
-                    ddlVaccineEligibility.Enabled = false;
-                    ddlVaccineInterest.Enabled = false;
+                    ddlVaccineStatus.Enabled = false;
                     //Services
                     //Side Bar
                     lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
@@ -271,11 +270,13 @@ namespace CaresTracker
             }
 
             //Update Resident vaccine values
-            bool interest = ddlVaccineInterest.SelectedIndex == 1;
-            int eligibility = int.Parse(ddlVaccineEligibility.SelectedValue);//First index doesn't count
+            string status = ddlVaccineStatus.SelectedValue;
             string date = tbVaccineAppointmentDate.Text;
 
-            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
+            res.VaccineStatus = status;
+            res.VaccineAppointmentDate = date;
+
+            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, status, date);
 
             Session["InteractionSaved"] = true;
             Session["Interaction"] = newInteraction;
@@ -362,21 +363,13 @@ namespace CaresTracker
             ddlHousingType.Enabled = false;
 
             //Vaccine Info
-            if (res.VaccineEligibility == null)
+            if (res.VaccineStatus == null)
             {
-                ddlVaccineEligibility.SelectedIndex = 0;
+                ddlVaccineStatus.SelectedIndex = 0;
             }
             else
             {
-                ddlVaccineEligibility.SelectedValue = res.VaccineEligibility.ToString();
-            }
-            if (res.VaccineInterest == null)
-            {
-                ddlVaccineInterest.SelectedIndex = 0;
-            }
-            else
-            {
-                ddlVaccineInterest.SelectedValue = res.VaccineInterest.ToString();
+                ddlVaccineStatus.SelectedValue = res.VaccineStatus;
             }
 
             if (!string.IsNullOrEmpty(res.VaccineAppointmentDate))
@@ -539,7 +532,7 @@ namespace CaresTracker
             }
 
             // vaccine info
-            if (ddlVaccineInterest.SelectedIndex == 0 || ddlVaccineEligibility.SelectedIndex == 0)
+            if (ddlVaccineStatus.SelectedIndex == 0)
             {
                 isValid = false;
                 lblErrorVaccine.Visible = true;
@@ -550,6 +543,7 @@ namespace CaresTracker
                 lblErrorVaccine.Visible = false;
                 icErrorVaxInfo.Visible = false;
             }
+  
 
             // action plan
             if (Validation.IsEmpty(nextSteps.InnerText))
