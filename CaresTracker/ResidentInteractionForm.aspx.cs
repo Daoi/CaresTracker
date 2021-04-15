@@ -532,7 +532,8 @@ namespace CaresTracker
             }
 
             // vaccine info
-            if (ddlVaccineStatus.SelectedIndex == 0)
+            bool editing = (Session["EditMode"] as bool?) ?? false;
+            if (ddlVaccineStatus.SelectedIndex == 0 && !editing)
             {
                 isValid = false;
                 lblErrorVaccine.Visible = true;

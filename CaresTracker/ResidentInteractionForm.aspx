@@ -94,7 +94,9 @@
                         <%-- Meeting Info Form Start --%>
                         <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
                             <h5>Meeting Info</h5>
-                            <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                            <div class="row">
+                                <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                            </div>
                             <div class="row m-3">
                                 <label>Meeting Type</label>
                                 <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
@@ -236,9 +238,12 @@
                         <%-- Vaccine Form Start --%>
                         <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
                             <h5>Vaccine Info</h5>
+                            <h6>Vaccine Status</h6>
                             <div class="row m-3">
-                                <label>Vaccine Status</label>
-                                <asp:Label ID="lblErrorVaccine" runat="server" Text="Please fill out vaccine status and appointment date if known." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                                <br />
+                                <div>
+                                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please fill out Vaccine Status. Fill out appointment date if known." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                                </div>
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
                                     <asp:ListItem>Select Vaccine Status</asp:ListItem>
                                     <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
