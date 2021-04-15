@@ -22,10 +22,6 @@ namespace CaresTracker
         {
             CARESUser user = Session["User"] as CARESUser;
 
-            if (user.UserType.Equals("A"))
-                Response.Redirect("Homepage.aspx");
-
-
             if (Session["Resident"] != null)
             {
                 currentRes = (Resident)Session["Resident"];

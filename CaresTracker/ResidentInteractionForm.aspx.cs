@@ -34,6 +34,10 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
+                //Redirect if not apart of same org and not temple admin
+                if (!user.UserType.Equals("T") && user.OrganizationID != new GetOrgIDByUserID().RunCommand(interaction.HealthWorkerID))
+                    Response.Redirect("Homepage.aspx");
+
                 //Set resident info (first tab) to visible, others to false
                 links.Keys.ToList().Where(s => !s.Equals("residentInfo")).ToList().ForEach(s => links[s].Visible = false);
                 cblServices.DataSource = new GetAllServices().ExecuteCommand();
@@ -90,10 +94,7 @@ namespace CaresTracker
                         editHistory.Visible = true;
                     }
                     //Edit Permissions
-                    if((user.UserType.Equals("C") && interaction.HealthWorkerID != user.UserID) || //If the current user is a CHW and not the creating user
-                       (user.UserType.Equals("A") && interaction.HealthWorkerID != user.UserID) || //If current user is a partner admin but not the creating user
-                       (user.UserType.Equals("S") && user.OrganizationID != new GetOrgIDByUserID().RunCommand(interaction.HealthWorkerID))//If current user is a supervisor but not a supervisor of the creating user
-                       )
+                    if(( user.UserType.Equals("A") || user.UserType.Equals("C")) && interaction.HealthWorkerID != user.UserID ) //If current user is a partner admin or chw but not the creating user
                     {
                         lnkBtnEdit.Visible = false;
                     }

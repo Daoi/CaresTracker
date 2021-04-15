@@ -132,17 +132,8 @@ namespace CaresTracker
                 Session["Resident"] = newResident;
                 CARESUser user = Session["User"] as CARESUser;
 
-                if (user.UserType == "A")
-                {
-                    lblFail.Visible = false;
-                    lblUniqueResident.Visible = false;
-                    lblWrongAddressInput.Visible = false;
-                    lblSuccess.Text = "Resident created succesfully";
-                }
-                else
-                {
-                    Response.Redirect("ResidentProfile.aspx");
-                }
+                Response.Redirect("ResidentProfile.aspx");
+                
             }
             catch (Exception ex) // If the House post fails, display error label
             {
