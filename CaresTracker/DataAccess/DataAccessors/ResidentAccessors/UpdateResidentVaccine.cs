@@ -15,12 +15,11 @@ namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
             CommandType = CommandType.StoredProcedure;
         }
 
-        public int ExecuteCommand(int id, bool interest, int phase, string date)
+        public int ExecuteCommand(int id, string status, string date)
         {
             Parameters = new MySqlParameter[] {
                 new MySqlParameter("ResidentID", id),
-                new MySqlParameter("VaccineInterest", interest),
-                new MySqlParameter("VaccineEligibility", phase),
+                new MySqlParameter("VaccineStatus", status),
                 new MySqlParameter("VaccineAppointmentDate", date) };
 
             ExecuteQuery eq = new ExecuteQuery();
