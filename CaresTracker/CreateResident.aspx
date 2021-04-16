@@ -21,7 +21,7 @@
                 <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationError" role="alert" Visible="false"></asp:Label>
             </div>
             <%-- Resident Info Start --%>
-            <div class="container-fluid mt-5 w-75">
+            <div class="container-fluid mt-3 w-75">
                 <div class="row">
                     <div class="col">
                         <h5>Personal Information:</h5>
@@ -107,7 +107,7 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="row m-3">
+                <div class="row m-3 mb-5">
                     <div class="col">
                         <label>Preferred Language: </label>
                     </div>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
                 <%-- Resident Info End --%>
-
+                <hr />
                 <%-- House Start --%>
                 <div class="row">
                     <div class="col">
@@ -155,7 +155,7 @@
                         <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblWrongAddressInput" role="alert" Visible="false">
                                 You must select an address from the list
                         </asp:Label>
-                        <input id="txtAddress" type="text" runat="server" class="form-control" />
+                        <input id="txtAddress" type="text" placeholder="" runat="server" class="form-control" />
                     </div>
                 </div>
                 <div class="row m-3">

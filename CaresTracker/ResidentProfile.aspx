@@ -203,25 +203,14 @@
                                 <h5>Vaccine Info</h5>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblVaccinePhase" CssClass="labels" runat="server" Text="Vaccine Phase"></asp:Label>
-                                <br />
-                                <asp:DropDownList ID="ddlVaccinePhases" CssClass="form-control" runat="server">
-                                    <asp:ListItem Value="0">Phase1A</asp:ListItem>
-                                    <asp:ListItem Value="1">Phase1B</asp:ListItem>
-                                    <asp:ListItem Value="2">Phase1C</asp:ListItem>
-                                    <asp:ListItem Value="3">Phase2</asp:ListItem>
-                                    <asp:ListItem Value="4">No Information</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="mt-3">
                                 <asp:Label ID="lblVaccineStatus" CssClass="labels" runat="server" Text="Vaccine Status"></asp:Label>
                                 <br />
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
-                                    <asp:ListItem>No Information</asp:ListItem>
-                                    <asp:ListItem>Not Interested</asp:ListItem>
-                                    <asp:ListItem>Interested, not scheduled</asp:ListItem>
-                                    <asp:ListItem>Appointment Scheduled</asp:ListItem>
-                                    <asp:ListItem>Vaccinated</asp:ListItem>
+                                    <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
+                                    <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
+                                    <asp:ListItem Value="Interested in vaccine, no appointment">Interested in vaccine, no appointment</asp:ListItem>
+                                    <asp:ListItem Value="Appointment Scheduled">Appointment Scheduled</asp:ListItem>
+                                    <asp:ListItem Value="Vaccinated">Vaccinated</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div id="divAppointmentInfo" runat="server" class="col-md-12 mt-3">

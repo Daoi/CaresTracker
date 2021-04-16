@@ -87,33 +87,9 @@ namespace CaresTracker
             ddlRace.SelectedValue = currentRes.Race;
             ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
             //Vaccine
-            ddlVaccinePhases.SelectedIndex = currentRes.VaccineEligibility != null ? (int)currentRes.VaccineEligibility : 4;
-            bool? flag = currentRes.VaccineInterest;
-            if(flag != null && (bool)flag)
-            {
-                if (string.IsNullOrEmpty(currentRes.VaccineAppointmentDate))
-                {
-                    ddlVaccineStatus.SelectedIndex = 2; //Interested, not scheduled
-                }
-                else if(DateTime.Parse(currentRes.VaccineAppointmentDate) > DateTime.Now )
-                {
-                    ddlVaccineStatus.SelectedIndex = 3; //Appointment scheduled and hasn't happened yet.
-                    tbAppointmentDate.Text = currentRes.VaccineAppointmentDate.ToString();
-                }
-                else //Should double check with vaccinated status
-                {
-                    ddlVaccineStatus.SelectedIndex = 4; //Vaccinated
-                    tbAppointmentDate.Text = currentRes.VaccineAppointmentDate.ToString();
-                }
-            }
-            else if(flag == null)
-            {
-                ddlVaccineStatus.SelectedIndex = 0; //No information
-            }
-            else
-            {
-                ddlVaccineStatus.SelectedIndex = 1; //Not interested
-            }
+            ddlVaccineStatus.SelectedValue = currentRes.VaccineStatus;
+            tbAppointmentDate.Text = currentRes.VaccineAppointmentDate;
+            
 
 
             interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.ResidentFirstName, currentRes.ResidentLastName, currentRes.DateOfBirth);
@@ -219,21 +195,9 @@ namespace CaresTracker
             res.Gender = rblGender.SelectedValue;
             res.Race = ddlRace.SelectedValue;
             res.RelationshipToHoH = ddlHoH.SelectedValue;
-            res.VaccineEligibility = int.Parse(ddlVaccinePhases.SelectedValue);
             res.PreferredLanguage = ddlLanguage.SelectedItem.Text;
-            int interest = ddlVaccineStatus.SelectedIndex;
-            if (interest == 0)
-            {
-                res.VaccineInterest = null; //No info
-            }
-            else if(interest == 1)
-            {
-                res.VaccineInterest = false; //Not interested
-            }
-            else
-            {
-                res.VaccineInterest = true; //Interested or vaccinated
-            }
+            //Vaccine Info
+            res.VaccineStatus = ddlVaccineStatus.SelectedValue;
             res.VaccineAppointmentDate = tbAppointmentDate.Text;
             //Housing Info
             res.Home = new House();
