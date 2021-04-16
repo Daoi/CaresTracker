@@ -207,6 +207,7 @@ namespace CaresTracker
             pnlMeetingInfoForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             //Health Form
             pnlResidentHealthForm.Controls.OfType<TextBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            pnlResidentHealthForm.Controls.OfType<Panel>().ToList()[0].Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             //Other Form

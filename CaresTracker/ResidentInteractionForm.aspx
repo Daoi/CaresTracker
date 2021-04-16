@@ -120,10 +120,43 @@
                         <%-- Resident Health Form Start --%>
                         <asp:Panel ID="pnlResidentHealthForm" class="residentHealth w-100" Style="display: inline-grid" runat="server">
                             <h5>Resident Health</h5>
-                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                            <%-- Chronic Illness List Start --%>
+                            <h5 class="pl-3 mt-2">Chronic Illnesses</h5>
+                            <asp:Panel ID="pnlChronicIllnesses" runat="server">
+                                <div class="row pl-3 pt-1">
+                                    <%-- Value after _ represents the ID, sorry future developers --%>
+                                    <div class="col">
+                                        <asp:CheckBox ID="cbAsthma_1" runat="server" CssClass="inputCheckBox" Text="Asthma" Font-Size="Medium" />
+                                    </div>
+                                    <div class="col">
+                                        <asp:CheckBox ID="cbAlzheimers_2" runat="server" CssClass="inputCheckBox" Text="Alzheimer's" Font-Size="Medium" />
+                                    </div>
+                                    <div class="col">
+                                        <asp:CheckBox ID="cbCancer_3" runat="server" CssClass="inputCheckBox" Text="Cancer" Font-Size="Medium" />
+                                    </div>
+                                </div>
+                                <div class="row pl-3">
+                                    <div class="col-sm-4 col-md-4">
+                                        <asp:CheckBox ID="cbCOPD_4" runat="server" CssClass="inputCheckBox" Text="COPD" Font-Size="Medium" />
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <asp:CheckBox ID="cbDiabetes_5" runat="server" CssClass="inputCheckBox" Text="Diabetes" Font-Size="Medium" />
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <asp:CheckBox ID="cbHeartDisease_6" runat="server" CssClass="inputCheckBox" Text="Heart Disease" Font-Size="Medium" />
+                                    </div>
+                                </div>
+                                <div class="row pl-3 mb-2 pb-2 border-bottom">
+                                    <div class="col-sm-4 col-md-4">
+                                        <asp:CheckBox ID="cbHypertension_7" runat="server" CssClass="inputCheckBox" Text="Hypertension" Font-Size="Medium" />
+                                    </div>
+                                </div>
+                            </asp:Panel>
+                            <%-- Chronic Illness List End --%>
                             <%-- Symtpom List Start --%>
+                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="h4 alert-danger"></asp:Label>
                             <h5 class="pl-3">Covid-19 Possible Symptoms</h5>
-                            <div class="row pl-3">
+                            <div class="row pl-3 pt-1">
                                 <%-- Value after _ represents the ID, sorry future developers --%>
                                 <div class="col">
                                     <asp:CheckBox ID="cbShortnessOfBreath_1" runat="server" CssClass="inputCheckBox" Text="Shortness of Breath" Font-Size="Medium" />
@@ -146,7 +179,7 @@
                                     <asp:CheckBox ID="cbSoreThroat_6" runat="server" CssClass="inputCheckBox" Text="Sore Throat" Font-Size="Medium" />
                                 </div>
                             </div>
-                            <div class="row pl-3">
+                            <div class="row pl-3 mb-2 pb-2">
                                 <div class="col-sm-4 col-md-4">
                                     <asp:CheckBox ID="cbTasteOrSmell_7" runat="server" CssClass="inputCheckBox" Text="New Loss of Taste or Smell" Font-Size="Medium" />
                                 </div>
@@ -157,8 +190,10 @@
                                     <asp:CheckBox ID="cbCough_9" runat="server" CssClass="inputCheckBox" Text="Cough" Font-Size="Medium" />
                                 </div>
                             </div>
-                            <h5 class="pl-3">Critical Symptoms(Seek Immediate Medical Attention)</h5>
-                            <div class="row pl-3">
+                            <%-- Symtpom List End --%>
+                            <%-- Critical Symtpom List Start --%>
+                            <h5 class="pl-3">Critical Symptoms (Seek Immediate Medical Attention)</h5>
+                            <div class="row pl-3 pt-1">
                                 <div class="col-sm-4 col-md-4">
                                     <asp:CheckBox ID="cbConfusion_10" runat="server" CssClass="inputCheckBox" Text="Confusion" Font-Size="Medium" />
                                 </div>
@@ -169,7 +204,7 @@
                                     <asp:CheckBox ID="cbBlueLips_12" runat="server" CssClass="inputCheckBox" Text="Blueish Lips" Font-Size="Medium" />
                                 </div>
                             </div>
-                            <div class="row pl-3">
+                            <div class="row pl-3 pb-2">
                                 <div class="col-sm-4 col-md-4">
                                     <asp:CheckBox ID="cbInabilityToAwake_13" runat="server" CssClass="inputCheckBox" Text="Inability to stay awake" Font-Size="Medium" />
                                 </div>
@@ -177,25 +212,28 @@
                                     <asp:CheckBox ID="cbChestPain_14" runat="server" CssClass="inputCheckBox" Text="Persistent Chest Pain or Pressure" Font-Size="Medium" />
                                 </div>
                             </div>
-                            <p></p>
-                            <%-- Symptom List End --%>
-                            <div class="row m-3">
-                                <label>Dates Symptoms Occured</label>
-                                <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                            <%-- Critical Symptom List End --%>
+                            <div class="row pl-3 mb-3 pb-4 border-bottom">
+                                <div class ="col-sm-4 col-md-4">
+                                    <label>Date Symptoms Occured</label>
+                                    <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                </div>
                             </div>
-                            <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="h4 alert-danger"></asp:Label>
-                            <div class="row m-3">
-                                <label>Covid-19 Test Results</label>
-                                <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server" Height="2em">
-                                    <asp:ListItem>Select Test Result</asp:ListItem>
-                                    <asp:ListItem Value="Positive">Positive</asp:ListItem>
-                                    <asp:ListItem Value="Negative">Negative</asp:ListItem>
-                                    <asp:ListItem Value="No Recent Test">No Recent Test</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="row m-3">
-                                <label>Testing Location</label>
-                                <asp:TextBox ID="tbTestingLocation" runat="server" placeholder="Testing Location" CssClass="form-control"></asp:TextBox>
+                            <div class="row pl-3">
+                                <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                                <div class="col-sm-4 col-md-4">
+                                    <label>Covid-19 Test Results</label>
+                                    <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server" >
+                                        <asp:ListItem>Select Test Result</asp:ListItem>
+                                        <asp:ListItem Value="Positive">Positive</asp:ListItem>
+                                        <asp:ListItem Value="Negative">Negative</asp:ListItem>
+                                        <asp:ListItem Value="No Recent Test">No Recent Test</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <label>Testing Location</label>
+                                    <asp:TextBox ID="tbTestingLocation" runat="server" placeholder="Testing Location" CssClass="form-control"></asp:TextBox>
+                                </div>
                             </div>
                         </asp:Panel>
                         <%-- Resident Health Form End --%>
