@@ -18,7 +18,7 @@
                 <asp:HiddenField ID="hdnfldName" ClientIDMode="Static" runat="server" />
             </div>
             <div class="row m-3 justify-content-center mt-5">
-                <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationError" role="alert" Visible="false"></asp:Label>
+                <asp:Label runat="server" class="errorLabel" ID="lblValidationError" role="alert" Visible="false"></asp:Label>
             </div>
             <%-- Resident Info Start --%>
             <div class="container-fluid mt-3 w-75">
@@ -64,7 +64,7 @@
                         <label>Phone Number: </label>
                     </div>
                     <div class="col-7">
-                        <asp:Label runat="server" For="txtPhoneNumber" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationPhone" role="alert" Visible="false"></asp:Label>
+                        <asp:Label runat="server" For="txtPhoneNumber" class="errorLabel" ID="lblValidationPhone" role="alert" Visible="false"></asp:Label>
                         <asp:TextBox ID="txtPhoneNumber" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                         <label>Gender: </label>
                     </div>
                     <div class="col-7" id="divrblGender">
-                        <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationGender" role="alert" Visible="false"></asp:Label>
+                        <asp:Label runat="server" class="errorLabel" ID="lblValidationGender" role="alert" Visible="false"></asp:Label>
                         <asp:RadioButtonList ID="rblGender" CssClass="" RepeatDirection="Vertical" runat="server">
                             <asp:ListItem>Male</asp:ListItem>
                             <asp:ListItem>Female</asp:ListItem>
@@ -137,7 +137,7 @@
                         <label>Housing Type:</label>
                     </div>
                     <div class="col-7">
-                        <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationHousing" role="alert" Visible="false"></asp:Label>
+                        <asp:Label runat="server" class="errorLabel" ID="lblValidationHousing" role="alert" Visible="false"></asp:Label>
                         <asp:DropDownList ID="ddlHousing" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
                             <asp:ListItem Value="None Selected">Select Housing Type</asp:ListItem>
                             <asp:ListItem Value="divHouse">Housing Choice Voucher</asp:ListItem>
@@ -224,10 +224,10 @@
 
                 <div class="row m-3 justify-content-center mt-3">
                     <div class="col text-center">
-                        <asp:Label runat="server" class="h5 rounded px-2 py-1 alert-danger" ID="lblFail" role="alert" Visible="false">
+                        <asp:Label runat="server" class="errorLabel" ID="lblFail" role="alert" Visible="false">
                                 Could not add resident and/or house to the database
                         </asp:Label>
-                        <asp:Label runat="server" class="h5 rounded px-2 py-1 alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
+                        <asp:Label runat="server" class="errorLabel" ID="lblUniqueResident" role="alert" Visible="false">
                                 Resident profile already exists!
                         </asp:Label>
                     </div>

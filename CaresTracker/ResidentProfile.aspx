@@ -137,7 +137,7 @@
                                     <asp:Button ID="btnCancelEdits" CssClass="buttonStyle ml-1" Visible="false" runat="server" Text="Cancel Editing" OnClick="btnCancelEdits_Click" />
                                 </div>
 
-                                <asp:Label ID="lblErrorMessage" runat="server" Text="" Visible="false"></asp:Label>
+                                <asp:Label ID="lblErrorMessage" CssClass="errorLabel" runat="server" Text="" Visible="false"></asp:Label>
                             </div>
                         </div>
                     </div>

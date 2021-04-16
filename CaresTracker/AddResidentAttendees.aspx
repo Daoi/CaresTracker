@@ -55,7 +55,7 @@
                     </div>
                     <div class="container text-center">
                         <div class="row">
-                            <asp:Label ID="lblError" CssClass="h6 alert-danger" runat="server"></asp:Label>
+                            <asp:Label ID="lblError" CssClass="errorLabel" runat="server"></asp:Label>
                         </div>
                         <div class="row">
                             <asp:Button ID="btnSubmit" CssClass="buttonStyle" Text="Add Residents" OnClick="btnSubmit_Click" OnClientClick="expandTable('gvResidentList');" runat="server" />
