@@ -154,7 +154,7 @@
                             </asp:Panel>
                             <%-- Chronic Illness List End --%>
                             <%-- Symtpom List Start --%>
-                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="errorLabel"></asp:Label>
+                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                             <h5 class="pl-3">Covid-19 Possible Symptoms</h5>
                             <div class="row pl-3 pt-1">
                                 <%-- Value after _ represents the ID, sorry future developers --%>
@@ -223,7 +223,7 @@
                             <%-- Symptom Date End --%>
                             <%-- Covid Testing Start --%>
                             <div class="row pl-3">
-                                <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="errorLabel"></asp:Label>
+                                <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                                 <div class="col-sm-6 col-md-6">
                                     <label>Covid-19 Test Results</label>
                                     <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server" >

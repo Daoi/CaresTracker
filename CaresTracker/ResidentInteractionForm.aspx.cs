@@ -508,6 +508,7 @@ namespace CaresTracker
                 Validation.IsEmpty(tbSymptomDates.Text))
             {
                 isValid = false;
+                lblErrorSymptoms.Visible = true;
                 lblErrorSymptoms.Text = "You must enter the date symptoms occurred if you selected any.";
 
                 symptomError = true;
@@ -517,19 +518,22 @@ namespace CaresTracker
                 !Validation.IsEmpty(tbSymptomDates.Text))
             {
                 isValid = false;
+                lblErrorSymptoms.Visible = true;
                 lblErrorSymptoms.Text = "You must select symptoms if you entered the date they occurred.";
 
                 symptomError = true;
             }
             else
             {
-                lblErrorSymptoms.Text = "";
+                lblErrorSymptoms.Visible = false;
+                lblErrorSymptoms.Text = string.Empty;
             }
 
             // test result w/o location
             if ((ddlTestResult.SelectedIndex == 1 || ddlTestResult.SelectedIndex == 2) && Validation.IsEmpty(tbTestingLocation.Text))
             {
                 isValid = false;
+                lblErrorCOVIDTest.Visible = true;
                 lblErrorCOVIDTest.Text = "You must enter a testing location if you selected a test result.";
                 icErrorResidentHealth.Visible = true;
             }
@@ -537,12 +541,14 @@ namespace CaresTracker
             else if ((ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && !Validation.IsEmpty(tbTestingLocation.Text))
             {
                 isValid = false;
+                lblErrorCOVIDTest.Visible = true;
                 lblErrorCOVIDTest.Text = "You must select a test result if you entered a testing location.";
                 icErrorResidentHealth.Visible = true;
             }
             else
             {
-                lblErrorCOVIDTest.Text = "";
+                lblErrorCOVIDTest.Visible = false;
+                lblErrorCOVIDTest.Text = string.Empty;
                 icErrorResidentHealth.Visible = false || symptomError; // displays if any of this panel's error conditions are met
             }
 
