@@ -87,9 +87,7 @@ namespace CaresTracker
                         editHistory.Visible = true;
                     }
                 }
-
             }
-
         }
 
 
@@ -363,14 +361,7 @@ namespace CaresTracker
             ddlHousingType.Enabled = false;
 
             //Vaccine Info
-            if (res.VaccineStatus == null)
-            {
-                ddlVaccineStatus.SelectedIndex = 0;
-            }
-            else
-            {
-                ddlVaccineStatus.SelectedValue = res.VaccineStatus;
-            }
+            ddlVaccineStatus.SelectedValue = res.VaccineStatus ?? "Unknown";
 
             if (!string.IsNullOrEmpty(res.VaccineAppointmentDate))
             {
@@ -459,8 +450,6 @@ namespace CaresTracker
                     btnUpdateServices.Visible = false;
                 }
             }
-
-
 
             ddlFollowUp.SelectedValue = interaction.RequiresFollowUp.ToString();
 

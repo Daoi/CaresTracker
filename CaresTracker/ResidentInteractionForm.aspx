@@ -244,8 +244,7 @@
                             <div class="row m-3">
                                 <h6>Vaccine Status</h6>
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
-                                    <asp:ListItem>Select Vaccine Status</asp:ListItem>
-                                    <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
+                                    <asp:ListItem Value="Unknown">Select Vaccine Status</asp:ListItem>
                                     <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
                                     <asp:ListItem Value="Interested in vaccine, no appointment">Interested in vaccine, no appointment</asp:ListItem>
                                     <asp:ListItem Value="Appointment Scheduled">Appointment Scheduled</asp:ListItem>
