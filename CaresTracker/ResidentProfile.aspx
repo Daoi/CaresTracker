@@ -209,7 +209,7 @@
                                     <asp:ListItem>No Info</asp:ListItem>
                                     <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
                                     <asp:ListItem Value="Interested in vaccine, no appointment">Interested in vaccine, no appointment</asp:ListItem>
-                                    <asp:ListItem Value="Appointment Shcheduled">Appointment Shcheduled</asp:ListItem>
+                                    <asp:ListItem Value="Appointment Scheduled">Appointment Scheduled</asp:ListItem>
                                     <asp:ListItem Value="Vaccinated">Vaccinated</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
