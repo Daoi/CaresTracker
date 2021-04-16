@@ -20,8 +20,7 @@ namespace CaresTracker.DataModels
         public string Gender { get; set; } //?
         public string Race { get; set; } //?
         public string PreferredLanguage { get; set; }
-        public bool? VaccineInterest { get; set; }
-        public int? VaccineEligibility { get; set; }
+        public string VaccineStatus { get; set; }
         public string VaccineAppointmentDate { get; set; } 
         public HousingDevelopment HousingDevelopment { get; set; }
         public int HouseID { get; set; }
@@ -52,8 +51,7 @@ namespace CaresTracker.DataModels
                 HousingDevelopment = new HousingDevelopment(gd.RunCommand(Home.DevelopmentID).Rows[0]);
             }
 
-            VaccineInterest = dataRow["VaccineInterest"] != DBNull.Value ? (bool?)dataRow["VaccineInterest"] : null;
-            VaccineEligibility = dataRow["VaccineEligibility"] != DBNull.Value ? (int?)dataRow["VaccineEligibility"] : null;
+            VaccineStatus = dataRow["VaccineStatus"] != DBNull.Value ? dataRow["VaccineStatus"].ToString() : null;
             VaccineAppointmentDate = dataRow["VaccineAppointmentDate"].ToString();
         }
 

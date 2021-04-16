@@ -400,24 +400,6 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
         
         /// <summary>
-        /// lblVaccinePhase control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVaccinePhase;
-        
-        /// <summary>
-        /// ddlVaccinePhases control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVaccinePhases;
-        
-        /// <summary>
         /// lblVaccineStatus control.
         /// </summary>
         /// <remarks>
