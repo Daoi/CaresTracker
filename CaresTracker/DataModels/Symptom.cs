@@ -31,7 +31,6 @@ namespace CaresTracker.DataModels
             return dt.Rows.OfType<DataRow>()
                 .Select(dr => new Symptom(dr))
                 .ToList();
-
         }
 
         public Symptom(string name, int id)
