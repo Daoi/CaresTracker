@@ -94,7 +94,7 @@
                         <%-- Meeting Info Form Start --%>
                         <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
                             <h5>Meeting Info</h5>
-                            <div class="row">
+                            <div>
                                 <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="h4 alert-danger" Visible="false"></asp:Label>
                             </div>
                             <div class="row m-3">
@@ -238,12 +238,11 @@
                         <%-- Vaccine Form Start --%>
                         <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
                             <h5>Vaccine Info</h5>
-                            <h6>Vaccine Status</h6>
-                            <div class="row m-3">
-                                <br />
                                 <div>
-                                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please fill out Vaccine Status. Fill out appointment date if known." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="h4 alert-danger" Visible="false"></asp:Label>
                                 </div>
+                            <div class="row m-3">
+                                <h6>Vaccine Status</h6>
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
                                     <asp:ListItem>Select Vaccine Status</asp:ListItem>
                                     <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
@@ -280,8 +279,10 @@
                         <%-- Other Form Start --%>
                         <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                             <h5>Action Plan</h5>
-                            <div class="row m-3">
+                            <div>
                                 <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                            </div>
+                            <div class="row m-3">
                                 <label>Next Steps:</label>
                                 <textarea id="nextSteps" class="form-control" name="nextSteps" rows="5" cols="70" runat="server"></textarea>
                             </div>
