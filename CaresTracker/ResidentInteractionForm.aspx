@@ -214,14 +214,14 @@
                             </div>
                             <%-- Critical Symptom List End --%>
                             <div class="row pl-3 mb-3 pb-4 border-bottom">
-                                <div class ="col-sm-4 col-md-4">
+                                <div class ="col-sm-6 col-md-6">
                                     <label>Date Symptoms Occured</label>
                                     <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="form-control" TextMode="Date"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row pl-3">
                                 <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="h4 alert-danger"></asp:Label>
-                                <div class="col-sm-4 col-md-4">
+                                <div class="col-sm-6 col-md-6">
                                     <label>Covid-19 Test Results</label>
                                     <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server" >
                                         <asp:ListItem>Select Test Result</asp:ListItem>
@@ -230,7 +230,7 @@
                                         <asp:ListItem Value="No Recent Test">No Recent Test</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-sm-4 col-md-4">
+                                <div class="col-sm-6 col-md-6">
                                     <label>Testing Location</label>
                                     <asp:TextBox ID="tbTestingLocation" runat="server" placeholder="Testing Location" CssClass="form-control"></asp:TextBox>
                                 </div>
