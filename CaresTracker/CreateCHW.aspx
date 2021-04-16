@@ -102,7 +102,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <asp:Label ID="lblError" CssClass="h6 alert-danger" runat="server"></asp:Label>
+                        <asp:Label ID="lblError" CssClass="errorLabel" runat="server"></asp:Label>
                     </div>
                 </div>
                 <div class="row m-3">
