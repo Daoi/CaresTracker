@@ -365,6 +365,16 @@ namespace CaresTracker
             pnlHousingInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
             ddlHousingType.Enabled = false;
 
+            // Chronic Illnesses
+            List<CheckBox> formIllnesses = pnlChronicIllnesses.Controls.OfType<CheckBox>().ToList(); // Get all ChronicIllness Checkboxes
+            List<int> residentIllnesses = new List<int>();  //Get all symptom names in interaction 
+            res.ChronicIllnesses.ForEach(i => residentIllnesses.Add(i.ChronicIllnessID));
+            formIllnesses //Set checkboxes to checked
+                .Where(cb => residentIllnesses
+                .Contains(int.Parse(cb.ID.Split('_')[1])))
+                .ToList()
+                .ForEach(cb => cb.Checked = true);
+
             //Vaccine Info
             ddlVaccineStatus.SelectedValue = res.VaccineStatus ?? "Unknown";
 
