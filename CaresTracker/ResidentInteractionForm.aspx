@@ -95,7 +95,7 @@
                         <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
                             <h5>Meeting Info</h5>
                             <div>
-                                <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                                <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="errorLabel" Visible="false"></asp:Label>
                             </div>
                             <div class="row m-3">
                                 <label>Meeting Type</label>
@@ -120,7 +120,7 @@
                         <%-- Resident Health Form Start --%>
                         <asp:Panel ID="pnlResidentHealthForm" class="residentHealth w-100" Style="display: inline-grid" runat="server">
                             <h5>Resident Health</h5>
-                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="errorLabel"></asp:Label>
                             <%-- Symtpom List Start --%>
                             <h5 class="pl-3">Covid-19 Possible Symptoms</h5>
                             <div class="row pl-3">
@@ -183,7 +183,7 @@
                                 <label>Dates Symptoms Occured</label>
                                 <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="form-control" TextMode="Date"></asp:TextBox>
                             </div>
-                            <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                            <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="errorLabel"></asp:Label>
                             <div class="row m-3">
                                 <label>Covid-19 Test Results</label>
                                 <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server" Height="2em">
@@ -218,7 +218,7 @@
                                         <asp:ListItem Value="false">Doesn't Require Follow Up</asp:ListItem>
                                         <asp:ListItem Value="true">Requires Follow up</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:Label ID="lblFollowUpError" runat="server" CssClass="h4 alert-danger" Text="Must select whether the service requires follow up." Visible="false"></asp:Label>
+                                    <asp:Label ID="lblFollowUpError" runat="server" CssClass="errorLabel" Text="Must select whether the service requires follow up." Visible="false"></asp:Label>
                                 </div>
                                 <div id="divFollowUpStatus" class="row m-3" runat="server">
                                     <asp:Label ID="lblFollowUpStatus" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up?"></asp:Label>
@@ -239,7 +239,7 @@
                         <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
                             <h5>Vaccine Info</h5>
                                 <div>
-                                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="errorLabel" Visible="false"></asp:Label>
                                 </div>
                             <div class="row m-3">
                                 <h6>Vaccine Status</h6>
@@ -279,7 +279,7 @@
                         <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                             <h5>Action Plan</h5>
                             <div>
-                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="errorLabel" Visible="false"></asp:Label>
                             </div>
                             <div class="row m-3">
                                 <label>Next Steps:</label>
@@ -305,7 +305,7 @@
                     <ContentTemplate>
                         <div class="modal-body px-5 pb-3">
                             <h5>Reason For Edit</h5>
-                            <asp:Label ID="lblModalError" runat="server" Text="" CssClass="alert-danger modalError"></asp:Label>
+                            <asp:Label ID="lblModalError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                             <br />
                             <textarea id="taEditReason" class="form-control" cols="50" rows="5" runat="server"></textarea>
                         </div>

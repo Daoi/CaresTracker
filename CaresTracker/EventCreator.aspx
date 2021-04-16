@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="row m-3">
-                    <asp:Label ID="lblError" CssClass="h6 alert-danger" Visible="false" runat="server"></asp:Label>
+                    <asp:Label ID="lblError" CssClass="errorLabel" Visible="false" runat="server"></asp:Label>
                 </div>
                 <div class="row m-3">
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="buttonStyle" OnClick="btnSubmit_Click" />

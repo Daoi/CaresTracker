@@ -44,7 +44,7 @@
                                 <p class="card-text">Assign regions to partner organizations, or leave them unassigned. Click update below to save your changes.</p>
                                 <asp:UpdatePanel ID="pnlRegionCtrls" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Label ID="lblRegionError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Label ID="lblRegionError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
                                         <asp:Button ID="btnRegionUpdate" runat="server" Text="Update Regions" CssClass="buttonStyle" OnClick="btnRegionUpdate_Click" OnClientClick="expandTable('gvRegions');" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -74,7 +74,7 @@
                                 <p class="card-text">Select which developments should be shown as options on the resident profile creation page. Click update below to save your changes.</p>
                                 <asp:UpdatePanel ID="pnlDevelopmentCtrls" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Label ID="lblDevelopmentError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Label ID="lblDevelopmentError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
                                         <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" CssClass="buttonStyle" OnClick="btnDevelopmentUpdate_Click" OnClientClick="expandTable('gvHousingDevelopments');" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -103,7 +103,7 @@
                                 <p class="card-text">Select which services should be shown as options on the interaction form. Click update below to save your changes.</p>
                                 <asp:UpdatePanel ID="pnlServiceCtrls" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Label ID="lblServiceError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Label ID="lblServiceError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
                                         <asp:Button ID="btnServiceUpdate" runat="server" Text="Update Services" CssClass="buttonStyle" OnClick="btnServiceUpdate_Click" OnClientClick="expandTable('gvServices');" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -114,7 +114,7 @@
                                 <p class="card-text">Enter the name of a new service in the textbox, then click below to add it to the list.</p>
                                 <asp:UpdatePanel ID="pnlAddServiceCtrls" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Label ID="lblAddServiceError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Label ID="lblAddServiceError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
                                         <asp:TextBox ID="txtServiceName" runat="server" Placeholder="Service Name..." CssClass="form-control"></asp:TextBox>
                                         <asp:Button ID="btnAddService" runat="server" Text="Add New Service" CssClass="buttonStyle mt-3" OnClick="btnAddService_Click" />
                                     </ContentTemplate>
@@ -144,7 +144,7 @@
                                 <p class="card-text">Select which event types should be shown as event creation and editing. Click update below to save your changes.</p>
                                 <asp:UpdatePanel ID="pnlEventTypeCtrls" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Label ID="lblEventTypeError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Label ID="lblEventTypeError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
                                         <asp:Button ID="btnEventTypeUpdate" runat="server" Text="Update Event Types" CssClass="buttonStyle" OnClick="btnEventTypeUpdate_Click" OnClientClick="expandTable('gvEventTypes');" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -155,7 +155,7 @@
                                 <p class="card-text">Enter the name of a new event type in the textbox, then click below to add it to the list.</p>
                                 <asp:UpdatePanel ID="pnlAddEventTypeCtrls" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Label ID="lblAddEventTypeError" runat="server" Text="" CssClass="h6 alert-danger" Visible="false"></asp:Label><br />
+                                        <asp:Label ID="lblAddEventTypeError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
                                         <asp:TextBox ID="txtEventTypeName" runat="server" Placeholder="Event Type Name..." CssClass="form-control"></asp:TextBox>
                                         <asp:Button ID="btnAddEventType" runat="server" Text="Add New Event Type" CssClass="buttonStyle mt-3" OnClick="btnAddEventType_Click" />
                                     </ContentTemplate>

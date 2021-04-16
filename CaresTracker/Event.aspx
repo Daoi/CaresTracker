@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblError" role="alert" Visible="false">
+                                <asp:Label runat="server" class="errorLabel" ID="lblError" role="alert" Visible="false">
                                 </asp:Label>
                             </div>
                         </div>
