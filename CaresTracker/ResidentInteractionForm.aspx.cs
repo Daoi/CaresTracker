@@ -232,6 +232,7 @@ namespace CaresTracker
             try
             {
                 new UpdateInteraction(newInteraction).ExecuteCommand();
+                SaveChronicIllnesses();
 
                 new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID, userId);
             }
@@ -260,6 +261,18 @@ namespace CaresTracker
             try
             {
                 new InteractionWriter(newInteraction).ExecuteCommand();
+
+                // update chronic illnesses
+                SaveChronicIllnesses();
+
+                //Update Resident vaccine values
+                string status = ddlVaccineStatus.SelectedValue;
+                string date = tbVaccineAppointmentDate.Text;
+
+                res.VaccineStatus = status;
+                res.VaccineAppointmentDate = date;
+
+                new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, status, date);
             }
             catch (Exception e)
             {
@@ -267,15 +280,6 @@ namespace CaresTracker
                 lblSave.Visible = true;
                 return;
             }
-
-            //Update Resident vaccine values
-            string status = ddlVaccineStatus.SelectedValue;
-            string date = tbVaccineAppointmentDate.Text;
-
-            res.VaccineStatus = status;
-            res.VaccineAppointmentDate = date;
-
-            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, status, date);
 
             Session["InteractionSaved"] = true;
             Session["Interaction"] = newInteraction;
@@ -456,6 +460,17 @@ namespace CaresTracker
 
             //Action Plan
             nextSteps.InnerText = interaction.ActionPlan;
+        }
+
+        private void SaveChronicIllnesses()
+        {
+            List<CheckBox> checkedBoxes = pnlChronicIllnesses.Controls.OfType<CheckBox>().Where(cb => cb.Checked).ToList();
+            List<ChronicIllness> illnesses = new List<ChronicIllness>();
+            checkedBoxes.ForEach(cb => illnesses.Add(new ChronicIllness(int.Parse(cb.ID.Split('_')[1]))));
+            new UpdateResidentChronicIllnesses(illnesses, res.ResidentID).ExecuteCommand();
+
+            res.ChronicIllnesses = illnesses;
+            Session["Resident"] = res;
         }
 
         private bool IsFormValid()
