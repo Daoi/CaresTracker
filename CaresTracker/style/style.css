@@ -367,9 +367,9 @@ thead {
     list-style-type: none;
 }
 
-
-#MainContent_fileUpload{
-    margin-left: .75rem;
+.fileUpload {
+    width: 50%;
+    margin-left: 25%;
 }
 
 .developmentsID {
@@ -384,6 +384,11 @@ thead {
 .warningIcon{
     color: orangered;
 }
+
+
+.fileUploadErrors {
+    height:250px;
+    overflow-y: auto;
 
 .cblWorker{
     height: 20em;

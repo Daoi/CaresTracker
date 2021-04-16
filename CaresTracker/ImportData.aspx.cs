@@ -85,6 +85,7 @@ namespace CaresTracker
                 sb.Append($"Succesfully inserted {inserts} out of {fm.results.Count} residents from the file. ");
                 if(errors.Count > 0)
                 {
+                    divUploadErrors.Visible = true;
                     sb.Append("The following rows had errors: <br />");
                     errors.ForEach(i => sb.Append($"Row #{i} Resident Name: {fm.results[i-1].ResidentFirstName} {fm.results[i - 1].ResidentLastName} <br />"));
                 }
