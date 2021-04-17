@@ -69,7 +69,9 @@ namespace CaresTracker
                 }
                 catch (Exception ex)
                 {
+                    lblErrorDevelopmentTotals.Visible = true;
                     lblErrorDevelopmentTotals.Text = ex.Message;
+                    return;
                 }
 
                 try
@@ -108,6 +110,7 @@ namespace CaresTracker
                 }
                 catch (Exception ex)
                 {
+                    lblErrorInteractionData.Visible = true;
                     lblErrorInteractionData.Text = ex.Message;
                 }
 
