@@ -13,7 +13,7 @@
             <nav aria-label="breadcrumb w-75">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
-                        <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" CssClass="cherryFont" runat="server">Dashboard</asp:LinkButton>
+                        <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" CssClass="cherryFont" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Admin Settings</li>
                 </ol>
