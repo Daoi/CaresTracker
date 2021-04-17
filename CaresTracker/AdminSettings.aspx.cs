@@ -213,8 +213,8 @@ namespace CaresTracker
         {
             if (string.IsNullOrEmpty(txtEventTypeName.Text))
             {
-                lblAddServiceError.Text = "Event Type Name cannot be empty.";
-                lblAddServiceError.Visible = true;
+                lblAddEventTypeError.Text = "Event Type Name cannot be empty.";
+                lblAddEventTypeError.Visible = true;
                 return;
             }
 
