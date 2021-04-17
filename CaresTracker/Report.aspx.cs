@@ -70,7 +70,10 @@ namespace CaresTracker
                 catch (Exception ex)
                 {
                     lblErrorDevelopmentTotals.Visible = true;
-                    lblErrorDevelopmentTotals.Text = ex.Message;
+                    lblErrorDevelopmentTotals.Text = "A database error occurred: " + ex.Message;
+                    pnlDevelopmentTotals.Visible = false;
+                    pnlInteractionDataHeader.Visible = false;
+                    pnlInteractionData.Visible = false;
                     return;
                 }
 
@@ -111,7 +114,8 @@ namespace CaresTracker
                 catch (Exception ex)
                 {
                     lblErrorInteractionData.Visible = true;
-                    lblErrorInteractionData.Text = ex.Message;
+                    lblErrorInteractionData.Text = "A database error occurred: " + ex.Message;
+                    pnlInteractionData.Visible = false;
                 }
 
                 this.jsonReports = JsonConvert.SerializeObject(this.jsonDict);
