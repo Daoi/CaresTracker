@@ -207,6 +207,7 @@ namespace CaresTracker
             pnlMeetingInfoForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             //Health Form
             pnlResidentHealthForm.Controls.OfType<TextBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            pnlResidentHealthForm.Controls.OfType<Panel>().ToList()[0].Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             //Other Form
@@ -231,6 +232,7 @@ namespace CaresTracker
             try
             {
                 new UpdateInteraction(newInteraction).ExecuteCommand();
+                SaveChronicIllnesses();
 
                 new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID, userId);
             }
@@ -259,6 +261,18 @@ namespace CaresTracker
             try
             {
                 new InteractionWriter(newInteraction).ExecuteCommand();
+
+                // update chronic illnesses
+                SaveChronicIllnesses();
+
+                //Update Resident vaccine values
+                string status = ddlVaccineStatus.SelectedValue;
+                string date = tbVaccineAppointmentDate.Text;
+
+                res.VaccineStatus = status;
+                res.VaccineAppointmentDate = date;
+
+                new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, status, date);
             }
             catch (Exception e)
             {
@@ -266,15 +280,6 @@ namespace CaresTracker
                 lblSave.Visible = true;
                 return;
             }
-
-            //Update Resident vaccine values
-            string status = ddlVaccineStatus.SelectedValue;
-            string date = tbVaccineAppointmentDate.Text;
-
-            res.VaccineStatus = status;
-            res.VaccineAppointmentDate = date;
-
-            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, status, date);
 
             Session["InteractionSaved"] = true;
             Session["Interaction"] = newInteraction;
@@ -359,6 +364,16 @@ namespace CaresTracker
             pnlResidentInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
             pnlHousingInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
             ddlHousingType.Enabled = false;
+
+            // Chronic Illnesses
+            List<CheckBox> formIllnesses = pnlChronicIllnesses.Controls.OfType<CheckBox>().ToList(); // Get all ChronicIllness Checkboxes
+            List<int> residentIllnesses = new List<int>();  //Get all symptom names in interaction 
+            res.ChronicIllnesses.ForEach(i => residentIllnesses.Add(i.ChronicIllnessID));
+            formIllnesses //Set checkboxes to checked
+                .Where(cb => residentIllnesses
+                .Contains(int.Parse(cb.ID.Split('_')[1])))
+                .ToList()
+                .ForEach(cb => cb.Checked = true);
 
             //Vaccine Info
             ddlVaccineStatus.SelectedValue = res.VaccineStatus ?? "Unknown";
@@ -457,6 +472,17 @@ namespace CaresTracker
             nextSteps.InnerText = interaction.ActionPlan;
         }
 
+        private void SaveChronicIllnesses()
+        {
+            List<CheckBox> checkedBoxes = pnlChronicIllnesses.Controls.OfType<CheckBox>().Where(cb => cb.Checked).ToList();
+            List<ChronicIllness> illnesses = new List<ChronicIllness>();
+            checkedBoxes.ForEach(cb => illnesses.Add(new ChronicIllness(int.Parse(cb.ID.Split('_')[1]))));
+            new UpdateResidentChronicIllnesses(illnesses, res.ResidentID).ExecuteCommand();
+
+            res.ChronicIllnesses = illnesses;
+            Session["Resident"] = res;
+        }
+
         private bool IsFormValid()
         {
             bool isValid = true;
@@ -482,6 +508,7 @@ namespace CaresTracker
                 Validation.IsEmpty(tbSymptomDates.Text))
             {
                 isValid = false;
+                lblErrorSymptoms.Visible = true;
                 lblErrorSymptoms.Text = "You must enter the date symptoms occurred if you selected any.";
 
                 symptomError = true;
@@ -491,19 +518,22 @@ namespace CaresTracker
                 !Validation.IsEmpty(tbSymptomDates.Text))
             {
                 isValid = false;
+                lblErrorSymptoms.Visible = true;
                 lblErrorSymptoms.Text = "You must select symptoms if you entered the date they occurred.";
 
                 symptomError = true;
             }
             else
             {
-                lblErrorSymptoms.Text = "";
+                lblErrorSymptoms.Visible = false;
+                lblErrorSymptoms.Text = string.Empty;
             }
 
             // test result w/o location
             if ((ddlTestResult.SelectedIndex == 1 || ddlTestResult.SelectedIndex == 2) && Validation.IsEmpty(tbTestingLocation.Text))
             {
                 isValid = false;
+                lblErrorCOVIDTest.Visible = true;
                 lblErrorCOVIDTest.Text = "You must enter a testing location if you selected a test result.";
                 icErrorResidentHealth.Visible = true;
             }
@@ -511,12 +541,14 @@ namespace CaresTracker
             else if ((ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && !Validation.IsEmpty(tbTestingLocation.Text))
             {
                 isValid = false;
+                lblErrorCOVIDTest.Visible = true;
                 lblErrorCOVIDTest.Text = "You must select a test result if you entered a testing location.";
                 icErrorResidentHealth.Visible = true;
             }
             else
             {
-                lblErrorCOVIDTest.Text = "";
+                lblErrorCOVIDTest.Visible = false;
+                lblErrorCOVIDTest.Text = string.Empty;
                 icErrorResidentHealth.Visible = false || symptomError; // displays if any of this panel's error conditions are met
             }
 

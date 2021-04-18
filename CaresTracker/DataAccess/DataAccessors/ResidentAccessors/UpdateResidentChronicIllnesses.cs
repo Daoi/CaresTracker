@@ -1,24 +1,23 @@
-﻿using CaresTracker.DataModels;
-using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
+using CaresTracker.DataModels;
 
-namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
 {
-    public class UpdateInteractionSymptoms
+    public class UpdateResidentChronicIllnesses
     {
         string command;
-        int IntID;
-        List<Symptom> symptoms;
-        public UpdateInteractionSymptoms(List<Symptom> updates, int id)
+        int resID;
+        List<ChronicIllness> illnesses;
+
+        public UpdateResidentChronicIllnesses(List<ChronicIllness> updates, int id)
         {
             //Build Update Command for multiple rows
-            symptoms = updates;
-            IntID = id;
-            command = SymptomsInsertSQLWriter.WriteSQL(updates, id);
+            resID = id;
+            illnesses = updates;
+            command = InsertResidentChronicIllnesses.WriteSQL(updates, id);
         }
 
         /// <summary>
@@ -30,9 +29,9 @@ namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
             //Run Command
             try
             {
-                new DeleteOldInteractionSymptoms().ExecuteCommand(IntID);
+                new DeleteOldChronicIllnesses().ExecuteCommand(resID);
 
-                if (symptoms.Count > 0)
+                if (illnesses.Count > 0)
                     return new CTextWriter(command.ToString()).ExecuteCommand();
                 else
                     return 0;

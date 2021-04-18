@@ -382,6 +382,78 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Panel pnlResidentHealthForm;
         
         /// <summary>
+        /// pnlChronicIllnesses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlChronicIllnesses;
+        
+        /// <summary>
+        /// cbAsthma_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAsthma_1;
+        
+        /// <summary>
+        /// cbAlzheimers_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAlzheimers_2;
+        
+        /// <summary>
+        /// cbCancer_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbCancer_3;
+        
+        /// <summary>
+        /// cbCOPD_4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbCOPD_4;
+        
+        /// <summary>
+        /// cbDiabetes_5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbDiabetes_5;
+        
+        /// <summary>
+        /// cbHeartDisease_6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbHeartDisease_6;
+        
+        /// <summary>
+        /// cbHypertension_7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbHypertension_7;
+        
+        /// <summary>
         /// lblErrorSymptoms control.
         /// </summary>
         /// <remarks>

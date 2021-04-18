@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using CaresTracker.DataAccess.DataAccessors;
 using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
+using CaresTracker.DataAccess.DataAccessors.ChronicIllnessAccessors;
 
 namespace CaresTracker.DataModels
 {
@@ -26,6 +27,7 @@ namespace CaresTracker.DataModels
         public int HouseID { get; set; }
         public House Home { get; set; }
         public string FullName { get { return $"{ResidentFirstName} {ResidentLastName}"; } }
+        public List<ChronicIllness> ChronicIllnesses { get; set; }
 
         public Resident() { }
 
@@ -53,6 +55,8 @@ namespace CaresTracker.DataModels
 
             VaccineStatus = dataRow["VaccineStatus"] != DBNull.Value ? dataRow["VaccineStatus"].ToString() : null;
             VaccineAppointmentDate = dataRow["VaccineAppointmentDate"].ToString();
+
+            ChronicIllnesses = ChronicIllness.CreateChronicIllnessList(new GetChronicIllnessesByResidentID().ExecuteCommand(ResidentID));
         }
 
         /// <summary>
