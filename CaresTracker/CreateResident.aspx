@@ -74,6 +74,7 @@
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlRelationshipHOH" CssClass="form-control" runat="server">
+                            <asp:ListItem>Unknown</asp:ListItem>
                             <asp:ListItem>Self</asp:ListItem>
                             <asp:ListItem>Spouse</asp:ListItem>
                             <asp:ListItem>Child</asp:ListItem>
@@ -87,6 +88,7 @@
                     <div class="col-7" id="divrblGender">
                         <asp:Label runat="server" class="errorLabel" ID="lblValidationGender" role="alert" Visible="false"></asp:Label>
                         <asp:RadioButtonList ID="rblGender" CssClass="" RepeatDirection="Vertical" runat="server">
+                            <asp:ListItem Selected="True">Unknown</asp:ListItem>
                             <asp:ListItem>Male</asp:ListItem>
                             <asp:ListItem>Female</asp:ListItem>
                             <asp:ListItem>Prefer not to say</asp:ListItem>
@@ -99,6 +101,7 @@
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlRace" CssClass="form-control" RepeatDirection="Horizontal" runat="server">
+                            <asp:ListItem>Unknown</asp:ListItem>
                             <asp:ListItem>American Indian/Alaska Native</asp:ListItem>
                             <asp:ListItem>Asian</asp:ListItem>
                             <asp:ListItem>Black or African American</asp:ListItem>
@@ -113,6 +116,7 @@
                     </div>
                     <div class="col-7">
                         <asp:DropDownList CssClass="form-control" ID="ddlLanguage" RepeatDirection="Horizontal" runat="server">
+                            <asp:ListItem>Unknown</asp:ListItem>
                             <asp:ListItem>English</asp:ListItem>
                             <asp:ListItem>Spanish</asp:ListItem>
                             <asp:ListItem>French</asp:ListItem>
@@ -152,7 +156,7 @@
                         <label class="required">Personal Address: </label>
                     </div>
                     <div class="col-7">
-                        <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblWrongAddressInput" role="alert" Visible="false">
+                        <asp:Label runat="server" class="errorLabel" ID="lblWrongAddressInput" role="alert" Visible="false">
                                 You must select an address from the list
                         </asp:Label>
                         <input id="txtAddress" type="text" placeholder="" runat="server" class="form-control" />
