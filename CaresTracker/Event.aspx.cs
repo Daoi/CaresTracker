@@ -15,14 +15,17 @@ namespace CaresTracker
     {
         DataModels.Event theEvent;
         CARESUser user;
-        List<int> hostIds;
-        HashSet<int> orgs;
+        List<int> hostIds = new List<int>();
+        HashSet<int> orgs = new HashSet<int>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             user = Session["User"] as CARESUser;
+
+
             if (Session["Event"] != null)
             {
+
                 theEvent = (DataModels.Event)Session["Event"];
                 theEvent.Hosts.ForEach(cu => hostIds.Add(cu.UserID));
                 theEvent.Hosts.ForEach(cu => orgs.Add(cu.OrganizationID));
