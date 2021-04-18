@@ -15,20 +15,24 @@ namespace CaresTracker
     {
         DataModels.Event theEvent;
         CARESUser user;
+        List<int> hostIds;
+        HashSet<int> orgs;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = Session["USer"] as CARESUser;
+            user = Session["User"] as CARESUser;
             if (Session["Event"] != null)
             {
                 theEvent = (DataModels.Event)Session["Event"];
+                theEvent.Hosts.ForEach(cu => hostIds.Add(cu.UserID));
+                theEvent.Hosts.ForEach(cu => orgs.Add(cu.OrganizationID));
             }
 
             if(!IsPostBack && Session["Event"] != null)
             {
                 FillEventInfo();
 
-                if (user.UserType.Equals("C") && !user.FullName.Equals(ddlMainHost.SelectedValue))
+                if (!orgs.Contains(user.OrganizationID) || (user.UserType.Equals("C") && user.UserID != theEvent.MainHostID))
                     btnEdit.Visible = false;
 
                 gvCHWList.DataSource = theEvent.Hosts;
@@ -116,7 +120,7 @@ namespace CaresTracker
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            if (user.UserType.Equals("C") && !user.FullName.Equals(ddlMainHost.SelectedValue))
+            if (!orgs.Contains(user.OrganizationID) || ( user.UserType.Equals("C") && user.UserID != theEvent.MainHostID ) )
                 return;
 
             EnableDisableControls();
