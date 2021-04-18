@@ -93,13 +93,13 @@
                         <%-- Housing Info Form End --%>
                         <%-- Meeting Info Form Start --%>
                         <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
-                            <h5>Meeting Info</h5>
+                            <h5>Meeting Info </h5>
                             <div>
                                 <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="errorLabel" Visible="false"></asp:Label>
                             </div>
                             <div class="row m-3">
-                                <label>Meeting Type</label>
-                                <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
+                                <label class="required">Meeting Type </label>
+                                <asp:DropDownList ID="ddlMeetingType" CssClass="form-control required" runat="server">
                                     <asp:ListItem>Select Meeting Type</asp:ListItem>
                                     <asp:ListItem>Phone</asp:ListItem>
                                     <asp:ListItem>Email</asp:ListItem>
@@ -108,11 +108,11 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="row m-3">
-                                <label>Location</label>
+                                <label class="required">Location </label>
                                 <asp:TextBox ID="tbLocation" runat="server" placeholder="Meeting Location" CssClass="form-control"></asp:TextBox>
                             </div>
                             <div class="row m-3">
-                                <label>Date of Contact</label>
+                                <label class="required">Date of Contact </label>
                                 <asp:TextBox ID="tbDoC" runat="server" placeholder="Date of Contact" TextMode="Date" CssClass="form-control"></asp:TextBox>
                             </div>
                         </asp:Panel>
@@ -254,7 +254,7 @@
                                     <asp:CheckBoxList ID="cblCompletedServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
                                 <div id="divFollowUpRequired" class="row m-3" runat="server">
-                                    <asp:Label ID="lblFollowUp" for="ddlFollowUp" runat="server" Text="Does this interaction require a follow up?"></asp:Label>
+                                    <asp:Label ID="lblFollowUp" for="ddlFollowUp" runat="server" CssClass="required" Text="Does this interaction require a follow up? "></asp:Label>
                                     <asp:DropDownList ID="ddlFollowUp" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlFollowUp_SelectedIndexChanged">
                                         <asp:ListItem>Select Option</asp:ListItem>
                                         <asp:ListItem Value="false">Doesn't Require Follow Up</asp:ListItem>
@@ -263,7 +263,7 @@
                                     <asp:Label ID="lblFollowUpError" runat="server" CssClass="errorLabel" Text="Must select whether the service requires follow up." Visible="false"></asp:Label>
                                 </div>
                                 <div id="divFollowUpStatus" class="row m-3" runat="server">
-                                    <asp:Label ID="lblFollowUpStatus" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up?"></asp:Label>
+                                    <asp:Label ID="lblFollowUpStatus" CssClass="required" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up?"></asp:Label>
                                     <asp:DropDownList ID="ddlFollowUpStatus" CssClass="form-control" runat="server">
                                         <asp:ListItem Value="incomplete">Still requires follow up</asp:ListItem>
                                         <asp:ListItem Value="complete">Follow up completed</asp:ListItem>
@@ -284,7 +284,7 @@
                                     <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="errorLabel" Visible="false"></asp:Label>
                                 </div>
                             <div class="row m-3">
-                                <h6>Vaccine Status</h6>
+                                <h6 class="required">Vaccine Status </h6>
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
                                     <asp:ListItem Value="Unknown">Select Vaccine Status</asp:ListItem>
                                     <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
@@ -321,10 +321,10 @@
                         <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                             <h5>Action Plan</h5>
                             <div>
-                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="errorLabel" Visible="false"></asp:Label>
+                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="errorLabel required" Visible="false"></asp:Label>
                             </div>
                             <div class="row m-3">
-                                <label>Next Steps:</label>
+                                <label class="required">Next Steps </label>
                                 <textarea id="nextSteps" class="form-control" name="nextSteps" rows="5" cols="70" runat="server"></textarea>
                             </div>
                         </asp:Panel>
