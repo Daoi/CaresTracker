@@ -1,8 +1,0 @@
-LAST NAME,FIRST NAME,GENDER,RACE,ETHNICITY,DATE OF BIRTH,AGE,CURRENT ADDRESS-1,CURRENT ADDRESS-2,CURRENT CITY,CURRENT STATE,CURRENT ZIP CODE,PRIMARY E-MAIL,HEAD OF HOUSEHOLD-STATUS,HEAD OF HOUSEHOLD
-Import,,Male,White,N/a,1/1/1990,31,1111 Street road,,Philadelphia,PA,11123,residentemail@fakeresidentemail.com,Self,Self
-,Two,Female,White,N/a,1/1/1990,31,1111 Street road,,Philadelphia,PA,11123,residentemail@fakeresidentemail.com,Self,Self
-,,Male,White,N/a,1/1/1990,31,1111 Street road,,Philadelphia,PA,11123,residentemail@fakeresidentemail.com,Self,Self
-Import,Four,Male,White,N/a,1/1/1990,31,1111 Street road,,Philadelphia,PA,11123,residentemail@fakeresidentemail.com,Self,Self
-Import,John,Male,White,N/a,1/1/1990,31,1111 Street road,,Philadelphia,PA,11123,residentemail@fakeresidentemail.com,Self,Self
-Import,Sue,Male,White,N/a,1/1/1990,31,1111 Street road,,Philadelphia,PA,11123,residentemail@fakeresidentemail.com,Self,Self
-New,Import,Male,White,N/a,1/1/1990,31,1111 Street road,,Philadelphia,PA,11123,residentemail@fakeresidentemail.com,Self,Self
