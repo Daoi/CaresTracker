@@ -40,6 +40,51 @@ namespace CaresTracker {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCreateCHW;
         
         /// <summary>
+        /// divCreateResidentProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCreateResidentProfile;
+        
+        /// <summary>
+        /// divCreateEvent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCreateEvent;
+        
+        /// <summary>
+        /// divInteractionList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInteractionList;
+        
+        /// <summary>
+        /// divResidentList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResidentList;
+        
+        /// <summary>
+        /// divEventList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEventList;
+        
+        /// <summary>
         /// lblOutstandingMsg control.
         /// </summary>
         /// <remarks>

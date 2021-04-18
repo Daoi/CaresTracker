@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.EventAccessors;
 using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
+using CaresTracker.DataModels;
 using CaresTracker.Utilities;
 
 namespace CaresTracker
@@ -13,17 +14,30 @@ namespace CaresTracker
     public partial class Event : System.Web.UI.Page
     {
         DataModels.Event theEvent;
+        CARESUser user;
+        List<int> hostIds = new List<int>();
+        HashSet<int> orgs = new HashSet<int>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = Session["User"] as CARESUser;
+
+
             if (Session["Event"] != null)
             {
+
                 theEvent = (DataModels.Event)Session["Event"];
+                theEvent.Hosts.ForEach(cu => hostIds.Add(cu.UserID));
+                theEvent.Hosts.ForEach(cu => orgs.Add(cu.OrganizationID));
             }
 
             if(!IsPostBack && Session["Event"] != null)
             {
                 FillEventInfo();
+
+                if (!orgs.Contains(user.OrganizationID) || (user.UserType.Equals("C") && user.UserID != theEvent.MainHostID))
+                    btnEdit.Visible = false;
+
                 gvCHWList.DataSource = theEvent.Hosts;
                 gvCHWList.DataBind();
                 gvResidentList.DataSource = theEvent.Attendees;
@@ -109,6 +123,9 @@ namespace CaresTracker
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            if (!orgs.Contains(user.OrganizationID) || ( user.UserType.Equals("C") && user.UserID != theEvent.MainHostID ) )
+                return;
+
             EnableDisableControls();
             btnEdit.Visible = false;
             btnSave.Visible = true;

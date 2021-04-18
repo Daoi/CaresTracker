@@ -26,7 +26,7 @@
                         <%-- Button 1 End --%>
                         <a class="stretched-link" href="CreateCHW.aspx"></a>
                     </div>
-                    <div class="col m-3 homepageCol">
+                    <div id="divCreateResidentProfile" class="col m-3 homepageCol" runat="server">
                         <%-- Button 2 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
@@ -37,7 +37,7 @@
                         <%-- Button 2 End --%>
                         <a class="stretched-link" href="CreateResident.aspx"></a>
                     </div>
-                    <div class="col m-3 homepageCol">
+                    <div id="divCreateEvent" class="col m-3 homepageCol" runat="server">
                         <%-- Button 3 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col m-3 homepageCol">
+                    <div id="divInteractionList" class="col m-3 homepageCol" runat="server">
                         <%-- Button 4 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
@@ -61,9 +61,9 @@
                         <%-- Button 4 End --%>
                         <a class="stretched-link" href="InteractionList.aspx"></a>
                     </div>
-                    <div class="col m-3 homepageCol">
+                    <div id="divResidentList" class="col m-3 homepageCol" runat="server">
                         <%-- Button 5 Start --%>
-                        <div class="card text-center homepageCard">
+                        <div class="card text-center homepageCard" >
                             <div class="card-body shadow">
                                 <label class="card-title font-weight-bold h5">Resident Look Up</label>
                                 <p class="text-dark">Search for a specific resident's profile</p>
@@ -72,7 +72,7 @@
                         <%-- Button 5 End --%>
                         <a class="stretched-link" href="ResidentLookUp.aspx"></a>
                     </div>
-                    <div class="col m-3 homepageCol">
+                    <div id="divEventList" class="col m-3 homepageCol" runat="server">
                         <%-- Button 6 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">

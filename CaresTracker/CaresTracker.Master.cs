@@ -40,11 +40,11 @@ namespace CaresTracker
             {
                 lnkAdminSettings.Visible = true;
                 lnkAdminSettings.Enabled = true;
+                lnkImport.Visible = true;
+                lnkImport.Enabled = true;
             }
 
             // standard options
-            lnkImport.Visible = true;
-            lnkImport.Enabled = true;
             lnkBtnLogout.Visible = true;
             lnkBtnLogout.Enabled = true;
         }

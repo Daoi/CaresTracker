@@ -1,4 +1,5 @@
 ﻿
+using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
@@ -20,6 +21,7 @@ namespace CaresTracker
         Dictionary<string, Panel> links;
         Resident res;
         Interaction interaction;
+        CARESUser user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,8 +32,14 @@ namespace CaresTracker
                 {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}, {"editHistory", pnlEditHistory}
                 };
 
+            user = Session["User"] as CARESUser;
+
             if (!IsPostBack)
             {
+                //Redirect if not apart of same org and not temple admin
+                if (!user.UserType.Equals("T") && user.OrganizationID != new GetOrgIDByUserID().RunCommand(interaction.HealthWorkerID))
+                    Response.Redirect("Homepage.aspx");
+
                 //Set resident info (first tab) to visible, others to false
                 links.Keys.ToList().Where(s => !s.Equals("residentInfo")).ToList().ForEach(s => links[s].Visible = false);
                 cblServices.DataSource = new GetAllServices().ExecuteCommand();
@@ -48,6 +56,7 @@ namespace CaresTracker
                     divFollowUpStatus.Visible = false;
                     divFollowUpRequired.Visible = true;
                     ViewState["FollowUpRequired"] = null;
+                    tbDoC.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
                 else if (Session["Interaction"] != null && (url.Contains("InteractionList") || url.Contains("SaveSuccessful")))//Old interaction
                 {
@@ -86,6 +95,11 @@ namespace CaresTracker
                     {
                         editHistory.Visible = true;
                     }
+                    //Edit Permissions
+                    if(( user.UserType.Equals("A") || user.UserType.Equals("C")) && interaction.HealthWorkerID != user.UserID ) //If current user is a partner admin or chw but not the creating user
+                    {
+                        lnkBtnEdit.Visible = false;
+                    }
                 }
             }
         }
@@ -116,6 +130,14 @@ namespace CaresTracker
 
         protected void lnkBtnEdit_Click(object sender, EventArgs e)
         {
+
+            Interaction interaction = Session["Interaction"] as Interaction;
+
+            if ( (user.UserType.Equals("C") && interaction.HealthWorkerID != user.UserID) || user.UserType.Equals("A") )
+            {
+                return;
+            }
+
             if (ViewState["EditMode"] == null)
             {
                 ViewState["EditMode"] = true;
@@ -173,6 +195,8 @@ namespace CaresTracker
 
         protected void btnEditSubmit_Click(object sender, EventArgs e)
         {
+
+
             if (string.IsNullOrWhiteSpace(taEditReason.InnerText))
             {
                 lblModalError.Text = "Reason for edit is required";
@@ -486,6 +510,7 @@ namespace CaresTracker
         private bool IsFormValid()
         {
             bool isValid = true;
+            bool editing = (ViewState["EditMode"] as bool?) ?? false;
 
             // meeting info
             if (Validation.IsEmpty(tbLocation.Text) || ddlMeetingType.SelectedIndex == 0 || string.IsNullOrWhiteSpace(tbDoC.Text))
@@ -553,7 +578,7 @@ namespace CaresTracker
             }
 
             // vaccine info
-            bool editing = (Session["EditMode"] as bool?) ?? false;
+
             if (ddlVaccineStatus.SelectedIndex == 0 && !editing)
             {
                 isValid = false;

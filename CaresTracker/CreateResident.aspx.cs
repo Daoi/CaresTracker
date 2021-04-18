@@ -132,6 +132,7 @@ namespace CaresTracker
                 Session["Resident"] = newResident;
 
                 Response.Redirect("ResidentProfile.aspx");
+                
             }
             catch (Exception ex) // If the House post fails, display error label
             {
