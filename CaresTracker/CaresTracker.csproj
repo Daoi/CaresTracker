@@ -322,6 +322,7 @@
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetOrgIDByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetChronicIllnessesByResidentID.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByAdminID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddEvent.cs" />
@@ -365,7 +366,10 @@
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalGenderReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalLanguageReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalVaccineReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\InsertService.cs" />
@@ -377,8 +381,10 @@
     <Compile Include="DataAccess\DataAccessors\SymptomAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetServicesByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkersByUserID.cs" />
+    <Compile Include="DataModels\ChronicIllness.cs" />
     <Compile Include="Importing\FileManager.cs" />
     <Compile Include="Importing\FileModel\ImportFile.cs" />
+    <Compile Include="Importing\ImportError.cs" />
     <Compile Include="Importing\ImportResidents.cs" />
     <Compile Include="InteractionList.aspx.cs">
       <DependentUpon>InteractionList.aspx</DependentUpon>
