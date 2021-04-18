@@ -48,14 +48,8 @@ namespace CaresTracker
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
             // Check that address is selected from the API predictions list
-            if (ValidateForm())
+            if (!ValidateForm())
             {
-                return;
-            }
-
-            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
-            {
-                lblWrongAddressInput.Visible = true;
                 return;
             }
 
@@ -223,6 +217,17 @@ namespace CaresTracker
             else
             {
                 lblValidationHousing.Visible = false;
+            }
+
+            // Check that address is selected from the API predictions list
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                isFormValid = false;
+                lblWrongAddressInput.Visible = true;
+            }
+            else
+            {
+                lblWrongAddressInput.Visible = false;
             }
 
             return isFormValid;

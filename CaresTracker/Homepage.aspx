@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
-                        <asp:linkbutton id="lnkHome" navigateurl="~/Homepage.aspx" cssclass="cherryFont" runat="server">Dashboard</asp:linkbutton>
+                        <asp:linkbutton id="lnkHome" navigateurl="~/Homepage.aspx" cssclass="cherryFont" runat="server" OnClick="lnkHome_Click">Dashboard</asp:linkbutton>
                     </li>
                 </ol>
             </nav>
@@ -94,7 +94,7 @@
                                 <div class="row pl-1">
                                     <ul class="nav nav-tabs card-header-tabs" id="follow-up-tracker" role="tablist">
                                         <li class="nav-item cherryFont">
-                                            <a class="nav-link cherryFont active" href="#outstanding" role="tab" aria-controls="Outstanding" aria-selected="true">Oustanding</a>
+                                            <a class="nav-link cherryFont active" href="#outstanding" role="tab" aria-controls="Outstanding" aria-selected="true">Outstanding</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link cherryFont" href="#completed" role="tab" aria-controls="Completed" aria-selected="false">Completed</a>

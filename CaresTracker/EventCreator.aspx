@@ -60,10 +60,10 @@
                 <div class="row m-3">
                     <div class="col">
                         <label>Select Health Workers to Host Event:</label>
-                        <div id="userCBLDiv" class="DataboundCBLOverflow row">
-                            <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged">
-                            </asp:CheckBoxList>
-                        </div>
+                    </div>
+                    <div id="userCBLDiv" class="col-7 cblWorker overflow-auto">
+                        <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="table" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged" RepeatDirection="Vertical">
+                        </asp:CheckBoxList>
                     </div>
                 </div>
                 <asp:UpdatePanel ID="upMainHost" UpdateMode="Conditional" runat="server">
@@ -73,7 +73,7 @@
                     <ContentTemplate>
                         <div class="row m-3">
                             <div class="col">
-                                <label>Select Main Host</label>
+                                <label>Select Main Host:</label>
                             </div>
                             <div class="col-7">
                                 <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
@@ -99,8 +99,11 @@
                         <label>Event Description and Notes:</label>
                     </div>
                     <div class="col-7">
-                        <textarea class="w-100 form-control" id="txtDescription" rows="6" runat="server"></textarea>
+                        <asp:TextBox ID="txtDescription" CssClass="w-100 form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
                     </div>
+                </div>
+                <div class="row m-3">
+                    <asp:Label ID="lblError" CssClass="errorLabel" Visible="false" runat="server"></asp:Label>
                 </div>
                 <div class="row m-3">
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="buttonStyle" OnClick="btnSubmit_Click" />

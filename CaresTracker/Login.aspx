@@ -29,7 +29,7 @@
                     <asp:Panel ID="pnlLogin" runat="server">
                         <asp:Label ID="lblInstructions" runat="server" CssClass="text-black-50" Text="Enter your username and password."></asp:Label>
                         <br />
-                        <asp:Label ID="lblError" runat="server" CssClass="h6 alert-danger"></asp:Label>
+                        <asp:Label ID="lblError" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                         <br />
                         <br />
                         <div class="form-group row justify-content-center">
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col">
                                 <br />
-                                <asp:Label ID="lblPRError" runat="server" CssClass="h6 alert-danger"></asp:Label>
+                                <asp:Label ID="lblPRError" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                                 <br />
                                 <br />
                                 <div class="form-group row justify-content-center">

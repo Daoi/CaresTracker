@@ -26,7 +26,7 @@
                         <asp:TextBox ID="txtDateInitial" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
                         Final Date:<br />
                         <asp:TextBox ID="txtDateFinal" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
-                        <asp:Label ID="lblError" runat="server" CssClass="h5 rounded px-3 py-2 alert-danger" Visible="false"></asp:Label>
+                        <asp:Label ID="lblError" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                     </div>
                 </div>
                 <asp:Button ID="btnSubmit" runat="server" Text="Generate Report" CssClass="buttonStyle" OnClick="btnSubmit_Click" />

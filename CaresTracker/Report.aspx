@@ -19,7 +19,7 @@
                 <%-- Housing Development Level Report --%>
                 <h2><ins>Housing Development Totals</ins></h2>
                 <br />
-                <asp:Label ID="lblErrorDevelopmentTotals" runat="server" CssClass="h4 rounded px-2 py-1 alert-danger" Visible="false"></asp:Label>
+                <asp:Label ID="lblErrorDevelopmentTotals" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                 <asp:Panel ID="pnlDevelopmentTotals" runat="server">
                     <h3>Residents per Gender</h3>
                     <div class="row border-bottom mb-5 pb-5">
@@ -100,7 +100,7 @@
                 <asp:Panel ID="pnlInteractionDataHeader" runat="server">
                     <h2><ins>Interaction Level Data</ins></h2>
                     <asp:Label ID="lblTimeframe" runat="server" Text="" CssClass="h5"></asp:Label><br /><br />
-                    <asp:Label ID="lblErrorInteractionData" runat="server" CssClass="h4 rounded px-2 py-1 alert-danger" Visible="false"></asp:Label>
+                    <asp:Label ID="lblErrorInteractionData" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                 </asp:Panel>
                 <br />
                 <asp:Panel ID="pnlInteractionData" runat="server">

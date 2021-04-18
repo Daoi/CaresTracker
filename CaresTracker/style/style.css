@@ -65,7 +65,7 @@ a {
 }
 
 .inputCheckBox input[type="checkbox"] {
-    margin-right: .15em;
+    margin-right: .5em;
 }
 
 @media (max-width: 1024px) {
@@ -367,9 +367,9 @@ thead {
     list-style-type: none;
 }
 
-
-#MainContent_fileUpload{
-    margin-left: .75rem;
+.fileUpload {
+    width: 50%;
+    margin-left: 25%;
 }
 
 .developmentsID {
@@ -383,4 +383,32 @@ thead {
 
 .warningIcon{
     color: orangered;
+}
+
+.fileUploadErrors {
+    height:250px;
+    overflow-y: auto;
+}
+
+.cblWorker{
+    height: 20em;
+}
+
+.cblWorker label {
+    padding-left: .2em;
+}
+
+/*h6 rounded px-2 py-1 alert-danger*/
+.errorLabel:not(:empty) {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem !important;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    font-size: 1rem;
 }
