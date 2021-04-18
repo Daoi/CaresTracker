@@ -21,6 +21,7 @@ namespace CaresTracker
         {
             if (Validation.IsEmpty(txtUsername.Text) || Validation.IsEmpty(txtPassword.Text))
             {
+                lblError.Visible = true;
                 lblError.Text = "Fill out all fields.";
                 return;
             }
@@ -46,11 +47,13 @@ namespace CaresTracker
                 }
                 else
                 {
+                    lblError.Visible = true;
                     lblError.Text = "An unknown error occurred. Please try again later.";
                 }
             }
             catch (Exception ex)
             {
+                lblError.Visible = true;
                 lblError.Text = ex.Message;
             }
         }
@@ -78,6 +81,7 @@ namespace CaresTracker
         {
             if (Validation.IsEmpty(txtPRUsername.Text))
             {
+                lblPRError.Visible = true;
                 lblPRError.Text = "Enter your Username.";
                 return;
             }
@@ -90,6 +94,7 @@ namespace CaresTracker
             }
             catch (Exception ex)
             {
+                lblPRError.Visible = true;
                 lblPRError.Text = ex.Message;
             }
         }
@@ -100,18 +105,21 @@ namespace CaresTracker
             // check for empty textboxes
             if (pnlPasswordReset.Controls.OfType<TextBox>().ToList().Any(tb => Validation.IsEmpty(tb.Text)))
             {
+                lblPRError.Visible = true;
                 lblPRError.Text = "Fill out all fields.";
                 return;
             }
 
             if (txtPRNewPassword.Text != txtPRRetypePassword.Text)
             {
+                lblPRError.Visible = true;
                 lblPRError.Text = "New password does not match confirmation.";
                 return;
             }
 
             if (!Validation.IsValidPassword(txtPRNewPassword.Text))
             {
+                lblPRError.Visible = true;
                 lblPRError.Text = "The new password does not fit the requirements.";
                 return;
             }
@@ -128,6 +136,7 @@ namespace CaresTracker
             }
             catch (Exception ex)
             {
+                lblPRError.Visible = true;
                 lblPRError.Text = ex.Message;
             }
         }

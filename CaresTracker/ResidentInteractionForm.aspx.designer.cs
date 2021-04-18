@@ -706,22 +706,13 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Label lblErrorVaccine;
         
         /// <summary>
-        /// ddlVaccineInterest control.
+        /// ddlVaccineStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVaccineInterest;
-        
-        /// <summary>
-        /// ddlVaccineEligibility control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVaccineEligibility;
+        protected global::System.Web.UI.WebControls.DropDownList ddlVaccineStatus;
         
         /// <summary>
         /// divVaccineAppointment control.

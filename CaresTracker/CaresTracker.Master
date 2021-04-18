@@ -75,7 +75,7 @@
                                     <h5>Enter your credentials</h5>
                                     <h6>Tries left:
                                         <asp:Label ID="lblTriesLeft" runat="server"></asp:Label></h6>
-                                    <asp:Label ID="lblModalError" runat="server" Text="" CssClass="alert-danger"></asp:Label>
+                                    <asp:Label ID="lblModalError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                                     <br />
                                     <h6 class="col-form-label">Username: </h6>
                                     <asp:TextBox ID="txtModalUsername" runat="server" CssClass="form-control"></asp:TextBox>

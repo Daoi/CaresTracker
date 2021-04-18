@@ -145,5 +145,9 @@ namespace CaresTracker
             //Error handling?
         }
 
+        protected void lnkHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Homepage.aspx");
+        }
     }
 }
