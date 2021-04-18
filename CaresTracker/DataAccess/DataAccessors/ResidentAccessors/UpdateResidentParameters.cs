@@ -27,8 +27,7 @@ namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
                 new MySqlParameter("@Gender", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@Race", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@PreferredLanguage", MySqlDbType.VarChar, 50),
-                new MySqlParameter("@VaccineInterest", MySqlDbType.Bit),
-                new MySqlParameter("@VaccineEligibility", MySqlDbType.Int32),
+                new MySqlParameter("@VaccineStatus", MySqlDbType.VarChar, 50),
                 new MySqlParameter("@VaccineAppointmentDate", MySqlDbType.VarChar, 50)
             };
         }
@@ -46,9 +45,8 @@ namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
             Parameters[8].Value = resident.Gender;
             Parameters[9].Value = resident.Race;
             Parameters[10].Value = resident.PreferredLanguage;
-            Parameters[11].Value = resident.VaccineInterest;
-            Parameters[12].Value = resident.VaccineEligibility;
-            Parameters[13].Value = resident.VaccineAppointmentDate;
+            Parameters[11].Value = resident.VaccineStatus;
+            Parameters[12].Value = resident.VaccineAppointmentDate;
             return Parameters;
 
         }

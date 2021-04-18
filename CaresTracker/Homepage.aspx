@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
-                        <asp:linkbutton id="lnkHome" navigateurl="~/Homepage.aspx" cssclass="cherryFont" runat="server">Dashboard</asp:linkbutton>
+                        <asp:linkbutton id="lnkHome" navigateurl="~/Homepage.aspx" cssclass="cherryFont" runat="server" OnClick="lnkHome_Click">Dashboard</asp:linkbutton>
                     </li>
                 </ol>
             </nav>

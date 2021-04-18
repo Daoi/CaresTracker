@@ -48,7 +48,7 @@
                             </div>
                         </div> 
                         <div class="row">
-                            <asp:Label ID="lblAWSError" runat="server" Text="" CssClass="h6 alert-danger mb-1"></asp:Label>
+                            <asp:Label ID="lblAWSError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                         </div>
                     </div>
                 </div>

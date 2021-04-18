@@ -94,7 +94,9 @@
                         <%-- Meeting Info Form Start --%>
                         <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
                             <h5>Meeting Info</h5>
-                            <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="h4 alert-danger" Visible="false"></asp:Label>
+                            <div>
+                                <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="errorLabel" Visible="false"></asp:Label>
+                            </div>
                             <div class="row m-3">
                                 <label>Meeting Type</label>
                                 <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
@@ -118,7 +120,7 @@
                         <%-- Resident Health Form Start --%>
                         <asp:Panel ID="pnlResidentHealthForm" class="residentHealth w-100" Style="display: inline-grid" runat="server">
                             <h5>Resident Health</h5>
-                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                            <asp:Label ID="lblErrorSymptoms" runat="server" CssClass="errorLabel"></asp:Label>
                             <%-- Symtpom List Start --%>
                             <h5 class="pl-3">Covid-19 Possible Symptoms</h5>
                             <div class="row pl-3">
@@ -181,7 +183,7 @@
                                 <label>Dates Symptoms Occured</label>
                                 <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="form-control" TextMode="Date"></asp:TextBox>
                             </div>
-                            <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="h4 alert-danger"></asp:Label>
+                            <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="errorLabel"></asp:Label>
                             <div class="row m-3">
                                 <label>Covid-19 Test Results</label>
                                 <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server" Height="2em">
@@ -216,7 +218,7 @@
                                         <asp:ListItem Value="false">Doesn't Require Follow Up</asp:ListItem>
                                         <asp:ListItem Value="true">Requires Follow up</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:Label ID="lblFollowUpError" runat="server" CssClass="h4 alert-danger" Text="Must select whether the service requires follow up." Visible="false"></asp:Label>
+                                    <asp:Label ID="lblFollowUpError" runat="server" CssClass="errorLabel" Text="Must select whether the service requires follow up." Visible="false"></asp:Label>
                                 </div>
                                 <div id="divFollowUpStatus" class="row m-3" runat="server">
                                     <asp:Label ID="lblFollowUpStatus" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up?"></asp:Label>
@@ -236,23 +238,17 @@
                         <%-- Vaccine Form Start --%>
                         <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
                             <h5>Vaccine Info</h5>
+                                <div>
+                                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="errorLabel" Visible="false"></asp:Label>
+                                </div>
                             <div class="row m-3">
-                                <asp:Label ID="lblErrorVaccine" runat="server" Text="Please fill out vaccine interest and eligibility." CssClass="h4 alert-danger" Visible="false"></asp:Label>
-                                <label>Vaccine Interest</label>
-                                <asp:DropDownList ID="ddlVaccineInterest" CssClass="form-control" runat="server">
-                                    <asp:ListItem>Select Vaccine Interest</asp:ListItem>
-                                    <asp:ListItem Value="True">Interested in vaccine</asp:ListItem>
-                                    <asp:ListItem Value="False">Not interested in vaccine</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="row m-3">
-                                <label>Vaccine Phase</label>
-                                <asp:DropDownList ID="ddlVaccineEligibility" CssClass="form-control" runat="server">
-                                    <asp:ListItem>Select Eligibility</asp:ListItem>
-                                    <asp:ListItem Value="0">Phase1A</asp:ListItem>
-                                    <asp:ListItem Value="1">Phase1B</asp:ListItem>
-                                    <asp:ListItem Value="2">Phase1C</asp:ListItem>
-                                    <asp:ListItem Value="3">Phase2</asp:ListItem>
+                                <h6>Vaccine Status</h6>
+                                <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="Unknown">Select Vaccine Status</asp:ListItem>
+                                    <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
+                                    <asp:ListItem Value="Interested in vaccine, no appointment">Interested in vaccine, no appointment</asp:ListItem>
+                                    <asp:ListItem Value="Appointment Scheduled">Appointment Scheduled</asp:ListItem>
+                                    <asp:ListItem Value="Vaccinated">Vaccinated</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div runat="server" id="divVaccineAppointment" class="row m-3">
@@ -266,14 +262,14 @@
                             <h5>Edit History</h5>
                             <asp:GridView ID="gvEditHistory" Width="100%" runat="server" AutoGenerateColumns="False" class="table table-light table-striped table-bordered thead-dark">
                                 <Columns>
-                                    <asp:BoundField DataField="EditDate" HeaderText="Edit Date" >
-                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <asp:BoundField DataField="EditDate" HeaderText="Edit Date">
+                                        <HeaderStyle CssClass="cherryBackground" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="Username" HeaderText="Editor Username" >
-                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <asp:BoundField DataField="Username" HeaderText="Editor Username">
+                                        <HeaderStyle CssClass="cherryBackground" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="EditReason" HeaderText="Reason for Edit" >
-                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <asp:BoundField DataField="EditReason" HeaderText="Reason for Edit">
+                                        <HeaderStyle CssClass="cherryBackground" />
                                     </asp:BoundField>
                                 </Columns>
                             </asp:GridView>
@@ -282,8 +278,10 @@
                         <%-- Other Form Start --%>
                         <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                             <h5>Action Plan</h5>
+                            <div>
+                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="errorLabel" Visible="false"></asp:Label>
+                            </div>
                             <div class="row m-3">
-                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="h4 alert-danger" Visible="false"></asp:Label>
                                 <label>Next Steps:</label>
                                 <textarea id="nextSteps" class="form-control" name="nextSteps" rows="5" cols="70" runat="server"></textarea>
                             </div>
@@ -307,7 +305,7 @@
                     <ContentTemplate>
                         <div class="modal-body px-5 pb-3">
                             <h5>Reason For Edit</h5>
-                            <asp:Label ID="lblModalError" runat="server" Text="" CssClass="alert-danger modalError"></asp:Label>
+                            <asp:Label ID="lblModalError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                             <br />
                             <textarea id="taEditReason" class="form-control" cols="50" rows="5" runat="server"></textarea>
                         </div>

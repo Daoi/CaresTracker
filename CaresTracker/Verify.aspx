@@ -37,7 +37,7 @@
                         <br />
                         <asp:Label ID="lblInstructions" runat="server" CssClass="h6 text-dark" Text="Set your new password below."></asp:Label>
                         <br />
-                        <asp:Label ID="lblError" runat="server" CssClass="h6 alert-danger"></asp:Label>
+                        <asp:Label ID="lblError" runat="server" CssClass="errorLabel"></asp:Label>
                         <br />
                         <br />
                                 
