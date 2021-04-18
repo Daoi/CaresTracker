@@ -56,6 +56,7 @@ namespace CaresTracker
                     divFollowUpStatus.Visible = false;
                     divFollowUpRequired.Visible = true;
                     ViewState["FollowUpRequired"] = null;
+                    tbDoC.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
                 else if (Session["Interaction"] != null && (url.Contains("InteractionList") || url.Contains("SaveSuccessful")))//Old interaction
                 {
@@ -488,6 +489,7 @@ namespace CaresTracker
         private bool IsFormValid()
         {
             bool isValid = true;
+            bool editing = (ViewState["EditMode"] as bool?) ?? false;
 
             // meeting info
             if (Validation.IsEmpty(tbLocation.Text) || ddlMeetingType.SelectedIndex == 0 || string.IsNullOrWhiteSpace(tbDoC.Text))
@@ -549,7 +551,7 @@ namespace CaresTracker
             }
 
             // vaccine info
-            bool editing = (Session["EditMode"] as bool?) ?? false;
+
             if (ddlVaccineStatus.SelectedIndex == 0 && !editing)
             {
                 isValid = false;
