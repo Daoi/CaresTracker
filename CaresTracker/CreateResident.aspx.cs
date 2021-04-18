@@ -130,7 +130,6 @@ namespace CaresTracker
 
                 //Store new resident in Session to use to redirect/populate resident profile
                 Session["Resident"] = newResident;
-                CARESUser user = Session["User"] as CARESUser;
 
                 Response.Redirect("ResidentProfile.aspx");
                 
