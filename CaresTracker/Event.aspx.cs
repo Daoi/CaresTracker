@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.EventAccessors;
 using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
+using CaresTracker.DataModels;
 using CaresTracker.Utilities;
 
 namespace CaresTracker
@@ -13,9 +14,11 @@ namespace CaresTracker
     public partial class Event : System.Web.UI.Page
     {
         DataModels.Event theEvent;
+        CARESUser user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = Session["USer"] as CARESUser;
             if (Session["Event"] != null)
             {
                 theEvent = (DataModels.Event)Session["Event"];
@@ -24,6 +27,10 @@ namespace CaresTracker
             if(!IsPostBack && Session["Event"] != null)
             {
                 FillEventInfo();
+
+                if (user.UserType.Equals("C") && !user.FullName.Equals(ddlMainHost.SelectedValue))
+                    btnEdit.Visible = false;
+
                 gvCHWList.DataSource = theEvent.Hosts;
                 gvCHWList.DataBind();
                 gvResidentList.DataSource = theEvent.Attendees;
@@ -109,6 +116,9 @@ namespace CaresTracker
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            if (user.UserType.Equals("C") && !user.FullName.Equals(ddlMainHost.SelectedValue))
+                return;
+
             EnableDisableControls();
             btnEdit.Visible = false;
             btnSave.Visible = true;
