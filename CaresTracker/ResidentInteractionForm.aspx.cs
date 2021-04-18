@@ -130,11 +130,6 @@ namespace CaresTracker
 
         protected void lnkBtnEdit_Click(object sender, EventArgs e)
         {
-            //CARESUser user = Session["User"] as CARESUser;
-            if(user == null)
-            {
-                throw new ArgumentNullException("Null User");
-            }
 
             Interaction interaction = Session["Interaction"] as Interaction;
 
