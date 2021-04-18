@@ -29,7 +29,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>First Name: </label>
+                        <label class="required">First Name: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server"></asp:TextBox>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Last Name: </label>
+                        <label class="required">Last Name: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server"></asp:TextBox>

@@ -412,3 +412,9 @@ thead {
     border-color: #f5c6cb;
     font-size: 1rem;
 }
+
+.required::after {
+    content: "*";
+    font-weight: bold;
+    color: red !important;
+}
