@@ -32,6 +32,9 @@ namespace CaresTracker
             if (!IsPostBack)
             {
                 InitializeProfileValues();
+                // Provide initial values for hidden fields
+                hdnfldFormattedAddress.Value = txtAddress.Value;
+                hdnfldName.Value = txtAddress.Value;
                 ToggleControls(); //Set page to disabled status
                 if (Session["DevelopmentDT"] == null)
                 {
@@ -164,7 +167,6 @@ namespace CaresTracker
         // Toggle HTMLInput element used for API
         private void ToggleHTMLInputElement()
         {
-            
             if (!txtAddress.Disabled)
             {
                 txtAddress.Disabled = true;
@@ -183,6 +185,7 @@ namespace CaresTracker
                 lblWrongAddressInput.Visible = true;
                 return;
             }
+            lblWrongAddressInput.Visible = false;
 
             Resident res = new Resident();
             //Resident Info
@@ -202,23 +205,30 @@ namespace CaresTracker
             //Housing Info
             res.Home = new House();
 
-            // Slice up formatted address from Google API
-            string formatted_address = hdnfldFormattedAddress.Value;
-            string[] list = formatted_address.Split(',');
-
-            string Address = list[0];
-            // Remove "PA" from zipcode string
-            string ZipCode = list[2].Remove(0, 4);
-
-            res.Home.Address = Address;
+            res.Home.Address = txtAddress.Value;
+            res.Home.ZipCode = tbZipcode.Text;
             res.Home.UnitNumber = tbUnitNumber.Text;
             res.Home.RegionName = ddlRegion.SelectedItem.Text;
             res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
             res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
-            res.Home.ZipCode = ZipCode;
 
-            // Change txtZipCode to reflect new ZipCode
-            tbZipcode.Text = ZipCode;
+            if (!hdnfldFormattedAddress.Value.Equals(txtAddress.Value)) // If a new address was selected
+            {
+                // Slice up formatted address from Google API
+                string formatted_address = hdnfldFormattedAddress.Value;
+                string[] list = formatted_address.Split(',');
+
+                string Address = list[0];
+                // Remove "PA" from zipcode string
+                string ZipCode = list[2].Remove(0, 4);
+
+                // Assign values
+                res.Home.Address = Address;
+                res.Home.ZipCode = ZipCode;
+
+                // Change txtZipCode to reflect new ZipCode
+                tbZipcode.Text = ZipCode;
+            }
 
             if (res.Home.DevelopmentID != -1) //If not HCV
             {
@@ -245,6 +255,7 @@ namespace CaresTracker
                 ToggleHTMLInputElement();
                 btnEditProfile.Visible = true;
                 btnSaveEdits.Visible = false;
+                btnCancelEdits.Visible = false;
                 lblErrorMessage.Text = string.Empty;
             }
             catch(Exception ex)
