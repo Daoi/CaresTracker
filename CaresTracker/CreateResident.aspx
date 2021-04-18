@@ -45,7 +45,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Date of Birth: </label>
+                        <label class="required">Date of Birth: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtDOB" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Phone Number: </label>
+                        <label class="required">Phone Number: </label>
                     </div>
                     <div class="col-7">
                         <asp:Label runat="server" For="txtPhoneNumber" class="errorLabel" ID="lblValidationPhone" role="alert" Visible="false"></asp:Label>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Housing Type:</label>
+                        <label class="required">Housing Type:</label>
                     </div>
                     <div class="col-7">
                         <asp:Label runat="server" class="errorLabel" ID="lblValidationHousing" role="alert" Visible="false"></asp:Label>
@@ -149,7 +149,7 @@
 
                 <div class="row m-3">
                     <div class="col">
-                        <label>Personal Address: </label>
+                        <label class="required">Personal Address: </label>
                     </div>
                     <div class="col-7">
                         <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblWrongAddressInput" role="alert" Visible="false">
