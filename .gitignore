@@ -386,3 +386,4 @@ CaresTracker/obj/Debug/CaresTracker.csproj.CoreCompileInputs.cache
 #Connection file
 connections.config
 appSettings.config
+*.csv
