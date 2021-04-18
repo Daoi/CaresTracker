@@ -21,6 +21,7 @@ namespace CaresTracker
         Dictionary<string, Panel> links;
         Resident res;
         Interaction interaction;
+        CARESUser user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +31,8 @@ namespace CaresTracker
                 { "meetingInfo", pnlMeetingInfoForm }, { "otherInfo", pnlOtherForm }, { "services", pnlServicesForm },
                 {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}, {"editHistory", pnlEditHistory}
                 };
-            CARESUser user = Session["User"] as CARESUser;
+
+            user = Session["User"] as CARESUser;
 
             if (!IsPostBack)
             {
@@ -130,10 +132,15 @@ namespace CaresTracker
 
         protected void lnkBtnEdit_Click(object sender, EventArgs e)
         {
-            CARESUser user = Session["User"] as CARESUser;
+            //CARESUser user = Session["User"] as CARESUser;
+            if(user == null)
+            {
+                throw new ArgumentNullException("Null User");
+            }
+
             Interaction interaction = Session["Interaction"] as Interaction;
 
-            if (interaction.HealthWorkerID != user.UserID || user.UserType.Equals("A"))
+            if ( (user.UserType.Equals("C") && interaction.HealthWorkerID != user.UserID) || user.UserType.Equals("A") )
             {
                 return;
             }
