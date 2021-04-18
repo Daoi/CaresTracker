@@ -255,6 +255,7 @@ namespace CaresTracker
                 ToggleHTMLInputElement();
                 btnEditProfile.Visible = true;
                 btnSaveEdits.Visible = false;
+                btnCancelEdits.Visible = false;
                 lblErrorMessage.Text = string.Empty;
             }
             catch(Exception ex)
