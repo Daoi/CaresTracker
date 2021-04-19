@@ -66,10 +66,6 @@
                         <asp:Panel class="housingInfo" ID="pnlHousingInfoForm" runat="server">
                             <h5>Housing Information</h5>
                             <div class="row m-3">
-                                <label>Number of residents</label>
-                                <asp:TextBox ID="tbResidenceOccupants" runat="server" placeholder="How many people does the resident live with?" CssClass="form-control my-1"></asp:TextBox>
-                            </div>
-                            <div class="row m-3">
                                 <label>HCV or PHA Development</label>
                                 <asp:DropDownList ID="ddlHousingType" CssClass="form-control" runat="server">
                                     <asp:ListItem>Select Housing Type</asp:ListItem>
@@ -88,6 +84,10 @@
                             <div class="row m-3">
                                 <label>Resident's Address</label>
                                 <asp:TextBox ID="tbResidentAddress" runat="server" placeholder="Resident's Address" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="row m-3">
+                                <label>Resident's Zip Code</label>
+                                <asp:TextBox ID="tbZipCode" runat="server" placeholder="Resident's Zip Code" CssClass="form-control"></asp:TextBox>
                             </div>
                         </asp:Panel>
                         <%-- Housing Info Form End --%>

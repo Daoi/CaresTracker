@@ -176,7 +176,7 @@
                                 <asp:Label ID="lblUnitNumber" CssClass="labels" runat="server" Text="Unit Number"></asp:Label><asp:TextBox ID="tbUnitNumber" placeholder="Unit Number" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="mt-3">
-                                <asp:Label ID="lblZipcode" CssClass="labels" runat="server" Text="Zipcode"></asp:Label><asp:TextBox ID="tbZipcode" placeholder="Zipcode" CssClass="form-control" runat="server" Enabled="False"></asp:TextBox>
+                                <asp:Label ID="lblZipcode" CssClass="labels" runat="server" Text="Zip Code"></asp:Label><asp:TextBox ID="tbZipcode" placeholder="Zip Code" CssClass="form-control" runat="server" Enabled="False"></asp:TextBox>
                             </div>
                             <div class="mt-3">
                                 <asp:UpdatePanel ID="upRegion" UpdateMode="Conditional" runat="server">

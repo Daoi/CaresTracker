@@ -369,7 +369,6 @@ namespace CaresTracker
             tbPhone.Text = res.ResidentPhoneNumber;
             tbEmail.Text = res.ResidentEmail;
             //Housing Info(Second Tab)
-            //tbResidenceOccupants.Text = res.Home.NumOfOccupants; NOT IMPLEMENTED ON HOUSE/RESIDENT YET. Change TB NAME
             if (res.Home.DevelopmentID == -1)
             {
                 ddlHousingType.SelectedValue = "HCV";
@@ -383,6 +382,7 @@ namespace CaresTracker
             }
             tbRegion.Text = res.Home.RegionName == null ? "Region not implemented yet" : res.Home.RegionName.ToString();
             tbResidentAddress.Text = res.Home.Address;
+            tbZipCode.Text = res.Home.ZipCode;
 
             //Disable auto filled controls
             pnlResidentInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
