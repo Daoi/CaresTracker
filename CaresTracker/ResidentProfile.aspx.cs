@@ -58,6 +58,13 @@ namespace CaresTracker
                     ddlHousingDevelopment.DataBind();
                     ViewState["DevelopmentDT"] = developmentDT;
                 }
+
+                if (currentRes.Imported)
+                {
+                    lblImportWarning.Text = "This resident was imported, please ensure their address is correct by editing their profile and selecting the value from the drop downlist.";
+                    lblImportWarning.Visible = true;
+                }
+
             }
 
 
@@ -143,6 +150,12 @@ namespace CaresTracker
             btnSaveEdits.Visible = true;
             btnCancelEdits.Visible = true;
             btnEditProfile.Visible = false;
+            if (currentRes.Imported)
+            {
+                hdnfldFormattedAddress.Value = "";
+
+            }
+
         }
 
         //Toggle all non-button controls enabled status 
@@ -243,6 +256,7 @@ namespace CaresTracker
             }
 
 
+
             AddHouse AH = new AddHouse(res.Home);
             object AddHouseResult = AH.ExecuteCommand();
             res.Home.HouseID = Convert.ToInt32(AddHouseResult);
@@ -262,6 +276,12 @@ namespace CaresTracker
                 btnSaveEdits.Visible = false;
                 btnCancelEdits.Visible = false;
                 lblErrorMessage.Text = string.Empty;
+                if (currentRes.Imported)
+                {
+                    res.Imported = false;
+                    lblImportWarning.Visible = false;
+                    new SetImported().ExecuteCommand(currentRes.ResidentID, false);
+                }
             }
             catch(Exception ex)
             {

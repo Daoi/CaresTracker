@@ -53,8 +53,8 @@ namespace CaresTracker
                     string path = Server.MapPath($"./Importing/Files/") + fileUpload.FileName;
                     fileUpload.SaveAs(path);
 
-
                     ReadFile(path);
+
                 }
                 catch (Exception ex)
                 {
@@ -96,17 +96,19 @@ namespace CaresTracker
 
 
                 (int inserts, List<ImportError> errors) = ImportResidents.Import(results, devID, regionID);
+                string insertCount = $"Succesfully inserted {inserts} out of {results.Count} residents from the file. ";
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append($"Succesfully inserted {inserts} out of {results.Count} residents from the file. ");
 
                 if (errors.Count > 0)
                 {
                     divUploadErrors.Visible = true;
                     sb.Append("The following rows had errors: <br />");
                     errors.ForEach(i => sb.Append($"{i.ToString()} <br />"));
+                    lblMessage.Text = sb.ToString();
                 }
-                lblMessage.Text = sb.ToString();
+
+                lblInsertCount.Text = insertCount;
             }
             catch (Exception e)
             {

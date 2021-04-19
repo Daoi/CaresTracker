@@ -28,6 +28,7 @@ namespace CaresTracker.DataModels
         public House Home { get; set; }
         public string FullName { get { return $"{ResidentFirstName} {ResidentLastName}"; } }
         public List<ChronicIllness> ChronicIllnesses { get; set; }
+        public bool Imported { get; set; }
 
         public Resident() { }
 
@@ -57,6 +58,9 @@ namespace CaresTracker.DataModels
             VaccineAppointmentDate = dataRow["VaccineAppointmentDate"].ToString();
 
             ChronicIllnesses = ChronicIllness.CreateChronicIllnessList(new GetChronicIllnessesByResidentID().ExecuteCommand(ResidentID));
+
+            Imported = dataRow["Imported"] == DBNull.Value ? false : (bool)dataRow["Imported"];
+
         }
 
         /// <summary>

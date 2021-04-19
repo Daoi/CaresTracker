@@ -56,8 +56,8 @@ namespace CaresTracker.Importing
                     string s = string.Join("<br />", missingValues);
                     errors.Add(new ImportError(currentRow, $"The following columns contained invalid values: <br /> {s}", fullname));
                 }
-                else {
-                
+                else
+                {
                     if (writeResult == 1)
                         successful++;
                     else if (writeResult == 0)
@@ -87,6 +87,8 @@ namespace CaresTracker.Importing
                 {
                     return 0; //Uniqueness error
                 }
+                //Mark the resident as imported
+                new SetImported().ExecuteCommand(Convert.ToInt32(AddResidentResult), true);
 
                 House residentHouse = newResident.Home;
                 // Write new House to the database
