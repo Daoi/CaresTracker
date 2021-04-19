@@ -148,7 +148,11 @@
                     <div class="col">
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h5>Housing Info</h5>
+                                <h5 style="flex-basis: 100%;">Housing Info</h5>
+                                <br />
+                                <div>
+                                    <asp:Label ID="lblImportWarning" runat="server" Text="" Visible="false"></asp:Label>
+                                </div>
                             </div>
                             <div class="mt-3">
                                 <asp:UpdatePanel ID="upHousingDevelopment" runat="server">
