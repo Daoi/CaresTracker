@@ -38,7 +38,7 @@
                     <%-- Resident Info Form Start --%>
                     <div class="col-9">
                         <asp:Panel class="residentInfo" ID="pnlResidentInfoForm" runat="server">
-                            <h5>Resident Info</h5>
+                            <h5>Resident Information</h5>
                             <div class="row m-3">
                                 <label>Full Name</label>
                                 <asp:TextBox ID="tbFirstName" runat="server" placeholder="Resident First Name" CssClass="form-control my-1"></asp:TextBox>
@@ -64,7 +64,7 @@
                         <%-- Resident Info Form End --%>
                         <%-- Housing Info Form Start--%>
                         <asp:Panel class="housingInfo" ID="pnlHousingInfoForm" runat="server">
-                            <h5>Housing Info</h5>
+                            <h5>Housing Information</h5>
                             <div class="row m-3">
                                 <label>Number of residents</label>
                                 <asp:TextBox ID="tbResidenceOccupants" runat="server" placeholder="How many people does the resident live with?" CssClass="form-control my-1"></asp:TextBox>
@@ -93,7 +93,7 @@
                         <%-- Housing Info Form End --%>
                         <%-- Meeting Info Form Start --%>
                         <asp:Panel ID="pnlMeetingInfoForm" class="meetingInfo" runat="server">
-                            <h5>Meeting Info </h5>
+                            <h5>Meeting Information</h5>
                             <div>
                                 <asp:Label ID="lblErrorMeetingInfo" runat="server" Text="Please fill out both meeting type and location." CssClass="errorLabel" Visible="false"></asp:Label>
                             </div>
@@ -279,12 +279,12 @@
                         <%-- Services Form End --%>
                         <%-- Vaccine Form Start --%>
                         <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
-                            <h5>Vaccine Info</h5>
+                            <h5>Vaccine Information</h5>
                                 <div>
                                     <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="errorLabel" Visible="false"></asp:Label>
                                 </div>
                             <div class="row m-3">
-                                <h6 class="required">Vaccine Status </h6>
+                                <h6 class="required">Vaccine Status</h6>
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
                                     <asp:ListItem Value="Unknown">Select Vaccine Status</asp:ListItem>
                                     <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
