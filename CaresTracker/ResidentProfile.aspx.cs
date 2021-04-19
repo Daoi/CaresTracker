@@ -82,7 +82,6 @@ namespace CaresTracker
             tbUnitNumber.Text = currentRes.Home.UnitNumber;
             ddlRegion.SelectedValue = currentRes.Home.RegionID.ToString();
             tbZipcode.Text = currentRes.Home.ZipCode;
-            //# of occupants still needed?
             //Resident Stuff
             tbFirstName.Text = currentRes.ResidentFirstName;
             tbLastName.Text = currentRes.ResidentLastName;
@@ -90,7 +89,6 @@ namespace CaresTracker
             tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
-            //Family size still needed?
             ddlRace.SelectedValue = currentRes.Race;
             ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
             //Vaccine

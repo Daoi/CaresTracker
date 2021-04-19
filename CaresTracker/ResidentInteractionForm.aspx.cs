@@ -369,7 +369,6 @@ namespace CaresTracker
             tbPhone.Text = res.ResidentPhoneNumber;
             tbEmail.Text = res.ResidentEmail;
             //Housing Info(Second Tab)
-            //tbResidenceOccupants.Text = res.Home.NumOfOccupants; NOT IMPLEMENTED ON HOUSE/RESIDENT YET. Change TB NAME
             if (res.Home.DevelopmentID == -1)
             {
                 ddlHousingType.SelectedValue = "HCV";

@@ -66,10 +66,6 @@
                         <asp:Panel class="housingInfo" ID="pnlHousingInfoForm" runat="server">
                             <h5>Housing Information</h5>
                             <div class="row m-3">
-                                <label>Number of residents</label>
-                                <asp:TextBox ID="tbResidenceOccupants" runat="server" placeholder="How many people does the resident live with?" CssClass="form-control my-1"></asp:TextBox>
-                            </div>
-                            <div class="row m-3">
                                 <label>HCV or PHA Development</label>
                                 <asp:DropDownList ID="ddlHousingType" CssClass="form-control" runat="server">
                                     <asp:ListItem>Select Housing Type</asp:ListItem>
