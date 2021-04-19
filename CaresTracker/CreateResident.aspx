@@ -75,9 +75,12 @@
                     <div class="col-7">
                         <asp:DropDownList ID="ddlRelationshipHOH" CssClass="form-control" runat="server">
                             <asp:ListItem>Unknown</asp:ListItem>
-                            <asp:ListItem>Self</asp:ListItem>
-                            <asp:ListItem>Spouse</asp:ListItem>
+                            <asp:ListItem>Head of House</asp:ListItem>
+                            <asp:ListItem>Spouse/Partner</asp:ListItem>
+                            <asp:ListItem>Sibling</asp:ListItem>
                             <asp:ListItem>Child</asp:ListItem>
+                            <asp:ListItem>Parent</asp:ListItem>
+                            <asp:ListItem>Other</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
