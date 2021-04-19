@@ -205,6 +205,8 @@ namespace CaresTracker
             //Vaccine Info
             res.VaccineStatus = ddlVaccineStatus.SelectedValue;
             res.VaccineAppointmentDate = tbAppointmentDate.Text;
+            //Chronic Illnesses
+            res.ChronicIllnesses = currentRes.ChronicIllnesses;
             //Housing Info
             res.Home = new House();
 
