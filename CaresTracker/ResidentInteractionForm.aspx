@@ -284,7 +284,7 @@
                                     <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="errorLabel" Visible="false"></asp:Label>
                                 </div>
                             <div class="row m-3">
-                                <h6 class="required">Vaccine Status</h6>
+                                <h6 class="required">Vaccine Status </h6>
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
                                     <asp:ListItem Value="Unknown">Select Vaccine Status</asp:ListItem>
                                     <asp:ListItem Value="Not interested in vaccine">Not interested in vaccine</asp:ListItem>
@@ -321,7 +321,7 @@
                         <asp:Panel ID="pnlOtherForm" class="otherInfo" runat="server">
                             <h5>Action Plan</h5>
                             <div>
-                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="errorLabel required" Visible="false"></asp:Label>
+                                <asp:Label ID="lblErrorActionPlan" runat="server" Text="Please fill out the Action Plan." CssClass="errorLabel" Visible="false"></asp:Label>
                             </div>
                             <div class="row m-3">
                                 <label class="required">Next Steps </label>
@@ -346,7 +346,7 @@
                 <asp:UpdatePanel ID="pnlModalControls" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="modal-body px-5 pb-3">
-                            <h5>Reason For Edit</h5>
+                            <h5 class="required">Reason For Edit </h5>
                             <asp:Label ID="lblModalError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                             <br />
                             <textarea id="taEditReason" class="form-control" cols="50" rows="5" runat="server"></textarea>

@@ -141,7 +141,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label class="required">Housing Type:</label>
+                        <label class="required">Housing Type: </label>
                     </div>
                     <div class="col-7">
                         <asp:Label runat="server" class="errorLabel" ID="lblValidationHousing" role="alert" Visible="false"></asp:Label>

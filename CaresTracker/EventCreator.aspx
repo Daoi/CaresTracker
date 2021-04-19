@@ -19,7 +19,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label class="required">Event Name:</label>
+                        <label class="required">Event Name: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtEventName" placeholder="Event Name" runat="server" CssClass="form-control"></asp:TextBox><br />
@@ -59,7 +59,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label class="required">Select Health Workers to Host Event:</label>
+                        <label class="required">Select Health Workers to Host Event: </label>
                     </div>
                     <div id="userCBLDiv" class="col-7 cblWorker overflow-auto">
                         <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="table" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged" RepeatDirection="Vertical">
@@ -73,7 +73,7 @@
                     <ContentTemplate>
                         <div class="row m-3">
                             <div class="col">
-                                <label class="required">Select Main Host:</label>
+                                <label class="required">Select Main Host: </label>
                             </div>
                             <div class="col-7">
                                 <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
@@ -96,7 +96,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label class="required">Event Description and Notes:</label>
+                        <label class="required">Event Description and Notes: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtDescription" CssClass="w-100 form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
