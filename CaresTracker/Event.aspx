@@ -138,9 +138,9 @@
                                     <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="View Resident Profile">
+                                            <asp:TemplateField HeaderText="Residents">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName") %>' OnClick="btnViewResident_Click" />
+                                                    <asp:Label ID="btnViewResident" CssClass="w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
