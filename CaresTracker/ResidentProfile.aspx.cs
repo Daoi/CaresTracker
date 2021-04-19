@@ -89,6 +89,7 @@ namespace CaresTracker
             tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
+            ddlHoH.SelectedValue = currentRes.RelationshipToHoH;
             ddlRace.SelectedValue = currentRes.Race;
             ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
             //Vaccine
