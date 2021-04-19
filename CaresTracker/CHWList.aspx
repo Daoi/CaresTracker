@@ -20,7 +20,7 @@
                     <asp:GridView ID="gvCHWList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
-                            <asp:TemplateField HeaderText="View Worker Profile">
+                            <asp:TemplateField HeaderText="View">
                                 <ItemTemplate>
                                     <asp:Button ID="btnViewWorker" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View this Worker" OnClick="btnViewWorker_Click" />
                                 </ItemTemplate>
