@@ -34,7 +34,7 @@
                     <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" ShowFooter="True">
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
-                            <asp:TemplateField HeaderText="Add Resident to Event">
+                            <asp:TemplateField HeaderText="Add">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkAddResident" CssClass="form-check" runat="server" />
                                 </ItemTemplate>
