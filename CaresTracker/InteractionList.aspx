@@ -20,9 +20,9 @@
                     <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered thead-dark">
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
-                            <asp:TemplateField HeaderText="View">
+                            <asp:TemplateField HeaderText="View Interaction">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="btnViewInteraction_Click" Text="View This Interaction" />
+                                    <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="btnViewInteraction_Click" Text="View" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />

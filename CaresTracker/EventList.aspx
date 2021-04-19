@@ -20,9 +20,9 @@
                     <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                         <HeaderStyle CssClass="cherryBackground" />
                         <Columns>
-                            <asp:TemplateField HeaderText="View">
+                            <asp:TemplateField HeaderText="View Event">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnViewEvent" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View this Event" OnClick="btnViewEvent_Click" />
+                                    <asp:Button ID="btnViewEvent" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View" OnClick="btnViewEvent_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
