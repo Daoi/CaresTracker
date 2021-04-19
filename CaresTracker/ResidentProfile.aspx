@@ -93,6 +93,7 @@
                                 <div class="col-md-12">
                                     <asp:Label ID="lblRelationshipToHoH" CssClass="labels" runat="server" Text="Relation to Head of House"></asp:Label><br />
                                     <asp:DropDownList ID="ddlHoH" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
                                         <asp:ListItem Value="Head of House">Head of House</asp:ListItem>
                                         <asp:ListItem Value="Spouse/Partner">Spouse/Partner</asp:ListItem>
                                         <asp:ListItem Value="Sibling">Sibling</asp:ListItem>
