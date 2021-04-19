@@ -36,7 +36,7 @@
                             </asp:GridView>
                         </div>
                     </div>
-                    <h3>Residents per Age</h3>
+                    <h3>Residents per Age Group</h3>
                     <div class="row border-bottom mb-5 pb-5">
                         <div class="col-8">
                             <div id='chrtTotalAge' class="ct-chart ct-perfect-fourth"></div>
@@ -45,7 +45,7 @@
                             <asp:GridView ID="gvTotalAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                                 <HeaderStyle CssClass="cherryBackground" />
                                 <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Age" />
+                                    <asp:BoundField DataField="labels" HeaderText="Age Group" />
                                     <asp:BoundField DataField="series" HeaderText="# of Residents" />
                                 </Columns>
                             </asp:GridView>
@@ -119,7 +119,7 @@
                             </asp:GridView>
                         </div>
                     </div>
-                    <h3>Interactions per Age</h3>
+                    <h3>Interactions per Age Group</h3>
                     <div class="row border-bottom mb-5 pb-5">
                         <div class="col-8">
                             <div id='chrtInteractionAge' class="ct-chart ct-perfect-fourth"></div>
@@ -128,7 +128,7 @@
                             <asp:GridView ID="gvInteractionAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
                                 <HeaderStyle CssClass="cherryBackground" />
                                 <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Age" />
+                                    <asp:BoundField DataField="labels" HeaderText="Age Group" />
                                     <asp:BoundField DataField="series" HeaderText="# of Residents" />
                                 </Columns>
                             </asp:GridView>
@@ -198,7 +198,21 @@
         var json = <%= jsonReports %>; // from codebehind
         Object.keys(json).forEach(key => {
             var formatted = { labels: json[key].labels, series: [json[key].series] }; // series must be nested
-            new Chartist.Bar(key, formatted);
+            new Chartist.Bar(
+                key, // the id of the chart
+                formatted, // the data
+                { // options
+                    axisY: {
+                        onlyInteger: true,
+                    }
+                }
+            ).on('draw', function(data) {
+                if(data.type === 'bar') {
+                    data.element.attr({
+                        style: 'stroke-width: 30px; stroke: #A41E35'
+                    });
+                }
+            });
         });
     </script>
 </asp:Content>
