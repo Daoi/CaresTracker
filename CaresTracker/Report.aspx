@@ -202,7 +202,6 @@
                 key, // the id of the chart
                 formatted, // the data
                 { // options
-                    //seriesBarDistance: 10,
                     axisY: {
                         onlyInteger: true,
                     }
