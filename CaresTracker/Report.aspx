@@ -198,7 +198,22 @@
         var json = <%= jsonReports %>; // from codebehind
         Object.keys(json).forEach(key => {
             var formatted = { labels: json[key].labels, series: [json[key].series] }; // series must be nested
-            new Chartist.Bar(key, formatted);
+            new Chartist.Bar(
+                key, // the id of the chart
+                formatted, // the data
+                { // options
+                    //seriesBarDistance: 10,
+                    axisY: {
+                        onlyInteger: true,
+                    }
+                }
+            ).on('draw', function(data) {
+                if(data.type === 'bar') {
+                    data.element.attr({
+                        style: 'stroke-width: 30px; stroke: #A41E35'
+                    });
+                }
+            });
         });
     </script>
 </asp:Content>
