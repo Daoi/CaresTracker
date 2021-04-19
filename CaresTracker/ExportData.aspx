@@ -22,9 +22,9 @@
                         Region:<br />
                         <asp:DropDownList ID="ddlHousingDevelopment" CssClass="form-control w-100" runat="server" DataTextField="DevelopmentName" DataValueField="DevelopmentID">
                         </asp:DropDownList><br /><br />
-                        Initial Date:<br />
+                        <label class="required">Initial Date: </label><br />
                         <asp:TextBox ID="txtDateInitial" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
-                        Final Date:<br />
+                        <label class="required">Final Date: </label><br />
                         <asp:TextBox ID="txtDateFinal" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox><br />
                         <asp:Label ID="lblError" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                     </div>

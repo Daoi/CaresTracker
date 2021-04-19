@@ -76,7 +76,7 @@
                 </div>
                 <div id="ddlOrganizationDiv" class="row m-3" runat="server">
                     <div class="col">
-                        <label class="required">Organization:</label>
+                        <label class="required">Organization: </label>
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlOrganization" CssClass="form-control" runat="server">
@@ -89,7 +89,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label class="required">Account Type:</label>
+                        <label class="required">Account Type: </label>
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlAccountType" CssClass="form-control" runat="server">
