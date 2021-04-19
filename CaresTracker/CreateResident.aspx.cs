@@ -65,6 +65,7 @@ namespace CaresTracker
             newResident.Gender = rblGender.SelectedValue;
             newResident.Race = ddlRace.SelectedValue;
             newResident.PreferredLanguage = ddlLanguage.SelectedValue;
+            newResident.ChronicIllnesses = new List<ChronicIllness>();
 
             // Add new Resident
             ResidentWriter RW = new ResidentWriter(newResident);
