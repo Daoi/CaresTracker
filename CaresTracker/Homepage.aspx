@@ -112,7 +112,7 @@
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkViewOutstandingInteraction_Click">View this Interaction</asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkViewOutstandingInteraction_Click">View</asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Resident">
@@ -131,7 +131,7 @@
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="lnkViewCompletedInteraction_Click">View this Interaction</asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="lnkViewCompletedInteraction_Click">View</asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Resident">
@@ -164,7 +164,7 @@
                                         <Columns>
                                             <asp:TemplateField HeaderText="View Event">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='View This Event' CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkToEvent_Click"></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='View' CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkToEvent_Click"></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
