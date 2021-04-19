@@ -85,6 +85,10 @@
                                 <label>Resident's Address</label>
                                 <asp:TextBox ID="tbResidentAddress" runat="server" placeholder="Resident's Address" CssClass="form-control"></asp:TextBox>
                             </div>
+                            <div class="row m-3">
+                                <label>Resident's Zip Code</label>
+                                <asp:TextBox ID="tbZipCode" runat="server" placeholder="Resident's Zip Code" CssClass="form-control"></asp:TextBox>
+                            </div>
                         </asp:Panel>
                         <%-- Housing Info Form End --%>
                         <%-- Meeting Info Form Start --%>

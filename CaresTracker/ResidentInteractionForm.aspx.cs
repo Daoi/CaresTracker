@@ -382,6 +382,7 @@ namespace CaresTracker
             }
             tbRegion.Text = res.Home.RegionName == null ? "Region not implemented yet" : res.Home.RegionName.ToString();
             tbResidentAddress.Text = res.Home.Address;
+            tbZipCode.Text = res.Home.ZipCode;
 
             //Disable auto filled controls
             pnlResidentInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
