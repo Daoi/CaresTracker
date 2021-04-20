@@ -23,10 +23,6 @@ namespace CaresTracker
             {
                 divCreateCHW.Visible = false;
             }
-            else if (user.UserType == "A")
-            {
-                divResidentList.Visible = false;
-            }
 
             if (!IsPostBack)
             {

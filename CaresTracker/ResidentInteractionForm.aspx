@@ -243,7 +243,7 @@
                         <%-- Resident Health Form End --%>
                         <%-- Services Form Start --%>
                         <asp:Panel ID="pnlServicesForm" class="services" runat="server">
-                            <h5>Social Services</h5>
+                            <h5>Services</h5>
                             <div class="row m-3 h-100">
                                 <div id="divNewInteractionServices" class="cblServices overflow-auto h-75 w-100" runat="server">
                                     <label>Services</label>
