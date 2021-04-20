@@ -160,7 +160,8 @@ namespace CaresTracker
 
         protected void btnAddService_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtServiceName.Text))
+            string strClean = txtServiceName.Text.Trim();
+            if (string.IsNullOrEmpty(strClean))
             {
                 lblAddServiceError.Text = "Service Name cannot be empty.";
                 lblAddServiceError.Visible = true;
@@ -172,7 +173,7 @@ namespace CaresTracker
 
             try
             {
-                if (new InsertService(txtServiceName.Text).ExecuteCommand() > 0)
+                if (new InsertService(strClean).ExecuteCommand() > 0)
                 {
                     // insert success
                     Response.Redirect("./AdminSettings.aspx", false);
@@ -211,7 +212,8 @@ namespace CaresTracker
 
         protected void btnAddEventType_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEventTypeName.Text))
+            string strClean = txtEventTypeName.Text.Trim();
+            if (string.IsNullOrEmpty(strClean))
             {
                 lblAddEventTypeError.Text = "Event Type Name cannot be empty.";
                 lblAddEventTypeError.Visible = true;
@@ -223,7 +225,7 @@ namespace CaresTracker
 
             try
             {
-                if (new InsertEventType(txtEventTypeName.Text).ExecuteCommand() > 0)
+                if (new InsertEventType(strClean).ExecuteCommand() > 0)
                 {
                     // insert success
                     Response.Redirect("./AdminSettings.aspx", false);
