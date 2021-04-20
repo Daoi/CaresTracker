@@ -36,9 +36,6 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                //Redirect if not apart of same org and not temple admin
-
-
                 //Set resident info (first tab) to visible, others to false
                 links.Keys.ToList().Where(s => !s.Equals("residentInfo")).ToList().ForEach(s => links[s].Visible = false);
                 cblServices.DataSource = new GetAllServices().ExecuteCommand();

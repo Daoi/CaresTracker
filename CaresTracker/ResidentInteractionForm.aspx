@@ -32,7 +32,7 @@
                                 Edit Interaction
                             </asp:LinkButton>
                             <asp:Label ID="lblSave" runat="server" CssClass="active my-3" Text="Label" Visible="false"></asp:Label>
-                            <asp:Label ID="lblHome" runat="server" Text="" Visible="false"></asp:Label>
+                            <asp:Label ID="lblHome" CssClass="alert-success pl-2" runat="server" Text="" Visible="false"></asp:Label>
                         </nav>
                     </div>
                     <%-- Resident Info Form Start --%>
@@ -215,7 +215,7 @@
                             <%-- Critical Symptom List End --%>
                             <%-- Symptom Date Start--%>
                             <div class="row pl-3 mb-3 pb-4 border-bottom">
-                                <div class ="col-sm-6 col-md-6">
+                                <div class="col-sm-6 col-md-6">
                                     <label>Date Symptoms Occured</label>
                                     <asp:TextBox ID="tbSymptomDates" runat="server" placeholder="Date of Symptoms" CssClass="form-control" TextMode="Date"></asp:TextBox>
                                 </div>
@@ -226,7 +226,7 @@
                                 <asp:Label ID="lblErrorCOVIDTest" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                                 <div class="col-sm-6 col-md-6">
                                     <label>Covid-19 Test Results</label>
-                                    <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server" >
+                                    <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server">
                                         <asp:ListItem>Select Test Result</asp:ListItem>
                                         <asp:ListItem Value="Positive">Positive</asp:ListItem>
                                         <asp:ListItem Value="Negative">Negative</asp:ListItem>
@@ -271,7 +271,8 @@
                                 </div>
                                 <div class="row m-3">
                                     <asp:Button ID="btnUpdateServices" CssClass="buttonStyle" runat="server" Text="Update Services Status" Visible="False" OnClick="btnUpdateServices_Click" />
-                                    <asp:Label ID="lblUpdateServices" CssClass="ml-1" runat="server" Text="" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblUpdateServices" CssClass="ml-2 p-2 alert-success" runat="server" Text="" Visible="false"></asp:Label>
+
                                 </div>
                             </div>
                         </asp:Panel>
@@ -280,9 +281,9 @@
                         <%-- Vaccine Form Start --%>
                         <asp:Panel ID="pnlVaccineForm" class="vaccineInfo" runat="server">
                             <h5>Vaccine Information</h5>
-                                <div>
-                                    <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="errorLabel" Visible="false"></asp:Label>
-                                </div>
+                            <div>
+                                <asp:Label ID="lblErrorVaccine" runat="server" Text="Please select a Vaccine Status. Fill out appointment date if known." CssClass="errorLabel" Visible="false"></asp:Label>
+                            </div>
                             <div class="row m-3">
                                 <h6 class="required">Vaccine Status </h6>
                                 <asp:DropDownList ID="ddlVaccineStatus" CssClass="form-control" runat="server">
