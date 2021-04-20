@@ -52,8 +52,6 @@ namespace CaresTracker
         {
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
 
-            //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month or something
-
             DataTable uncompleted = new GetUncompletedFollowUps().RunCommand(man.Username);
             ViewState["Uncompleted"] = uncompleted;
             if (uncompleted.Rows.Count == 0)
