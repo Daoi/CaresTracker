@@ -371,6 +371,7 @@
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetImported.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetProfileActivationStatus.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
