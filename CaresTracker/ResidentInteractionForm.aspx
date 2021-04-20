@@ -32,7 +32,7 @@
                                 Edit Interaction
                             </asp:LinkButton>
                             <asp:Label ID="lblSave" runat="server" CssClass="active my-3" Text="Label" Visible="false"></asp:Label>
-                            <asp:Label ID="lblHome" CssClass="alert-success pl-2" runat="server" Text="" Visible="false"></asp:Label>
+                            <asp:Label ID="lblHome" CssClass="alert-success w-75 text-center" runat="server" Text="" Visible="false"></asp:Label>
                         </nav>
                     </div>
                     <%-- Resident Info Form Start --%>
