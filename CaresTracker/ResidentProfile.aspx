@@ -231,6 +231,10 @@
 
                         <asp:Label ID="lblErrorMessage" CssClass="errorLabel" runat="server" Text="" Visible="false"></asp:Label>
                     </div>
+                    <div class="col text-center">
+                        <asp:Button ID="btnToggleActivation" CssClass="buttonStyle" runat="server" Text="Deactivate Profile" OnClick="btnToggleActivation_Click"/>
+                        <asp:Label ID="lblErrorInactivate" CssClass="errorLabel" runat="server" Text="" Visible="false"></asp:Label>
+                    </div>
                 </div>
             </div>
         </div>
