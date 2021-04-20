@@ -37,7 +37,6 @@ namespace CaresTracker
 
             if (Session["DevelopmentDT"] != null)
                 developmentDT = (DataTable)Session["DevelopmentDT"];
-
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
@@ -111,7 +110,6 @@ namespace CaresTracker
                     .Equals(ddlDevelopments.SelectedItem.ToString()));
 
                 newResident.HousingDevelopment = new HousingDevelopment(hdRecord);
-
             }
 
             // Attach newly created house to resident for session storage
@@ -128,6 +126,7 @@ namespace CaresTracker
                 UHI.ExecuteCommand(Convert.ToInt32(AddResidentResult), Convert.ToInt32(AddHouseResult));
 
                 newResident.ResidentID = Convert.ToInt32(AddResidentResult);
+                newResident.IsActive = true;
 
                 //Store new resident in Session to use to redirect/populate resident profile
                 Session["Resident"] = newResident;
@@ -146,7 +145,6 @@ namespace CaresTracker
         // Show/hide divs depending on which housing option is selected
         protected void ddlHousing_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             List<HtmlGenericControl> housingDivs = new List<HtmlGenericControl>() { divHouse, divDevelopmentUnit };
             DropDownList ddl = (DropDownList)sender;
             string selectedId = ddl.SelectedValue;
@@ -234,6 +232,5 @@ namespace CaresTracker
 
             return isFormValid;
         }
-
     }
 }
