@@ -18,11 +18,11 @@
         <div class="backgroundImage d-flex ">
             <div class="card mb-3 text-center mx-auto verifyCard my-auto ">
                 <div class="card-header cherryBackground">
-                    PHA and Lenfest North CARES Tracker
+                    PHA CARES Tracker
                 </div>
                 <br />
                 <div class="my-3">
-                    <img src="img/Temple_University_logo.png" class="w-50" />
+                    <img src="img/VerticalLogo-NoBG.png" class="loginImg" />
                 </div>
                 <div class="card-body row">
                     <div class="col-sm-3 text-left">
@@ -57,7 +57,7 @@
                     <div class="col-sm-3"></div>
                 </div>
                 <div class="card-footer text-muted">
-                    CARES Tracker
+                    PHA CARES Tracker
                 </div>
             </div>
         </div>

@@ -19,10 +19,10 @@
         <div class="backgroundImage d-flex">
             <asp:Panel ID="pnlCard" runat="server" CssClass="card mb-3 text-center mx-auto loginCard my-auto">
                 <div class="card-header cherryBackground">
-                    PHA and Lenfest North CARES Tracker
+                    PHA CARES Tracker
                 </div>
                 <div>
-                    <img src="img/Temple_University_logo.png" class="mt-5 loginImg" />
+                    <img src="img/VerticalLogo-NoBG.png" class="mt-5 loginImg" />
                 </div>
                 <div class="card-body">
                     <!-- Login Panel -->
@@ -104,7 +104,7 @@
                     </asp:Panel>
                 </div>
                 <div class="card-footer text-muted">
-                    CARES Tracker
+                    PHA CARES Tracker
                 </div>
             </asp:Panel>
         </div>
