@@ -263,7 +263,7 @@
                                     <asp:Label ID="lblFollowUpError" runat="server" CssClass="errorLabel" Text="Must select whether the service requires follow up." Visible="false"></asp:Label>
                                 </div>
                                 <div id="divFollowUpStatus" class="row m-3" runat="server">
-                                    <asp:Label ID="lblFollowUpStatus" CssClass="required" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up?"></asp:Label>
+                                    <asp:Label ID="lblFollowUpStatus" CssClass="required" for="ddlFollowUpStatus" runat="server" Text="Does this interaction still require follow up? "></asp:Label>
                                     <asp:DropDownList ID="ddlFollowUpStatus" CssClass="form-control" runat="server">
                                         <asp:ListItem Value="incomplete">Still requires follow up</asp:ListItem>
                                         <asp:ListItem Value="complete">Follow up completed</asp:ListItem>
