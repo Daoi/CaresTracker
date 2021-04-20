@@ -29,7 +29,7 @@
         <header>
             <div class="container-fluid">
                 <a href="Homepage.aspx">
-                    <img class="w-25 my-4" src="img/Temple_University_logo.png"/>
+                    <img class="brandLogo my-2" src="img/HorizontalLogo-NoBG.png"/>
                 </a>
             </div>
             <nav class="navbar navbar-expand-lg navbar-light cherryBackground">
@@ -99,7 +99,7 @@
     </form>
     <footer>
         <div class="container footerCon text-center">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="h3">Philadelphia Housing Authority</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="h3">PHA</asp:HyperLink>
             <span class="footer-notice pt-4" style="font-weight: bold">CARES Tracker</span>
         </div>
     </footer>
