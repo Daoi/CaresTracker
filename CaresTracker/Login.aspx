@@ -16,7 +16,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="backgroundImage d-flex">
+        <div class="loginbackgroundImage d-flex">
             <asp:Panel ID="pnlCard" runat="server" CssClass="card mb-3 text-center mx-auto loginCard my-auto">
                 <div class="card-header cherryBackground">
                     PHA and Lenfest North CARES Tracker
