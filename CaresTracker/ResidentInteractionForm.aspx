@@ -227,7 +227,7 @@
                                 <div class="col-sm-6 col-md-6">
                                     <label>Covid-19 Test Results</label>
                                     <asp:DropDownList ID="ddlTestResult" CssClass="form-control" runat="server">
-                                        <asp:ListItem>Select Test Result</asp:ListItem>
+                                        <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
                                         <asp:ListItem Value="Positive">Positive</asp:ListItem>
                                         <asp:ListItem Value="Negative">Negative</asp:ListItem>
                                         <asp:ListItem Value="No Recent Test">No Recent Test</asp:ListItem>

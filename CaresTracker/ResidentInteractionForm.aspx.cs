@@ -436,6 +436,7 @@ namespace CaresTracker
             if (!string.IsNullOrWhiteSpace(interaction.SymptomStartDate))
                 tbSymptomDates.Text = interaction.SymptomStartDate;
 
+            
             tbTestingLocation.Text = interaction.COVIDTestLocation;
             ddlTestResult.SelectedValue = interaction.COVIDTestResult;
 
