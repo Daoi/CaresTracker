@@ -323,6 +323,10 @@ namespace CaresTracker
             {
                 newInteraction.HealthWorkerID = (Session["User"] as CARESUser).UserID; //Interaction is being created now, use current user ID
             }
+            else
+            {
+                newInteraction.HealthWorkerID = (Session["Interaction"] as Interaction).HealthWorkerID;
+            }
 
             newInteraction.ResidentID = res.ResidentID;
             //Form Values
