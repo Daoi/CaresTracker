@@ -333,7 +333,7 @@ namespace CaresTracker
             newInteraction.DateOfContact = tbDoC.Text;
             newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
             newInteraction.LocationOfContact = tbLocation.Text;
-            newInteraction.COVIDTestLocation = tbTestingLocation.Text.Equals("N/A") ? "" : tbTestingLocation.Text;
+            newInteraction.COVIDTestLocation = Validation.IsEmpty(tbTestingLocation.Text) ? "N/A" : tbTestingLocation.Text;
             if (ddlTestResult.SelectedIndex == 0)
             {
                 newInteraction.COVIDTestResult = string.Empty;
@@ -443,7 +443,7 @@ namespace CaresTracker
             else if (interaction.COVIDTestResult.Equals("No Recent Test"))
             {
                 tbTestingLocation.Text = "N/A";
-                ddlTestResult.SelectedValue = "No Recent Test";
+                ddlTestResult.SelectedValue = interaction.COVIDTestResult;
             }
             else
             {
@@ -570,7 +570,7 @@ namespace CaresTracker
                 icErrorResidentHealth.Visible = true;
             }
             // test location w/o result
-            else if ( (ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && (!tbTestingLocation.Text.Equals("N/A") || !Validation.IsEmpty(tbTestingLocation.Text)))
+            else if ( (ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && (!Validation.IsEmpty(tbTestingLocation.Text) && !tbTestingLocation.Text.Equals("N/A")))
             {
                 isValid = false;
                 lblErrorCOVIDTest.Visible = true;
