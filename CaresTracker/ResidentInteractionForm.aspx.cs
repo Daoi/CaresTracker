@@ -570,7 +570,7 @@ namespace CaresTracker
                 icErrorResidentHealth.Visible = true;
             }
             // test location w/o result
-            else if ((ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && !Validation.IsEmpty(tbTestingLocation.Text))
+            else if ( (ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && (!tbTestingLocation.Text.Equals("N/A") || !Validation.IsEmpty(tbTestingLocation.Text)))
             {
                 isValid = false;
                 lblErrorCOVIDTest.Visible = true;
