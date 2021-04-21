@@ -97,12 +97,6 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
-    <footer>
-        <div class="container footerCon text-center">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="h3">PHA</asp:HyperLink>
-            <span class="footer-notice pt-4" style="font-weight: bold">CARES Tracker</span>
-        </div>
-    </footer>
 </body>
 
 </html>
