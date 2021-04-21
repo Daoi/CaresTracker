@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CaresTracker.Master" AutoEventWireup="true" CodeBehind="CHWManagement.aspx.cs" Inherits="CaresTracker.CHWManagement" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container homepage p-0">
-        <div class="row modal-header no-gutters offwhiteBackground" style="height: auto; font-size: large">
+    <div class="container-fluid homepage">
+        <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
             <nav aria-label="breadcrumb w-75">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
@@ -14,40 +14,39 @@
                 </ol>
             </nav>
         </div>
-        <div class="container homepage w-auto mt-5">
+        <div class="container homepage w-75 mt-5">
             <div class="row">
                 <div class="col border-right">
-                    <div class="row m-3">
+                    <div class="row m-3 justify-content-center">
                         <h5>Worker Stats:</h5>
                     </div>
-                    <div class="row m-3">
+                    <div class="row m-3 justify-content-center">
                         <asp:Label ID="lblTotalInteractions" CssClass="labels" runat="server" Text="Total Interactions: "></asp:Label>
                     </div>
-                    <div class="row m-3">
+                    <div class="row m-3 justify-content-center">
                         <asp:Label ID="lblWeekInteractions" CssClass="labels" runat="server" Text="Interactions this Week: "></asp:Label>
                     </div>
-                    <div class="row m-3">
+                    <div class="row m-3 justify-content-center">
                         <asp:Button ID="btnViewInteractions" runat="server" Text="View Interactions" CssClass="buttonStyle cherryBackground" OnClick="btnViewInteractions_Click" />
                     </div>
                 </div>
                 <div class="col">
-                    <div class="row m-3">
+                    <div class="row m-3 justify-content-center">
                         <h5>Manage Account:</h5>
                     </div>
-                    <div id="divResendLink" runat="server" class="row m-3">
+                    <div id="divResendLink" runat="server" class="row m-3 justify-content-center">
                         <div class="col p-0">
                             <asp:Label ID="lblResendLink" CssClass="labels d-block" runat="server" Text="Resend Verification Link for Sign Up:"></asp:Label>
                             <asp:Button ID="btnResendSignUpVerification" runat="server" Text="Resend" CssClass="buttonStyle cherryBackground mt-3" OnClick="btnResendSignUpVerification_Click" />
                         </div>
                     </div>
-                    <div class="row m-3">
-                        <div class="col p-0">
+                    <div class="row m-3 justify-content-center">
+                        <div class="col p-0 text-center">
                             <asp:Label ID="lblToggleActivation" CssClass="labels mb-2 d-block" runat="server" Text="Toggle Account Activation Status:"></asp:Label>
                             <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="buttonStyle cherryBackground mt-5" OnClick="btnDeactivate_Click" />
-
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row m-3 justify-content-center">
                         <asp:Label ID="lblAWSError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                     </div>
                 </div>

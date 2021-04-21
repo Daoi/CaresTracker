@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CaresTracker.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="CaresTracker.Report" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="mx-auto homepage px-0 pt-0 pb-5">
-        <div class="row modal-header no-gutters offwhiteBackground" style="height: auto; font-size: large">
+    <div class="container-fluid homepage pb-5">
+        <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
             <nav aria-label="breadcrumb w-75">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">

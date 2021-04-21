@@ -1,9 +1,30 @@
 ﻿.backgroundImage {
     overflow: auto;
     min-height: 100vh;
+}
+
+.backgroundImage:before {
+    background-size: cover;
     background-image: url("../img/master-wen-lpLRwDZigvc-unsplash.jpg");
-    background-repeat: no-repeat;
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    filter: blur(5px);
+    -moz-filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -o-filter: blur(5px);
+}
+
+.loginbackgroundImage {
+    overflow: auto;
+    min-height: 100vh;
+    background-image: url("../img/master-wen-lpLRwDZigvc-unsplash.jpg");
     background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
     background-size: cover;
 }
 
