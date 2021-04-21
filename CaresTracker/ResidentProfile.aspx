@@ -134,15 +134,6 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="mt-5 text-center">
-                                <asp:Button ID="btnEditProfile" CssClass="buttonStyle" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" />
-                                <div class="btn-group">
-                                    <asp:Button ID="btnSaveEdits" CssClass="buttonStyle" Visible="false" runat="server" Text="Save Edits" OnClick="btnSaveEdits_Click" />
-                                    <asp:Button ID="btnCancelEdits" CssClass="buttonStyle ml-1" Visible="false" runat="server" Text="Cancel Editing" OnClick="btnCancelEdits_Click" />
-                                </div>
-
-                                <asp:Label ID="lblErrorMessage" CssClass="errorLabel" runat="server" Text="" Visible="false"></asp:Label>
-                            </div>
                         </div>
                     </div>
                     <div class="col">
@@ -228,6 +219,21 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col text-center">
+                        <asp:Button ID="btnEditProfile" CssClass="buttonStyle" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" />
+                        <div class="btn-group">
+                            <asp:Button ID="btnSaveEdits" CssClass="buttonStyle" Visible="false" runat="server" Text="Save Edits" OnClick="btnSaveEdits_Click" />
+                            <asp:Button ID="btnCancelEdits" CssClass="buttonStyle ml-1" Visible="false" runat="server" Text="Cancel Editing" OnClick="btnCancelEdits_Click" />
+                        </div>
+
+                        <asp:Label ID="lblErrorMessage" CssClass="errorLabel" runat="server" Text="" Visible="false"></asp:Label>
+                    </div>
+                    <div class="col text-center">
+                        <asp:Button ID="btnToggleActivation" CssClass="buttonStyle" runat="server" Text="Deactivate Profile" OnClick="btnToggleActivation_Click"/>
+                        <asp:Label ID="lblErrorInactivate" CssClass="errorLabel" runat="server" Text="" Visible="false"></asp:Label>
                     </div>
                 </div>
             </div>

@@ -65,10 +65,11 @@ namespace CaresTracker
                     lblImportWarning.Visible = true;
                 }
 
+                if (!currentRes.IsActive)
+                {
+                    btnToggleActivation.Text = "Reactivate Profile";
+                }
             }
-
-
-
 
             string select2Params = "'#MainContent_ddlHousingDevelopment', 'Select Development'";
             string select2Call = $"setupSelect2({select2Params});";
@@ -153,9 +154,7 @@ namespace CaresTracker
             if (currentRes.Imported)
             {
                 hdnfldFormattedAddress.Value = "";
-
             }
-
         }
 
         //Toggle all non-button controls enabled status 
@@ -180,6 +179,7 @@ namespace CaresTracker
                 }
             }
         }
+
         // Toggle HTMLInput element used for API
         private void ToggleHTMLInputElement()
         {
@@ -291,7 +291,6 @@ namespace CaresTracker
 
             ddlRegion.Enabled = false;
             ViewState["EditMode"] = false;
-            
         }
 
         protected void lnkResidentLookup_Click(object sender, EventArgs e)
@@ -328,6 +327,23 @@ namespace CaresTracker
             ddlRegion.Enabled = false;
             ViewState["EditMode"] = false;
             InitializeProfileValues();
+        }
+
+        protected void btnToggleActivation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new SetProfileActivationStatus().ExecuteCommand(currentRes.ResidentID, !currentRes.IsActive);
+
+                currentRes.IsActive = !currentRes.IsActive;
+                btnToggleActivation.Text = currentRes.IsActive ? "Deactivate Profile" : "Reactivate Profile";
+
+                Session["Resident"] = currentRes;
+            }
+            catch (Exception ex)
+            {
+                lblErrorInactivate.Text = $"Error toggling activation status: {ex.Message}";
+            }
         }
     }
 }

@@ -29,6 +29,7 @@ namespace CaresTracker.DataModels
         public string FullName { get { return $"{ResidentFirstName} {ResidentLastName}"; } }
         public List<ChronicIllness> ChronicIllnesses { get; set; }
         public bool Imported { get; set; }
+        public bool IsActive { get; set; }
 
         public Resident() { }
 
@@ -60,7 +61,7 @@ namespace CaresTracker.DataModels
             ChronicIllnesses = ChronicIllness.CreateChronicIllnessList(new GetChronicIllnessesByResidentID().ExecuteCommand(ResidentID));
 
             Imported = dataRow["Imported"] == DBNull.Value ? false : (bool)dataRow["Imported"];
-
+            IsActive = dataRow["IsActive"] == DBNull.Value ? false : (bool)dataRow["IsActive"];
         }
 
         /// <summary>
