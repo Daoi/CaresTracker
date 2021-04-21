@@ -333,7 +333,7 @@ namespace CaresTracker
             newInteraction.DateOfContact = tbDoC.Text;
             newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
             newInteraction.LocationOfContact = tbLocation.Text;
-            newInteraction.COVIDTestLocation = tbTestingLocation.Text.Equals("N/A") ? "" : tbTestingLocation.Text;
+            newInteraction.COVIDTestLocation = Validation.IsEmpty(tbTestingLocation.Text) ? "N/A" : tbTestingLocation.Text;
             if (ddlTestResult.SelectedIndex == 0)
             {
                 newInteraction.COVIDTestResult = string.Empty;
@@ -436,20 +436,10 @@ namespace CaresTracker
             if (!string.IsNullOrWhiteSpace(interaction.SymptomStartDate))
                 tbSymptomDates.Text = interaction.SymptomStartDate;
 
-            if (string.IsNullOrWhiteSpace(interaction.COVIDTestResult))
-            {
-                ddlTestResult.SelectedIndex = 0;
-            }
-            else if (interaction.COVIDTestResult.Equals("No Recent Test"))
-            {
-                tbTestingLocation.Text = "N/A";
-                ddlTestResult.SelectedValue = "No Recent Test";
-            }
-            else
-            {
-                tbTestingLocation.Text = interaction.COVIDTestLocation;
-                ddlTestResult.SelectedValue = interaction.COVIDTestResult;
-            }
+            
+            tbTestingLocation.Text = interaction.COVIDTestLocation;
+            ddlTestResult.SelectedValue = interaction.COVIDTestResult;
+
 
             //Services
             divOldInteractionServices.Visible = true;
@@ -570,7 +560,7 @@ namespace CaresTracker
                 icErrorResidentHealth.Visible = true;
             }
             // test location w/o result
-            else if ((ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && !Validation.IsEmpty(tbTestingLocation.Text))
+            else if ( (ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && (!Validation.IsEmpty(tbTestingLocation.Text) && !tbTestingLocation.Text.Equals("N/A")))
             {
                 isValid = false;
                 lblErrorCOVIDTest.Visible = true;
