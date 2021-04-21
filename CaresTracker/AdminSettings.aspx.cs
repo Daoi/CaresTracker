@@ -158,21 +158,46 @@ namespace CaresTracker
             return pairs;
         }
 
+        /// <summary>
+        /// Checks if a value is unique in a GridView.
+        /// Use before inserting a new database value.
+        /// </summary>
+        /// <param name="gv"></param>
+        /// <param name="colIndex">The index of the column to check against.</param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        private bool IsNewValueUnique(GridView gv, int colIndex, string newValue)
+        {
+            return !gv.Rows.OfType<GridViewRow>().ToList().Any(row =>
+            {
+                return row.Cells[colIndex].Text.ToLower().Equals(newValue.ToLower());
+            });
+        }
+
         protected void btnAddService_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtServiceName.Text))
+            string strClean = txtServiceName.Text.Trim();
+            if (string.IsNullOrEmpty(strClean))
             {
                 lblAddServiceError.Text = "Service Name cannot be empty.";
                 lblAddServiceError.Visible = true;
                 return;
             }
 
+            if (!IsNewValueUnique(gvServices, 0, strClean))
+            {
+                lblAddServiceError.Text = "This Service already exists.";
+                lblAddServiceError.Visible = true;
+                return;
+            }
+
+
             lblAddServiceError.Text = string.Empty;
             lblAddServiceError.Visible = false;
 
             try
             {
-                if (new InsertService(txtServiceName.Text).ExecuteCommand() > 0)
+                if (new InsertService(strClean).ExecuteCommand() > 0)
                 {
                     // insert success
                     Response.Redirect("./AdminSettings.aspx", false);
@@ -211,9 +236,17 @@ namespace CaresTracker
 
         protected void btnAddEventType_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEventTypeName.Text))
+            string strClean = txtEventTypeName.Text.Trim();
+            if (string.IsNullOrEmpty(strClean))
             {
                 lblAddEventTypeError.Text = "Event Type Name cannot be empty.";
+                lblAddEventTypeError.Visible = true;
+                return;
+            }
+
+            if (!IsNewValueUnique(gvEventTypes, 0, strClean))
+            {
+                lblAddEventTypeError.Text = "This Event Type already exists.";
                 lblAddEventTypeError.Visible = true;
                 return;
             }
@@ -223,7 +256,7 @@ namespace CaresTracker
 
             try
             {
-                if (new InsertEventType(txtEventTypeName.Text).ExecuteCommand() > 0)
+                if (new InsertEventType(strClean).ExecuteCommand() > 0)
                 {
                     // insert success
                     Response.Redirect("./AdminSettings.aspx", false);
