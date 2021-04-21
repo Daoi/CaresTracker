@@ -36,10 +36,6 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                //Redirect if not apart of same org and not temple admin
-                if (!user.UserType.Equals("T") && user.OrganizationID != new GetOrgIDByUserID().RunCommand(interaction.HealthWorkerID))
-                    Response.Redirect("Homepage.aspx");
-
                 //Set resident info (first tab) to visible, others to false
                 links.Keys.ToList().Where(s => !s.Equals("residentInfo")).ToList().ForEach(s => links[s].Visible = false);
                 cblServices.DataSource = new GetAllServices().ExecuteCommand();
@@ -60,7 +56,14 @@ namespace CaresTracker
                 }
                 else if (Session["Interaction"] != null && (url.Contains("InteractionList") || url.Contains("SaveSuccessful")))//Old interaction
                 {
+
+
+
                     interaction = Session["Interaction"] as Interaction;
+
+                    if (!user.UserType.Equals("T") && user.OrganizationID != new GetOrgIDByUserID().RunCommand(interaction.HealthWorkerID))
+                        Response.Redirect("Homepage.aspx");
+
                     FillResidentInfo();
                     FillInteractionInfo();
                     ViewState["PanelState"] = true;

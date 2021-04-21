@@ -54,8 +54,8 @@
                         <%-- Button 4 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <label class="card-title font-weight-bold h5">Review Past Interactions</label>
-                                <p class="text-dark">Search for past interactions by resident name</p>
+                                <label class="card-title font-weight-bold h5">Review Interactions</label>
+                                <p class="text-dark">View a list of all interactions available to you</p>
                             </div>
                         </div>
                         <%-- Button 4 End --%>
@@ -76,8 +76,8 @@
                         <%-- Button 6 Start --%>
                         <div class="card text-center homepageCard">
                             <div class="card-body shadow">
-                                <label class="card-title font-weight-bold h5">Review Past Events</label>
-                                <p class="text-dark">Search for past community health events</p>
+                                <label class="card-title font-weight-bold h5">View Events</label>
+                                <p class="text-dark">View a list of all community health events </p>
                             </div>
                         </div>
                         <%-- Button 6 End --%>

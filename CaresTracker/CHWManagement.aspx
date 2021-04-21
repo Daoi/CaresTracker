@@ -14,44 +14,41 @@
                 </ol>
             </nav>
         </div>
-        <div class="container-fluid">
-            <div class="container w-75 mt-5">
-                <div class="row m-3">
-                    <div class="col border-right">
-                        <div class="row m-3 justify-content-center">
-                            <h5>Worker Stats:</h5>
-                        </div>
-                        <div class="row m-3 justify-content-center">
-                            <asp:Label ID="lblTotalInteractions" CssClass="labels" runat="server" Text="Total Interactions: "></asp:Label>
-                        </div>
-                        <div class="row m-3 justify-content-center">
-                            <asp:Label ID="lblWeekInteractions" CssClass="labels" runat="server" Text="Interactions this Week: "></asp:Label>
-                        </div>
-                        <div class="row m-3 justify-content-center">
-                            <asp:Button ID="btnViewInteractions" runat="server" Text="View Interactions" CssClass="buttonStyle cherryBackground" OnClick="btnViewInteractions_Click" />
+        <div class="container homepage w-auto mt-5">
+            <div class="row">
+                <div class="col border-right">
+                    <div class="row m-3">
+                        <h5>Worker Stats:</h5>
+                    </div>
+                    <div class="row m-3">
+                        <asp:Label ID="lblTotalInteractions" CssClass="labels" runat="server" Text="Total Interactions: "></asp:Label>
+                    </div>
+                    <div class="row m-3">
+                        <asp:Label ID="lblWeekInteractions" CssClass="labels" runat="server" Text="Interactions this Week: "></asp:Label>
+                    </div>
+                    <div class="row m-3">
+                        <asp:Button ID="btnViewInteractions" runat="server" Text="View Interactions" CssClass="buttonStyle cherryBackground" OnClick="btnViewInteractions_Click" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row m-3">
+                        <h5>Manage Account:</h5>
+                    </div>
+                    <div id="divResendLink" runat="server" class="row m-3">
+                        <div class="col p-0">
+                            <asp:Label ID="lblResendLink" CssClass="labels d-block" runat="server" Text="Resend Verification Link for Sign Up:"></asp:Label>
+                            <asp:Button ID="btnResendSignUpVerification" runat="server" Text="Resend" CssClass="buttonStyle cherryBackground mt-3" OnClick="btnResendSignUpVerification_Click" />
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="row m-3 justify-content-center">
-                            <h5>Manage Account:</h5>
+                    <div class="row m-3">
+                        <div class="col p-0">
+                            <asp:Label ID="lblToggleActivation" CssClass="labels mb-2 d-block" runat="server" Text="Toggle Account Activation Status:"></asp:Label>
+                            <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="buttonStyle cherryBackground mt-5" OnClick="btnDeactivate_Click" />
+
                         </div>
-                        <div id="divResendLink" runat="server">
-                            <div class="row m-3 justify-content-center">
-                                <asp:Label ID="lblResendLink" CssClass="labels d-block" runat="server" Text="Resend Verification Link for Sign Up:"></asp:Label>
-                            </div>
-                            <div class="row m-3 justify-content-center">
-                                <asp:Button ID="btnResendSignUpVerification" runat="server" Text="Resend" CssClass="buttonStyle cherryBackground" OnClick="btnResendSignUpVerification_Click" />
-                            </div>
-                        </div>
-                        <div class="row m-3 justify-content-center">
-                            <asp:Label ID="lblToggleActivation" CssClass="labels d-block" runat="server" Text="Toggle Account Activation Status:"></asp:Label>
-                        </div>
-                        <div class="row m-3 justify-content-center">
-                            <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="buttonStyle cherryBackground" OnClick="btnDeactivate_Click" />
-                        </div>
-                        <div class="row m-3 justify-content-center">
-                            <asp:Label ID="lblAWSError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
-                        </div>
+                    </div>
+                    <div class="row">
+                        <asp:Label ID="lblAWSError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -89,8 +86,6 @@
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <asp:Label ID="lblLastLogin" CssClass="labels" runat="server" Text="Last Login"></asp:Label><asp:TextBox ID="txtLastLogin" placeholder="Last Login Time" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6">
                         </div>
                     </div>
                 </div>
