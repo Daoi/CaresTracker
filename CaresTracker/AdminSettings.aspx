@@ -5,7 +5,7 @@
         // use before postback to process all GV values
         // TemplateField ctrl values aren't accurate otherwise
         function expandTable(gv) {
-            $(`#MainContent_${gv}`).DataTable().page.len(-1).draw();
+            $(`#MainContent_${gv}`).DataTable().search("").page.len(-1).draw();
         }
     </script>
     <div class="container-fluid homepage">
