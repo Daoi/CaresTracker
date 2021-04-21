@@ -436,20 +436,9 @@ namespace CaresTracker
             if (!string.IsNullOrWhiteSpace(interaction.SymptomStartDate))
                 tbSymptomDates.Text = interaction.SymptomStartDate;
 
-            if (string.IsNullOrWhiteSpace(interaction.COVIDTestResult))
-            {
-                ddlTestResult.SelectedIndex = 0;
-            }
-            else if (interaction.COVIDTestResult.Equals("No Recent Test"))
-            {
-                tbTestingLocation.Text = "N/A";
-                ddlTestResult.SelectedValue = interaction.COVIDTestResult;
-            }
-            else
-            {
-                tbTestingLocation.Text = interaction.COVIDTestLocation;
-                ddlTestResult.SelectedValue = interaction.COVIDTestResult;
-            }
+            tbTestingLocation.Text = interaction.COVIDTestLocation;
+            ddlTestResult.SelectedValue = interaction.COVIDTestResult;
+
 
             //Services
             divOldInteractionServices.Visible = true;
