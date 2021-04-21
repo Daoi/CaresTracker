@@ -1,9 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateResident.aspx.cs" MasterPageFile="~/CaresTracker.Master" Inherits="CaresTracker.CreateResident" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container homepage">
+    <div class="container-fluid homepage">
         <div>
-            <div class="row modal-header offwhiteBackground" style="height: 7%; font-size: large">
+            <div class="row modal-header offwhiteBackground p-0" style="height: 50px; font-size: large">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent">
                         <li class="breadcrumb-item" style="color: deepskyblue">

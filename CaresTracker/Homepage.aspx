@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid homepage">
-        <div class="row  modal-header offwhiteBackground" style="height: auto; padding-left: 0!important; padding-right: 0!important; font-size: large;">
+        <div class="row modal-header offwhiteBackground p-0" style="height:50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
@@ -10,7 +10,7 @@
                     </li>
                 </ol>
             </nav>
-            <asp:label id="lblUserInfo" runat="server" enabled="true" visible="true" cssclass="h3 my-2" style="width: 57%"></asp:label>
+            <asp:label id="lblUserInfo" runat="server" enabled="true" visible="true" cssclass="h4 my-2" style="width: 57%"></asp:label>
         </div>
         <div class="jumbotron vertical-center bg-transparent cherryFont">
             <div class="container-fluid">

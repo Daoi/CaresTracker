@@ -2,9 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!--<link href="style/InteractionFormStyle.css" rel="stylesheet" />-->
-    <div id="RIForm" class="container-fluid">
+    <div id="RIForm" class="container-fluid p-0">
         <div class="container-fluid homepage">
-            <div class="row modal-header offwhiteBackground" style="height: 5%; padding-left: 0!important; padding-right: 0!important; font-size: large">
+        <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent">
                         <li class="breadcrumb-item" style="color: deepskyblue">

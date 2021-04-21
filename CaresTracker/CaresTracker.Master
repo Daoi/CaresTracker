@@ -24,9 +24,9 @@
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
-    <form id="frmMain" runat="server" class="">
+    <form id="frmMain" runat="server" class="backgroundImage">
         <asp:ScriptManager ID="smMaster" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-        <header>
+        <header class="bg-white">
             <div class="container-fluid">
                 <a href="Homepage.aspx">
                     <img class="w-25 my-4" src="img/Temple_University_logo.png"/>
@@ -49,7 +49,7 @@
                 </div>
             </nav>
         </header>
-        <div id="testimage" class="backgroundImage">
+        <div id="testimage">
             <!-- Timer to check session timeout -- Initialize interval at 1/2 sec so event fires ~on~ page load -->
             <asp:Timer ID="tmrSessionTimeout" runat="server" OnTick="tmrSessionTimeout_Tick" Interval="500"></asp:Timer>
 
