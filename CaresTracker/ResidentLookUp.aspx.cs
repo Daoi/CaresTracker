@@ -4,6 +4,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataModels;
 using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
+using CaresTracker.Utilities;
 
 namespace CaresTracker
 {
@@ -45,7 +46,7 @@ namespace CaresTracker
 
         protected void NewResident_Click(object sender, EventArgs e)
         {
-            
+
             Response.Redirect($"CreateResident.aspx");
         }
 

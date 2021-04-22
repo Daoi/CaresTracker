@@ -2,15 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid homepage">
-        <div class="row modal-header offwhiteBackground p-0" style="height:50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
+        <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
-                        <asp:linkbutton id="lnkHome" navigateurl="~/Homepage.aspx" cssclass="cherryFont" runat="server" OnClick="lnkHome_Click">Dashboard</asp:linkbutton>
+                        <asp:LinkButton ID="lnkHome" navigateurl="~/Homepage.aspx" CssClass="cherryFont" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton>
                     </li>
                 </ol>
             </nav>
-            <asp:label id="lblUserInfo" runat="server" enabled="true" visible="true" cssclass="h4 my-2" style="width: 57%"></asp:label>
+            <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h4 my-2" Style="width: 57%"></asp:Label>
         </div>
         <div class="jumbotron vertical-center bg-transparent cherryFont">
             <div class="container-fluid">
@@ -63,7 +63,7 @@
                     </div>
                     <div id="divResidentList" class="col m-3 homepageCol" runat="server">
                         <%-- Button 5 Start --%>
-                        <div class="card text-center homepageCard" >
+                        <div class="card text-center homepageCard">
                             <div class="card-body shadow">
                                 <label class="card-title font-weight-bold h5">Resident Look Up</label>
                                 <p class="text-dark">Search for a specific resident's profile</p>
@@ -106,8 +106,8 @@
                                 <h4 id="headerFollowUps" class="card-title">Outstanding Follow Ups</h4>
                                 <div class="tab-content mt-3">
                                     <div class="tab-pane active" id="outstanding" role="tabpanel">
-                                        <asp:label id="lblOutstandingMsg" runat="server" text=""></asp:label>
-                                        <asp:gridview id="gvOutstandingFollowUps" cssclass="table table-striped table-bordered thead-dark" runat="server" autogeneratecolumns="False">
+                                        <asp:Label ID="lblOutstandingMsg" runat="server" Text=""></asp:Label>
+                                        <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                             <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
@@ -120,13 +120,17 @@
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%# Eval("ResidentFirstName")+ " " + Eval("ResidentLastName") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="DateOfContact" HeaderText="Date Requested" />
+                                                <asp:TemplateField HeaderText="Date Requested">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDateRequested" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfContact"))%>' runat="server"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
-                                        </asp:gridview>
+                                        </asp:GridView>
                                     </div>
                                     <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                                        <asp:label id="lblCompletedMsg" runat="server" text=""></asp:label>
-                                        <asp:gridview id="gvCompletedFollowUps" cssclass="table table-striped table-bordered thead-dark" runat="server" autogeneratecolumns="False">
+                                        <asp:Label ID="lblCompletedMsg" runat="server" Text=""></asp:Label>
+                                        <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                             <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
@@ -139,9 +143,13 @@
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="FollowUpCompleted" HeaderText="Date Completed" />
+                                                <asp:TemplateField HeaderText="Date Completed">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDateCompleted" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("FollowUpCompleted"))%>' runat="server"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
-                                        </asp:gridview>
+                                        </asp:GridView>
                                     </div>
                                 </div>
                             </div>
@@ -158,8 +166,8 @@
                             <h4 class="card-title">Upcoming Events</h4>
                             <div class="card mt-5">
                                 <div class="card-body UCEventsCard">
-                                    <asp:label id="lblEventMsg" runat="server" text=""></asp:label>
-                                    <asp:gridview id="gvEvents" cssclass="table table-striped table-bordered thead-dark" runat="server" autogeneratecolumns="False">
+                                    <asp:Label ID="lblEventMsg" runat="server" Text=""></asp:Label>
+                                    <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="View Event">
@@ -168,10 +176,14 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
-                                            <asp:BoundField DataField="EventDate" HeaderText="Event Date" />
+                                            <asp:TemplateField HeaderText="Event Date">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblStartTime" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("EventDate"))%>' runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Start Time">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                                    <asp:Label ID="lblStartTime" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatTimes(Eval("EventStartTime"))%>' runat="server"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Event Host">
@@ -181,7 +193,7 @@
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="UserEmail" HeaderText="Host Email" />
                                         </Columns>
-                                    </asp:gridview>
+                                    </asp:GridView>
                                 </div>
                             </div>
                         </div>
