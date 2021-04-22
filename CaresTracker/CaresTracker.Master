@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="CaresTracker.Master.cs" Inherits="CaresTracker.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="CaresTracker.Master.cs" Inherits="CaresTracker.Site1" %>
 
 <!DOCTYPE html>
 
@@ -98,9 +98,11 @@
         </div>
     </form>
         <footer>
-        <div class="container footerCon text-center">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="h3">PHA</asp:HyperLink>
-            <span class="footer-notice pt-4" style="font-weight: bold">CARES Tracker</span>
+            <div class="row justify-content-center cherryBackground"> 
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="h3 text-center text-white">PHA CARES Tracker</asp:HyperLink> 
+            </div>
+        <div class="footerCon text-center">
+             <span class="footer-notice pt-4" style="font-weight: bold">Temple Health ❖ Drexel Community Wellness Hub ❖ Greater Philadelphia Health Action</span>
         </div>
     </footer>
 </body>
