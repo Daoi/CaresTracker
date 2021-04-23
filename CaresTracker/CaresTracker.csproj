@@ -539,6 +539,7 @@
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AWSCognitoManager.cs" />
+    <Compile Include="Utilities\GridViewFormatter.cs" />
     <Compile Include="Utilities\TextModeDateFormatter.cs" />
     <Compile Include="Utilities\Validation.cs" />
     <Compile Include="Verify.aspx.cs">

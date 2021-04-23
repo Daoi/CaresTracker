@@ -26,7 +26,11 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
                         <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
-                        <asp:BoundField DataField="DateOfBirth" HeaderText="Resident Date of Birth" />
+                        <asp:TemplateField HeaderText="Resident DoB">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDoB" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfBirth"))%>' runat="server"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
                 <div class="row">
