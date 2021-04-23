@@ -11,10 +11,7 @@ namespace CaresTracker.Utilities
         {
             try
             {
-                value.ToString();
-
                 return DateTime.Parse(value.ToString()).ToString("MM-dd-yyyy");
-
             }
             catch (Exception e)
             {
@@ -26,10 +23,7 @@ namespace CaresTracker.Utilities
         {
             try
             {
-                value.ToString();
-
                 return DateTime.Parse(value.ToString()).ToString("hh:mm tt");
-
             }
             catch (Exception e)
             {

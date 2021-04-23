@@ -178,7 +178,7 @@
                                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />
                                             <asp:TemplateField HeaderText="Event Date">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblStartTime" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("EventDate"))%>' runat="server"></asp:Label>
+                                                    <asp:Label ID="lblEventName" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("EventDate"))%>' runat="server"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Start Time">
