@@ -40,7 +40,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="End Time">
                             <ItemTemplate>
-                                <asp:Label ID="lblEndTime" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("EventEndTime"))%>' runat="server"></asp:Label>
+                                <asp:Label ID="lblEndTime" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatTimes(Eval("EventEndTime"))%>' runat="server"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Event Host">
