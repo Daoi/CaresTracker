@@ -35,19 +35,17 @@ namespace CaresTracker
 
                 gvResidentList.DataBind();
             }
-
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
-
 
         protected void NewResident_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect($"CreateResident.aspx");
+            Response.Redirect("CreateResident.aspx");
         }
 
         protected void btnViewResident_Click(object sender, EventArgs e)
@@ -62,6 +60,5 @@ namespace CaresTracker
             Session["Resident"] = res;
             Response.Redirect("ResidentProfile.aspx");
         }
-
     }
 }
