@@ -365,7 +365,6 @@
         </div>
     </div>
     <!-- End Modal -->
-    <script src="Scripts/jquery-2.0.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#MainContent_tbNewServicesSearch").on("keyup", function () {
