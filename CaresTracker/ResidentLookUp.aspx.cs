@@ -20,7 +20,7 @@ namespace CaresTracker
                 DataTable ds = new GetResidentsByUserID().ExecuteCommand(user.UserID);
 
                 gvResidentList.DataSource = ds;
-                Session["ResidentList"] = ds;
+                ViewState["ResidentList"] = ds;
 
                 gvResidentList.DataBound += (object o, EventArgs ev) =>
                 {
@@ -55,7 +55,7 @@ namespace CaresTracker
             Button btn = (Button)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             //Recreate the Datarow the GVR is bound to
-            DataRow dr = (Session["ResidentList"] as DataTable).Rows[row.DataItemIndex];
+            DataRow dr = (ViewState["ResidentList"] as DataTable).Rows[row.DataItemIndex];
             Resident res = new Resident(dr);
 
             Session["Resident"] = res;

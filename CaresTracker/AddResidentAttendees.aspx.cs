@@ -34,12 +34,12 @@ namespace CaresTracker
                 }
 
                 gvResidentList.DataSource = dtResidents;
-                Session["ResidentList"] = dtResidents;
+                ViewState["ResidentList"] = dtResidents;
                 gvResidentList.DataBind();
             }
 
             gvResidentList.HeaderRow.TableSection = TableRowSection.TableHeader;
-            dtResidents = Session["ResidentList"] as DataTable;
+            dtResidents = ViewState["ResidentList"] as DataTable;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
