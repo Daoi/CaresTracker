@@ -4,7 +4,7 @@
     <!--<link href="style/InteractionFormStyle.css" rel="stylesheet" />-->
     <div id="RIForm" class="container-fluid p-0">
         <div class="container-fluid homepage">
-        <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
+            <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent">
                         <li class="breadcrumb-item" style="color: deepskyblue">
@@ -245,9 +245,12 @@
                         <asp:Panel ID="pnlServicesForm" class="services" runat="server">
                             <h5>Services</h5>
                             <div class="row m-3 h-100">
-                                <div id="divNewInteractionServices" class="cblServices overflow-auto h-75 w-100" runat="server">
+                                <div id="divNewInteractionServices" class="cblServices  h-75 w-100" runat="server">
                                     <label>Services</label>
-                                    <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                                    <asp:TextBox ID="tbNewServicesSearch" placeholder="Search service list..." CssClass="form-control" runat="server"></asp:TextBox>
+                                    <div class="overflow-auto h-75 w-100 mt-1">
+                                        <asp:CheckBoxList ID="cblServices" CssClass="table" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                                    </div>
                                 </div>
                                 <div id="divOldInteractionServices" class="cblServicesCompleted overflow-auto h-75" runat="server">
                                     <asp:Label ID="lblServicesInfo" runat="server" Text="Label">Services Requested (Check if completed)</asp:Label>
@@ -362,5 +365,15 @@
         </div>
     </div>
     <!-- End Modal -->
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_tbNewServicesSearch").on("keyup", function () {
+                var input = $(this).val().toLowerCase();
+                $("#MainContent_cblServices tr td label").each(function () {
+                    var s = $(this).text().toLowerCase();
+                    $(this).parent().parent()[s.indexOf(input) !== -1 ? 'show' : 'hide']();
+                });
+            });
+        });
+    </script>
 </asp:Content>
