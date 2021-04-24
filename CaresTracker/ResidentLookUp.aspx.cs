@@ -10,13 +10,14 @@ namespace CaresTracker
 {
     public partial class ResidentLookUp : Page
     {
+        CARESUser user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = Session["User"] as CARESUser;
             if (!IsPostBack)
             {
-                GetAllResident getAllResident = new GetAllResident();
-                DataTable ds = getAllResident.RunCommand();
+                DataTable ds = new GetResidentsByUserID().ExecuteCommand(user.UserID);
 
                 gvResidentList.DataSource = ds;
                 Session["ResidentList"] = ds;
