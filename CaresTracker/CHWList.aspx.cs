@@ -36,10 +36,10 @@ namespace CaresTracker
                 gvCHWList.DataSource = dtCHWList;
                 gvCHWList.DataBind();
 
-                Session["CHWListDT"] = dtCHWList;
+                ViewState["CHWListDT"] = dtCHWList;
             }
 
-            dtCHWList = Session["CHWListDT"] as DataTable;
+            dtCHWList = ViewState["CHWListDT"] as DataTable;
         }
 
         // redirect to the management page
