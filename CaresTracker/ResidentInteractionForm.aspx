@@ -370,10 +370,8 @@
         $(document).ready(function () {
             $("#MainContent_tbNewServicesSearch").on("keyup", function () {
                 var input = $(this).val().toLowerCase();
-                console.log("input:" + input);
                 $("#MainContent_cblServices tr td label").each(function () {
                     var s = $(this).text().toLowerCase();
-                    console.log("s: " + s);
                     $(this).parent().parent()[s.indexOf(input) !== -1 ? 'show' : 'hide']();
                 });
             });
