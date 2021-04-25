@@ -26,7 +26,7 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                new List<GridView>() { gvRegions, gvServices, gvHousingDevelopments, gvEventTypes }.ForEach(gv =>
+                new List<GridView>() { gvRegions, gvServices, gvEventTypes }.ForEach(gv =>
                 {
                     gv.DataBound += (object o, EventArgs ev) =>
                     {
@@ -39,11 +39,6 @@ namespace CaresTracker
                 gvRegions.DataSource = new GetAllRegions().ExecuteCommand();
                 gvRegions.DataKeyNames = new string[] { "RegionID", "OrganizationID" }; // store hidden ids
                 gvRegions.DataBind();
-
-                // set up HousingDevelopments
-                gvHousingDevelopments.DataSource = new GetAllDevelopments().ExecuteCommand();
-                gvHousingDevelopments.DataKeyNames = new string[] { "DevelopmentID" };
-                gvHousingDevelopments.DataBind();
 
                 // set up Services
                 gvServices.DataSource = new GetAllServices().ExecuteCommand();
@@ -100,27 +95,6 @@ namespace CaresTracker
             {
                 lblRegionError.Text = ex.Message;
                 lblRegionError.Visible = true;
-            }
-        }
-
-        protected void btnDevelopmentUpdate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvHousingDevelopments, "DevelopmentID", "chkDevelopmentEnabled", 2);
-                if (new UpdateRecordIsEnabled("HousingDevelopment", "DevelopmentID", "DevelopmentIsEnabled", pairs).ExecuteCommand() > 0)
-                {
-                    // update success
-                    Response.Redirect("./AdminSettings.aspx", false);
-                }
-
-                lblDevelopmentError.Text = "An unknown error occurred. Please try again later.";
-                lblDevelopmentError.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                lblDevelopmentError.Text = ex.Message;
-                lblDevelopmentError.Visible = true;
             }
         }
 
