@@ -222,7 +222,7 @@
                             <h5>Chronic Health</h5>
                         </div>
                         <div class="mt-3">
-                            <asp:Label ID="lblChronicHealth" CssClass="labels" runat="server" Text="Resident's Conditions"></asp:Label>
+                            <asp:Label ID="lblChronicHealth" CssClass="labels" runat="server" Text="Resident's Conditions (Checked if Resident has Condition)"></asp:Label>
                             <br />
                             <asp:CheckBoxList ID="cblChronicHealth" CssClass="table compact rpCbl" runat="server"></asp:CheckBoxList>
                         </div>
