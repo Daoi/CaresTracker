@@ -10,16 +10,17 @@ namespace CaresTracker
 {
     public partial class ResidentLookUp : Page
     {
+        CARESUser user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = Session["User"] as CARESUser;
             if (!IsPostBack)
             {
-                GetAllResident getAllResident = new GetAllResident();
-                DataTable ds = getAllResident.RunCommand();
+                DataTable ds = new GetResidentsByUserID().ExecuteCommand(user.UserID);
 
                 gvResidentList.DataSource = ds;
-                Session["ResidentList"] = ds;
+                ViewState["ResidentList"] = ds;
 
                 gvResidentList.DataBound += (object o, EventArgs ev) =>
                 {
@@ -35,19 +36,17 @@ namespace CaresTracker
 
                 gvResidentList.DataBind();
             }
-
         }
 
         protected void lnkHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Homepage.aspx");
+            Response.Redirect("Homepage.aspx");
         }
-
 
         protected void NewResident_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect($"CreateResident.aspx");
+            Response.Redirect("CreateResident.aspx");
         }
 
         protected void btnViewResident_Click(object sender, EventArgs e)
@@ -56,12 +55,11 @@ namespace CaresTracker
             Button btn = (Button)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             //Recreate the Datarow the GVR is bound to
-            DataRow dr = (Session["ResidentList"] as DataTable).Rows[row.DataItemIndex];
+            DataRow dr = (ViewState["ResidentList"] as DataTable).Rows[row.DataItemIndex];
             Resident res = new Resident(dr);
 
             Session["Resident"] = res;
             Response.Redirect("ResidentProfile.aspx");
         }
-
     }
 }
