@@ -17,168 +17,170 @@
         <div class="container-fluid p-0">
             <div class="container my-5">
                 <%-- Housing Development Level Report --%>
-                <h2><ins>Housing Development Totals</ins></h2>
-                <br />
-                <asp:Label ID="lblErrorDevelopmentTotals" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
-                <asp:Panel ID="pnlDevelopmentTotals" runat="server">
-                    <h3>Residents per Gender</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtTotalGender' class="ct-chart ct-perfect-fourth"></div>
+                <asp:Panel ID="pnlDevelopmentReport" runat="server" Visible="false">
+                    <h2><ins>Housing Development Totals</ins></h2>
+                    <br />
+                    <asp:Label ID="lblErrorDevelopmentTotals" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
+                    <asp:Panel ID="pnlDevelopmentTotals" runat="server">
+                        <h3>Residents per Gender</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtTotalGender' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvTotalGender" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Gender" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Residents" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvTotalGender" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Gender" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Residents" />
-                                </Columns>
-                            </asp:GridView>
+                        <h3>Residents per Age Group</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtTotalAge' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvTotalAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Age Group" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Residents" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                    </div>
-                    <h3>Residents per Age Group</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtTotalAge' class="ct-chart ct-perfect-fourth"></div>
+                        <h3>Residents per Primary Language</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtTotalLanguage' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvTotalLanguage" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Primary Language" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Residents" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvTotalAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Age Group" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Residents" />
-                                </Columns>
-                            </asp:GridView>
+                        <h3>Residents per Vaccine Status</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtTotalVaccine' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvTotalVaccine" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Vaccine Status" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Interactions" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                    </div>
-                    <h3>Residents per Primary Language</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtTotalLanguage' class="ct-chart ct-perfect-fourth"></div>
+                        <h3>Resident Event Attendance</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtTotalEvent' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvTotalEvent" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="series" HeaderText="Attendances" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvTotalLanguage" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Primary Language" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Residents" />
-                                </Columns>
-                            </asp:GridView>
+                    </asp:Panel>
+                    <%-- Interaction Level Report --%>
+                    <asp:Panel ID="pnlInteractionDataHeader" runat="server">
+                        <h2><ins>Interaction Level Data</ins></h2>
+                        <asp:Label ID="lblTimeframe" runat="server" Text="" CssClass="h5"></asp:Label><br /><br />
+                        <asp:Label ID="lblErrorInteractionData" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
+                    </asp:Panel>
+                    <br />
+                    <asp:Panel ID="pnlInteractionData" runat="server">
+                        <h3>Interactions per Gender</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtInteractionGender' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvInteractionGender" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Gender" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Interactions" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                    </div>
-                    <h3>Residents per Vaccine Status</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtTotalVaccine' class="ct-chart ct-perfect-fourth"></div>
+                        <h3>Interactions per Age Group</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtInteractionAge' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvInteractionAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Age Group" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Residents" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvTotalVaccine" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Vaccine Status" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Interactions" />
-                                </Columns>
-                            </asp:GridView>
+                        <h3>Interactions per Primary Language</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtInteractionLanguage' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvInteractionLanguage" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Primary Language" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Interactions" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                    </div>
-                    <h3>Resident Event Attendance</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtTotalEvent' class="ct-chart ct-perfect-fourth"></div>
+                        <h3>Interactions per Contact Method</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtInteractionContact' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvInteractionContact" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Contact Method" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Interactions" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvTotalEvent" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="series" HeaderText="Attendances" />
-                                </Columns>
-                            </asp:GridView>
+                        <h3>Interactions per Service</h3>
+                        <div class="row border-bottom mb-5 pb-5">
+                            <div class="col-8">
+                                <div id='chrtInteractionService' class="ct-chart ct-perfect-fourth"></div>
+                            </div>
+                            <div class="col pt-5">
+                                <asp:GridView ID="gvInteractionService" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
+                                    <HeaderStyle CssClass="cherryBackground" />
+                                    <Columns>
+                                        <asp:BoundField DataField="labels" HeaderText="Service" />
+                                        <asp:BoundField DataField="series" HeaderText="# of Interactions" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
-                    </div>
-                </asp:Panel>
-                <%-- Interaction Level Report --%>
-                <asp:Panel ID="pnlInteractionDataHeader" runat="server">
-                    <h2><ins>Interaction Level Data</ins></h2>
-                    <asp:Label ID="lblTimeframe" runat="server" Text="" CssClass="h5"></asp:Label><br /><br />
-                    <asp:Label ID="lblErrorInteractionData" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
-                </asp:Panel>
-                <br />
-                <asp:Panel ID="pnlInteractionData" runat="server">
-                    <h3>Interactions per Gender</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtInteractionGender' class="ct-chart ct-perfect-fourth"></div>
-                        </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvInteractionGender" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Gender" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Interactions" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>
-                    <h3>Interactions per Age Group</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtInteractionAge' class="ct-chart ct-perfect-fourth"></div>
-                        </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvInteractionAge" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Age Group" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Residents" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>
-                    <h3>Interactions per Primary Language</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtInteractionLanguage' class="ct-chart ct-perfect-fourth"></div>
-                        </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvInteractionLanguage" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Primary Language" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Interactions" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>
-                    <h3>Interactions per Contact Method</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtInteractionContact' class="ct-chart ct-perfect-fourth"></div>
-                        </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvInteractionContact" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Contact Method" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Interactions" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>
-                    <h3>Interactions per Service</h3>
-                    <div class="row border-bottom mb-5 pb-5">
-                        <div class="col-8">
-                            <div id='chrtInteractionService' class="ct-chart ct-perfect-fourth"></div>
-                        </div>
-                        <div class="col pt-5">
-                            <asp:GridView ID="gvInteractionService" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark" >
-                                <HeaderStyle CssClass="cherryBackground" />
-                                <Columns>
-                                    <asp:BoundField DataField="labels" HeaderText="Service" />
-                                    <asp:BoundField DataField="series" HeaderText="# of Interactions" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>
+                    </asp:Panel>
                 </asp:Panel>
             </div>
         </div>

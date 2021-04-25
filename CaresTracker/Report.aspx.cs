@@ -11,6 +11,13 @@ using CaresTracker.DataModels;
 
 namespace CaresTracker
 {
+    /// <summary>
+    /// Create a report from the Session values collected on ExportData.aspx
+    /// Session["ReportType"]: D, O, or C
+    /// Session["ReportDomainID"]: PK of the entity type selected
+    /// Session["ReportStartDate"]
+    /// Session["ReportEndDate"]
+    /// </summary>
     public partial class Report : System.Web.UI.Page
     {
         protected string jsonReports;
@@ -24,101 +31,116 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                int developmentID = int.Parse(Session["ReportDevelopmentID"].ToString());
-                string startDate = Session["ReportStartDate"].ToString();
-                string endDate = Session["ReportEndDate"].ToString();
-                lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
-
-                this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
-                DataTable tblTemp;
-                try
+                switch (Session["ReportType"].ToString())
                 {
-                    tblTemp = new GetTotalGenderReport().ExecuteCommand(developmentID);
-
-                    // if one is empty, then all will be empty since these demographics are
-                    // aggregated using all residents in a development
-                    if (tblTemp.Rows.Count == 0)
-                    {
-                        lblErrorDevelopmentTotals.Visible = true;
-                        lblErrorDevelopmentTotals.Text = "There are no residents from this housing development in the system.";
-                        pnlDevelopmentTotals.Visible = false;
-                        pnlInteractionDataHeader.Visible = false;
-                        pnlInteractionData.Visible = false;
-                        return;
-                    }
-
-                    AddDataToJsonDict(tblTemp, "#chrtTotalGender");
-                    SetUpGridView(gvTotalGender, tblTemp);
-
-                    tblTemp = new GetTotalAgeReport().ExecuteCommand(developmentID);
-                    AddDataToJsonDict(tblTemp, "#chrtTotalAge");
-                    SetUpGridView(gvTotalAge, tblTemp);
-
-                    tblTemp = new GetTotalLanguageReport().ExecuteCommand(developmentID);
-                    AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
-                    SetUpGridView(gvTotalLanguage, tblTemp);
-
-                    tblTemp = new GetTotalVaccineReport().ExecuteCommand(developmentID);
-                    AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
-                    SetUpGridView(gvTotalVaccine, tblTemp);
-
-                    int numAttendees = new GetTotalEventReport().ExecuteCommand(developmentID);
-                    DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendances");
-                    AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
-                    SetUpGridView(gvTotalEvent, dtEvent);
+                    case "D":
+                        pnlDevelopmentReport.Visible = true;
+                        GenerateDevelopmentReport();
+                        break;
+                    case "O":
+                        break;
+                    case "C":
+                        break;
                 }
-                catch (Exception ex)
+
+                this.jsonReports = JsonConvert.SerializeObject(this.jsonDict);
+            }
+        }
+
+        private void GenerateDevelopmentReport()
+        {
+            int developmentID = int.Parse(Session["ReportDomainID"].ToString());
+            string startDate = Session["ReportStartDate"].ToString();
+            string endDate = Session["ReportEndDate"].ToString();
+            lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
+
+            this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
+            DataTable tblTemp;
+            try
+            {
+                tblTemp = new GetTotalGenderReport().ExecuteCommand(developmentID);
+
+                // if one is empty, then all will be empty since these demographics are
+                // aggregated using all residents in a development
+                if (tblTemp.Rows.Count == 0)
                 {
                     lblErrorDevelopmentTotals.Visible = true;
-                    lblErrorDevelopmentTotals.Text = "A database error occurred: " + ex.Message;
+                    lblErrorDevelopmentTotals.Text = "There are no residents from this housing development in the system.";
                     pnlDevelopmentTotals.Visible = false;
                     pnlInteractionDataHeader.Visible = false;
                     pnlInteractionData.Visible = false;
                     return;
                 }
 
-                try
-                {
-                    tblTemp = new GetInteractionGenderReport().ExecuteCommand(developmentID, startDate, endDate);
+                AddDataToJsonDict(tblTemp, "#chrtTotalGender");
+                SetUpGridView(gvTotalGender, tblTemp);
 
-                    // if one of these is empty, then the rest will be empty since these counts are
-                    // aggregated using all interactions with residents in a development
-                    if (tblTemp.Rows.Count == 0)
-                    {
-                        lblErrorInteractionData.Visible = true;
-                        lblErrorInteractionData.Text = "There were no interactions at this housing development during the selected timeframe.";
-                        pnlInteractionData.Visible = false;
-                        this.jsonReports = JsonConvert.SerializeObject(this.jsonDict); // just show the development level data
-                        return;
-                    }
+                tblTemp = new GetTotalAgeReport().ExecuteCommand(developmentID);
+                AddDataToJsonDict(tblTemp, "#chrtTotalAge");
+                SetUpGridView(gvTotalAge, tblTemp);
 
-                    AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
-                    SetUpGridView(gvInteractionGender, tblTemp);
+                tblTemp = new GetTotalLanguageReport().ExecuteCommand(developmentID);
+                AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
+                SetUpGridView(gvTotalLanguage, tblTemp);
 
-                    tblTemp = new GetInteractionAgeReport().ExecuteCommand(developmentID, startDate, endDate);
-                    AddDataToJsonDict(tblTemp, "#chrtInteractionAge");
-                    SetUpGridView(gvInteractionAge, tblTemp);
+                tblTemp = new GetTotalVaccineReport().ExecuteCommand(developmentID);
+                AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
+                SetUpGridView(gvTotalVaccine, tblTemp);
 
-                    tblTemp = new GetInteractionLanguageReport().ExecuteCommand(developmentID, startDate, endDate);
-                    AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
-                    SetUpGridView(gvInteractionLanguage, tblTemp);
+                int numAttendees = new GetTotalEventReport().ExecuteCommand(developmentID);
+                DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendances");
+                AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
+                SetUpGridView(gvTotalEvent, dtEvent);
+            }
+            catch (Exception ex)
+            {
+                lblErrorDevelopmentTotals.Visible = true;
+                lblErrorDevelopmentTotals.Text = "A database error occurred: " + ex.Message;
+                pnlDevelopmentTotals.Visible = false;
+                pnlInteractionDataHeader.Visible = false;
+                pnlInteractionData.Visible = false;
+                return;
+            }
 
-                    tblTemp = new GetInteractionContactReport().ExecuteCommand(developmentID, startDate, endDate);
-                    AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
-                    SetUpGridView(gvInteractionContact, tblTemp);
+            try
+            {
+                tblTemp = new GetInteractionGenderReport().ExecuteCommand(developmentID, startDate, endDate);
 
-                    tblTemp = new GetInteractionServiceReport().ExecuteCommand(developmentID, startDate, endDate);
-                    AddDataToJsonDict(tblTemp, "#chrtInteractionService");
-                    SetUpGridView(gvInteractionService, tblTemp);
-                }
-                catch (Exception ex)
+                // if one of these is empty, then the rest will be empty since these counts are
+                // aggregated using all interactions with residents in a development
+                if (tblTemp.Rows.Count == 0)
                 {
                     lblErrorInteractionData.Visible = true;
-                    lblErrorInteractionData.Text = "A database error occurred: " + ex.Message;
+                    lblErrorInteractionData.Text = "There were no interactions at this housing development during the selected timeframe.";
                     pnlInteractionData.Visible = false;
+                    this.jsonReports = JsonConvert.SerializeObject(this.jsonDict); // just show the development level data
+                    return;
                 }
 
-                this.jsonReports = JsonConvert.SerializeObject(this.jsonDict);
+                AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
+                SetUpGridView(gvInteractionGender, tblTemp);
+
+                tblTemp = new GetInteractionAgeReport().ExecuteCommand(developmentID, startDate, endDate);
+                AddDataToJsonDict(tblTemp, "#chrtInteractionAge");
+                SetUpGridView(gvInteractionAge, tblTemp);
+
+                tblTemp = new GetInteractionLanguageReport().ExecuteCommand(developmentID, startDate, endDate);
+                AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
+                SetUpGridView(gvInteractionLanguage, tblTemp);
+
+                tblTemp = new GetInteractionContactReport().ExecuteCommand(developmentID, startDate, endDate);
+                AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
+                SetUpGridView(gvInteractionContact, tblTemp);
+
+                tblTemp = new GetInteractionServiceReport().ExecuteCommand(developmentID, startDate, endDate);
+                AddDataToJsonDict(tblTemp, "#chrtInteractionService");
+                SetUpGridView(gvInteractionService, tblTemp);
+            }
+            catch (Exception ex)
+            {
+                lblErrorInteractionData.Visible = true;
+                lblErrorInteractionData.Text = "A database error occurred: " + ex.Message;
+                pnlInteractionData.Visible = false;
             }
         }
 
