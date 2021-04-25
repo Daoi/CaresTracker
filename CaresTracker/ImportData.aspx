@@ -42,7 +42,7 @@
                 </div>  
             </div>
             <div class="card-footer text-muted">
-                CARES Tracker
+                PHA CARES Tracker
             </div>
         </div>
     </div>

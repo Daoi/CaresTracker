@@ -32,7 +32,7 @@
                 <asp:Button ID="btnSubmit" runat="server" Text="Generate Report" CssClass="buttonStyle" OnClick="btnSubmit_Click" />
             </div>
             <div class="card-footer text-muted">
-                CARES Tracker
+                PHA CARES Tracker
             </div>
         </div>
     </div>
