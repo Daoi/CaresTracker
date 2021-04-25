@@ -58,42 +58,6 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Button btnRegionUpdate;
         
         /// <summary>
-        /// gvHousingDevelopments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvHousingDevelopments;
-        
-        /// <summary>
-        /// pnlDevelopmentCtrls control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel pnlDevelopmentCtrls;
-        
-        /// <summary>
-        /// lblDevelopmentError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDevelopmentError;
-        
-        /// <summary>
-        /// btnDevelopmentUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDevelopmentUpdate;
-        
-        /// <summary>
         /// gvServices control.
         /// </summary>
         /// <remarks>
