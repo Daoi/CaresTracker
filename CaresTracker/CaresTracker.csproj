@@ -370,6 +370,7 @@
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalVaccineReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetAllCi.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetResidentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetImported.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetProfileActivationStatus.cs" />
@@ -377,6 +378,7 @@
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
+    <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetEnabledServices.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\InsertService.cs" />
     <Compile Include="DataAccess\DataAccessors\HouseAccessors\UpdateHouseID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\UpdateUserStatus.cs" />
