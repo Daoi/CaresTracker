@@ -185,12 +185,9 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            ['gvTotalGender', 'gvTotalAge', 'gvTotalLanguage', 'gvTotalVaccine', 'gvTotalService', 'gvTotalEvent',
-                'gvInteractionGender', 'gvInteractionAge', 'gvInteractionLanguage', 'gvInteractionService','gvInteractionContact'].forEach(gv => {
-                $(`#MainContent_${gv}`).DataTable({
+            $(`.table`).DataTable({
                     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                     "searching": false
-                });
             });
         });
 
