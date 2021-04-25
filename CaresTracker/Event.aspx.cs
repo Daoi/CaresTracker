@@ -60,7 +60,7 @@ namespace CaresTracker
 
             DataTable dtEventTypes = new GetAllEventTypes().ExecuteCommand()
                     .AsEnumerable()
-                    .Where(row => Convert.ToSByte(row["EventTypeIsEnabled"]) == 1)
+                    .Where(row => Convert.ToSByte(row["EventTypeIsEnabled"]) == 1 || int.Parse(row["EventTypeID"].ToString()) == theEvent.EventTypeID)
                     .CopyToDataTable();
             ddlEventType.DataSource = dtEventTypes;
             ddlEventType.DataTextField = "EventTypeName";
