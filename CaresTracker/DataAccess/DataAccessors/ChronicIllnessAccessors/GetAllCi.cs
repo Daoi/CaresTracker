@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ChronicIllnessAccessors
 {
     public class GetAllCi : DataSupport, IData
     {
