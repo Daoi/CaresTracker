@@ -224,19 +224,20 @@ namespace CaresTracker
             try
             {
                 List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvEventTypes, "EventTypeID", "chkEventTypeIsEnabled", 1);
+
                 if (new UpdateRecordIsEnabled("EventType", "EventTypeID", "EventTypeIsEnabled", pairs).ExecuteCommand() > 0)
                 {
                     // update success
                     Response.Redirect("./AdminSettings.aspx", false);
                 }
 
-                lblServiceError.Text = "An unknown error occurred. Please try again later.";
-                lblServiceError.Visible = true;
+                lblEventTypeError.Text = "An unknown error occurred. Please try again later.";
+                lblEventTypeError.Visible = true;
             }
             catch (Exception ex)
             {
-                lblServiceError.Text = ex.Message;
-                lblServiceError.Visible = true;
+                lblEventTypeError.Text = ex.Message;
+                lblEventTypeError.Visible = true;
             }
         }
 
