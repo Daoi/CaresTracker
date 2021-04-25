@@ -35,7 +35,9 @@ namespace CaresTracker
             {
                 FillEventInfo();
 
-                if (!orgs.Contains(user.OrganizationID) || (user.UserType.Equals("C") && user.UserID != theEvent.MainHostID))
+                if ( (!orgs.Contains(user.OrganizationID) && !user.UserType.Equals("T")) || 
+                     (user.UserType.Equals("C") && user.UserID != theEvent.MainHostID) )
+
                     btnEdit.Visible = false;
 
                 gvCHWList.DataSource = theEvent.Hosts;
