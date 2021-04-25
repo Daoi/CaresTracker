@@ -9,7 +9,7 @@ namespace CaresTracker.DataAccess.DataAccessors.ServiceAccessors
     public class GetAllServices : DataSupport, IData
     {
         /// <summary>
-        /// Retrieve a DataTable containing all interactions.
+        /// Retrieve a DataTable containing all services.
         /// </summary>
         public GetAllServices()
         {
