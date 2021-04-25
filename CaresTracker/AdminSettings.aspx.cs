@@ -149,11 +149,17 @@ namespace CaresTracker
         private List<(int id, bool isEnabled)> GetIsEnabledPairs(GridView gv, string idCol, string chkID, int chkIndex)
         {
             List<(int id, bool isEnabled)> pairs = new List<(int id, bool isEnabled)>();
+
+            bool atLeastOneEnabled = false;
             gv.Rows.Cast<GridViewRow>().ToList().ForEach(row =>
             {
-                pairs.Add((int.Parse(gv.DataKeys[row.RowIndex][idCol].ToString()),
-                    ((CheckBox)row.Cells[chkIndex].FindControl(chkID)).Checked));
+                bool currentCheck = ((CheckBox)row.Cells[chkIndex].FindControl(chkID)).Checked;
+                atLeastOneEnabled = atLeastOneEnabled || currentCheck;
+
+                pairs.Add((int.Parse(gv.DataKeys[row.RowIndex][idCol].ToString()), currentCheck));
             });
+
+            if (!atLeastOneEnabled) { throw new InvalidOperationException("There must be at least one option enabled."); }
 
             return pairs;
         }
@@ -218,19 +224,20 @@ namespace CaresTracker
             try
             {
                 List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvEventTypes, "EventTypeID", "chkEventTypeIsEnabled", 1);
+
                 if (new UpdateRecordIsEnabled("EventType", "EventTypeID", "EventTypeIsEnabled", pairs).ExecuteCommand() > 0)
                 {
                     // update success
                     Response.Redirect("./AdminSettings.aspx", false);
                 }
 
-                lblServiceError.Text = "An unknown error occurred. Please try again later.";
-                lblServiceError.Visible = true;
+                lblEventTypeError.Text = "An unknown error occurred. Please try again later.";
+                lblEventTypeError.Visible = true;
             }
             catch (Exception ex)
             {
-                lblServiceError.Text = ex.Message;
-                lblServiceError.Visible = true;
+                lblEventTypeError.Text = ex.Message;
+                lblEventTypeError.Visible = true;
             }
         }
 
