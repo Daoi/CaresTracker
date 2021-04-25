@@ -66,7 +66,7 @@ namespace CaresTracker
             ddlEventType.DataTextField = "EventTypeName";
             ddlEventType.DataValueField = "EventTypeID";
             ddlEventType.DataBind();
-            ddlEventType.SelectedIndex = ddlEventType.Items.IndexOf(ddlEventType.Items.FindByValue(theEvent.EventTypeID.ToString()));
+            ddlEventType.SelectedValue = theEvent.EventTypeID.ToString();
 
             txtLocation.Text = theEvent.EventLocation;
             txtEventDate.Text = theEvent.EventDate;
@@ -78,7 +78,7 @@ namespace CaresTracker
             ddlMainHost.DataTextField = "FullName";
             ddlMainHost.DataValueField = "UserID";
             ddlMainHost.DataBind();
-            ddlMainHost.SelectedIndex = ddlMainHost.Items.IndexOf(ddlMainHost.Items.FindByValue(theEvent.MainHostID.ToString()));
+            ddlMainHost.SelectedValue = theEvent.MainHostID.ToString();
             txtMainHostEmail.Text = theEvent.Hosts.Find(host => host.UserID == theEvent.MainHostID).UserEmail;
         }
 
