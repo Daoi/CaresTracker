@@ -1,35 +1,31 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
-using System.Data;
 
-namespace CaresTracker.DataAccess.DataAccessors.ReportAccessors
+namespace CaresTracker.DataAccess.DataAccessors.ReportAccessors.OrgCHWReports
 {
-    public class GetInteractionLanguageReport : DataSupport, IData
+    public class GetOrgCHWTotalServicesReport : DataSupport, IData
     {
-        public GetInteractionLanguageReport()
+        public GetOrgCHWTotalServicesReport()
         {
-            CommandText = "R_GetInteractionLanguageReport";
+            CommandText = "R_GetOrgCHWTotalServicesReport";
             CommandType = CommandType.StoredProcedure;
         }
 
         /// <summary>
-        /// Finds the number of interactions had per resident primary language
+        /// Gets the total number of times each service has been requested for the given Org/CHW
         /// </summary>
         /// <param name="domainID"></param>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
         /// <param name="reportType"></param>
         /// <returns></returns>
-        public DataTable ExecuteCommand(int domainID, string startDate, string endDate, char reportType)
+        public DataTable ExecuteCommand(int domainID, char reportType)
         {
             Parameters = new MySqlParameter[]
             {
                 new MySqlParameter("domainID", domainID),
-                new MySqlParameter("startDate", startDate),
-                new MySqlParameter("endDate", endDate),
                 new MySqlParameter("reportType", reportType),
             };
 
