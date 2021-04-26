@@ -210,7 +210,8 @@ namespace CaresTracker
             Resident res = new Resident();
             //Resident Info
             res.ResidentID = currentRes.ResidentID;
-            res.ResidentPhoneNumber = tbPhone.Text.Replace("-", "");
+            res.ResidentPhoneNumber = Validation.IsPhoneNumber(tbPhone.Text).strPhone;
+            tbPhone.Text = res.ResidentPhoneNumber; // display formatted phone
             res.ResidentEmail = tbEmail.Text;
             res.ResidentFirstName = tbFirstName.Text;
             res.ResidentLastName = tbLastName.Text;
@@ -391,7 +392,7 @@ namespace CaresTracker
                 lblWrongAddressInput.Visible = false;
             }
 
-            if(mandatory.Any(tb => string.IsNullOrWhiteSpace(tb.Text)))
+            if (mandatory.Any(tb => string.IsNullOrWhiteSpace(tb.Text)))
             {
                 isValid = false;
                 lblRIError.Text = "First Name, Last Name, Phone Number and Date of Birth are mandatory";
@@ -400,6 +401,17 @@ namespace CaresTracker
             else
             {
                 lblRIError.Visible = false;
+            }
+
+            if (!Validation.IsPhoneNumber(tbPhone.Text).isValid)
+            {
+                isValid = false;
+                lblErrorPhone.Text = "Enter 10 digits or ###-###-####";
+                lblErrorPhone.Visible = true;
+            }
+            else
+            {
+                lblErrorPhone.Visible = false;
             }
 
             return isValid;

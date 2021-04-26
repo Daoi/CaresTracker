@@ -70,6 +70,7 @@
                             </div>
                         </div>
                         <div class="row mt-3">
+                            <asp:Label runat="server" For="txtPhoneNumber" class="errorLabel" ID="lblErrorPhone" role="alert" Visible="false"></asp:Label>
                             <div class="col-md-12">
                                 <asp:Label ID="lblPhone" CssClass="labels" runat="server" Text="Phone Number"></asp:Label><asp:TextBox ID="tbPhone" placeholder="###-###-####" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
