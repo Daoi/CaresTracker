@@ -69,7 +69,7 @@ namespace CaresTracker
             Response.Redirect("./Report.aspx");
         }
 
-        // change report domain controls based on report type values
+        // change report domain control values based on selected report type
         protected void ddlReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlReportType.SelectedValue.Equals("D"))

@@ -23,13 +23,13 @@ namespace CaresTracker
     /// </summary>
     public partial class Report : System.Web.UI.Page
     {
-        int domainID;
-        string domainName;
-        char reportType;
-        string startDate;
-        string endDate;
-        protected string jsonReports;
-        private Dictionary<string, Dictionary<string, List<object>>> jsonDict;
+        private int domainID;
+        private string domainName;
+        private char reportType;
+        private string startDate;
+        private string endDate;
+        private Dictionary<string, Dictionary<string, List<object>>> jsonDict; // gets serialized into jsonReports
+        protected string jsonReports; // accessed by js on aspx page
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,169 +40,190 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
+                // initialize values collected on previous page
                 domainID = int.Parse(Session["ReportDomainID"].ToString());
                 domainName = Session["ReportDomainName"].ToString();
                 reportType = char.Parse(Session["ReportType"].ToString());
                 startDate = Session["ReportStartDate"].ToString();
                 endDate = Session["ReportEndDate"].ToString();
 
+                // set up page labels
                 lblDomainHeader.Text = $"<u>Report Totals for {domainName}</u>";
                 lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
 
+                // values are added by the "GenerateReport" methods below
                 this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
 
+                // get report data
                 switch (reportType)
                 {
                     case 'D':
-                        pnlDevelopmentTotals.Visible = true;
-                        GenerateDevelopmentReport();
-                        GenerateInteractionReport();
+                        try
+                        {
+                            pnlDevelopmentTotals.Visible = true;
+                            if (!GenerateDevelopmentReport())
+                            {
+                                lblErrorDomainTotals.Visible = true;
+                                lblErrorDomainTotals.Text = $"There are no residents from {domainName} in the system.";
+                                pnlDevelopmentTotals.Visible = false;
+                                pnlInteractionDataHeader.Visible = false;
+                                pnlInteractionData.Visible = false;
+                                return;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lblErrorDomainTotals.Visible = true;
+                            lblErrorDomainTotals.Text = "A database error occurred: " + ex.Message;
+                            pnlDevelopmentTotals.Visible = false;
+                            pnlInteractionDataHeader.Visible = false;
+                            pnlInteractionData.Visible = false;
+                            return;
+                        }
+
                         break;
                     case 'O':
                     case 'C':
-                        pnlOrgCHWTotals.Visible = true;
-                        GenerateOrganizationCHWReport();
+                        try
+                        {
+                            pnlOrgCHWTotals.Visible = true;
+                            if (!GenerateOrganizationCHWReport())
+                            {
+                                lblErrorDomainTotals.Visible = true;
+                                lblErrorDomainTotals.Text = $"There are no interactions recorded for {domainName}.";
+                                pnlOrgCHWTotals.Visible = false;
+                                pnlInteractionDataHeader.Visible = false;
+                                pnlInteractionData.Visible = false;
+                                return;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lblErrorDomainTotals.Visible = true;
+                            lblErrorDomainTotals.Text = "A database error occurred: " + ex.Message;
+                            pnlOrgCHWTotals.Visible = false;
+                            pnlInteractionDataHeader.Visible = false;
+                            pnlInteractionData.Visible = false;
+                            return;
+                        }
+
                         break;
+                }
+
+                try
+                {
+                    pnlInteractionData.Visible = true;
+                    if (!GenerateInteractionReport())
+                    {
+                        lblErrorInteractionData.Visible = true;
+                        lblErrorInteractionData.Text = $"There are no interactions recorded for {domainName} during the selected timeframe.";
+                        pnlInteractionData.Visible = false;
+                        this.jsonReports = JsonConvert.SerializeObject(this.jsonDict); // just show the domain level data
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblErrorInteractionData.Visible = true;
+                    lblErrorInteractionData.Text = "A database error occurred: " + ex.Message;
+                    pnlInteractionData.Visible = false;
+                    return;
                 }
 
                 this.jsonReports = JsonConvert.SerializeObject(this.jsonDict);
             }
         }
 
-        private void GenerateDevelopmentReport()
+        private bool GenerateDevelopmentReport()
         {
-            DataTable tblTemp;
-            try
+            DataTable tblTemp = new GetTotalGenderReport().ExecuteCommand(domainID);
+
+            // if one is empty, then all will be empty since these demographics are
+            // aggregated using all residents in a development
+            if (tblTemp.Rows.Count == 0)
             {
-                tblTemp = new GetTotalGenderReport().ExecuteCommand(domainID);
-
-                // if one is empty, then all will be empty since these demographics are
-                // aggregated using all residents in a development
-                if (tblTemp.Rows.Count == 0)
-                {
-                    lblErrorDomainTotals.Visible = true;
-                    lblErrorDomainTotals.Text = "There are no residents from this housing development in the system.";
-                    pnlDevelopmentTotals.Visible = false;
-                    pnlInteractionDataHeader.Visible = false;
-                    pnlInteractionData.Visible = false;
-                    return;
-                }
-
-                AddDataToJsonDict(tblTemp, "#chrtTotalGender");
-                SetUpGridView(gvTotalGender, tblTemp);
-
-                tblTemp = new GetTotalAgeReport().ExecuteCommand(domainID);
-                AddDataToJsonDict(tblTemp, "#chrtTotalAge");
-                SetUpGridView(gvTotalAge, tblTemp);
-
-                tblTemp = new GetTotalLanguageReport().ExecuteCommand(domainID);
-                AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
-                SetUpGridView(gvTotalLanguage, tblTemp);
-
-                tblTemp = new GetTotalResidentCIReport().ExecuteCommand(domainID);
-                AddDataToJsonDict(tblTemp, "#chrtTotalChronicIllness");
-                SetUpGridView(gvTotalChronicIllness, tblTemp);
-
-                tblTemp = new GetTotalVaccineReport().ExecuteCommand(domainID);
-                AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
-                SetUpGridView(gvTotalVaccine, tblTemp);
-
-                int numAttendees = new GetTotalEventReport().ExecuteCommand(domainID);
-                DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendances");
-                AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
-                SetUpGridView(gvTotalEvent, dtEvent);
+                return false;
             }
-            catch (Exception ex)
-            {
-                lblErrorDomainTotals.Visible = true;
-                lblErrorDomainTotals.Text = "A database error occurred: " + ex.Message;
-                pnlDevelopmentTotals.Visible = false;
-                pnlInteractionDataHeader.Visible = false;
-                pnlInteractionData.Visible = false;
-                return;
-            }
+
+            AddDataToJsonDict(tblTemp, "#chrtTotalGender");
+            SetUpGridView(gvTotalGender, tblTemp);
+
+            tblTemp = new GetTotalAgeReport().ExecuteCommand(domainID);
+            AddDataToJsonDict(tblTemp, "#chrtTotalAge");
+            SetUpGridView(gvTotalAge, tblTemp);
+
+            tblTemp = new GetTotalLanguageReport().ExecuteCommand(domainID);
+            AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
+            SetUpGridView(gvTotalLanguage, tblTemp);
+
+            tblTemp = new GetTotalResidentCIReport().ExecuteCommand(domainID);
+            AddDataToJsonDict(tblTemp, "#chrtTotalChronicIllness");
+            SetUpGridView(gvTotalChronicIllness, tblTemp);
+
+            tblTemp = new GetTotalVaccineReport().ExecuteCommand(domainID);
+            AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
+            SetUpGridView(gvTotalVaccine, tblTemp);
+
+            int numAttendees = new GetTotalEventReport().ExecuteCommand(domainID);
+            DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendances");
+            AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
+            SetUpGridView(gvTotalEvent, dtEvent);
+
+            return true;
         }
 
-        private void GenerateOrganizationCHWReport()
+        private bool GenerateOrganizationCHWReport()
         {
-            DataTable tblTemp;
-            try
+            int numInteractions = new GetOrgCHWTotalInteractionsReport().ExecuteCommand(domainID, reportType);
+
+            // check if there are no interactions
+            if (numInteractions == 0)
             {
-                int numInteractions = new GetOrgCHWTotalInteractionsReport().ExecuteCommand(domainID, reportType);
-
-                // check if there are no interactions
-                if (numInteractions == 0)
-                {
-                    lblErrorDomainTotals.Visible = true;
-                    lblErrorDomainTotals.Text = $"There are no interactions recorded for {domainName}.";
-                    pnlOrgCHWTotals.Visible = false;
-                    pnlInteractionDataHeader.Visible = false;
-                    pnlInteractionData.Visible = false;
-                    return;
-                }
-
-                DataTable dtInteractions = CreateDataTableFromScalar(numInteractions, "# of Interactions");
-                AddDataToJsonDict(dtInteractions, "#chrtTotalInteractions");
-                SetUpGridView(gvTotalInteractions, dtInteractions);
-
-                tblTemp = new GetOrgCHWTotalServicesReport().ExecuteCommand(domainID, reportType);
-                AddDataToJsonDict(tblTemp, "#chrtTotalServices");
-                SetUpGridView(gvTotalServices, tblTemp);
+                return false;
             }
-            catch (Exception ex)
-            {
-                lblErrorDomainTotals.Visible = true;
-                lblErrorDomainTotals.Text = "A database error occurred: " + ex.Message;
-                pnlOrgCHWTotals.Visible = false;
-                pnlInteractionDataHeader.Visible = false;
-                pnlInteractionData.Visible = false;
-                return;
-            }
+
+            DataTable dtInteractions = CreateDataTableFromScalar(numInteractions, "# of Interactions");
+            AddDataToJsonDict(dtInteractions, "#chrtTotalInteractions");
+            SetUpGridView(gvTotalInteractions, dtInteractions);
+
+            DataTable tblTemp = new GetOrgCHWTotalServicesReport().ExecuteCommand(domainID, reportType);
+            AddDataToJsonDict(tblTemp, "#chrtTotalServices");
+            SetUpGridView(gvTotalServices, tblTemp);
+
+            return true;
         }
 
-        private void GenerateInteractionReport()
+        private bool GenerateInteractionReport()
         {
-            DataTable tblTemp;
-            try
+            DataTable tblTemp = new GetInteractionGenderReport().ExecuteCommand(domainID, startDate, endDate, reportType);
+
+            // if one of these is empty, then the rest will be empty since these counts are
+            // aggregated using all interactions with residents in a development
+            if (tblTemp.Rows.Count == 0)
             {
-                tblTemp = new GetInteractionGenderReport().ExecuteCommand(domainID, startDate, endDate);
-
-                // if one of these is empty, then the rest will be empty since these counts are
-                // aggregated using all interactions with residents in a development
-                if (tblTemp.Rows.Count == 0)
-                {
-                    lblErrorInteractionData.Visible = true;
-                    lblErrorInteractionData.Text = "There were no interactions at this housing development during the selected timeframe.";
-                    pnlInteractionData.Visible = false;
-                    this.jsonReports = JsonConvert.SerializeObject(this.jsonDict); // just show the development level data
-                    return;
-                }
-
-                AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
-                SetUpGridView(gvInteractionGender, tblTemp);
-
-                tblTemp = new GetInteractionAgeReport().ExecuteCommand(domainID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionAge");
-                SetUpGridView(gvInteractionAge, tblTemp);
-
-                tblTemp = new GetInteractionLanguageReport().ExecuteCommand(domainID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
-                SetUpGridView(gvInteractionLanguage, tblTemp);
-
-                tblTemp = new GetInteractionContactReport().ExecuteCommand(domainID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
-                SetUpGridView(gvInteractionContact, tblTemp);
-
-                tblTemp = new GetInteractionServiceReport().ExecuteCommand(domainID, startDate, endDate);
-                AddDataToJsonDict(tblTemp, "#chrtInteractionService");
-                SetUpGridView(gvInteractionService, tblTemp);
+                return false;
             }
-            catch (Exception ex)
-            {
-                lblErrorInteractionData.Visible = true;
-                lblErrorInteractionData.Text = "A database error occurred: " + ex.Message;
-                pnlInteractionData.Visible = false;
-            }
+
+            AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
+            SetUpGridView(gvInteractionGender, tblTemp);
+
+            tblTemp = new GetInteractionAgeReport().ExecuteCommand(domainID, startDate, endDate, reportType);
+            AddDataToJsonDict(tblTemp, "#chrtInteractionAge");
+            SetUpGridView(gvInteractionAge, tblTemp);
+
+            tblTemp = new GetInteractionLanguageReport().ExecuteCommand(domainID, startDate, endDate, reportType);
+            AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
+            SetUpGridView(gvInteractionLanguage, tblTemp);
+
+            tblTemp = new GetInteractionContactReport().ExecuteCommand(domainID, startDate, endDate, reportType);
+            AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
+            SetUpGridView(gvInteractionContact, tblTemp);
+
+            tblTemp = new GetInteractionServiceReport().ExecuteCommand(domainID, startDate, endDate, reportType);
+            AddDataToJsonDict(tblTemp, "#chrtInteractionService");
+            SetUpGridView(gvInteractionService, tblTemp);
+
+            return true;
         }
 
         // chartID should match the selector of the chart in the aspx markup

@@ -155,7 +155,7 @@
                     <asp:Label ID="lblErrorInteractionData" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                 </asp:Panel>
                 <br />
-                <asp:Panel ID="pnlInteractionData" runat="server">
+                <asp:Panel ID="pnlInteractionData" runat="server" Visible="false">
                     <h3>Interactions per Gender</h3>
                     <div class="row border-bottom mb-5 pb-5">
                         <div class="col-8">
