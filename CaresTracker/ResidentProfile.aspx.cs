@@ -206,7 +206,6 @@ namespace CaresTracker
             if (!ValidatePage())
                 return;
 
-
             Resident res = new Resident();
             //Resident Info
             res.ResidentID = currentRes.ResidentID;
@@ -251,15 +250,13 @@ namespace CaresTracker
 
             //Housing Info
             res.Home = new House();
-
+            res.Home.HouseID = currentRes.Home.HouseID;
             res.Home.Address = txtAddress.Value;
             res.Home.ZipCode = tbZipcode.Text;
             res.Home.UnitNumber = tbUnitNumber.Text;
             res.Home.RegionName = ddlRegion.SelectedItem.Text;
             res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
             res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
-
-
 
             if (!hdnfldFormattedAddress.Value.Equals(txtAddress.Value)) // If a new address was selected
             {
@@ -277,6 +274,18 @@ namespace CaresTracker
 
                 // Change txtZipCode to reflect new ZipCode
                 tbZipcode.Text = ZipCode;
+
+                AddHouse AH = new AddHouse(res.Home);
+                object AddHouseResult = AH.ExecuteCommand();
+                res.Home.HouseID = Convert.ToInt32(AddHouseResult);
+
+                // Update Resident's HouseID to match new House
+                UpdateHouseID UHI = new UpdateHouseID();
+                UHI.ExecuteCommand(res.ResidentID, res.Home.HouseID);
+            }
+            else if (res.Home.DevelopmentID != currentRes.Home.DevelopmentID) // if housing dev was changed but address wasn't
+            {
+                new UpdateHouse(res.Home).ExecuteCommand();
             }
 
             if (res.Home.DevelopmentID != -1) //If not HCV
@@ -285,16 +294,6 @@ namespace CaresTracker
                 res.HousingDevelopment.DevelopmentID = res.Home.DevelopmentID;
                 res.HousingDevelopment.DevelopmentName = ddlHousingDevelopment.SelectedItem.Text;
             }
-
-
-
-            AddHouse AH = new AddHouse(res.Home);
-            object AddHouseResult = AH.ExecuteCommand();
-            res.Home.HouseID = Convert.ToInt32(AddHouseResult);
-
-            // Update Resident's HouseID to match new House
-            UpdateHouseID UHI = new UpdateHouseID();
-            UHI.ExecuteCommand(res.ResidentID, res.Home.HouseID);
 
             Session["Resident"] = res;
             //Update the resident values
