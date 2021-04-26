@@ -403,12 +403,6 @@ namespace CaresTracker
                 lblRIError.Visible = false;
             }
 
-
-
-
-
-
-
             return isValid;
         }
     }
