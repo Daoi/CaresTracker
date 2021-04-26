@@ -381,7 +381,6 @@ namespace CaresTracker
             List<TextBox> mandatory = new List<TextBox>() { tbFirstName, tbLastName, tbPhone, tbDoB };
             bool isValid = true;
 
-            // ????? 
             if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
             {
                 isValid = false;
