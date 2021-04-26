@@ -12,7 +12,7 @@ namespace CaresTracker.Exporting
     public class ExportTable
     {
        
-        private static bool Export(string table)
+        public static bool Export(string table)
         {
             try
             { 

@@ -10,6 +10,7 @@ using CaresTracker.DataAccess.DataAccessors.GenericAccessors;
 using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
 using CaresTracker.DataModels;
 using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
+using CaresTracker.Exporting;
 
 namespace CaresTracker
 {
@@ -256,6 +257,11 @@ namespace CaresTracker
         protected void lnkHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("./Homepage.aspx");
+        }
+
+        protected void btnExportTable_Click(object sender, EventArgs e)
+        {
+            ExportTable.Export(ddlTables.SelectedValue);
         }
     }
 }

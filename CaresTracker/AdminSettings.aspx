@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <h3>Manage Event Types</h3>
-                <div class="row">
+                <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
                         <asp:GridView ID="gvEventTypes" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                             <HeaderStyle CssClass="cherryBackground" />
@@ -134,6 +134,20 @@
                         </div>
                     </div>
                 </div>
+                <%-- Start --%>
+               <h3>Export Database to Excel</h3>
+                <div class="row mb-5 pb-5">
+                    <div class="col-md-6">
+                        <asp:Label ID="lbExport" runat="server" Text="Export Table"></asp:Label><br />
+                        <asp:DropDownList ID="ddlTables" runat="server" CssClass="form-control w-50" AppendDataBoundItems="True">
+                            <asp:ListItem Text="Interaction" Value="Interaction"></asp:ListItem>
+                            <asp:ListItem Text="Resident" Value="Resident"></asp:ListItem>
+                            <asp:ListItem Text="Community Health Workers" Value="CARESUser"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:Button ID="btnExportTable" runat="server" Text="Export Selected Table" CssClass="buttonStyle mt-3" OnClick="btnExportTable_Click" />
+                    </div>
+                </div>
+                <%-- End --%>
             </div>
         </div>
     </div>
