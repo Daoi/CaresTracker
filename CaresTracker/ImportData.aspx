@@ -34,15 +34,20 @@
                     <asp:DropDownList ID="ddlDevelopments" CssClass="developmentsID" runat="server"></asp:DropDownList>
                 </div>
                 <div class="row justify-content-center mt-5">
-                    <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" OnClick="btnSubmitImport_Click" />
+                    <div class="col-md-6">
+                        <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" OnClick="btnSubmitImport_Click" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Button ID="btnDownloadTemplate" runat="server" Text="Download Template" CssClass="buttonStyle" OnClick="btnDownloadTemplate_Click" />
+                    </div>
                 </div>
                 <asp:Label ID="lblInsertCount" CssClass="mt-1" runat="server" Text=""></asp:Label>
                 <div runat="server" visible="false" id="divUploadErrors" class="row justify-content-center mt-3 fileUploadErrors">
                     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
-                </div>  
+                </div>
             </div>
             <div class="card-footer text-muted">
-                CARES Tracker
+                PHA CARES Tracker
             </div>
         </div>
     </div>
