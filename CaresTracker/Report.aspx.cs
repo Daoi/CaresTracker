@@ -10,6 +10,7 @@ using CaresTracker.DataAccess.DataAccessors.ReportAccessors;
 using CaresTracker.DataAccess.DataAccessors.ReportAccessors.DevelopmentReports;
 using CaresTracker.DataAccess.DataAccessors.ReportAccessors.OrgCHWReports;
 using CaresTracker.DataModels;
+using CaresTracker.Utilities;
 
 namespace CaresTracker
 {
@@ -49,7 +50,8 @@ namespace CaresTracker
 
                 // set up page labels
                 lblDomainHeader.Text = $"<u>Report Totals for {domainName}</u>";
-                lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
+                lblTimeframe.Text += $"Start Date: {GridViewFormatter.FormatDates(startDate)}<br />" +
+                    $"End Date: {GridViewFormatter.FormatDates(endDate)}";
 
                 // values are added by the "GenerateReport" methods below
                 this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
@@ -134,6 +136,7 @@ namespace CaresTracker
             }
         }
 
+        // data is filtered for a housing development
         private bool GenerateDevelopmentReport()
         {
             DataTable tblTemp = new GetTotalGenderReport().ExecuteCommand(domainID);
@@ -172,6 +175,7 @@ namespace CaresTracker
             return true;
         }
 
+        // data is filtered for an organization/individual chw
         private bool GenerateOrganizationCHWReport()
         {
             int numInteractions = new GetOrgCHWTotalInteractionsReport().ExecuteCommand(domainID, reportType);
@@ -193,12 +197,13 @@ namespace CaresTracker
             return true;
         }
 
+        // data is filtered for a certain timeframe
         private bool GenerateInteractionReport()
         {
             DataTable tblTemp = new GetInteractionGenderReport().ExecuteCommand(domainID, startDate, endDate, reportType);
 
             // if one of these is empty, then the rest will be empty since these counts are
-            // aggregated using all interactions with residents in a development
+            // calculated using all interactions with residents
             if (tblTemp.Rows.Count == 0)
             {
                 return false;
