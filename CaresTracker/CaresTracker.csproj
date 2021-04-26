@@ -324,6 +324,7 @@
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetOrgIDByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetAllCi.cs" />
     <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetChronicIllnessesByResidentID.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByAdminID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddAttendees.cs" />
@@ -578,7 +579,9 @@
     <Analyzer Include="..\packages\AWSSDK.CognitoIdentityProvider.3.5.1.27\analyzers\dotnet\cs\AWSSDK.CognitoIdentityProvider.CodeAnalysis.dll" />
     <Analyzer Include="..\packages\AWSSDK.SecurityToken.3.5.1.49\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exporting\Files\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
+using CaresTracker.DataAccess.DataAccessors.ChronicIllnessAccessors;
 
 namespace CaresTracker
 {
@@ -33,32 +34,30 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
+                ToggleControls(); //Set page to disabled status
+
+                //Bind control data
+                DataTable ciDT = new GetAllCi().RunCommand();
+                cblChronicHealth.DataSource = ciDT;
+                cblChronicHealth.DataTextField = "ChronicIllnessName";
+                cblChronicHealth.DataValueField = "ChronicIllnessID";
+                cblChronicHealth.DataBind();
+                ViewState["CI"] = ciDT;
+                
+
+                DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
+                ViewState["DevelopmentDT"] = developmentDT;
+                ddlHousingDevelopment.DataSource = developmentDT;
+                ddlHousingDevelopment.DataValueField = "DevelopmentID";
+                ddlHousingDevelopment.DataTextField = "DevelopmentName";
+                ddlHousingDevelopment.DataBind();
+
                 InitializeProfileValues();
-                // Provide initial values for hidden fields
+                // Provide initial values for hidden fields for google API validation
                 hdnfldFormattedAddress.Value = txtAddress.Value;
                 hdnfldName.Value = txtAddress.Value;
-                ToggleControls(); //Set page to disabled status
-                if (Session["DevelopmentDT"] == null)
-                {
-                    DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
-                    ViewState["DevelopmentDT"] = developmentDT;
-                    // Bind to drop down list
-                    ddlHousingDevelopment.DataSource = developmentDT;
-                    ddlHousingDevelopment.DataValueField = "DevelopmentID";
-                    ddlHousingDevelopment.DataTextField = "DevelopmentName";
-                    ddlHousingDevelopment.DataBind();
 
-                }
-                else
-                {
-                    DataTable developmentDT = (DataTable)Session["DevelopmentDT"];
-                    ddlHousingDevelopment.DataSource = developmentDT;
-                    ddlHousingDevelopment.DataValueField = "DevelopmentID";
-                    ddlHousingDevelopment.DataTextField = "DevelopmentName";
-                    ddlHousingDevelopment.DataBind();
-                    ViewState["DevelopmentDT"] = developmentDT;
-                }
-
+                //Import error handling
                 if (currentRes.Imported)
                 {
                     lblImportWarning.Text = "This resident was imported, please ensure their address is correct by editing their profile and selecting the value from the drop downlist.";
@@ -71,6 +70,8 @@ namespace CaresTracker
                 }
             }
 
+
+            //Enable ddl searching 
             string select2Params = "'#MainContent_ddlHousingDevelopment', 'Select Development'";
             string select2Call = $"setupSelect2({select2Params});";
             ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "select2Call", select2Call, true);
@@ -103,7 +104,14 @@ namespace CaresTracker
             //Vaccine
             ddlVaccineStatus.SelectedValue = currentRes.VaccineStatus;
             tbAppointmentDate.Text = currentRes.VaccineAppointmentDate;
-            
+            //Chronic Illness
+            if (currentRes.ChronicIllnesses.Count > 0)
+            {
+                List<ListItem> ciList = cblChronicHealth.Items.OfType<ListItem>().ToList(); //Check the matches
+                currentRes.ChronicIllnesses.ForEach(ci =>
+                    ciList.Find(li => int.Parse(li.Value) == ci.ChronicIllnessID).Selected = true
+                    );
+            }
 
 
             interactions = new GetAllInteractionsByResidentAttributes().RunCommand(currentRes.ResidentFirstName, currentRes.ResidentLastName, currentRes.DateOfBirth);
@@ -195,13 +203,9 @@ namespace CaresTracker
 
         protected void btnSaveEdits_Click(object sender, EventArgs e)
         {
-            // Check that address is selected from the API predictions list
-            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
-            {
-                lblWrongAddressInput.Visible = true;
+            if (!ValidatePage())
                 return;
-            }
-            lblWrongAddressInput.Visible = false;
+
 
             Resident res = new Resident();
             //Resident Info
@@ -219,7 +223,31 @@ namespace CaresTracker
             res.VaccineStatus = ddlVaccineStatus.SelectedValue;
             res.VaccineAppointmentDate = tbAppointmentDate.Text;
             //Chronic Illnesses
-            res.ChronicIllnesses = currentRes.ChronicIllnesses;
+            //Get all currently selected CI values(Value = CI ID)
+            List<string> selectedCI = cblChronicHealth.Items.Cast<ListItem>()
+               .Where(li => li.Selected)
+               .Select(li => li.Value)
+               .ToList();
+            DataTable ciDT = ViewState["CI"] as DataTable;
+            
+            //Find matching rows in DataTable
+            List<DataRow> CIs = new List<DataRow>();
+            selectedCI.ForEach(val =>
+                CIs.AddRange(ciDT.Select($"ChronicIllnessID='{val}'")
+                ));
+            //Create List of Chronic Illnesses with DRs
+            List<ChronicIllness> newCIs = new List<ChronicIllness>();
+            CIs.ForEach(dr => newCIs.Add(new ChronicIllness(dr)));
+            try
+            {
+                new UpdateResidentChronicIllnesses(newCIs, res.ResidentID).ExecuteCommand();
+                res.ChronicIllnesses = newCIs;
+            }
+            catch (Exception ex)
+            {
+                lblErrorMessage.Text = ex.Message;
+            }
+
             //Housing Info
             res.Home = new House();
 
@@ -229,6 +257,8 @@ namespace CaresTracker
             res.Home.RegionName = ddlRegion.SelectedItem.Text;
             res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
             res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
+
+
 
             if (!hdnfldFormattedAddress.Value.Equals(txtAddress.Value)) // If a new address was selected
             {
@@ -344,6 +374,35 @@ namespace CaresTracker
             {
                 lblErrorInactivate.Text = $"Error toggling activation status: {ex.Message}";
             }
+        }
+
+        private bool ValidatePage()
+        {
+            List<TextBox> mandatory = new List<TextBox>() { tbFirstName, tbLastName, tbPhone, tbDoB };
+            bool isValid = true;
+
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                isValid = false;
+                lblWrongAddressInput.Visible = true;
+            }
+            else
+            {
+                lblWrongAddressInput.Visible = false;
+            }
+
+            if(mandatory.Any(tb => string.IsNullOrWhiteSpace(tb.Text)))
+            {
+                isValid = false;
+                lblRIError.Text = "First Name, Last Name, Phone Number and Date of Birth are mandatory";
+                lblRIError.Visible = true;
+            }
+            else
+            {
+                lblRIError.Visible = false;
+            }
+
+            return isValid;
         }
     }
 }
