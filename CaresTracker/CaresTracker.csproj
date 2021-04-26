@@ -344,6 +344,7 @@
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventHosts.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkerStats.cs" />
+    <Compile Include="DataAccess\DataAccessors\HouseAccessors\UpdateHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\DeleteOldInteractionSymptoms.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\GetInteractionEditHistory.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InsertInteractionEdit.cs" />
