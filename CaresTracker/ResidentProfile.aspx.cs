@@ -203,13 +203,9 @@ namespace CaresTracker
 
         protected void btnSaveEdits_Click(object sender, EventArgs e)
         {
-            // Check that address is selected from the API predictions list
-            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
-            {
-                lblWrongAddressInput.Visible = true;
+            if (!ValidatePage())
                 return;
-            }
-            lblWrongAddressInput.Visible = false;
+
 
             Resident res = new Resident();
             //Resident Info
@@ -378,6 +374,42 @@ namespace CaresTracker
             {
                 lblErrorInactivate.Text = $"Error toggling activation status: {ex.Message}";
             }
+        }
+
+        private bool ValidatePage()
+        {
+            List<TextBox> mandatory = new List<TextBox>() { tbFirstName, tbLastName, tbPhone, tbDoB };
+            bool isValid = true;
+
+            // ????? 
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                isValid = false;
+                lblWrongAddressInput.Visible = true;
+            }
+            else
+            {
+                lblWrongAddressInput.Visible = false;
+            }
+
+            if(mandatory.Any(tb => string.IsNullOrWhiteSpace(tb.Text)))
+            {
+                isValid = false;
+                lblRIError.Text = "First Name, Last Name, Phone Number and Date of Birth are mandatory";
+                lblRIError.Visible = true;
+            }
+            else
+            {
+                lblRIError.Visible = false;
+            }
+
+
+
+
+
+
+
+            return isValid;
         }
     }
 }
