@@ -16,13 +16,18 @@ namespace CaresTracker.DataAccess.DataAccessors.ReportAccessors.OrgCHWReports
         }
 
         /// <summary>
-        /// Finds the number of residents from this development that attended events
+        /// Finds the number of total interactions for the given Org/CHW
         /// </summary>
-        /// <param name="developmentID"></param>
+        /// <param name="domainID"></param>
+        /// <param name="reportType"></param>
         /// <returns></returns>
-        public int ExecuteCommand(int developmentID)
+        public int ExecuteCommand(int domainID, char reportType)
         {
-            Parameters = new MySqlParameter[] { new MySqlParameter("devID", developmentID) };
+            Parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("domainID", domainID),
+                new MySqlParameter("reportType", reportType),
+            };
             ExecuteQuery eq = new ExecuteQuery();
             return int.Parse(eq.ExecuteScalar(this).ToString());
         }

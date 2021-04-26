@@ -16,19 +16,17 @@ namespace CaresTracker.DataAccess.DataAccessors.ReportAccessors.OrgCHWReports
         }
 
         /// <summary>
-        /// Gets the number of times each service has been requested in the given timeframe
+        /// Gets the total number of times each service has been requested for the given Org/CHW
         /// </summary>
-        /// <param name="developmentID"></param>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
+        /// <param name="domainID"></param>
+        /// <param name="reportType"></param>
         /// <returns></returns>
-        public DataTable ExecuteCommand(int developmentID, string startDate, string endDate)
+        public DataTable ExecuteCommand(int domainID, char reportType)
         {
             Parameters = new MySqlParameter[]
             {
-                new MySqlParameter("devID", developmentID),
-                new MySqlParameter("startDate", startDate),
-                new MySqlParameter("endDate", endDate),
+                new MySqlParameter("domainID", domainID),
+                new MySqlParameter("reportType", reportType),
             };
 
             ExecuteQuery eq = new ExecuteQuery();

@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.ReportAccessors;
 using CaresTracker.DataAccess.DataAccessors.ReportAccessors.DevelopmentReports;
+using CaresTracker.DataAccess.DataAccessors.ReportAccessors.OrgCHWReports;
 using CaresTracker.DataModels;
 
 namespace CaresTracker
@@ -23,6 +24,8 @@ namespace CaresTracker
     public partial class Report : System.Web.UI.Page
     {
         int domainID;
+        string domainName;
+        char reportType;
         string startDate;
         string endDate;
         protected string jsonReports;
@@ -38,22 +41,27 @@ namespace CaresTracker
             if (!IsPostBack)
             {
                 domainID = int.Parse(Session["ReportDomainID"].ToString());
+                domainName = Session["ReportDomainName"].ToString();
+                reportType = char.Parse(Session["ReportType"].ToString());
                 startDate = Session["ReportStartDate"].ToString();
                 endDate = Session["ReportEndDate"].ToString();
 
-                lblDomainHeader.Text = $"<u>Report Totals for {Session["ReportDomainName"].ToString()}</u>";
+                lblDomainHeader.Text = $"<u>Report Totals for {domainName}</u>";
                 lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
 
-                switch (Session["ReportType"].ToString())
+                this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
+
+                switch (reportType)
                 {
-                    case "D":
+                    case 'D':
                         pnlDevelopmentTotals.Visible = true;
                         GenerateDevelopmentReport();
                         GenerateInteractionReport();
                         break;
-                    case "O":
-                        break;
-                    case "C":
+                    case 'O':
+                    case 'C':
+                        pnlOrgCHWTotals.Visible = true;
+                        GenerateOrganizationCHWReport();
                         break;
                 }
 
@@ -63,7 +71,6 @@ namespace CaresTracker
 
         private void GenerateDevelopmentReport()
         {
-            this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
             DataTable tblTemp;
             try
             {
@@ -110,6 +117,43 @@ namespace CaresTracker
                 lblErrorDomainTotals.Visible = true;
                 lblErrorDomainTotals.Text = "A database error occurred: " + ex.Message;
                 pnlDevelopmentTotals.Visible = false;
+                pnlInteractionDataHeader.Visible = false;
+                pnlInteractionData.Visible = false;
+                return;
+            }
+        }
+
+        private void GenerateOrganizationCHWReport()
+        {
+            DataTable tblTemp;
+            try
+            {
+                int numInteractions = new GetOrgCHWTotalInteractionsReport().ExecuteCommand(domainID, reportType);
+
+                // check if there are no interactions
+                if (numInteractions == 0)
+                {
+                    lblErrorDomainTotals.Visible = true;
+                    lblErrorDomainTotals.Text = $"There are no interactions recorded for {domainName}.";
+                    pnlOrgCHWTotals.Visible = false;
+                    pnlInteractionDataHeader.Visible = false;
+                    pnlInteractionData.Visible = false;
+                    return;
+                }
+
+                DataTable dtInteractions = CreateDataTableFromScalar(numInteractions, "# of Interactions");
+                AddDataToJsonDict(dtInteractions, "#chrtTotalInteractions");
+                SetUpGridView(gvTotalInteractions, dtInteractions);
+
+                tblTemp = new GetOrgCHWTotalServicesReport().ExecuteCommand(domainID, reportType);
+                AddDataToJsonDict(tblTemp, "#chrtTotalServices");
+                SetUpGridView(gvTotalServices, tblTemp);
+            }
+            catch (Exception ex)
+            {
+                lblErrorDomainTotals.Visible = true;
+                lblErrorDomainTotals.Text = "A database error occurred: " + ex.Message;
+                pnlOrgCHWTotals.Visible = false;
                 pnlInteractionDataHeader.Visible = false;
                 pnlInteractionData.Visible = false;
                 return;
