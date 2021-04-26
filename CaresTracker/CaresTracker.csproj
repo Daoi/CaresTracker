@@ -358,16 +358,19 @@
     <Compile Include="DataAccess\DataAccessors\OrganizationAccessors\GetAllOrganizations.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\GetAllRegions.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\UpdateRegionAssignments.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetInteractionAgeReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetInteractionContactReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetInteractionGenderReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetInteractionLanguageReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetInteractionServiceReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalResidentCIReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionAgeReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionContactReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionGenderReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionLanguageReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionServiceReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalAgeReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalEventReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalGenderReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalLanguageReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalVaccineReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalInteractionsReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalServicesReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetResidentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
@@ -575,10 +578,7 @@
     <Analyzer Include="..\packages\AWSSDK.CognitoIdentityProvider.3.5.1.27\analyzers\dotnet\cs\AWSSDK.CognitoIdentityProvider.CodeAnalysis.dll" />
     <Analyzer Include="..\packages\AWSSDK.SecurityToken.3.5.1.49\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataAccess\DataAccessors\ReportAccessors\CHWReports\" />
-    <Folder Include="DataAccess\DataAccessors\ReportAccessors\OrganizationReports\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

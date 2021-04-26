@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.ReportAccessors;
+using CaresTracker.DataAccess.DataAccessors.ReportAccessors.DevelopmentReports;
 using CaresTracker.DataModels;
 
 namespace CaresTracker
@@ -14,14 +15,19 @@ namespace CaresTracker
     /// <summary>
     /// Create a report from the Session values collected on ExportData.aspx
     /// Session["ReportType"]: D, O, or C
-    /// Session["ReportDomainID"]: PK of the entity type selected
+    /// Session["ReportDomainID"]: PK of the entity selected
+    /// Session["ReportDomainName"]: name of the entity selected (just to display)
     /// Session["ReportStartDate"]
     /// Session["ReportEndDate"]
     /// </summary>
     public partial class Report : System.Web.UI.Page
     {
+        int domainID;
+        string startDate;
+        string endDate;
         protected string jsonReports;
         private Dictionary<string, Dictionary<string, List<object>>> jsonDict;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             CARESUser user = Session["User"] as CARESUser;
@@ -31,11 +37,19 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
+                domainID = int.Parse(Session["ReportDomainID"].ToString());
+                startDate = Session["ReportStartDate"].ToString();
+                endDate = Session["ReportEndDate"].ToString();
+
+                lblDomainHeader.Text = $"<u>Report Totals for {Session["ReportDomainName"].ToString()}</u>";
+                lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
+
                 switch (Session["ReportType"].ToString())
                 {
                     case "D":
-                        pnlDevelopmentReport.Visible = true;
+                        pnlDevelopmentTotals.Visible = true;
                         GenerateDevelopmentReport();
+                        GenerateInteractionReport();
                         break;
                     case "O":
                         break;
@@ -49,23 +63,18 @@ namespace CaresTracker
 
         private void GenerateDevelopmentReport()
         {
-            int developmentID = int.Parse(Session["ReportDomainID"].ToString());
-            string startDate = Session["ReportStartDate"].ToString();
-            string endDate = Session["ReportEndDate"].ToString();
-            lblTimeframe.Text += $"Start Date: {startDate}<br />End Date: {endDate}";
-
             this.jsonDict = new Dictionary<string, Dictionary<string, List<object>>>();
             DataTable tblTemp;
             try
             {
-                tblTemp = new GetTotalGenderReport().ExecuteCommand(developmentID);
+                tblTemp = new GetTotalGenderReport().ExecuteCommand(domainID);
 
                 // if one is empty, then all will be empty since these demographics are
                 // aggregated using all residents in a development
                 if (tblTemp.Rows.Count == 0)
                 {
-                    lblErrorDevelopmentTotals.Visible = true;
-                    lblErrorDevelopmentTotals.Text = "There are no residents from this housing development in the system.";
+                    lblErrorDomainTotals.Visible = true;
+                    lblErrorDomainTotals.Text = "There are no residents from this housing development in the system.";
                     pnlDevelopmentTotals.Visible = false;
                     pnlInteractionDataHeader.Visible = false;
                     pnlInteractionData.Visible = false;
@@ -75,36 +84,44 @@ namespace CaresTracker
                 AddDataToJsonDict(tblTemp, "#chrtTotalGender");
                 SetUpGridView(gvTotalGender, tblTemp);
 
-                tblTemp = new GetTotalAgeReport().ExecuteCommand(developmentID);
+                tblTemp = new GetTotalAgeReport().ExecuteCommand(domainID);
                 AddDataToJsonDict(tblTemp, "#chrtTotalAge");
                 SetUpGridView(gvTotalAge, tblTemp);
 
-                tblTemp = new GetTotalLanguageReport().ExecuteCommand(developmentID);
+                tblTemp = new GetTotalLanguageReport().ExecuteCommand(domainID);
                 AddDataToJsonDict(tblTemp, "#chrtTotalLanguage");
                 SetUpGridView(gvTotalLanguage, tblTemp);
 
-                tblTemp = new GetTotalVaccineReport().ExecuteCommand(developmentID);
+                tblTemp = new GetTotalResidentCIReport().ExecuteCommand(domainID);
+                AddDataToJsonDict(tblTemp, "#chrtTotalChronicIllness");
+                SetUpGridView(gvTotalChronicIllness, tblTemp);
+
+                tblTemp = new GetTotalVaccineReport().ExecuteCommand(domainID);
                 AddDataToJsonDict(tblTemp, "#chrtTotalVaccine");
                 SetUpGridView(gvTotalVaccine, tblTemp);
 
-                int numAttendees = new GetTotalEventReport().ExecuteCommand(developmentID);
+                int numAttendees = new GetTotalEventReport().ExecuteCommand(domainID);
                 DataTable dtEvent = CreateDataTableFromScalar(numAttendees, "Attendances");
                 AddDataToJsonDict(dtEvent, "#chrtTotalEvent");
                 SetUpGridView(gvTotalEvent, dtEvent);
             }
             catch (Exception ex)
             {
-                lblErrorDevelopmentTotals.Visible = true;
-                lblErrorDevelopmentTotals.Text = "A database error occurred: " + ex.Message;
+                lblErrorDomainTotals.Visible = true;
+                lblErrorDomainTotals.Text = "A database error occurred: " + ex.Message;
                 pnlDevelopmentTotals.Visible = false;
                 pnlInteractionDataHeader.Visible = false;
                 pnlInteractionData.Visible = false;
                 return;
             }
+        }
 
+        private void GenerateInteractionReport()
+        {
+            DataTable tblTemp;
             try
             {
-                tblTemp = new GetInteractionGenderReport().ExecuteCommand(developmentID, startDate, endDate);
+                tblTemp = new GetInteractionGenderReport().ExecuteCommand(domainID, startDate, endDate);
 
                 // if one of these is empty, then the rest will be empty since these counts are
                 // aggregated using all interactions with residents in a development
@@ -120,19 +137,19 @@ namespace CaresTracker
                 AddDataToJsonDict(tblTemp, "#chrtInteractionGender");
                 SetUpGridView(gvInteractionGender, tblTemp);
 
-                tblTemp = new GetInteractionAgeReport().ExecuteCommand(developmentID, startDate, endDate);
+                tblTemp = new GetInteractionAgeReport().ExecuteCommand(domainID, startDate, endDate);
                 AddDataToJsonDict(tblTemp, "#chrtInteractionAge");
                 SetUpGridView(gvInteractionAge, tblTemp);
 
-                tblTemp = new GetInteractionLanguageReport().ExecuteCommand(developmentID, startDate, endDate);
+                tblTemp = new GetInteractionLanguageReport().ExecuteCommand(domainID, startDate, endDate);
                 AddDataToJsonDict(tblTemp, "#chrtInteractionLanguage");
                 SetUpGridView(gvInteractionLanguage, tblTemp);
 
-                tblTemp = new GetInteractionContactReport().ExecuteCommand(developmentID, startDate, endDate);
+                tblTemp = new GetInteractionContactReport().ExecuteCommand(domainID, startDate, endDate);
                 AddDataToJsonDict(tblTemp, "#chrtInteractionContact");
                 SetUpGridView(gvInteractionContact, tblTemp);
 
-                tblTemp = new GetInteractionServiceReport().ExecuteCommand(developmentID, startDate, endDate);
+                tblTemp = new GetInteractionServiceReport().ExecuteCommand(domainID, startDate, endDate);
                 AddDataToJsonDict(tblTemp, "#chrtInteractionService");
                 SetUpGridView(gvInteractionService, tblTemp);
             }

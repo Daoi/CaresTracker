@@ -63,6 +63,7 @@ namespace CaresTracker
 
             Session["ReportType"] = ddlReportType.SelectedValue;
             Session["ReportDomainID"] = ddlReportDomain.SelectedValue;
+            Session["ReportDomainName"] = ddlReportDomain.SelectedItem.Text;
             Session["ReportStartDate"] = txtDateStart.Text;
             Session["ReportEndDate"] = txtDateEnd.Text;
             Response.Redirect("./Report.aspx");

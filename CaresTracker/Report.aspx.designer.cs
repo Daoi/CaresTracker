@@ -31,22 +31,22 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.LinkButton lnkData;
         
         /// <summary>
-        /// pnlDevelopmentReport control.
+        /// lblDomainHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDevelopmentReport;
+        protected global::System.Web.UI.WebControls.Label lblDomainHeader;
         
         /// <summary>
-        /// lblErrorDevelopmentTotals control.
+        /// lblErrorDomainTotals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorDevelopmentTotals;
+        protected global::System.Web.UI.WebControls.Label lblErrorDomainTotals;
         
         /// <summary>
         /// pnlDevelopmentTotals control.
@@ -85,6 +85,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.GridView gvTotalLanguage;
         
         /// <summary>
+        /// gvTotalChronicIllness control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTotalChronicIllness;
+        
+        /// <summary>
         /// gvTotalVaccine control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,33 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTotalEvent;
+        
+        /// <summary>
+        /// pnlOrgCHWTotals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlOrgCHWTotals;
+        
+        /// <summary>
+        /// gvTotalInteractions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTotalInteractions;
+        
+        /// <summary>
+        /// gvTotalServices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTotalServices;
         
         /// <summary>
         /// pnlInteractionDataHeader control.
