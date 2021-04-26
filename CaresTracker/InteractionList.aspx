@@ -21,7 +21,7 @@
                     <Columns>
                         <asp:TemplateField HeaderText="View Interaction">
                             <ItemTemplate>
-                                <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="btnViewInteraction_Click" Text="View" />
+                                <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 font-weight-bold" runat="server" OnClick="btnViewInteraction_Click" Text="View" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
