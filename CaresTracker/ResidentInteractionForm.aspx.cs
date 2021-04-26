@@ -1,5 +1,4 @@
-﻿
-using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
+﻿using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
@@ -38,7 +37,7 @@ namespace CaresTracker
             {
                 //Set resident info (first tab) to visible, others to false
                 links.Keys.ToList().Where(s => !s.Equals("residentInfo")).ToList().ForEach(s => links[s].Visible = false);
-                cblServices.DataSource = new GetAllServices().ExecuteCommand();
+                cblServices.DataSource = new GetEnabledServices().ExecuteCommand();
                 cblServices.DataValueField = "ServiceID";
                 cblServices.DataTextField = "ServiceName";
                 cblServices.DataBind();
