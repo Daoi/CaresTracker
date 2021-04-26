@@ -150,7 +150,7 @@
                             <asp:ListItem Text="Events (Raw)" Value="Event"></asp:ListItem>
                             <asp:ListItem Text="Residents (Raw)" Value="Resident"></asp:ListItem>
                             <asp:ListItem Text="Housing (Raw)" Value="House"></asp:ListItem>
-                            <asp:ListItem Text="Housing Development (Raw)" Value="HousingDevelopment"></asp:ListItem>
+                            <asp:ListItem Text="Housing Development (Raw)" Value="HousingDevem>elopment"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:Button ID="btnExportTable" runat="server" Text="Export Selected Table" CssClass="buttonStyle mt-3" OnClick="btnExportTable_Click" />
                     </div>

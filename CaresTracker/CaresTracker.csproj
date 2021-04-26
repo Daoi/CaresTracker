@@ -392,6 +392,7 @@
     <Compile Include="DataAccess\DataAccessors\SymptomAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetServicesByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkersByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\TableAccessors\EventView.cs" />
     <Compile Include="DataAccess\DataAccessors\TableAccessors\InteractionView.cs" />
     <Compile Include="DataAccess\DataAccessors\TableAccessors\ResidentView.cs" />
     <Compile Include="DataModels\ChronicIllness.cs" />
