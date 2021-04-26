@@ -459,3 +459,22 @@ thead {
     padding: .25rem;
     vertical-align: central;
 }
+
+.gvBtn td {
+    text-align: center;
+    padding: 0px;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    vertical-align: middle;
+    max-width: 5%;
+}
+
+.gvBtn td button {
+   max-height: 5% !important;
+   padding: .25rem;
+   width: 100%;
+}
+
+.btn-light{
+    background-color: transparent !important;
+}

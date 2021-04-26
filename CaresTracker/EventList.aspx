@@ -16,12 +16,12 @@
                 <div runat="server" id="divNoRows" visible="false" class="row w-auto justify-content-center" style="height: 10vh;">
                     <asp:Label ID="lblNoRows" runat="server" Text=""></asp:Label>
                 </div>
-                <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                <asp:GridView ID="gvEventList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark gvBtn">
                     <HeaderStyle CssClass="cherryBackground" />
                     <Columns>
                         <asp:TemplateField HeaderText="View Event">
                             <ItemTemplate>
-                                <asp:Button ID="btnViewEvent" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text="View" OnClick="btnViewEvent_Click" />
+                                <asp:Button ID="btnViewEvent" CssClass="btn btn-light w-100 font-weight-bold" runat="server" Text="View" OnClick="btnViewEvent_Click" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="EventName" HeaderText="Event Name" />

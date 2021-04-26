@@ -31,5 +31,26 @@ namespace CaresTracker.Utilities
             }
         }
 
+        public static string FormatLongText(object value)
+        {
+            if(value.ToString().Length >= 110)
+            {
+                try
+                {
+                    return value.ToString().Substring(0, 100) + "...";
+                }
+                catch (Exception e)
+                {
+                    return value.ToString();
+                }
+            }
+            else
+            {
+                return value.ToString();
+            }
+
+        }
+
+
     }
 }

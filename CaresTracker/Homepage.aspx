@@ -107,12 +107,12 @@
                                 <div class="tab-content mt-3">
                                     <div class="tab-pane active" id="outstanding" role="tabpanel">
                                         <asp:Label ID="lblOutstandingMsg" runat="server" Text=""></asp:Label>
-                                        <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                        <asp:GridView ID="gvOutstandingFollowUps" CssClass="table table-striped table-bordered thead-dark gvBtn" runat="server" AutoGenerateColumns="False">
                                             <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkViewOutstandingInteraction_Click">View</asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkViewInteraction" runat="server" CssClass="btn btn-light w-100 font-weight-bold" OnClick="lnkViewOutstandingInteraction_Click">View</asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Resident">
@@ -130,12 +130,12 @@
                                     </div>
                                     <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
                                         <asp:Label ID="lblCompletedMsg" runat="server" Text=""></asp:Label>
-                                        <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                        <asp:GridView ID="gvCompletedFollowUps" CssClass="table table-striped table-bordered thead-dark gvBtn" runat="server" AutoGenerateColumns="False">
                                             <HeaderStyle CssClass="cherryBackground" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="View Interaction">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="lnkViewCompletedInteraction_Click">View</asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkViewInteraction" CssClass="btn btn-light w-100 font-weight-bold" runat="server" OnClick="lnkViewCompletedInteraction_Click">View</asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Resident">
@@ -167,12 +167,12 @@
                             <div class="card mt-5">
                                 <div class="card-body UCEventsCard">
                                     <asp:Label ID="lblEventMsg" runat="server" Text=""></asp:Label>
-                                    <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark" runat="server" AutoGenerateColumns="False">
+                                    <asp:GridView ID="gvEvents" CssClass="table table-striped table-bordered thead-dark gvBtn" runat="server" AutoGenerateColumns="False">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="View Event">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='View' CssClass="btn btn-light w-100 p-3 font-weight-bold" OnClick="lnkToEvent_Click"></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkToEvent" runat="server" Text='View' CssClass="btn btn-light w-100 font-weight-bold" OnClick="lnkToEvent_Click"></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="EventName" HeaderText="Event Name" />

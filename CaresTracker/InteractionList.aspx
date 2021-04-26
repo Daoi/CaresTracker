@@ -16,12 +16,12 @@
                 <div runat="server" id="divNoRows" visible="false" class="row w-auto justify-content-center" style="height: 10vh;">
                     <asp:Label ID="lblNoRows" runat="server" Text=""></asp:Label>
                 </div>
-                <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered thead-dark">
+                <asp:GridView ID="gvInteractionList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered thead-dark gvBtn">
                     <HeaderStyle CssClass="cherryBackground" />
                     <Columns>
                         <asp:TemplateField HeaderText="View Interaction">
                             <ItemTemplate>
-                                <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" OnClick="btnViewInteraction_Click" Text="View" />
+                                <asp:Button ID="btnViewInteraction" CssClass="btn btn-light w-100 font-weight-bold" runat="server" OnClick="btnViewInteraction_Click" Text="View" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
@@ -40,7 +40,11 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="MethodOfContact" HeaderText="Method of Contact" />
                         <asp:BoundField DataField="LocationOfContact" HeaderText="Location" />
-                        <asp:BoundField DataField="ActionPlan" HeaderText="Notes" />
+                        <asp:TemplateField HeaderText="Action Plan">
+                            <ItemTemplate>
+                                <asp:Label ID="lblActionPlan" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatLongText(Eval("ActionPlan"))%>' runat="server"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
