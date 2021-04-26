@@ -56,6 +56,7 @@
                             <h5 class="text-right">Resident Info</h5>
                         </div>
                         <div class="row mt-3">
+                            <asp:Label ID="lblRIError" runat="server" CssClass="errorLabel" Text="" Visible="false"></asp:Label>
                             <div class="col-md-6">
                                 <asp:Label ID="lblFirstName" CssClass="labels" runat="server" Text="First Name"></asp:Label><asp:TextBox ID="tbFirstName" placeholder="First Name" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
@@ -224,7 +225,7 @@
                         <div class="mt-3">
                             <asp:Label ID="lblChronicHealth" CssClass="labels" runat="server" Text="Resident's Conditions (Checked if Resident has Condition)"></asp:Label>
                             <br />
-                            <asp:CheckBoxList ID="cblChronicHealth" CssClass="table compact rpCbl" runat="server"></asp:CheckBoxList>
+                            <asp:CheckBoxList ID="cblChronicHealth" RepeatDirection="Horizontal"  RepeatColumns="3"  CssClass="table compact rpCbl" runat="server"></asp:CheckBoxList>
                         </div>
                         <%-- Chronic Health End --%>
                     </div>
