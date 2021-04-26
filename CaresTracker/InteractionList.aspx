@@ -26,10 +26,18 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
                         <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
-                        <asp:BoundField DataField="DateOfBirth" HeaderText="Resident DoB" />
+                        <asp:TemplateField HeaderText="Resident DoB">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDateOfBirth" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfBirth"))%>' runat="server"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="UserFirstName" HeaderText="CHW First Name" />
                         <asp:BoundField DataField="UserLastName" HeaderText="CHW Last Name" />
-                        <asp:BoundField DataField="DateOfContact" HeaderText="Date of Interaction" />
+                        <asp:TemplateField HeaderText="Date of Contact">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDateofContact" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfContact"))%>' runat="server"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="MethodOfContact" HeaderText="Method of Contact" />
                         <asp:BoundField DataField="LocationOfContact" HeaderText="Location" />
                         <asp:BoundField DataField="ActionPlan" HeaderText="Notes" />

@@ -52,36 +52,6 @@
                         </div>
                     </div>
                 </div>
-                <h3>Manage Developments</h3>
-                <div class="row border-bottom mb-5 pb-5">
-                    <div class="col-8">
-                        <asp:GridView ID="gvHousingDevelopments" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
-                            <HeaderStyle CssClass="cherryBackground" />
-                            <Columns>
-                                <asp:BoundField DataField="DevelopmentName" HeaderText="Development" />
-                                <asp:BoundField DataField="RegionName" HeaderText="Region" />
-                                <asp:TemplateField HeaderText="Enabled">
-                                    <ItemTemplate>
-                                        <asp:CheckBox ID="chkDevelopmentEnabled" runat="server" CssClass="form-check" Checked='<%# Eval("DevelopmentIsEnabled") %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                    <div class="col pt-5">
-                        <div class="card mx-auto">
-                            <div class="card-body">
-                                <p class="card-text">Select which developments should be shown as options on the resident profile creation page. Click update below to save your changes.</p>
-                                <asp:UpdatePanel ID="pnlDevelopmentCtrls" runat="server" UpdateMode="Conditional">
-                                    <ContentTemplate>
-                                        <asp:Label ID="lblDevelopmentError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
-                                        <asp:Button ID="btnDevelopmentUpdate" runat="server" Text="Update Developments" CssClass="buttonStyle" OnClick="btnDevelopmentUpdate_Click" OnClientClick="expandTable('gvHousingDevelopments');" />
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <h3>Manage Services</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">

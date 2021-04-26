@@ -325,6 +325,7 @@
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetOrgIDByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetAllCi.cs" />
     <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetChronicIllnessesByResidentID.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByAdminID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddAttendees.cs" />
@@ -359,17 +360,21 @@
     <Compile Include="DataAccess\DataAccessors\OrganizationAccessors\GetAllOrganizations.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\GetAllRegions.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\UpdateRegionAssignments.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalResidentCIReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionAgeReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionContactReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionGenderReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionLanguageReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionServiceReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalAgeReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalEventReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalGenderReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalLanguageReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalVaccineReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalAgeReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalEventReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalGenderReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalLanguageReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalVaccineReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalInteractionsReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalServicesReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetResidentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetImported.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetProfileActivationStatus.cs" />
@@ -377,6 +382,7 @@
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
+    <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetEnabledServices.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\InsertService.cs" />
     <Compile Include="DataAccess\DataAccessors\HouseAccessors\UpdateHouseID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\UpdateUserStatus.cs" />
@@ -540,6 +546,7 @@
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AWSCognitoManager.cs" />
+    <Compile Include="Utilities\GridViewFormatter.cs" />
     <Compile Include="Utilities\TextModeDateFormatter.cs" />
     <Compile Include="Utilities\Validation.cs" />
     <Compile Include="Verify.aspx.cs">
@@ -573,7 +580,9 @@
     <Analyzer Include="..\packages\AWSSDK.CognitoIdentityProvider.3.5.1.27\analyzers\dotnet\cs\AWSSDK.CognitoIdentityProvider.CodeAnalysis.dll" />
     <Analyzer Include="..\packages\AWSSDK.SecurityToken.3.5.1.49\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exporting\Files\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

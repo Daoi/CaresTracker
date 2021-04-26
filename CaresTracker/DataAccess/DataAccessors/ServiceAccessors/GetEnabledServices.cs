@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
-using System.Data;
 
 namespace CaresTracker.DataAccess.DataAccessors.ServiceAccessors
 {
-    public class GetAllServices : DataSupport, IData
+    public class GetEnabledServices : DataSupport, IData
     {
         /// <summary>
-        /// Retrieve a DataTable containing all services.
+        /// Retrieve a DataTable containing all enabled services.
         /// </summary>
-        public GetAllServices()
+        public GetEnabledServices()
         {
-            CommandText = "GetAllServices";
+            CommandText = "GetEnabledServices";
             CommandType = CommandType.StoredProcedure;
         }
 

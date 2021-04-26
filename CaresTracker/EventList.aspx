@@ -28,15 +28,19 @@
                         <asp:BoundField DataField="EventDescription" HeaderText="Event Description" />
                         <asp:BoundField DataField="EventTypeName" HeaderText="Event Type" />
                         <asp:BoundField DataField="EventLocation" HeaderText="Location" />
-                        <asp:BoundField DataField="EventDate" HeaderText="Date" />
+                        <asp:TemplateField HeaderText="Date">
+                            <ItemTemplate>
+                                <asp:Label ID="lblEventDate" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("EventDate"))%>' runat="server"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Start Time">
                             <ItemTemplate>
-                                <asp:Label ID="lblStartTime" Text='<%# DateTime.Parse(Eval("EventStartTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                <asp:Label ID="lblStartTime" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatTimes(Eval("EventStartTime"))%>' runat="server"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="End Time">
                             <ItemTemplate>
-                                <asp:Label ID="lblEndTime" Text='<%# DateTime.Parse(Eval("EventEndTime").ToString()).ToString("hh:mm tt")%>' runat="server"></asp:Label>
+                                <asp:Label ID="lblEndTime" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatTimes(Eval("EventEndTime"))%>' runat="server"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Event Host">

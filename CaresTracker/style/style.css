@@ -449,3 +449,13 @@ thead {
     font-weight: bold;
     color: red !important;
 }
+
+.rpCbl label{
+    margin-left: 1rem !important;
+}
+.rpCbl td {
+    margin-top: .3rem !important;
+    margin-bottom: .3rem !important;
+    padding: .25rem;
+    vertical-align: central;
+}

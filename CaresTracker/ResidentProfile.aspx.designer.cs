@@ -85,6 +85,15 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.Button btnCreateNewInteraction;
         
         /// <summary>
+        /// lblRIError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRIError;
+        
+        /// <summary>
         /// lblFirstName control.
         /// </summary>
         /// <remarks>
@@ -416,6 +425,24 @@ namespace CaresTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbAppointmentDate;
+        
+        /// <summary>
+        /// lblChronicHealth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChronicHealth;
+        
+        /// <summary>
+        /// cblChronicHealth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblChronicHealth;
         
         /// <summary>
         /// btnEditProfile control.
