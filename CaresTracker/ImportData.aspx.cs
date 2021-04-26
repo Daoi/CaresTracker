@@ -124,5 +124,12 @@ namespace CaresTracker
             return fileUpload.PostedFile.ContentType == "application/vnd.ms-excel" && fileUpload.HasFile; //Make sure theres a CSV file selected
         }
 
+        protected void btnDownloadTemplate_Click(object sender, EventArgs e)
+        {
+            if (!ImportFile.GenerateTemplate())
+            {
+                lblMessage.Text = "Error downloading template, please try again later.";
+            }
+        }
     }
 }

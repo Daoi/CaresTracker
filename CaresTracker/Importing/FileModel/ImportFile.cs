@@ -58,30 +58,34 @@ namespace CaresTracker.Importing.FileModel
                     worksheet.Cell("E1").Value = "ETHNICITY";
                     worksheet.Cell("F1").Value = "DATE OF BIRTH";
                     worksheet.Cell("G1").Value = "AGE";
-                    worksheet.Cell("H").Value = "CURRENT ADDRESS-1";
-                    worksheet.Cell("I").Value = "CURRENT ADDRESS-2";
-                    worksheet.Cell("J").Value = "CURRENT CITY";
-                    worksheet.Cell("K").Value = "CURRENT STATE";
-                    worksheet.Cell("L").Value = "CURRENT ZIP CODE";
-                    worksheet.Cell("M").Value = "PRIMARY E-MAIL";
-                    worksheet.Cell("N").Value = "HEAD OF HOUSEHOLD-STATUS";
-                    worksheet.Cell("I").Value = "HEAD OF HOUSEHOLD";
+                    worksheet.Cell("H1").Value = "CURRENT ADDRESS-1";
+                    worksheet.Cell("I1").Value = "CURRENT ADDRESS-2";
+                    worksheet.Cell("J1").Value = "CURRENT CITY";
+                    worksheet.Cell("K1").Value = "CURRENT STATE";
+                    worksheet.Cell("L1").Value = "CURRENT ZIP CODE";
+                    worksheet.Cell("M1").Value = "PRIMARY E-MAIL";
+                    worksheet.Cell("N1").Value = "HEAD OF HOUSEHOLD-STATUS";
+                    worksheet.Cell("O1").Value = "HEAD OF HOUSEHOLD";
+
+
+                    HttpResponse httpResponse = HttpContext.Current.Response;
+                    httpResponse.Clear();
+                    httpResponse.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    httpResponse.AddHeader("content-disposition", $"attachment;filename=\"ImportTemplate.xlsx\"");
+
+                    // Flush the workbook to the Response.OutputStream
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        workbook.SaveAs(memoryStream);
+                        memoryStream.WriteTo(httpResponse.OutputStream);
+                        memoryStream.Close();
+                    }
+                    httpResponse.End();
+                    return true;
+
                 }
 
-                HttpResponse httpResponse = HttpContext.Current.Response;
-                httpResponse.Clear();
-                httpResponse.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                httpResponse.AddHeader("content-disposition", $"attachment;filename=\"ImportTemplate.xlsx\"");
 
-                // Flush the workbook to the Response.OutputStream
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    workbook.SaveAs(memoryStream);
-                    memoryStream.WriteTo(httpResponse.OutputStream);
-                    memoryStream.Close();
-                }
-                httpResponse.End();
-                return true;
             }
             catch(Exception ex)
             {
