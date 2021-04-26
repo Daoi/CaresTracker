@@ -326,6 +326,7 @@
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetOrgIDByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetAllCi.cs" />
     <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetChronicIllnessesByResidentID.cs" />
+    <Compile Include="DataAccess\DataAccessors\CTextReader.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByAdminID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddEvent.cs" />
@@ -391,7 +392,11 @@
     <Compile Include="DataAccess\DataAccessors\SymptomAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetServicesByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkersByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\TableAccessors\EventView.cs" />
+    <Compile Include="DataAccess\DataAccessors\TableAccessors\InteractionView.cs" />
+    <Compile Include="DataAccess\DataAccessors\TableAccessors\ResidentView.cs" />
     <Compile Include="DataModels\ChronicIllness.cs" />
+    <Compile Include="Exporting\ExportTable.cs" />
     <Compile Include="Importing\FileManager.cs" />
     <Compile Include="Importing\FileModel\ImportFile.cs" />
     <Compile Include="Importing\ImportError.cs" />

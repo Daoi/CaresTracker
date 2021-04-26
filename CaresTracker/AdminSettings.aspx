@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <h3>Manage Event Types</h3>
-                <div class="row">
+                <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
                         <asp:GridView ID="gvEventTypes" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                             <HeaderStyle CssClass="cherryBackground" />
@@ -134,6 +134,28 @@
                         </div>
                     </div>
                 </div>
+                <%-- Start --%>
+               <h3>Export Database to Excel</h3>
+                <div class="row mb-5 pb-5">
+                    <div class="col-md-6">
+                        <asp:Label ID="lbExport" runat="server" Text="Export Table"></asp:Label><br />
+                        <asp:DropDownList ID="ddlTables" runat="server" CssClass="form-control w-50" AppendDataBoundItems="True">
+                            <asp:ListItem Text="Interaction (Formatted)" Value="InteractionF"></asp:ListItem>
+                            <asp:ListItem Text="Resident (Formatted)" Value="ResidentF"></asp:ListItem>
+                            <asp:ListItem Text="Events (Formatted)" Value="EventF"></asp:ListItem>
+                            <asp:ListItem Text="Community Health Workers (Raw)" Value="CARESUser"></asp:ListItem>
+                            <asp:ListItem Text="Regions (Raw)" Value="Region"></asp:ListItem>
+                            <asp:ListItem Text="Services (Raw)" Value="Service"></asp:ListItem>
+                            <asp:ListItem Text="Interactions (Raw)" Value="Interaction"></asp:ListItem>
+                            <asp:ListItem Text="Events (Raw)" Value="Event"></asp:ListItem>
+                            <asp:ListItem Text="Residents (Raw)" Value="Resident"></asp:ListItem>
+                            <asp:ListItem Text="Housing (Raw)" Value="House"></asp:ListItem>
+                            <asp:ListItem Text="Housing Development (Raw)" Value="HousingDevelopment"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:Button ID="btnExportTable" runat="server" Text="Export Selected Table" CssClass="buttonStyle mt-3" OnClick="btnExportTable_Click" />
+                    </div>
+                </div>
+                <%-- End --%>
             </div>
         </div>
     </div>
