@@ -120,6 +120,12 @@
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%# Eval("ResidentFirstName")+ " " + Eval("ResidentLastName") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Date of Birth">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDoB" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfBirth"))%>' runat="server"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="ResidentPhoneNumber" HeaderText="Phone Number" />
                                                 <asp:TemplateField HeaderText="Date Requested">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblDateRequested" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfContact"))%>' runat="server"></asp:Label>
@@ -143,6 +149,12 @@
                                                         <asp:Label ID="lblResidentName" runat="server" Text='<%#Eval("ResidentFirstName")+ " " + Eval("ResidentLastName")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Date of Birth">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDoB" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfBirth"))%>' runat="server"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="ResidentPhoneNumber" HeaderText="Phone Number" />
                                                 <asp:TemplateField HeaderText="Date Completed">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblDateCompleted" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("FollowUpCompleted"))%>' runat="server"></asp:Label>

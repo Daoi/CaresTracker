@@ -24,13 +24,15 @@
                                 <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 font-weight-bold" runat="server" Text="View" OnClick="btnViewResident_Click" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
-                        <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
-                        <asp:TemplateField HeaderText="Resident DoB">
+                        <asp:BoundField DataField="ResidentFirstName" HeaderText="First Name" />
+                        <asp:BoundField DataField="ResidentLastName" HeaderText="Last Name" />
+                        <asp:TemplateField HeaderText="Date of Birth">
                             <ItemTemplate>
                                 <asp:Label ID="lblDoB" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfBirth"))%>' runat="server"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="ResidentPhoneNumber" HeaderText="Phone Number" />
+                        <asp:BoundField DataField="ResidentEmail" HeaderText="Email" />
                     </Columns>
                 </asp:GridView>
                 <div class="row">
