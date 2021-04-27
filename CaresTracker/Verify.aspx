@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title>PHA CARES Tracker</title>
     <link rel="icon" href="img/horizontallogo_nobg_C55_icon(1).ico" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" runat="server" />
     <script src="Scripts/jquery-3.0.0.min.js"></script>
@@ -12,7 +13,6 @@
     <script src="../../Scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
     <script src="../../Scripts/jquery-ui-1.7.1.custom.min.js" type="text/javascript"></script>
     <link href="style/style.css" rel="stylesheet" />
-    <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
