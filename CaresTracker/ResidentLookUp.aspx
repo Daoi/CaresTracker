@@ -16,7 +16,7 @@
                 <div runat="server" id="divNoRows" visible="false" class="row w-auto justify-content-center" style="height: 10vh;">
                     <asp:Label ID="lblNoRows" runat="server" Text=""></asp:Label>
                 </div>
-                <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark gvBtn" ShowFooter="True">
+                <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark gvBtn">
                     <HeaderStyle CssClass="cherryBackground" />
                     <Columns>
                         <asp:TemplateField HeaderText="View Resident">
