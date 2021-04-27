@@ -16,7 +16,7 @@
                 <div runat="server" id="divNoRows" visible="false" class="row w-auto justify-content-center" style="height: 10vh;">
                     <asp:Label ID="lblNoRows" runat="server" Text=""></asp:Label>
                 </div>
-                <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark gvBtn" ShowFooter="True">
+                <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark gvBtn">
                     <HeaderStyle CssClass="cherryBackground" />
                     <Columns>
                         <asp:TemplateField HeaderText="View Resident">
@@ -24,13 +24,15 @@
                                 <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 font-weight-bold" runat="server" Text="View" OnClick="btnViewResident_Click" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="ResidentFirstName" HeaderText="Resident First Name" />
-                        <asp:BoundField DataField="ResidentLastName" HeaderText="Resident Last Name" />
-                        <asp:TemplateField HeaderText="Resident DoB">
+                        <asp:BoundField DataField="ResidentFirstName" HeaderText="First Name" />
+                        <asp:BoundField DataField="ResidentLastName" HeaderText="Last Name" />
+                        <asp:TemplateField HeaderText="Date of Birth">
                             <ItemTemplate>
                                 <asp:Label ID="lblDoB" Text='<%# CaresTracker.Utilities.GridViewFormatter.FormatDates(Eval("DateOfBirth"))%>' runat="server"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="ResidentPhoneNumber" HeaderText="Phone Number" />
+                        <asp:BoundField DataField="ResidentEmail" HeaderText="Email" />
                     </Columns>
                 </asp:GridView>
                 <div class="row">
