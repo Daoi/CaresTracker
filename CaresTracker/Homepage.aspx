@@ -3,14 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid homepage">
         <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb" class="col pl-0">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item">
                         <asp:LinkButton ID="lnkHome" navigateurl="~/Homepage.aspx" CssClass="cherryFont" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton>
                     </li>
                 </ol>
             </nav>
-            <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h4 my-2" Style="width: 57%"></asp:Label>
+            <asp:Label ID="lblUserInfo" runat="server" Enabled="true" Visible="true" CssClass="h4 my-2 col text-center" Style="width: 57%"></asp:Label>
+            <span class="col"></span>
         </div>
         <div class="jumbotron vertical-center bg-transparent cherryFont">
             <div class="container-fluid">
