@@ -23,7 +23,22 @@ namespace CaresTracker
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
                 {
                     Resident res = Session["Resident"] as Resident;
-                    hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName} {res.DateOfBirth}";
+                    if (!string.IsNullOrWhiteSpace(res.DateOfBirth))
+                    {
+                        try
+                        {
+                            string dob = DateTime.Parse(res.DateOfBirth).ToString("MM-dd-yyyy");
+                            hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName} {dob}"; //Format DoB to local format
+                        }
+                        catch
+                        {
+                            hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName}"; //Resident DoB is invalid so just use first and last name to search
+                        }
+                    }
+                    else
+                    {
+                        hfResidentDetails.Value = $"{res.ResidentFirstName} {res.ResidentLastName}"; //Resident DoB is empty so just use first and last name to search
+                    }
                 }
                 else if (Session["Worker"] != null && HttpContext.Current.Request.Url.ToString().Contains("CHWManagement"))
                 {
