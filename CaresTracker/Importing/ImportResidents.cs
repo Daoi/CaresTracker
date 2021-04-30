@@ -48,7 +48,6 @@ namespace CaresTracker.Importing
 
                 string fullname = $"{res.ResidentFirstName} {res.ResidentLastName}";
 
-                int writeResult = WriteResident(res);
                 List<string> missingValues = ValidateValues(res);
 
                 if (missingValues.Count > 0)
@@ -58,6 +57,8 @@ namespace CaresTracker.Importing
                 }
                 else
                 {
+                    int writeResult = WriteResident(res);
+
                     if (writeResult == 1)
                         successful++;
                     else if (writeResult == 0)
