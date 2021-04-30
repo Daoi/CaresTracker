@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using CaresTracker.DataAccess.DataAccessors;
 using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
+using CaresTracker.DataAccess.DataAccessors.ChronicIllnessAccessors;
 
 namespace CaresTracker.DataModels
 {
@@ -20,13 +21,15 @@ namespace CaresTracker.DataModels
         public string Gender { get; set; } //?
         public string Race { get; set; } //?
         public string PreferredLanguage { get; set; }
-        public bool? VaccineInterest { get; set; }
-        public int? VaccineEligibility { get; set; }
+        public string VaccineStatus { get; set; }
         public string VaccineAppointmentDate { get; set; } 
         public HousingDevelopment HousingDevelopment { get; set; }
         public int HouseID { get; set; }
         public House Home { get; set; }
         public string FullName { get { return $"{ResidentFirstName} {ResidentLastName}"; } }
+        public List<ChronicIllness> ChronicIllnesses { get; set; }
+        public bool Imported { get; set; }
+        public bool IsActive { get; set; }
 
         public Resident() { }
 
@@ -52,9 +55,13 @@ namespace CaresTracker.DataModels
                 HousingDevelopment = new HousingDevelopment(gd.RunCommand(Home.DevelopmentID).Rows[0]);
             }
 
-            VaccineInterest = dataRow["VaccineInterest"] != DBNull.Value ? (bool?)dataRow["VaccineInterest"] : null;
-            VaccineEligibility = dataRow["VaccineEligibility"] != DBNull.Value ? (int?)dataRow["VaccineEligibility"] : null;
+            VaccineStatus = dataRow["VaccineStatus"] != DBNull.Value ? dataRow["VaccineStatus"].ToString() : null;
             VaccineAppointmentDate = dataRow["VaccineAppointmentDate"].ToString();
+
+            ChronicIllnesses = ChronicIllness.CreateChronicIllnessList(new GetChronicIllnessesByResidentID().ExecuteCommand(ResidentID));
+
+            Imported = dataRow["Imported"] == DBNull.Value ? false : (bool)dataRow["Imported"];
+            IsActive = dataRow["IsActive"] == DBNull.Value ? false : (bool)dataRow["IsActive"];
         }
 
         /// <summary>

@@ -19,6 +19,7 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
+
                 if (Session["Resident"] != null && HttpContext.Current.Request.Url.ToString().Contains("ResidentProfile"))
                 {
                     Resident res = Session["Resident"] as Resident;
@@ -55,6 +56,9 @@ namespace CaresTracker
                 gvInteractionList.DataSource = dt;
                 gvInteractionList.DataBind();
                 ViewState["InteractionListDT"] = dt;
+
+                if (Request.Browser.IsMobileDevice)
+                    gvInteractionList.Columns[9].Visible = false; //Hide notes on mobile
             }
 
             if (ViewState["InteractionListDT"] != null)

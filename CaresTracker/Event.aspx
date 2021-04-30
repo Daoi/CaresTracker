@@ -2,21 +2,21 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%-- Section 1 Start --%>
-    <div class="container-fluid">
-        <div class="container homepage pb-3">
-            <div class="row modal-header pb-0 offwhiteBackground" style="height: 7%; font-size: large">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent">
-                        <li class="breadcrumb-item" style="color: deepskyblue">
-                            <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <asp:LinkButton ID="lnkEventList" NavigateUrl="~/EventList.aspx" runat="server" OnClick="lnkEventList_Click">Event List</asp:LinkButton>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Event</li>
-                    </ol>
-                </nav>
-            </div>
+    <div class="container-fluid homepage">
+        <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent">
+                    <li class="breadcrumb-item" style="color: deepskyblue">
+                        <asp:LinkButton ID="lnkHome" NavigateUrl="~/Homepage.aspx" runat="server" OnClick="lnkHome_Click">Dashboard</asp:LinkButton>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <asp:LinkButton ID="lnkEventList" NavigateUrl="~/EventList.aspx" runat="server" OnClick="lnkEventList_Click">Event List</asp:LinkButton>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Event</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container pb-3">
             <div id="form" class="container-fluid" runat="server">
                 <div class="container w-75 mt-5">
                     <div class="row">
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <asp:Label runat="server" class="h4 rounded px-2 py-1 alert-danger" ID="lblError" role="alert" Visible="false">
+                                <asp:Label runat="server" class="errorLabel" ID="lblError" role="alert" Visible="false">
                                 </asp:Label>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                                         <Columns>
                                             <asp:TemplateField HeaderText="Event Hosts">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="btnViewWorker" CssClass="w-100 text-center font-weight-bold" runat="server" Text='<%# Bind("FullName")%>'/>
+                                                    <asp:Label ID="btnViewWorker" CssClass="w-100 text-center font-weight-bold" runat="server" Text='<%# Bind("FullName")%>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -138,15 +138,15 @@
                                     <asp:GridView ID="gvResidentList" Width="100%" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
                                         <HeaderStyle CssClass="cherryBackground" />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="View Resident Profile">
+                                            <asp:TemplateField HeaderText="Residents">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btnViewResident" CssClass="btn btn-light w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName") %>' OnClick="btnViewResident_Click" />
+                                                    <asp:Label ID="btnViewResident" CssClass="w-100 p-3 font-weight-bold" runat="server" Text='<%# Bind("FullName") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
                                     <div class="container text-center my-3">
-                                        <asp:Button ID="btnAddResidentAttendees" CssClass="buttonStyle" Text="Add Resident" OnClick="btnAddResidentAttendees_Click" runat="server"/>
+                                        <asp:Button ID="btnAddResidentAttendees" CssClass="buttonStyle" Text="Add Resident" OnClick="btnAddResidentAttendees_Click" runat="server" />
                                     </div>
                                 </div>
                             </div>

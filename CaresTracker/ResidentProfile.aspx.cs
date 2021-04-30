@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.HouseAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
+using CaresTracker.DataAccess.DataAccessors.ChronicIllnessAccessors;
 
 namespace CaresTracker
 {
@@ -20,7 +21,9 @@ namespace CaresTracker
         DataTable interactions;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["Resident"] != null)
+            CARESUser user = Session["User"] as CARESUser;
+
+            if (Session["Resident"] != null)
             {
                 currentRes = (Resident)Session["Resident"];
             }
@@ -31,31 +34,44 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                InitializeProfileValues();
                 ToggleControls(); //Set page to disabled status
-                if (Session["DevelopmentDT"] == null)
-                {
-                    CARESUser user = Session["User"] as CARESUser;
-                    DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
-                    ViewState["DevelopmentDT"] = developmentDT;
-                    // Bind to drop down list
-                    ddlHousingDevelopment.DataSource = developmentDT;
-                    ddlHousingDevelopment.DataValueField = "DevelopmentID";
-                    ddlHousingDevelopment.DataTextField = "DevelopmentName";
-                    ddlHousingDevelopment.DataBind();
 
-                }
-                else
+                //Bind control data
+                DataTable ciDT = new GetAllCi().RunCommand();
+                cblChronicHealth.DataSource = ciDT;
+                cblChronicHealth.DataTextField = "ChronicIllnessName";
+                cblChronicHealth.DataValueField = "ChronicIllnessID";
+                cblChronicHealth.DataBind();
+                ViewState["CI"] = ciDT;
+                
+
+                DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
+                ViewState["DevelopmentDT"] = developmentDT;
+                ddlHousingDevelopment.DataSource = developmentDT;
+                ddlHousingDevelopment.DataValueField = "DevelopmentID";
+                ddlHousingDevelopment.DataTextField = "DevelopmentName";
+                ddlHousingDevelopment.DataBind();
+
+                InitializeProfileValues();
+                // Provide initial values for hidden fields for google API validation
+                hdnfldFormattedAddress.Value = txtAddress.Value;
+                hdnfldName.Value = txtAddress.Value;
+
+                //Import error handling
+                if (currentRes.Imported)
                 {
-                    DataTable developmentDT = (DataTable)Session["DevelopmentDT"];
-                    ddlHousingDevelopment.DataSource = developmentDT;
-                    ddlHousingDevelopment.DataValueField = "DevelopmentID";
-                    ddlHousingDevelopment.DataTextField = "DevelopmentName";
-                    ddlHousingDevelopment.DataBind();
-                    ViewState["DevelopmentDT"] = developmentDT;
+                    lblImportWarning.Text = "This resident was imported, please ensure their address is correct by editing their profile and selecting the value from the drop downlist.";
+                    lblImportWarning.Visible = true;
+                }
+
+                if (!currentRes.IsActive)
+                {
+                    btnToggleActivation.Text = "Reactivate Profile";
                 }
             }
 
+
+            //Enable ddl searching 
             string select2Params = "'#MainContent_ddlHousingDevelopment', 'Select Development'";
             string select2Call = $"setupSelect2({select2Params});";
             ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "select2Call", select2Call, true);
@@ -75,7 +91,6 @@ namespace CaresTracker
             tbUnitNumber.Text = currentRes.Home.UnitNumber;
             ddlRegion.SelectedValue = currentRes.Home.RegionID.ToString();
             tbZipcode.Text = currentRes.Home.ZipCode;
-            //# of occupants still needed?
             //Resident Stuff
             tbFirstName.Text = currentRes.ResidentFirstName;
             tbLastName.Text = currentRes.ResidentLastName;
@@ -83,36 +98,19 @@ namespace CaresTracker
             tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
             rblGender.SelectedValue = currentRes.Gender;
-            //Family size still needed?
+            ddlHoH.SelectedValue = currentRes.RelationshipToHoH;
             ddlRace.SelectedValue = currentRes.Race;
             ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
             //Vaccine
-            ddlVaccinePhases.SelectedIndex = currentRes.VaccineEligibility != null ? (int)currentRes.VaccineEligibility : 4;
-            bool? flag = currentRes.VaccineInterest;
-            if(flag != null && (bool)flag)
+            ddlVaccineStatus.SelectedValue = currentRes.VaccineStatus;
+            tbAppointmentDate.Text = currentRes.VaccineAppointmentDate;
+            //Chronic Illness
+            if (currentRes.ChronicIllnesses.Count > 0)
             {
-                if (string.IsNullOrEmpty(currentRes.VaccineAppointmentDate))
-                {
-                    ddlVaccineStatus.SelectedIndex = 2; //Interested, not scheduled
-                }
-                else if(DateTime.Parse(currentRes.VaccineAppointmentDate) > DateTime.Now )
-                {
-                    ddlVaccineStatus.SelectedIndex = 3; //Appointment scheduled and hasn't happened yet.
-                    tbAppointmentDate.Text = currentRes.VaccineAppointmentDate.ToString();
-                }
-                else //Should double check with vaccinated status
-                {
-                    ddlVaccineStatus.SelectedIndex = 4; //Vaccinated
-                    tbAppointmentDate.Text = currentRes.VaccineAppointmentDate.ToString();
-                }
-            }
-            else if(flag == null)
-            {
-                ddlVaccineStatus.SelectedIndex = 0; //No information
-            }
-            else
-            {
-                ddlVaccineStatus.SelectedIndex = 1; //Not interested
+                List<ListItem> ciList = cblChronicHealth.Items.OfType<ListItem>().ToList(); //Check the matches
+                currentRes.ChronicIllnesses.ForEach(ci =>
+                    ciList.Find(li => int.Parse(li.Value) == ci.ChronicIllnessID).Selected = true
+                    );
             }
 
 
@@ -161,6 +159,10 @@ namespace CaresTracker
             btnSaveEdits.Visible = true;
             btnCancelEdits.Visible = true;
             btnEditProfile.Visible = false;
+            if (currentRes.Imported)
+            {
+                hdnfldFormattedAddress.Value = "";
+            }
         }
 
         //Toggle all non-button controls enabled status 
@@ -185,10 +187,10 @@ namespace CaresTracker
                 }
             }
         }
+
         // Toggle HTMLInput element used for API
         private void ToggleHTMLInputElement()
         {
-            
             if (!txtAddress.Disabled)
             {
                 txtAddress.Disabled = true;
@@ -201,17 +203,14 @@ namespace CaresTracker
 
         protected void btnSaveEdits_Click(object sender, EventArgs e)
         {
-            // Check that address is selected from the API predictions list
-            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
-            {
-                lblWrongAddressInput.Visible = true;
+            if (!ValidatePage())
                 return;
-            }
 
             Resident res = new Resident();
             //Resident Info
             res.ResidentID = currentRes.ResidentID;
-            res.ResidentPhoneNumber = tbPhone.Text.Replace("-", "");
+            res.ResidentPhoneNumber = Validation.IsPhoneNumber(tbPhone.Text).strPhone;
+            tbPhone.Text = res.ResidentPhoneNumber; // display formatted phone
             res.ResidentEmail = tbEmail.Text;
             res.ResidentFirstName = tbFirstName.Text;
             res.ResidentLastName = tbLastName.Text;
@@ -219,42 +218,75 @@ namespace CaresTracker
             res.Gender = rblGender.SelectedValue;
             res.Race = ddlRace.SelectedValue;
             res.RelationshipToHoH = ddlHoH.SelectedValue;
-            res.VaccineEligibility = int.Parse(ddlVaccinePhases.SelectedValue);
             res.PreferredLanguage = ddlLanguage.SelectedItem.Text;
-            int interest = ddlVaccineStatus.SelectedIndex;
-            if (interest == 0)
-            {
-                res.VaccineInterest = null; //No info
-            }
-            else if(interest == 1)
-            {
-                res.VaccineInterest = false; //Not interested
-            }
-            else
-            {
-                res.VaccineInterest = true; //Interested or vaccinated
-            }
+            //Vaccine Info
+            res.VaccineStatus = ddlVaccineStatus.SelectedValue;
             res.VaccineAppointmentDate = tbAppointmentDate.Text;
+            //Chronic Illnesses
+            //Get all currently selected CI values(Value = CI ID)
+            List<string> selectedCI = cblChronicHealth.Items.Cast<ListItem>()
+               .Where(li => li.Selected)
+               .Select(li => li.Value)
+               .ToList();
+            DataTable ciDT = ViewState["CI"] as DataTable;
+            
+            //Find matching rows in DataTable
+            List<DataRow> CIs = new List<DataRow>();
+            selectedCI.ForEach(val =>
+                CIs.AddRange(ciDT.Select($"ChronicIllnessID='{val}'")
+                ));
+            //Create List of Chronic Illnesses with DRs
+            List<ChronicIllness> newCIs = new List<ChronicIllness>();
+            CIs.ForEach(dr => newCIs.Add(new ChronicIllness(dr)));
+            try
+            {
+                new UpdateResidentChronicIllnesses(newCIs, res.ResidentID).ExecuteCommand();
+                res.ChronicIllnesses = newCIs;
+            }
+            catch (Exception ex)
+            {
+                lblErrorMessage.Text = ex.Message;
+            }
+
             //Housing Info
             res.Home = new House();
-
-            // Slice up formatted address from Google API
-            string formatted_address = hdnfldFormattedAddress.Value;
-            string[] list = formatted_address.Split(',');
-
-            string Address = list[0];
-            // Remove "PA" from zipcode string
-            string ZipCode = list[2].Remove(0, 4);
-
-            res.Home.Address = Address;
+            res.Home.HouseID = currentRes.Home.HouseID;
+            res.Home.Address = txtAddress.Value;
+            res.Home.ZipCode = tbZipcode.Text;
             res.Home.UnitNumber = tbUnitNumber.Text;
             res.Home.RegionName = ddlRegion.SelectedItem.Text;
             res.Home.RegionID = int.Parse(ddlRegion.SelectedValue);
             res.Home.DevelopmentID = int.Parse(ddlHousingDevelopment.SelectedValue);
-            res.Home.ZipCode = ZipCode;
 
-            // Change txtZipCode to reflect new ZipCode
-            tbZipcode.Text = ZipCode;
+            if (!hdnfldFormattedAddress.Value.Equals(txtAddress.Value)) // If a new address was selected
+            {
+                // Slice up formatted address from Google API
+                string formatted_address = hdnfldFormattedAddress.Value;
+                string[] list = formatted_address.Split(',');
+
+                string Address = list[0];
+                // Remove "PA" from zipcode string
+                string ZipCode = list[2].Remove(0, 4);
+
+                // Assign values
+                res.Home.Address = Address;
+                res.Home.ZipCode = ZipCode;
+
+                // Change txtZipCode to reflect new ZipCode
+                tbZipcode.Text = ZipCode;
+
+                AddHouse AH = new AddHouse(res.Home);
+                object AddHouseResult = AH.ExecuteCommand();
+                res.Home.HouseID = Convert.ToInt32(AddHouseResult);
+
+                // Update Resident's HouseID to match new House
+                UpdateHouseID UHI = new UpdateHouseID();
+                UHI.ExecuteCommand(res.ResidentID, res.Home.HouseID);
+            }
+            else if (res.Home.DevelopmentID != currentRes.Home.DevelopmentID) // if housing dev was changed but address wasn't
+            {
+                new UpdateHouse(res.Home).ExecuteCommand();
+            }
 
             if (res.Home.DevelopmentID != -1) //If not HCV
             {
@@ -262,15 +294,6 @@ namespace CaresTracker
                 res.HousingDevelopment.DevelopmentID = res.Home.DevelopmentID;
                 res.HousingDevelopment.DevelopmentName = ddlHousingDevelopment.SelectedItem.Text;
             }
-
-
-            AddHouse AH = new AddHouse(res.Home);
-            object AddHouseResult = AH.ExecuteCommand();
-            res.Home.HouseID = Convert.ToInt32(AddHouseResult);
-
-            // Update Resident's HouseID to match new House
-            UpdateHouseID UHI = new UpdateHouseID();
-            UHI.ExecuteCommand(res.ResidentID, res.Home.HouseID);
 
             Session["Resident"] = res;
             //Update the resident values
@@ -281,7 +304,14 @@ namespace CaresTracker
                 ToggleHTMLInputElement();
                 btnEditProfile.Visible = true;
                 btnSaveEdits.Visible = false;
+                btnCancelEdits.Visible = false;
                 lblErrorMessage.Text = string.Empty;
+                if (currentRes.Imported)
+                {
+                    res.Imported = false;
+                    lblImportWarning.Visible = false;
+                    new SetImported().ExecuteCommand(currentRes.ResidentID, false);
+                }
             }
             catch(Exception ex)
             {
@@ -291,7 +321,6 @@ namespace CaresTracker
 
             ddlRegion.Enabled = false;
             ViewState["EditMode"] = false;
-            
         }
 
         protected void lnkResidentLookup_Click(object sender, EventArgs e)
@@ -328,6 +357,63 @@ namespace CaresTracker
             ddlRegion.Enabled = false;
             ViewState["EditMode"] = false;
             InitializeProfileValues();
+        }
+
+        protected void btnToggleActivation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new SetProfileActivationStatus().ExecuteCommand(currentRes.ResidentID, !currentRes.IsActive);
+
+                currentRes.IsActive = !currentRes.IsActive;
+                btnToggleActivation.Text = currentRes.IsActive ? "Deactivate Profile" : "Reactivate Profile";
+
+                Session["Resident"] = currentRes;
+            }
+            catch (Exception ex)
+            {
+                lblErrorInactivate.Text = $"Error toggling activation status: {ex.Message}";
+            }
+        }
+
+        private bool ValidatePage()
+        {
+            List<TextBox> mandatory = new List<TextBox>() { tbFirstName, tbLastName, tbPhone, tbDoB };
+            bool isValid = true;
+
+            if (hdnfldFormattedAddress.Value.Equals("") || !hdnfldName.Value.Equals(txtAddress.Value))
+            {
+                isValid = false;
+                lblWrongAddressInput.Visible = true;
+            }
+            else
+            {
+                lblWrongAddressInput.Visible = false;
+            }
+
+            if (mandatory.Any(tb => string.IsNullOrWhiteSpace(tb.Text)))
+            {
+                isValid = false;
+                lblRIError.Text = "First Name, Last Name, Phone Number and Date of Birth are mandatory";
+                lblRIError.Visible = true;
+            }
+            else
+            {
+                lblRIError.Visible = false;
+            }
+
+            if (!Validation.IsPhoneNumber(tbPhone.Text).isValid)
+            {
+                isValid = false;
+                lblErrorPhone.Text = "Enter 10 digits or ###-###-####";
+                lblErrorPhone.Visible = true;
+            }
+            else
+            {
+                lblErrorPhone.Visible = false;
+            }
+
+            return isValid;
         }
     }
 }

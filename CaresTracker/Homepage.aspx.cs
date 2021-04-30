@@ -23,6 +23,7 @@ namespace CaresTracker
             {
                 divCreateCHW.Visible = false;
             }
+
             if (!IsPostBack)
             {
                 InitializeEvents();
@@ -50,8 +51,6 @@ namespace CaresTracker
         public void InitializeFollowUps()
         {
             AWSCognitoManager man = (AWSCognitoManager)Session["CognitoManager"];
-
-            //Probably want to eventually add Date filtering, e.g. only show completed interactions from the past month or something
 
             DataTable uncompleted = new GetUncompletedFollowUps().RunCommand(man.Username);
             ViewState["Uncompleted"] = uncompleted;
@@ -140,5 +139,9 @@ namespace CaresTracker
             //Error handling?
         }
 
+        protected void lnkHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Homepage.aspx");
+        }
     }
 }

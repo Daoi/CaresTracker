@@ -1,9 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateResident.aspx.cs" MasterPageFile="~/CaresTracker.Master" Inherits="CaresTracker.CreateResident" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container homepage">
+    <div class="container-fluid homepage">
         <div>
-            <div class="row modal-header offwhiteBackground" style="height: 7%; font-size: large">
+            <div class="row modal-header offwhiteBackground p-0" style="height: 50px; font-size: large">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent">
                         <li class="breadcrumb-item" style="color: deepskyblue">
@@ -18,10 +18,10 @@
                 <asp:HiddenField ID="hdnfldName" ClientIDMode="Static" runat="server" />
             </div>
             <div class="row m-3 justify-content-center mt-5">
-                <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationError" role="alert" Visible="false"></asp:Label>
+                <asp:Label runat="server" class="errorLabel" ID="lblValidationError" role="alert" Visible="false"></asp:Label>
             </div>
             <%-- Resident Info Start --%>
-            <div class="container-fluid mt-5 w-75">
+            <div class="container-fluid mt-3 w-75">
                 <div class="row">
                     <div class="col">
                         <h5>Personal Information:</h5>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>First Name: </label>
+                        <label class="required">First Name: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server"></asp:TextBox>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Last Name: </label>
+                        <label class="required">Last Name: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server"></asp:TextBox>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Date of Birth: </label>
+                        <label class="required">Date of Birth: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtDOB" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox>
@@ -61,10 +61,10 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Phone Number: </label>
+                        <label class="required">Phone Number: </label>
                     </div>
                     <div class="col-7">
-                        <asp:Label runat="server" For="txtPhoneNumber" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationPhone" role="alert" Visible="false"></asp:Label>
+                        <asp:Label runat="server" For="txtPhoneNumber" class="errorLabel" ID="lblValidationPhone" role="alert" Visible="false"></asp:Label>
                         <asp:TextBox ID="txtPhoneNumber" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
@@ -74,9 +74,13 @@
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlRelationshipHOH" CssClass="form-control" runat="server">
-                            <asp:ListItem>Self</asp:ListItem>
-                            <asp:ListItem>Spouse</asp:ListItem>
+                            <asp:ListItem>Unknown</asp:ListItem>
+                            <asp:ListItem>Head of House</asp:ListItem>
+                            <asp:ListItem>Spouse/Partner</asp:ListItem>
+                            <asp:ListItem>Sibling</asp:ListItem>
                             <asp:ListItem>Child</asp:ListItem>
+                            <asp:ListItem>Parent</asp:ListItem>
+                            <asp:ListItem>Other</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -85,8 +89,9 @@
                         <label>Gender: </label>
                     </div>
                     <div class="col-7" id="divrblGender">
-                        <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationGender" role="alert" Visible="false"></asp:Label>
+                        <asp:Label runat="server" class="errorLabel" ID="lblValidationGender" role="alert" Visible="false"></asp:Label>
                         <asp:RadioButtonList ID="rblGender" CssClass="" RepeatDirection="Vertical" runat="server">
+                            <asp:ListItem Selected="True">Unknown</asp:ListItem>
                             <asp:ListItem>Male</asp:ListItem>
                             <asp:ListItem>Female</asp:ListItem>
                             <asp:ListItem>Prefer not to say</asp:ListItem>
@@ -99,6 +104,7 @@
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlRace" CssClass="form-control" RepeatDirection="Horizontal" runat="server">
+                            <asp:ListItem>Unknown</asp:ListItem>
                             <asp:ListItem>American Indian/Alaska Native</asp:ListItem>
                             <asp:ListItem>Asian</asp:ListItem>
                             <asp:ListItem>Black or African American</asp:ListItem>
@@ -107,12 +113,13 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="row m-3">
+                <div class="row m-3 mb-5">
                     <div class="col">
                         <label>Preferred Language: </label>
                     </div>
                     <div class="col-7">
                         <asp:DropDownList CssClass="form-control" ID="ddlLanguage" RepeatDirection="Horizontal" runat="server">
+                            <asp:ListItem>Unknown</asp:ListItem>
                             <asp:ListItem>English</asp:ListItem>
                             <asp:ListItem>Spanish</asp:ListItem>
                             <asp:ListItem>French</asp:ListItem>
@@ -125,7 +132,7 @@
                     </div>
                 </div>
                 <%-- Resident Info End --%>
-
+                <hr />
                 <%-- House Start --%>
                 <div class="row">
                     <div class="col">
@@ -134,10 +141,10 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Housing Type:</label>
+                        <label class="required">Housing Type: </label>
                     </div>
                     <div class="col-7">
-                        <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblValidationHousing" role="alert" Visible="false"></asp:Label>
+                        <asp:Label runat="server" class="errorLabel" ID="lblValidationHousing" role="alert" Visible="false"></asp:Label>
                         <asp:DropDownList ID="ddlHousing" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHousing_SelectedIndexChanged">
                             <asp:ListItem Value="None Selected">Select Housing Type</asp:ListItem>
                             <asp:ListItem Value="divHouse">Housing Choice Voucher</asp:ListItem>
@@ -149,13 +156,13 @@
 
                 <div class="row m-3">
                     <div class="col">
-                        <label>Personal Address: </label>
+                        <label class="required">Personal Address: </label>
                     </div>
                     <div class="col-7">
-                        <asp:Label runat="server" class="h6 rounded px-2 py-1 alert-danger" ID="lblWrongAddressInput" role="alert" Visible="false">
+                        <asp:Label runat="server" class="errorLabel" ID="lblWrongAddressInput" role="alert" Visible="false">
                                 You must select an address from the list
                         </asp:Label>
-                        <input id="txtAddress" type="text" runat="server" class="form-control" />
+                        <input id="txtAddress" type="text" placeholder="" runat="server" class="form-control" />
                     </div>
                 </div>
                 <div class="row m-3">
@@ -224,10 +231,10 @@
 
                 <div class="row m-3 justify-content-center mt-3">
                     <div class="col text-center">
-                        <asp:Label runat="server" class="h5 rounded px-2 py-1 alert-danger" ID="lblFail" role="alert" Visible="false">
+                        <asp:Label runat="server" class="errorLabel" ID="lblFail" role="alert" Visible="false">
                                 Could not add resident and/or house to the database
                         </asp:Label>
-                        <asp:Label runat="server" class="h5 rounded px-2 py-1 alert-danger" ID="lblUniqueResident" role="alert" Visible="false">
+                        <asp:Label runat="server" class="errorLabel" ID="lblUniqueResident" role="alert" Visible="false">
                                 Resident profile already exists!
                         </asp:Label>
                     </div>

@@ -1,9 +1,9 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/CaresTracker.Master" AutoEventWireup="true" CodeBehind="EventCreator.aspx.cs" Inherits="CaresTracker.EventCreator" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
-        <div class="container homepage">
-            <div class="row modal-header offwhiteBackground" style="height: 7%; padding-left: 0!important; padding-right: 0!important; font-size: large; padding-bottom: 2%">
+    <div class="container-fluid p-0">
+        <div class="container-fluid homepage">
+            <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large;">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent">
                         <li class="breadcrumb-item" style="color: deepskyblue">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Name:</label>
+                        <label class="required">Event Name: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtEventName" placeholder="Event Name" runat="server" CssClass="form-control"></asp:TextBox><br />
@@ -27,7 +27,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Location: </label>
+                        <label class="required">Event Location: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtEventLocation" placeholder="Event Location" runat="server" CssClass="form-control"></asp:TextBox><br />
@@ -35,7 +35,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Date: </label>
+                        <label class="required">Event Date: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtEventDate" placeholder="Event Date" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox><br />
@@ -43,7 +43,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Start Time: </label>
+                        <label class="required">Event Start Time: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtEventTimeStart" placeholder="Event Time Start" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
@@ -51,7 +51,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event End Time: </label>
+                        <label class="required">Event End Time: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtEventTimeEnd" placeholder="Event Time End" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox><br />
@@ -59,11 +59,11 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Select Health Workers to Host Event:</label>
-                        <div id="userCBLDiv" class="DataboundCBLOverflow row">
-                            <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="myCheckBoxList" CellPadding="15" RepeatColumns="4" RepeatDirection="Horizontal" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged">
-                            </asp:CheckBoxList>
-                        </div>
+                        <label class="required">Select Health Workers to Host Event: </label>
+                    </div>
+                    <div id="userCBLDiv" class="col-7 cblWorker overflow-auto">
+                        <asp:CheckBoxList ID="cblUsers" runat="server" AutoPostBack="true" CssClass="table" OnSelectedIndexChanged="cblUsers_SelectedIndexChanged" RepeatDirection="Vertical">
+                        </asp:CheckBoxList>
                     </div>
                 </div>
                 <asp:UpdatePanel ID="upMainHost" UpdateMode="Conditional" runat="server">
@@ -73,7 +73,7 @@
                     <ContentTemplate>
                         <div class="row m-3">
                             <div class="col">
-                                <label>Select Main Host</label>
+                                <label class="required">Select Main Host: </label>
                             </div>
                             <div class="col-7">
                                 <asp:DropDownList ID="ddlMainHost" CssClass="form-control" runat="server">
@@ -88,7 +88,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Type: </label>
+                        <label class="required">Event Type: </label>
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlEventType" CssClass="form-control" runat="server"></asp:DropDownList>
@@ -96,11 +96,14 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Event Description and Notes:</label>
+                        <label class="required">Event Description and Notes: </label>
                     </div>
                     <div class="col-7">
-                        <textarea class="w-100 form-control" id="txtDescription" rows="6" runat="server"></textarea>
+                        <asp:TextBox ID="txtDescription" CssClass="w-100 form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
                     </div>
+                </div>
+                <div class="row m-3">
+                    <asp:Label ID="lblError" CssClass="errorLabel" Visible="false" runat="server"></asp:Label>
                 </div>
                 <div class="row m-3">
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="buttonStyle" OnClick="btnSubmit_Click" />

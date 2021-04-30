@@ -10,6 +10,7 @@ using CaresTracker.DataAccess.DataAccessors.GenericAccessors;
 using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
 using CaresTracker.DataModels;
 using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
+using CaresTracker.Exporting;
 
 namespace CaresTracker
 {
@@ -26,7 +27,7 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                new List<GridView>() { gvRegions, gvServices, gvHousingDevelopments, gvEventTypes }.ForEach(gv =>
+                new List<GridView>() { gvRegions, gvServices, gvEventTypes }.ForEach(gv =>
                 {
                     gv.DataBound += (object o, EventArgs ev) =>
                     {
@@ -39,11 +40,6 @@ namespace CaresTracker
                 gvRegions.DataSource = new GetAllRegions().ExecuteCommand();
                 gvRegions.DataKeyNames = new string[] { "RegionID", "OrganizationID" }; // store hidden ids
                 gvRegions.DataBind();
-
-                // set up HousingDevelopments
-                gvHousingDevelopments.DataSource = new GetAllDevelopments().ExecuteCommand();
-                gvHousingDevelopments.DataKeyNames = new string[] { "DevelopmentID" };
-                gvHousingDevelopments.DataBind();
 
                 // set up Services
                 gvServices.DataSource = new GetAllServices().ExecuteCommand();
@@ -103,27 +99,6 @@ namespace CaresTracker
             }
         }
 
-        protected void btnDevelopmentUpdate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvHousingDevelopments, "DevelopmentID", "chkDevelopmentEnabled", 2);
-                if (new UpdateRecordIsEnabled("HousingDevelopment", "DevelopmentID", "DevelopmentIsEnabled", pairs).ExecuteCommand() > 0)
-                {
-                    // update success
-                    Response.Redirect("./AdminSettings.aspx", false);
-                }
-
-                lblDevelopmentError.Text = "An unknown error occurred. Please try again later.";
-                lblDevelopmentError.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                lblDevelopmentError.Text = ex.Message;
-                lblDevelopmentError.Visible = true;
-            }
-        }
-
         protected void btnServiceUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -149,30 +124,61 @@ namespace CaresTracker
         private List<(int id, bool isEnabled)> GetIsEnabledPairs(GridView gv, string idCol, string chkID, int chkIndex)
         {
             List<(int id, bool isEnabled)> pairs = new List<(int id, bool isEnabled)>();
+
+            bool atLeastOneEnabled = false;
             gv.Rows.Cast<GridViewRow>().ToList().ForEach(row =>
             {
-                pairs.Add((int.Parse(gv.DataKeys[row.RowIndex][idCol].ToString()),
-                    ((CheckBox)row.Cells[chkIndex].FindControl(chkID)).Checked));
+                bool currentCheck = ((CheckBox)row.Cells[chkIndex].FindControl(chkID)).Checked;
+                atLeastOneEnabled = atLeastOneEnabled || currentCheck;
+
+                pairs.Add((int.Parse(gv.DataKeys[row.RowIndex][idCol].ToString()), currentCheck));
             });
+
+            if (!atLeastOneEnabled) { throw new InvalidOperationException("There must be at least one option enabled."); }
 
             return pairs;
         }
 
+        /// <summary>
+        /// Checks if a value is unique in a GridView.
+        /// Use before inserting a new database value.
+        /// </summary>
+        /// <param name="gv"></param>
+        /// <param name="colIndex">The index of the column to check against.</param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        private bool IsNewValueUnique(GridView gv, int colIndex, string newValue)
+        {
+            return !gv.Rows.OfType<GridViewRow>().ToList().Any(row =>
+            {
+                return row.Cells[colIndex].Text.ToLower().Equals(newValue.ToLower());
+            });
+        }
+
         protected void btnAddService_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtServiceName.Text))
+            string strClean = txtServiceName.Text.Trim();
+            if (string.IsNullOrEmpty(strClean))
             {
                 lblAddServiceError.Text = "Service Name cannot be empty.";
                 lblAddServiceError.Visible = true;
                 return;
             }
 
+            if (!IsNewValueUnique(gvServices, 0, strClean))
+            {
+                lblAddServiceError.Text = "This Service already exists.";
+                lblAddServiceError.Visible = true;
+                return;
+            }
+
+
             lblAddServiceError.Text = string.Empty;
             lblAddServiceError.Visible = false;
 
             try
             {
-                if (new InsertService(txtServiceName.Text).ExecuteCommand() > 0)
+                if (new InsertService(strClean).ExecuteCommand() > 0)
                 {
                     // insert success
                     Response.Redirect("./AdminSettings.aspx", false);
@@ -193,28 +199,37 @@ namespace CaresTracker
             try
             {
                 List<(int id, bool isEnabled)> pairs = GetIsEnabledPairs(gvEventTypes, "EventTypeID", "chkEventTypeIsEnabled", 1);
+
                 if (new UpdateRecordIsEnabled("EventType", "EventTypeID", "EventTypeIsEnabled", pairs).ExecuteCommand() > 0)
                 {
                     // update success
                     Response.Redirect("./AdminSettings.aspx", false);
                 }
 
-                lblServiceError.Text = "An unknown error occurred. Please try again later.";
-                lblServiceError.Visible = true;
+                lblEventTypeError.Text = "An unknown error occurred. Please try again later.";
+                lblEventTypeError.Visible = true;
             }
             catch (Exception ex)
             {
-                lblServiceError.Text = ex.Message;
-                lblServiceError.Visible = true;
+                lblEventTypeError.Text = ex.Message;
+                lblEventTypeError.Visible = true;
             }
         }
 
         protected void btnAddEventType_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEventTypeName.Text))
+            string strClean = txtEventTypeName.Text.Trim();
+            if (string.IsNullOrEmpty(strClean))
             {
-                lblAddServiceError.Text = "Event Type Name cannot be empty.";
-                lblAddServiceError.Visible = true;
+                lblAddEventTypeError.Text = "Event Type Name cannot be empty.";
+                lblAddEventTypeError.Visible = true;
+                return;
+            }
+
+            if (!IsNewValueUnique(gvEventTypes, 0, strClean))
+            {
+                lblAddEventTypeError.Text = "This Event Type already exists.";
+                lblAddEventTypeError.Visible = true;
                 return;
             }
 
@@ -223,7 +238,7 @@ namespace CaresTracker
 
             try
             {
-                if (new InsertEventType(txtEventTypeName.Text).ExecuteCommand() > 0)
+                if (new InsertEventType(strClean).ExecuteCommand() > 0)
                 {
                     // insert success
                     Response.Redirect("./AdminSettings.aspx", false);
@@ -237,6 +252,16 @@ namespace CaresTracker
                 lblAddEventTypeError.Text = ex.Message;
                 lblAddEventTypeError.Visible = true;
             }
+        }
+
+        protected void lnkHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./Homepage.aspx");
+        }
+
+        protected void btnExportTable_Click(object sender, EventArgs e)
+        {
+            ExportTable.Export(ddlTables.SelectedValue);
         }
     }
 }

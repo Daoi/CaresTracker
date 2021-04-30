@@ -7,6 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using CaresTracker.DataAccess.DataAccessors.EventAccessors;
+using CaresTracker.Utilities;
 using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
 
 namespace CaresTracker
@@ -50,36 +51,40 @@ namespace CaresTracker
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            DataModels.Event newEvent = new DataModels.Event();
-            newEvent.EventName = txtEventName.Text;
-            newEvent.EventLocation = txtEventLocation.Text;
-            newEvent.EventDate = txtEventDate.Text;
-            newEvent.EventStartTime = txtEventTimeStart.Text;
-            newEvent.EventEndTime = txtEventTimeEnd.Text;
-            newEvent.Hosts = new List<CARESUser>();
-            foreach(ListItem item in cblUsers.Items)
+            if (ValidateFields())
             {
-                if (item.Selected)
+                DataModels.Event newEvent = new DataModels.Event();
+                newEvent.EventName = txtEventName.Text;
+                newEvent.EventLocation = txtEventLocation.Text;
+                newEvent.EventDate = txtEventDate.Text;
+                newEvent.EventStartTime = txtEventTimeStart.Text;
+                newEvent.EventEndTime = txtEventTimeEnd.Text;
+                newEvent.Hosts = new List<CARESUser>();
+                foreach (ListItem item in cblUsers.Items)
                 {
-                    int userid = int.Parse(item.Value);
-                    newEvent.Hosts.Add(new CARESUser(CHWDataSet
-                        .AsEnumerable()
-                        .Where(row => int.Parse(row["UserID"].ToString()) == userid)
-                        .First()));
+                    if (item.Selected)
+                    {
+                        int userid = int.Parse(item.Value);
+                        newEvent.Hosts.Add(new CARESUser(CHWDataSet
+                            .AsEnumerable()
+                            .Where(row => int.Parse(row["UserID"].ToString()) == userid)
+                            .First()));
+                    }
                 }
-            }
-            newEvent.Attendees = new List<Resident>();
-            newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
-            newEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
-            newEvent.EventTypeName = ddlEventType.SelectedItem.Text;
-            newEvent.EventDescription = txtDescription.InnerText;
 
-            AddEvent add = new AddEvent(newEvent);
-            int res = add.ExecuteCommand();
-            if (res == 1)
-            {
-                Session["Event"] = newEvent;
-                Response.Redirect("Event.aspx");
+                newEvent.Attendees = new List<Resident>();
+                newEvent.MainHostID = int.Parse(ddlMainHost.SelectedValue);
+                newEvent.EventTypeID = int.Parse(ddlEventType.SelectedValue);
+                newEvent.EventTypeName = ddlEventType.SelectedItem.Text;
+                newEvent.EventDescription = txtDescription.Text;
+
+                AddEvent add = new AddEvent(newEvent);
+                int res = add.ExecuteCommand();
+                if (res == 1)
+                {
+                    Session["Event"] = newEvent;
+                    Response.Redirect("Event.aspx");
+                }
             }
         }
 
@@ -102,5 +107,47 @@ namespace CaresTracker
             ddlMainHost.DataValueField = "UserID";
             ddlMainHost.DataBind();
         }
+
+        public bool ValidateFields()
+        {
+
+            List<TextBox> mandatory = new List<TextBox> { txtEventName, txtEventLocation, txtEventDate, txtEventTimeStart, txtEventTimeEnd, txtDescription };
+            if(!mandatory.All(tb => !string.IsNullOrWhiteSpace(tb.Text)))
+            {
+                lblError.Visible = true;
+                lblError.Text = "Fill out all fields";
+                return false;
+            }
+
+            DateTime startTime = DateTime.Parse(txtEventTimeStart.Text);
+            DateTime endTime = DateTime.Parse(txtEventTimeEnd.Text);
+            if (DateTime.Compare(endTime, startTime) < 0 || DateTime.Compare(startTime, endTime) == 0)
+            {
+                lblError.Visible = true;
+                lblError.Text = "Make sure that start and end time are correct";
+                return false;
+            }
+
+            bool oneChecked = false;
+            foreach(ListItem item in cblUsers.Items)
+            {
+                if (item.Selected)
+                {
+                    oneChecked = true;
+                    break;
+                }
+            }
+
+            if(oneChecked == false)
+            {
+                lblError.Visible = true;
+                lblError.Text = "Please select at least one worker to host the event";
+                return false;
+            }
+
+            lblError.Visible = false;
+            return true;
+        }
+
     }
 }

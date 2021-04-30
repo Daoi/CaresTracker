@@ -1,4 +1,4 @@
-﻿
+﻿using CaresTracker.DataAccess.DataAccessors.CARESUserAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors;
 using CaresTracker.DataAccess.DataAccessors.InteractionAccessors.FollowUps;
 using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
@@ -20,6 +20,7 @@ namespace CaresTracker
         Dictionary<string, Panel> links;
         Resident res;
         Interaction interaction;
+        CARESUser user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,11 +31,13 @@ namespace CaresTracker
                 {"housingInfo", pnlHousingInfoForm }, {"vaccineInfo", pnlVaccineForm}, {"editHistory", pnlEditHistory}
                 };
 
+            user = Session["User"] as CARESUser;
+
             if (!IsPostBack)
             {
                 //Set resident info (first tab) to visible, others to false
                 links.Keys.ToList().Where(s => !s.Equals("residentInfo")).ToList().ForEach(s => links[s].Visible = false);
-                cblServices.DataSource = new GetAllServices().ExecuteCommand();
+                cblServices.DataSource = new GetEnabledServices().ExecuteCommand();
                 cblServices.DataValueField = "ServiceID";
                 cblServices.DataTextField = "ServiceName";
                 cblServices.DataBind();
@@ -48,10 +51,18 @@ namespace CaresTracker
                     divFollowUpStatus.Visible = false;
                     divFollowUpRequired.Visible = true;
                     ViewState["FollowUpRequired"] = null;
+                    tbDoC.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
                 else if (Session["Interaction"] != null && (url.Contains("InteractionList") || url.Contains("SaveSuccessful")))//Old interaction
                 {
+
+
+
                     interaction = Session["Interaction"] as Interaction;
+
+                    if (!user.UserType.Equals("T") && user.OrganizationID != new GetOrgIDByUserID().RunCommand(interaction.HealthWorkerID))
+                        Response.Redirect("Homepage.aspx");
+
                     FillResidentInfo();
                     FillInteractionInfo();
                     ViewState["PanelState"] = true;
@@ -59,8 +70,7 @@ namespace CaresTracker
                     TogglePanels();
                     //Vaccines require a new interaction to be changed
                     tbVaccineAppointmentDate.Enabled = false;
-                    ddlVaccineEligibility.Enabled = false;
-                    ddlVaccineInterest.Enabled = false;
+                    ddlVaccineStatus.Enabled = false;
                     //Services
                     //Side Bar
                     lnkBtnSave.Visible = false; //Can't save old sessions, have to edit
@@ -87,10 +97,13 @@ namespace CaresTracker
                     {
                         editHistory.Visible = true;
                     }
+                    //Edit Permissions
+                    if(( user.UserType.Equals("A") || user.UserType.Equals("C")) && interaction.HealthWorkerID != user.UserID ) //If current user is a partner admin or chw but not the creating user
+                    {
+                        lnkBtnEdit.Visible = false;
+                    }
                 }
-
             }
-
         }
 
 
@@ -119,6 +132,14 @@ namespace CaresTracker
 
         protected void lnkBtnEdit_Click(object sender, EventArgs e)
         {
+
+            Interaction interaction = Session["Interaction"] as Interaction;
+
+            if ( (user.UserType.Equals("C") && interaction.HealthWorkerID != user.UserID) || user.UserType.Equals("A") )
+            {
+                return;
+            }
+
             if (ViewState["EditMode"] == null)
             {
                 ViewState["EditMode"] = true;
@@ -176,6 +197,8 @@ namespace CaresTracker
 
         protected void btnEditSubmit_Click(object sender, EventArgs e)
         {
+
+
             if (string.IsNullOrWhiteSpace(taEditReason.InnerText))
             {
                 lblModalError.Text = "Reason for edit is required";
@@ -210,6 +233,7 @@ namespace CaresTracker
             pnlMeetingInfoForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             //Health Form
             pnlResidentHealthForm.Controls.OfType<TextBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+            pnlResidentHealthForm.Controls.OfType<Panel>().ToList()[0].Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<CheckBox>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             pnlResidentHealthForm.Controls.OfType<DropDownList>().ToList().ForEach(c => c.Enabled = !c.Enabled);
             //Other Form
@@ -234,6 +258,7 @@ namespace CaresTracker
             try
             {
                 new UpdateInteraction(newInteraction).ExecuteCommand();
+                SaveChronicIllnesses();
 
                 new InsertInteractionEdit().ExecuteCommand(date, reason, newInteraction.InteractionID, userId);
             }
@@ -262,6 +287,18 @@ namespace CaresTracker
             try
             {
                 new InteractionWriter(newInteraction).ExecuteCommand();
+
+                // update chronic illnesses
+                SaveChronicIllnesses();
+
+                //Update Resident vaccine values
+                string status = ddlVaccineStatus.SelectedValue;
+                string date = tbVaccineAppointmentDate.Text;
+
+                res.VaccineStatus = status;
+                res.VaccineAppointmentDate = date;
+
+                new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, status, date);
             }
             catch (Exception e)
             {
@@ -269,13 +306,6 @@ namespace CaresTracker
                 lblSave.Visible = true;
                 return;
             }
-
-            //Update Resident vaccine values
-            bool interest = ddlVaccineInterest.SelectedIndex == 1;
-            int eligibility = int.Parse(ddlVaccineEligibility.SelectedValue);//First index doesn't count
-            string date = tbVaccineAppointmentDate.Text;
-
-            new UpdateResidentVaccine().ExecuteCommand(res.ResidentID, interest, eligibility, date);
 
             Session["InteractionSaved"] = true;
             Session["Interaction"] = newInteraction;
@@ -292,13 +322,17 @@ namespace CaresTracker
             {
                 newInteraction.HealthWorkerID = (Session["User"] as CARESUser).UserID; //Interaction is being created now, use current user ID
             }
+            else
+            {
+                newInteraction.HealthWorkerID = (Session["Interaction"] as Interaction).HealthWorkerID;
+            }
 
             newInteraction.ResidentID = res.ResidentID;
             //Form Values
             newInteraction.DateOfContact = tbDoC.Text;
             newInteraction.MethodOfContact = ddlMeetingType.SelectedValue;
             newInteraction.LocationOfContact = tbLocation.Text;
-            newInteraction.COVIDTestLocation = tbTestingLocation.Text.Equals("N/A") ? "" : tbTestingLocation.Text;
+            newInteraction.COVIDTestLocation = Validation.IsEmpty(tbTestingLocation.Text) ? "N/A" : tbTestingLocation.Text;
             if (ddlTestResult.SelectedIndex == 0)
             {
                 newInteraction.COVIDTestResult = string.Empty;
@@ -341,7 +375,6 @@ namespace CaresTracker
             tbPhone.Text = res.ResidentPhoneNumber;
             tbEmail.Text = res.ResidentEmail;
             //Housing Info(Second Tab)
-            //tbResidenceOccupants.Text = res.Home.NumOfOccupants; NOT IMPLEMENTED ON HOUSE/RESIDENT YET. Change TB NAME
             if (res.Home.DevelopmentID == -1)
             {
                 ddlHousingType.SelectedValue = "HCV";
@@ -355,29 +388,25 @@ namespace CaresTracker
             }
             tbRegion.Text = res.Home.RegionName == null ? "Region not implemented yet" : res.Home.RegionName.ToString();
             tbResidentAddress.Text = res.Home.Address;
+            tbZipCode.Text = res.Home.ZipCode;
 
             //Disable auto filled controls
             pnlResidentInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
             pnlHousingInfoForm.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enabled = false);
             ddlHousingType.Enabled = false;
 
+            // Chronic Illnesses
+            List<CheckBox> formIllnesses = pnlChronicIllnesses.Controls.OfType<CheckBox>().ToList(); // Get all ChronicIllness Checkboxes
+            List<int> residentIllnesses = new List<int>();  //Get all symptom names in interaction 
+            res.ChronicIllnesses.ForEach(i => residentIllnesses.Add(i.ChronicIllnessID));
+            formIllnesses //Set checkboxes to checked
+                .Where(cb => residentIllnesses
+                .Contains(int.Parse(cb.ID.Split('_')[1])))
+                .ToList()
+                .ForEach(cb => cb.Checked = true);
+
             //Vaccine Info
-            if (res.VaccineEligibility == null)
-            {
-                ddlVaccineEligibility.SelectedIndex = 0;
-            }
-            else
-            {
-                ddlVaccineEligibility.SelectedValue = res.VaccineEligibility.ToString();
-            }
-            if (res.VaccineInterest == null)
-            {
-                ddlVaccineInterest.SelectedIndex = 0;
-            }
-            else
-            {
-                ddlVaccineInterest.SelectedValue = res.VaccineInterest.ToString();
-            }
+            ddlVaccineStatus.SelectedValue = res.VaccineStatus ?? "Unknown";
 
             if (!string.IsNullOrEmpty(res.VaccineAppointmentDate))
             {
@@ -406,20 +435,10 @@ namespace CaresTracker
             if (!string.IsNullOrWhiteSpace(interaction.SymptomStartDate))
                 tbSymptomDates.Text = interaction.SymptomStartDate;
 
-            if (string.IsNullOrWhiteSpace(interaction.COVIDTestResult))
-            {
-                ddlTestResult.SelectedIndex = 0;
-            }
-            else if (interaction.COVIDTestResult.Equals("No Recent Test"))
-            {
-                tbTestingLocation.Text = "N/A";
-                ddlTestResult.SelectedValue = "No Recent Test";
-            }
-            else
-            {
-                tbTestingLocation.Text = interaction.COVIDTestLocation;
-                ddlTestResult.SelectedValue = interaction.COVIDTestResult;
-            }
+            
+            tbTestingLocation.Text = interaction.COVIDTestLocation;
+            ddlTestResult.SelectedValue = interaction.COVIDTestResult;
+
 
             //Services
             divOldInteractionServices.Visible = true;
@@ -467,17 +486,27 @@ namespace CaresTracker
                 }
             }
 
-
-
             ddlFollowUp.SelectedValue = interaction.RequiresFollowUp.ToString();
 
             //Action Plan
             nextSteps.InnerText = interaction.ActionPlan;
         }
 
+        private void SaveChronicIllnesses()
+        {
+            List<CheckBox> checkedBoxes = pnlChronicIllnesses.Controls.OfType<CheckBox>().Where(cb => cb.Checked).ToList();
+            List<ChronicIllness> illnesses = new List<ChronicIllness>();
+            checkedBoxes.ForEach(cb => illnesses.Add(new ChronicIllness(int.Parse(cb.ID.Split('_')[1]))));
+            new UpdateResidentChronicIllnesses(illnesses, res.ResidentID).ExecuteCommand();
+
+            res.ChronicIllnesses = illnesses;
+            Session["Resident"] = res;
+        }
+
         private bool IsFormValid()
         {
             bool isValid = true;
+            bool editing = (ViewState["EditMode"] as bool?) ?? false;
 
             // meeting info
             if (Validation.IsEmpty(tbLocation.Text) || ddlMeetingType.SelectedIndex == 0 || string.IsNullOrWhiteSpace(tbDoC.Text))
@@ -500,6 +529,7 @@ namespace CaresTracker
                 Validation.IsEmpty(tbSymptomDates.Text))
             {
                 isValid = false;
+                lblErrorSymptoms.Visible = true;
                 lblErrorSymptoms.Text = "You must enter the date symptoms occurred if you selected any.";
 
                 symptomError = true;
@@ -509,37 +539,43 @@ namespace CaresTracker
                 !Validation.IsEmpty(tbSymptomDates.Text))
             {
                 isValid = false;
+                lblErrorSymptoms.Visible = true;
                 lblErrorSymptoms.Text = "You must select symptoms if you entered the date they occurred.";
 
                 symptomError = true;
             }
             else
             {
-                lblErrorSymptoms.Text = "";
+                lblErrorSymptoms.Visible = false;
+                lblErrorSymptoms.Text = string.Empty;
             }
 
             // test result w/o location
             if ((ddlTestResult.SelectedIndex == 1 || ddlTestResult.SelectedIndex == 2) && Validation.IsEmpty(tbTestingLocation.Text))
             {
                 isValid = false;
+                lblErrorCOVIDTest.Visible = true;
                 lblErrorCOVIDTest.Text = "You must enter a testing location if you selected a test result.";
                 icErrorResidentHealth.Visible = true;
             }
             // test location w/o result
-            else if ((ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && !Validation.IsEmpty(tbTestingLocation.Text))
+            else if ( (ddlTestResult.SelectedIndex == 0 || ddlTestResult.SelectedIndex == 3) && (!Validation.IsEmpty(tbTestingLocation.Text) && !tbTestingLocation.Text.Equals("N/A")))
             {
                 isValid = false;
+                lblErrorCOVIDTest.Visible = true;
                 lblErrorCOVIDTest.Text = "You must select a test result if you entered a testing location.";
                 icErrorResidentHealth.Visible = true;
             }
             else
             {
-                lblErrorCOVIDTest.Text = "";
+                lblErrorCOVIDTest.Visible = false;
+                lblErrorCOVIDTest.Text = string.Empty;
                 icErrorResidentHealth.Visible = false || symptomError; // displays if any of this panel's error conditions are met
             }
 
             // vaccine info
-            if (ddlVaccineInterest.SelectedIndex == 0 || ddlVaccineEligibility.SelectedIndex == 0)
+
+            if (ddlVaccineStatus.SelectedIndex == 0 && !editing)
             {
                 isValid = false;
                 lblErrorVaccine.Visible = true;
@@ -550,6 +586,7 @@ namespace CaresTracker
                 lblErrorVaccine.Visible = false;
                 icErrorVaxInfo.Visible = false;
             }
+  
 
             // action plan
             if (Validation.IsEmpty(nextSteps.InnerText))

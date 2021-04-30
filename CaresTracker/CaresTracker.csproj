@@ -158,9 +158,12 @@
     <Content Include="AddResidentAttendees.aspx" />
     <Content Include="AdminSettings.aspx" />
     <Content Include="img\actionvance-guy5aS3GvgA-unsplash.jpg" />
+    <Content Include="img\HorizontalLogo-NoBG.png" />
+    <Content Include="img\horizontallogo_nobg_C55_icon%281%29.ico" />
     <Content Include="img\logo-white.png" />
     <Content Include="img\master-wen-lpLRwDZigvc-unsplash.jpg" />
     <Content Include="img\Temple_University_logo.png" />
+    <Content Include="img\VerticalLogo-NoBG.png" />
     <Content Include="Importing\Files\TextFile1.txt" />
     <Content Include="InteractionList.aspx" />
     <Content Include="CHWManagement.aspx" />
@@ -321,6 +324,10 @@
     <Compile Include="AdminSettings.aspx.designer.cs">
       <DependentUpon>AdminSettings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetOrgIDByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetAllCi.cs" />
+    <Compile Include="DataAccess\DataAccessors\ChronicIllnessAccessors\GetChronicIllnessesByResidentID.cs" />
+    <Compile Include="DataAccess\DataAccessors\CTextReader.cs" />
     <Compile Include="DataAccess\DataAccessors\DevelopmentAccessors\GetDevelopmentsByAdminID.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\AddEvent.cs" />
@@ -338,6 +345,7 @@
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventAttendees.cs" />
     <Compile Include="DataAccess\DataAccessors\EventAccessors\GetEventHosts.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkerStats.cs" />
+    <Compile Include="DataAccess\DataAccessors\HouseAccessors\UpdateHouse.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\DeleteOldInteractionSymptoms.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\GetInteractionEditHistory.cs" />
     <Compile Include="DataAccess\DataAccessors\InteractionAccessors\InsertInteractionEdit.cs" />
@@ -354,19 +362,29 @@
     <Compile Include="DataAccess\DataAccessors\OrganizationAccessors\GetAllOrganizations.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\GetAllRegions.cs" />
     <Compile Include="DataAccess\DataAccessors\RegionAccessors\UpdateRegionAssignments.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalResidentCIReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionAgeReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionContactReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionGenderReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionLanguageReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetInteractionServiceReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalAgeReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalEventReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalGenderReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalLanguageReport.cs" />
-    <Compile Include="DataAccess\DataAccessors\ReportAccessors\GetTotalVaccineReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalAgeReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalEventReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalGenderReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalLanguageReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\DevelopmentReports\GetTotalVaccineReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalInteractionsReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalServicesReport.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetResidentsByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetImported.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetProfileActivationStatus.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResident.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentParameters.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\UpdateResidentVaccine.cs" />
+    <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetEnabledServices.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\InsertService.cs" />
     <Compile Include="DataAccess\DataAccessors\HouseAccessors\UpdateHouseID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\UpdateUserStatus.cs" />
@@ -376,8 +394,14 @@
     <Compile Include="DataAccess\DataAccessors\SymptomAccessors\GetSymptomsByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\ServiceAccessors\GetServicesByInteractionID.cs" />
     <Compile Include="DataAccess\DataAccessors\CARESUserAccessors\GetWorkersByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\TableAccessors\EventView.cs" />
+    <Compile Include="DataAccess\DataAccessors\TableAccessors\InteractionView.cs" />
+    <Compile Include="DataAccess\DataAccessors\TableAccessors\ResidentView.cs" />
+    <Compile Include="DataModels\ChronicIllness.cs" />
+    <Compile Include="Exporting\ExportTable.cs" />
     <Compile Include="Importing\FileManager.cs" />
     <Compile Include="Importing\FileModel\ImportFile.cs" />
+    <Compile Include="Importing\ImportError.cs" />
     <Compile Include="Importing\ImportResidents.cs" />
     <Compile Include="InteractionList.aspx.cs">
       <DependentUpon>InteractionList.aspx</DependentUpon>
@@ -528,6 +552,7 @@
       <DependentUpon>ResidentProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AWSCognitoManager.cs" />
+    <Compile Include="Utilities\GridViewFormatter.cs" />
     <Compile Include="Utilities\TextModeDateFormatter.cs" />
     <Compile Include="Utilities\Validation.cs" />
     <Compile Include="Verify.aspx.cs">
@@ -561,7 +586,9 @@
     <Analyzer Include="..\packages\AWSSDK.CognitoIdentityProvider.3.5.1.27\analyzers\dotnet\cs\AWSSDK.CognitoIdentityProvider.CodeAnalysis.dll" />
     <Analyzer Include="..\packages\AWSSDK.SecurityToken.3.5.1.49\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exporting\Files\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

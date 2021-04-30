@@ -1,11 +1,12 @@
-<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="CaresTracker.Master.cs" Inherits="CaresTracker.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="CaresTracker.Master.cs" Inherits="CaresTracker.Site1" %>
 
 <!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>CARES Tracker</title>
+    <title>PHA CARES Tracker</title>
+    <link rel="icon" href="img/horizontallogo_nobg_C55_icon(1).ico" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" runat="server" />
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
@@ -24,12 +25,12 @@
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
-    <form id="frmMain" runat="server" class="">
+    <form id="frmMain" runat="server" class="backgroundImage">
         <asp:ScriptManager ID="smMaster" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-        <header>
+        <header class="bg-white">
             <div class="container-fluid">
                 <a href="Homepage.aspx">
-                    <img class="w-25 my-4" src="img/Temple_University_logo.png"/>
+                    <img class="brandLogo my-2" src="img/HorizontalLogo-NoBG.png"/>
                 </a>
             </div>
             <nav class="navbar navbar-expand-lg navbar-light cherryBackground">
@@ -49,7 +50,7 @@
                 </div>
             </nav>
         </header>
-        <div id="testimage" class="backgroundImage">
+        <div id="testimage">
             <!-- Timer to check session timeout -- Initialize interval at 1/2 sec so event fires ~on~ page load -->
             <asp:Timer ID="tmrSessionTimeout" runat="server" OnTick="tmrSessionTimeout_Tick" Interval="500"></asp:Timer>
 
@@ -75,7 +76,7 @@
                                     <h5>Enter your credentials</h5>
                                     <h6>Tries left:
                                         <asp:Label ID="lblTriesLeft" runat="server"></asp:Label></h6>
-                                    <asp:Label ID="lblModalError" runat="server" Text="" CssClass="alert-danger"></asp:Label>
+                                    <asp:Label ID="lblModalError" runat="server" Text="" CssClass="errorLabel"></asp:Label>
                                     <br />
                                     <h6 class="col-form-label">Username: </h6>
                                     <asp:TextBox ID="txtModalUsername" runat="server" CssClass="form-control"></asp:TextBox>
@@ -97,10 +98,12 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
-    <footer>
-        <div class="container footerCon text-center">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="h3">Philadelphia Housing Authority</asp:HyperLink>
-            <span class="footer-notice pt-4" style="font-weight: bold">CARES Tracker</span>
+        <footer>
+            <div class=" text-center cherryBackground"> 
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Homepage.aspx" CssClass="h3 text-center text-white">PHA CARES Tracker</asp:HyperLink> 
+            </div>
+        <div class="footerCon text-center">
+             <span class="footer-notice pt-4" style="font-weight: bold">Temple Health ❖ Drexel Community Wellness Hub ❖ Greater Philadelphia Health Action</span>
         </div>
     </footer>
 </body>

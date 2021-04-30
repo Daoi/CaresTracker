@@ -4,6 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title>PHA CARES Tracker</title>
+    <link rel="icon" href="img/horizontallogo_nobg_C55_icon(1).ico" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" runat="server" />
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
@@ -12,24 +14,23 @@
     <script src="../../Scripts/jquery-ui-1.7.1.custom.min.js" type="text/javascript"></script>
     <link href="style/loginStyle.css" rel="stylesheet" />
     <link href="style/style.css" rel="stylesheet" />
-    <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="backgroundImage d-flex">
+        <div class="loginbackgroundImage d-flex">
             <asp:Panel ID="pnlCard" runat="server" CssClass="card mb-3 text-center mx-auto loginCard my-auto">
                 <div class="card-header cherryBackground">
-                    PHA and Lenfest North CARES Tracker
+                    PHA CARES Tracker
                 </div>
                 <div>
-                    <img src="img/Temple_University_logo.png" class="mt-5 loginImg" />
+                    <img src="img/VerticalLogo-NoBG.png" class="mt-5 loginImg" />
                 </div>
                 <div class="card-body">
                     <!-- Login Panel -->
                     <asp:Panel ID="pnlLogin" runat="server">
                         <asp:Label ID="lblInstructions" runat="server" CssClass="text-black-50" Text="Enter your username and password."></asp:Label>
                         <br />
-                        <asp:Label ID="lblError" runat="server" CssClass="h6 alert-danger"></asp:Label>
+                        <asp:Label ID="lblError" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                         <br />
                         <br />
                         <div class="form-group row justify-content-center">
@@ -60,7 +61,7 @@
                             </div>
                             <div class="col">
                                 <br />
-                                <asp:Label ID="lblPRError" runat="server" CssClass="h6 alert-danger"></asp:Label>
+                                <asp:Label ID="lblPRError" runat="server" CssClass="errorLabel" Visible="false"></asp:Label>
                                 <br />
                                 <br />
                                 <div class="form-group row justify-content-center">
@@ -104,7 +105,7 @@
                     </asp:Panel>
                 </div>
                 <div class="card-footer text-muted">
-                    CARES Tracker
+                    PHA CARES Tracker
                 </div>
             </asp:Panel>
         </div>

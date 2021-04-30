@@ -25,20 +25,29 @@
                     </p>
                 </div>
                 <div class="row justify-content-center text-secondary mt-3">
-                    Select file:<br />
-                    <asp:FileUpload CssClass="fileUpload" ID="fileUpload" runat="server"></asp:FileUpload>
+                    <div class="custom-file align-items-center">
+                        <asp:FileUpload CssClass="fileUpload custom-file-input" ID="fileUpload" runat="server"></asp:FileUpload>
+                        <label class="custom-file-label fileUpload" for="MainContent_fileUpload">Choose file</label>
+                    </div>
                 </div>
                 <div class="row justify-content-center mt-3">
                     <asp:DropDownList ID="ddlDevelopments" CssClass="developmentsID" runat="server"></asp:DropDownList>
                 </div>
                 <div class="row justify-content-center mt-5">
-                    <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" OnClick="btnSubmitImport_Click" />
+                    <div class="col-md-6">
+                        <asp:Button ID="btnSubmitImport" runat="server" Text="Import Resident List" CssClass="buttonStyle" OnClick="btnSubmitImport_Click" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Button ID="btnDownloadTemplate" runat="server" Text="Download Template" CssClass="buttonStyle" OnClick="btnDownloadTemplate_Click" />
+                    </div>
                 </div>
-                <div class="row justify-content-center mt-5"></div>
-                <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblInsertCount" CssClass="mt-1" runat="server" Text=""></asp:Label>
+                <div runat="server" visible="false" id="divUploadErrors" class="row justify-content-center mt-3 fileUploadErrors">
+                    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+                </div>
             </div>
             <div class="card-footer text-muted">
-                CARES Tracker
+                PHA CARES Tracker
             </div>
         </div>
     </div>
@@ -51,4 +60,13 @@
             });
         });
     </script>
+
+    <script>
+        //Change file label to file uploaded
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
 </asp:Content>

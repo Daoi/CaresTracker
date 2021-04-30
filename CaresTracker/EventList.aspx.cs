@@ -32,6 +32,9 @@ namespace CaresTracker
             }
 
             dtEventList = Session["EventListDT"] as DataTable;
+
+            if (Request.Browser.IsMobileDevice)
+                gvEventList.Columns[2].Visible = false; //Hide event description on mobile
         }
 
         protected void btnViewEvent_Click(object sender, EventArgs e)
@@ -51,5 +54,6 @@ namespace CaresTracker
         {
             Response.Redirect("./Homepage.aspx");
         }
+        
     }
 }

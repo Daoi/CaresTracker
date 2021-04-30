@@ -10,7 +10,6 @@ namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
 {
     public class UpdateInteractionSymptoms
     {
-
         string command;
         int IntID;
         List<Symptom> symptoms;
@@ -21,6 +20,7 @@ namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
             IntID = id;
             command = SymptomsInsertSQLWriter.WriteSQL(updates, id);
         }
+
         /// <summary>
         /// Update symptoms selection for interaction. Deletes old symptoms belonging to ID.
         /// </summary>
@@ -41,10 +41,6 @@ namespace CaresTracker.DataAccess.DataAccessors.InteractionAccessors
             {
                 throw e;
             }
-
-
         }
-
-
     }
 }

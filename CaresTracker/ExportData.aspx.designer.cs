@@ -13,6 +13,15 @@ namespace CaresTracker {
     public partial class ExportData {
         
         /// <summary>
+        /// ScriptManagerProxy1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManagerProxy ScriptManagerProxy1;
+        
+        /// <summary>
         /// lnkHome control.
         /// </summary>
         /// <remarks>
@@ -22,31 +31,67 @@ namespace CaresTracker {
         protected global::System.Web.UI.WebControls.LinkButton lnkHome;
         
         /// <summary>
-        /// ddlHousingDevelopment control.
+        /// lblReportType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHousingDevelopment;
+        protected global::System.Web.UI.WebControls.Label lblReportType;
         
         /// <summary>
-        /// txtDateInitial control.
+        /// ddlReportType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateInitial;
+        protected global::System.Web.UI.WebControls.DropDownList ddlReportType;
         
         /// <summary>
-        /// txtDateFinal control.
+        /// updtReportDomain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateFinal;
+        protected global::System.Web.UI.UpdatePanel updtReportDomain;
+        
+        /// <summary>
+        /// lblReportDomain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReportDomain;
+        
+        /// <summary>
+        /// ddlReportDomain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlReportDomain;
+        
+        /// <summary>
+        /// txtDateStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDateStart;
+        
+        /// <summary>
+        /// txtDateEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDateEnd;
         
         /// <summary>
         /// lblError control.

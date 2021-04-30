@@ -1,9 +1,9 @@
 ﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" MasterPageFile="~/CaresTracker.Master" CodeBehind="CreateCHW.aspx.cs" Inherits="CaresTracker.CreateCHW" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
-        <div class="container homepage">
-            <div class="row modal-header offwhiteBackground" style="height: 5%; padding-left: 0!important; padding-right: 0!important; font-size: large">
+    <div class="container-fluid p-0">
+        <div class="container-fluid homepage">
+            <div class="row modal-header offwhiteBackground p-0" style="height: 50px; padding-left: 0!important; padding-right: 0!important; font-size: large">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent">
                         <li class="breadcrumb-item" style="color: deepskyblue">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>First Name: </label>
+                        <label class="required">First Name: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server"></asp:TextBox>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Last Name: </label>
+                        <label class="required">Last Name: </label>
                     </div>
 
                     <div class="col-7">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Username: </label>
+                        <label class="required">Username: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtUsername" CssClass="form-control" runat="server"></asp:TextBox>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Email: </label>
+                        <label class="required">Email: </label>
                     </div>
                     <div class="col-7">
                         <div class="input-group">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Phone Number: </label>
+                        <label class="required">Phone Number: </label>
                     </div>
                     <div class="col-7">
                         <asp:TextBox ID="txtPhoneNumber" CssClass="form-control" runat="server"></asp:TextBox>
@@ -76,7 +76,7 @@
                 </div>
                 <div id="ddlOrganizationDiv" class="row m-3" runat="server">
                     <div class="col">
-                        <label>Organization:</label>
+                        <label class="required">Organization: </label>
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlOrganization" CssClass="form-control" runat="server">
@@ -89,7 +89,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <label>Account Type:</label>
+                        <label class="required">Account Type: </label>
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlAccountType" CssClass="form-control" runat="server">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="row m-3">
                     <div class="col">
-                        <asp:Label ID="lblError" CssClass="h6 alert-danger" runat="server"></asp:Label>
+                        <asp:Label ID="lblError" CssClass="errorLabel" runat="server"></asp:Label>
                     </div>
                 </div>
                 <div class="row m-3">
