@@ -43,7 +43,12 @@ namespace CaresTracker
                 cblChronicHealth.DataValueField = "ChronicIllnessID";
                 cblChronicHealth.DataBind();
                 ViewState["CI"] = ciDT;
-                
+
+
+                ddlHoH.DataSource = new GetRelationships().RunCommand();
+                ddlHoH.DataTextField = "Relationship";
+                ddlHoH.DataValueField = "Relationship";
+                ddlHoH.DataBind();
 
                 DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
                 ViewState["DevelopmentDT"] = developmentDT;
@@ -62,6 +67,14 @@ namespace CaresTracker
                 {
                     lblImportWarning.Text = "This resident was imported, please ensure their address is correct by editing their profile and selecting the value from the drop downlist.";
                     lblImportWarning.Visible = true;
+
+                }
+
+                if (currentRes.DoBImported)
+                {
+                    lblDoBWarning.Text = "This resident was imported, the day and month of their Date of Birth are likely inaccurate. Please update it if you can.";
+                    lblDoBWarning.Visible = true;
+                    ViewState["DoB"] = tbDoB.Text;
                 }
 
                 if (!currentRes.IsActive)
@@ -97,10 +110,10 @@ namespace CaresTracker
             tbDoB.Text = TextModeDateFormatter.Format(currentRes.DateOfBirth);
             tbPhone.Text = currentRes.ResidentPhoneNumber;
             tbEmail.Text = currentRes.ResidentEmail;
-            rblGender.SelectedValue = currentRes.Gender;
+            rblGender.SelectedValue = string.IsNullOrWhiteSpace(currentRes.Gender) ? "Unknown" : currentRes.Gender;
             ddlHoH.SelectedValue = currentRes.RelationshipToHoH;
             ddlRace.SelectedValue = currentRes.Race;
-            ddlLanguage.SelectedValue = currentRes.PreferredLanguage;
+            ddlLanguage.SelectedValue = string.IsNullOrWhiteSpace(currentRes.PreferredLanguage) ? "Unknown" : currentRes.PreferredLanguage;
             //Vaccine
             ddlVaccineStatus.SelectedValue = currentRes.VaccineStatus;
             tbAppointmentDate.Text = currentRes.VaccineAppointmentDate;
@@ -295,7 +308,6 @@ namespace CaresTracker
                 res.HousingDevelopment.DevelopmentName = ddlHousingDevelopment.SelectedItem.Text;
             }
 
-            Session["Resident"] = res;
             //Update the resident values
             try
             {
@@ -306,14 +318,40 @@ namespace CaresTracker
                 btnSaveEdits.Visible = false;
                 btnCancelEdits.Visible = false;
                 lblErrorMessage.Text = string.Empty;
-                if (currentRes.Imported)
+                if (currentRes.Imported && currentRes.DoBImported)
                 {
                     res.Imported = false;
                     lblImportWarning.Visible = false;
-                    new SetImported().ExecuteCommand(currentRes.ResidentID, false);
+                    string DoB = ViewState["DoB"].ToString() ?? res.DateOfBirth;
+                    bool dobUpdated = !DoB.Equals(tbDoB.Text);
+                    if (dobUpdated) //Fixed DoB and Address
+                    {
+                        new SetImported().ExecuteCommand(currentRes.ResidentID, false, false);
+                        res.DoBImported = false;
+                        lblDoBWarning.Visible = false;
+                    }
+                    else //Fixed only address
+                    {
+                        new SetImported().ExecuteCommand(currentRes.ResidentID, false, true);
+                    }
                 }
+                else if (currentRes.DoBImported)//Address was fixed previously, DoB still not fixed
+                {
+                    string DoB = ViewState["DoB"].ToString() ?? res.DateOfBirth;
+                    bool dobUpdated = !DoB.Equals(tbDoB.Text);
+
+                    if (dobUpdated) //DoB fixed
+                    {
+                        new SetImported().ExecuteCommand(currentRes.ResidentID, false, false);
+                        res.DoBImported = false;
+                    }
+
+                }
+
+                Session["Resident"] = res;
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblErrorMessage.Visible = true;
                 lblErrorMessage.Text = $"Failed to update profile: {ex.Message}";

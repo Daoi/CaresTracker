@@ -376,6 +376,7 @@
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalInteractionsReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalServicesReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetRelationships.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetResidentsByUserID.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetImported.cs" />
@@ -553,6 +554,7 @@
     </Compile>
     <Compile Include="Utilities\AWSCognitoManager.cs" />
     <Compile Include="Utilities\GridViewFormatter.cs" />
+    <Compile Include="Utilities\NameCapitalization.cs" />
     <Compile Include="Utilities\TextModeDateFormatter.cs" />
     <Compile Include="Utilities\Validation.cs" />
     <Compile Include="Verify.aspx.cs">

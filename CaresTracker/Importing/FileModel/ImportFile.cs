@@ -11,36 +11,38 @@ namespace CaresTracker.Importing.FileModel
 {
     public class ImportFile
     {
-        [Name("FIRST NAME")]
-        public string ResidentFirstName { get; set; }
-        [Name("LAST NAME")]
-        public string ResidentLastName { get; set; }
-        [Name("GENDER")]
+        [Name("Resident Name")]
+        public string ResidentName { get; set; }
+        [Name("Gender")]
         public string Gender { get; set; }
-        [Name("RACE")]
+        [Name("Race")]
         public string Race { get; set; }
-        [Name("ETHNICITY")]
+        [Name("Ethnicity")]
         public string Ethnicity { get; set; }
-        [Name("DATE OF BIRTH")]
-        public string DoB { get; set; }
-        [Name("AGE")]
+        [Name("Age in Yrs")]
         public string Age { get; set; }
-        [Name("CURRENT ADDRESS-1")]
-        public string Address { get; set; }
-        [Name("CURRENT ADDRESS-2")]
-        public string SecondaryAddress { get; set; }
-        [Name("CURRENT CITY")]
+        [Name("Unit Address")]
+        public string UnitAddress { get; set; }
+        [Name("Apt #")]
+        public string AptNum { get; set; }
+        [Name("Unit")]
+        public string Unit { get; set; }
+        [Name("City")]
         public string City { get; set; }
-        [Name("CURRENT STATE")]
+        [Name("State")]
         public string State { get; set; }
-        [Name("CURRENT ZIP CODE")]
+        [Name("Postal")]
         public string Zipcode { get; set; }
-        [Name("PRIMARY E-MAIL")]
-        public string Email { get; set; }
-        [Name("HEAD OF HOUSEHOLD-STATUS")]
+        [Name("Phone")]
+        public string Phone { get; set; }
+        [Name("Relationship to HOH")]
         public string HoHRelation { get; set; }
-        [Name("HEAD OF HOUSEHOLD")]
+        [Name("HOH Name")]
         public string HoH { get; set; }
+        [Name("Client ID")]
+        public string ClientID { get; set; }
+        [Name("Site Name")]
+        public string Development { get; set; }
 
 
         public static bool GenerateTemplate()
@@ -51,22 +53,22 @@ namespace CaresTracker.Importing.FileModel
                 using (workbook)
                 {
                     var worksheet = workbook.Worksheets.Add("Import Template");
-                    worksheet.Cell("A1").Value = "LAST NAME";
-                    worksheet.Cell("B1").Value = "FIRST NAME";
-                    worksheet.Cell("C1").Value = "GENDER";
-                    worksheet.Cell("D1").Value = "RACE";
-                    worksheet.Cell("E1").Value = "ETHNICITY";
-                    worksheet.Cell("F1").Value = "DATE OF BIRTH";
-                    worksheet.Cell("G1").Value = "AGE";
-                    worksheet.Cell("H1").Value = "CURRENT ADDRESS-1";
-                    worksheet.Cell("I1").Value = "CURRENT ADDRESS-2";
-                    worksheet.Cell("J1").Value = "CURRENT CITY";
-                    worksheet.Cell("K1").Value = "CURRENT STATE";
-                    worksheet.Cell("L1").Value = "CURRENT ZIP CODE";
-                    worksheet.Cell("M1").Value = "PRIMARY E-MAIL";
-                    worksheet.Cell("N1").Value = "HEAD OF HOUSEHOLD-STATUS";
-                    worksheet.Cell("O1").Value = "HEAD OF HOUSEHOLD";
-
+                    worksheet.Cell("A1").Value = "Resident Name";
+                    worksheet.Cell("B1").Value = "Gender";
+                    worksheet.Cell("C1").Value = "Race";
+                    worksheet.Cell("D1").Value = "Ethnicity";
+                    worksheet.Cell("E1").Value = "Age in Yrs";
+                    worksheet.Cell("F1").Value = "Unit";
+                    worksheet.Cell("G1").Value = "Unit Address";
+                    worksheet.Cell("H1").Value = "Apt #";
+                    worksheet.Cell("I1").Value = "City";
+                    worksheet.Cell("J1").Value = "State";
+                    worksheet.Cell("K1").Value = "Postal";
+                    worksheet.Cell("L1").Value = "Phone";
+                    worksheet.Cell("M1").Value = "Relationship to HOH";
+                    worksheet.Cell("N1").Value = "HOH Name";
+                    worksheet.Cell("O1").Value = "Client ID";
+                    worksheet.Cell("P1").Value = "Site Name";
 
                     HttpResponse httpResponse = HttpContext.Current.Response;
                     httpResponse.Clear();

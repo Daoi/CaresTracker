@@ -11,9 +11,9 @@ namespace CaresTracker.DataAccess.DataAccessors.ResidentAccessors
             CommandType = CommandType.StoredProcedure;
         }
 
-        public int ExecuteCommand(int residentID, bool imported)
+        public int ExecuteCommand(int residentID, bool imported, bool dob)
         {
-            Parameters = new MySqlParameter[2] { new MySqlParameter("ResidentID", residentID), new MySqlParameter("Imported", imported) };
+            Parameters = new MySqlParameter[3] { new MySqlParameter("ResidentID", residentID), new MySqlParameter("Imported", imported), new MySqlParameter("DobImported", dob) };
             ExecuteQuery eq = new ExecuteQuery();
             return eq.ExecuteNonQuery(this);
         }

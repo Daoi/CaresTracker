@@ -22,28 +22,47 @@ namespace CaresTracker.Importing
             {
                 //Resident Info
                 Resident res = new Resident();
-                res.ResidentFirstName = record.ResidentFirstName;
-                res.ResidentLastName = record.ResidentLastName;
-                res.ResidentEmail = record.Email;
-                res.RelationshipToHoH = record.HoHRelation;
+                string[] names = record.ResidentName.Split(' ');
                 try
                 {
-                    res.DateOfBirth = DateTime.Parse(record.DoB).ToString("yyyy-MM-dd");
+                    res.ResidentFirstName = Utilities.NameCapitalization.FormatName(names[0]);
+                    res.ResidentLastName = Utilities.NameCapitalization.FormatName(names[1]);
                 }
                 catch (Exception e)
                 {
-                    res.DateOfBirth = record.DoB;
+                    errors.Add(new ImportError(currentRow, $"The Resident Name column contained invalid values or was blank for this record", ""));
+                    currentRow++;
+                    continue;
+
+                }
+
+                res.ResidentPhoneNumber = record.Phone.Replace('/', '-').Trim();
+                if (!Utilities.Validation.IsPhoneNumber(res.ResidentPhoneNumber).isValid)
+                {
+                    if (string.IsNullOrWhiteSpace(res.ResidentPhoneNumber))
+                        res.ResidentPhoneNumber = "000-000-0000";
+                    if (res.ResidentPhoneNumber.Length == 8)
+                        res.ResidentPhoneNumber = "000-" + res.ResidentPhoneNumber;
+                }
+
+                res.RelationshipToHoH = record.HoHRelation;
+                try
+                {
+                    res.DateOfBirth = DateTime.Today.AddYears(-int.Parse(record.Age)).ToString("yyyy-MM-dd"); 
+                }
+                catch (Exception e)
+                {
+                    res.DateOfBirth = DateTime.Today.ToString("yyyy-MM-dd");
                 }
                 res.Gender = record.Gender;
-                res.Race = record.Race;
-                res.ResidentPhoneNumber = "000-000-0000"; //No phone number is provided in the PHA spreadsheet
+                res.Race = string.IsNullOrWhiteSpace(record.Race) ? "Unknown" : record.Race;
                 //House info
                 House home = new House();
-                home.Address = record.Address;
+                home.Address = record.UnitAddress;
                 home.ZipCode = record.Zipcode;
                 home.DevelopmentID = devID;
                 home.RegionID = regionID;
-                home.UnitNumber = string.IsNullOrWhiteSpace(record.SecondaryAddress) ? "N/A" : record.SecondaryAddress;
+                home.UnitNumber = string.IsNullOrWhiteSpace(record.AptNum) ? "N/A" : record.AptNum;
                 res.Home = home;
 
                 string fullname = $"{res.ResidentFirstName} {res.ResidentLastName}";
@@ -89,7 +108,7 @@ namespace CaresTracker.Importing
                     return 0; //Uniqueness error
                 }
                 //Mark the resident as imported
-                new SetImported().ExecuteCommand(Convert.ToInt32(AddResidentResult), true);
+                new SetImported().ExecuteCommand(Convert.ToInt32(AddResidentResult), true, true);
 
                 House residentHouse = newResident.Home;
                 // Write new House to the database
@@ -114,28 +133,30 @@ namespace CaresTracker.Importing
 
             if (string.IsNullOrWhiteSpace(res.ResidentFirstName))
             {
-                invalidColumns.Add("Resident First Name(FIRST NAME)");
+                invalidColumns.Add("Resident First Name(Resident Name)");
             }
 
             if (string.IsNullOrWhiteSpace(res.ResidentLastName))
             {
-                invalidColumns.Add("Resident Last Name(LAST NAME)");
+                invalidColumns.Add("Resident Last Name(Resident Name)");
             }
 
             if (string.IsNullOrWhiteSpace(res.DateOfBirth))
             {
-                invalidColumns.Add("Date of Birth(DATE OF BIRTH)");
+                invalidColumns.Add("Age/DoB(Age in Yrs)");
             }
 
             if (string.IsNullOrWhiteSpace(res.Home.Address))
             {
-                invalidColumns.Add("Resident Address(CURRENT ADDRESS-1)");
+                invalidColumns.Add("Unit Address(Unit Address)");
             }
 
             if (string.IsNullOrWhiteSpace(res.Home.ZipCode))
             {
-                invalidColumns.Add("Zipcode(CURRENT ZIP CODE)");
+                invalidColumns.Add("Zipcode(Postal)");
             }
+
+
 
             return invalidColumns;
         }

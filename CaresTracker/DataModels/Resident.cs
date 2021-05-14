@@ -30,6 +30,7 @@ namespace CaresTracker.DataModels
         public List<ChronicIllness> ChronicIllnesses { get; set; }
         public bool Imported { get; set; }
         public bool IsActive { get; set; }
+        public bool DoBImported { get; set; }
 
         public Resident() { }
 
@@ -62,6 +63,7 @@ namespace CaresTracker.DataModels
 
             Imported = dataRow["Imported"] == DBNull.Value ? false : (bool)dataRow["Imported"];
             IsActive = dataRow["IsActive"] == DBNull.Value ? false : (bool)dataRow["IsActive"];
+            DoBImported = dataRow["DoBImported"] == DBNull.Value ? false : (bool)dataRow["DoBImported"];
         }
 
         /// <summary>
