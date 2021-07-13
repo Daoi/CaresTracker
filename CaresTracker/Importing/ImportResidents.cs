@@ -62,7 +62,7 @@ namespace CaresTracker.Importing
                 home.ZipCode = record.Zipcode;
                 home.DevelopmentID = devID;
                 home.RegionID = regionID;
-                home.UnitNumber = string.IsNullOrWhiteSpace(record.AptNum) ? "N/A" : record.AptNum;
+                home.UnitNumber = string.IsNullOrWhiteSpace($"{record.Unit} {record.AptNum}") ? "N/A" : $"Unit: {record.Unit} Apt# {record.AptNum}";
                 res.Home = home;
 
                 string fullname = $"{res.ResidentFirstName} {res.ResidentLastName}";
