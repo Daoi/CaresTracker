@@ -37,6 +37,8 @@ namespace CaresTracker
                 ToggleControls(); //Set page to disabled status
 
                 //Bind control data
+
+                //Chronic Health Issues
                 DataTable ciDT = new GetAllCi().RunCommand();
                 cblChronicHealth.DataSource = ciDT;
                 cblChronicHealth.DataTextField = "ChronicIllnessName";
@@ -44,18 +46,26 @@ namespace CaresTracker
                 cblChronicHealth.DataBind();
                 ViewState["CI"] = ciDT;
 
-
+                //Relationships
                 ddlHoH.DataSource = new GetRelationships().RunCommand();
                 ddlHoH.DataTextField = "Relationship";
                 ddlHoH.DataValueField = "Relationship";
                 ddlHoH.DataBind();
 
+                //Developments
                 DataTable developmentDT = new GetDevelopmentsByUserID().ExecuteCommand(user.UserID);
                 ViewState["DevelopmentDT"] = developmentDT;
                 ddlHousingDevelopment.DataSource = developmentDT;
                 ddlHousingDevelopment.DataValueField = "DevelopmentID";
                 ddlHousingDevelopment.DataTextField = "DevelopmentName";
                 ddlHousingDevelopment.DataBind();
+
+                //Race Options
+                DataTable raceDT = new GetAllRaces().ExecuteCommand();
+                ddlRace.DataSource = raceDT;
+                ddlRace.DataValueField = "Race";
+                ddlRace.DataTextField = "Race";
+                ddlRace.DataBind();
 
                 InitializeProfileValues();
                 // Provide initial values for hidden fields for google API validation

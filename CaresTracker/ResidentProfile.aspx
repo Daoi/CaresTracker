@@ -120,12 +120,6 @@
                                 <asp:Label ID="lblRace" CssClass="labels" runat="server" Text="Race"></asp:Label>
                                 <br />
                                 <asp:DropDownList ID="ddlRace" CssClass="form-control" RepeatDirection="Horizontal" runat="server">
-                                    <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
-                                    <asp:ListItem Value="Am. Indian">Am. Indian</asp:ListItem>
-                                    <asp:ListItem Value="Asian">Asian</asp:ListItem>
-                                    <asp:ListItem Value="Black">Black</asp:ListItem>
-                                    <asp:ListItem Value="Hawaiian/Pacific Isle">Hawaiian/Pacific Isle</asp:ListItem>
-                                    <asp:ListItem Value="White">White</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>

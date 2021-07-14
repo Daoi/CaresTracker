@@ -376,8 +376,10 @@
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalInteractionsReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ReportAccessors\OrgCHWReports\GetOrgCHWTotalServicesReport.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\DeleteOldChronicIllnesses.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetAllRaces.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetRelationships.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\GetResidentsByUserID.cs" />
+    <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertRace.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\InsertResidentChronicIllnesses.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetImported.cs" />
     <Compile Include="DataAccess\DataAccessors\ResidentAccessors\SetProfileActivationStatus.cs" />
