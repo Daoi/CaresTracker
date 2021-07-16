@@ -74,13 +74,6 @@
                     </div>
                     <div class="col-7">
                         <asp:DropDownList ID="ddlRelationshipHOH" CssClass="form-control" runat="server">
-                            <asp:ListItem>Unknown</asp:ListItem>
-                            <asp:ListItem>Head of House</asp:ListItem>
-                            <asp:ListItem>Spouse/Partner</asp:ListItem>
-                            <asp:ListItem>Sibling</asp:ListItem>
-                            <asp:ListItem>Child</asp:ListItem>
-                            <asp:ListItem>Parent</asp:ListItem>
-                            <asp:ListItem>Other</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -105,10 +98,10 @@
                     <div class="col-7">
                         <asp:DropDownList ID="ddlRace" CssClass="form-control" RepeatDirection="Horizontal" runat="server">
                             <asp:ListItem>Unknown</asp:ListItem>
-                            <asp:ListItem>American Indian/Alaska Native</asp:ListItem>
+                            <asp:ListItem>Am. Indian</asp:ListItem>
                             <asp:ListItem>Asian</asp:ListItem>
-                            <asp:ListItem>Black or African American</asp:ListItem>
-                            <asp:ListItem>Native Hawaiian or Other Pacific Islander</asp:ListItem>
+                            <asp:ListItem>Black</asp:ListItem>
+                            <asp:ListItem>Hawaiian/Pacific Isle</asp:ListItem>
                             <asp:ListItem>White</asp:ListItem>
                         </asp:DropDownList>
                     </div>

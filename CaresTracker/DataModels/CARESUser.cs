@@ -17,7 +17,7 @@ namespace CaresTracker.DataModels
         public string LastLogin { get; set; }
         public string UserStatus { get; set; }
         public string UserType { get; set; }
-        public int OrganizationID { get; set; }
+        public int OrganizationID { get; set; } //1 = Temple, 2 = Greater Philadelphia Health Action, 3 = Drexel
         public string OrganizationName { get; set; }
         public string FullName { get { return $"{UserFirstName} {UserLastName}"; } }
 

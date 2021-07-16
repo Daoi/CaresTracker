@@ -93,6 +93,31 @@
                         </div>
                     </div>
                 </div>
+                <h3>Manage Race</h3>
+                <div class="row border-bottom mb-5 pb-5">
+                    <div class="col-8">
+                        <asp:GridView ID="gvRace" runat="server" AutoGenerateColumns="False" CssClass="table table-light table-striped table-bordered thead-dark">
+                            <HeaderStyle CssClass="cherryBackground" />
+                            <Columns>
+                                <asp:BoundField DataField="Race" HeaderText="Race Options" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                    <div class="col pt-5">
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <p class="card-text">Enter the text for the new option you'd like to add and then click the Add New Option button.</p>
+                                <asp:UpdatePanel ID="upRace" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblRaceError" runat="server" Text="" CssClass="errorLabel" Visible="false"></asp:Label><br />
+                                        <asp:TextBox ID="txtRace" runat="server" Placeholder="Race option to add..." CssClass="form-control"></asp:TextBox>
+                                        <asp:Button ID="btnAddRace" runat="server" Text="Add New Option" CssClass="buttonStyle mt-3" OnClick="btnAddRace_Click" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <h3>Manage Event Types</h3>
                 <div class="row border-bottom mb-5 pb-5">
                     <div class="col-8">
@@ -135,7 +160,7 @@
                     </div>
                 </div>
                 <%-- Start --%>
-               <h3>Export Database to Excel</h3>
+                <h3>Export Database to Excel</h3>
                 <div class="row mb-5 pb-5">
                     <div class="col-md-6">
                         <asp:Label ID="lbExport" runat="server" Text="Export Table"></asp:Label><br />
@@ -161,7 +186,7 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            ['gvRegions', 'gvHousingDevelopments', 'gvServices', 'gvEventTypes'].forEach(gv => {
+            ['gvRegions', 'gvHousingDevelopments', 'gvServices', 'gvEventTypes', 'gvRace'].forEach(gv => {
                 $(`#MainContent_${gv}`).DataTable({
                     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
                 });

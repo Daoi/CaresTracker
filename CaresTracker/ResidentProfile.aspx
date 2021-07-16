@@ -66,6 +66,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12">
+                                <asp:Label ID="lblDoBWarning" runat="server" Visible="false"></asp:Label>
                                 <asp:Label ID="lblDoB" CssClass="labels" runat="server" Text="Date of Birth"></asp:Label><asp:TextBox ID="tbDoB" placeholder="" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
@@ -84,10 +85,10 @@
                             <div class="col-md-12">
                                 <asp:Label ID="lblGender" CssClass="labels" runat="server" Text="Gender"></asp:Label>
                                 <asp:RadioButtonList ID="rblGender" CssClass="rp-gender" runat="server" RepeatDirection="Horizontal" CellPadding="8">
-                                    <asp:ListItem>Unknown</asp:ListItem>
-                                    <asp:ListItem>Male</asp:ListItem>
-                                    <asp:ListItem>Female</asp:ListItem>
-                                    <asp:ListItem>Other</asp:ListItem>
+                                    <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
+                                    <asp:ListItem Value="Male">Male</asp:ListItem>
+                                    <asp:ListItem Value="Female">Female</asp:ListItem>
+                                    <asp:ListItem Value="Other">Other</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
                         </div>
@@ -95,13 +96,6 @@
                             <div class="col-md-12">
                                 <asp:Label ID="lblRelationshipToHoH" CssClass="labels" runat="server" Text="Relation to Head of House"></asp:Label><br />
                                 <asp:DropDownList ID="ddlHoH" CssClass="form-control" runat="server">
-                                    <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
-                                    <asp:ListItem Value="Head of House">Head of House</asp:ListItem>
-                                    <asp:ListItem Value="Spouse/Partner">Spouse/Partner</asp:ListItem>
-                                    <asp:ListItem Value="Sibling">Sibling</asp:ListItem>
-                                    <asp:ListItem Value="Child">Child</asp:ListItem>
-                                    <asp:ListItem Value="Parent">Parent</asp:ListItem>
-                                    <asp:ListItem Value="Other">Other</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -109,15 +103,15 @@
                             <div class="col-md-12">
                                 <asp:Label ID="lblPrimLanguage" CssClass="labels" runat="server" Text="Primary Language"></asp:Label>
                                 <asp:DropDownList CssClass="form-control" ID="ddlLanguage" RepeatDirection="Horizontal" runat="server">
-                                    <asp:ListItem>Unknown</asp:ListItem>
-                                    <asp:ListItem>English</asp:ListItem>
-                                    <asp:ListItem>Spanish</asp:ListItem>
-                                    <asp:ListItem>French</asp:ListItem>
-                                    <asp:ListItem>Arabic</asp:ListItem>
-                                    <asp:ListItem>Vietnamese</asp:ListItem>
-                                    <asp:ListItem>Arabic</asp:ListItem>
-                                    <asp:ListItem>Mandarin</asp:ListItem>
-                                    <asp:ListItem>Other</asp:ListItem>
+                                    <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
+                                    <asp:ListItem Value="English">English</asp:ListItem>
+                                    <asp:ListItem Value="Spanish">Spanish</asp:ListItem>
+                                    <asp:ListItem Value="French">French</asp:ListItem>
+                                    <asp:ListItem Value="Arabic">Arabic</asp:ListItem>
+                                    <asp:ListItem Value="Vietnamese">Vietnamese</asp:ListItem>
+                                    <asp:ListItem Value="Arabic">Arabic</asp:ListItem>
+                                    <asp:ListItem Value="Mandarin">Mandarin</asp:ListItem>
+                                    <asp:ListItem Value="Other">Other</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -126,12 +120,6 @@
                                 <asp:Label ID="lblRace" CssClass="labels" runat="server" Text="Race"></asp:Label>
                                 <br />
                                 <asp:DropDownList ID="ddlRace" CssClass="form-control" RepeatDirection="Horizontal" runat="server">
-                                    <asp:ListItem>Unknown</asp:ListItem>
-                                    <asp:ListItem>American Indian/Alaska Native</asp:ListItem>
-                                    <asp:ListItem>Asian</asp:ListItem>
-                                    <asp:ListItem>Black or African American</asp:ListItem>
-                                    <asp:ListItem>Native Hawaiian or Other Pacific Islander</asp:ListItem>
-                                    <asp:ListItem>White</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>

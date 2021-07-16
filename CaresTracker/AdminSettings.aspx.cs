@@ -11,6 +11,7 @@ using CaresTracker.DataAccess.DataAccessors.ServiceAccessors;
 using CaresTracker.DataModels;
 using CaresTracker.DataAccess.DataAccessors.EventTypeAccessors;
 using CaresTracker.Exporting;
+using CaresTracker.DataAccess.DataAccessors.ResidentAccessors;
 
 namespace CaresTracker
 {
@@ -27,7 +28,7 @@ namespace CaresTracker
 
             if (!IsPostBack)
             {
-                new List<GridView>() { gvRegions, gvServices, gvEventTypes }.ForEach(gv =>
+                new List<GridView>() { gvRegions, gvServices, gvEventTypes, gvRace }.ForEach(gv =>
                 {
                     gv.DataBound += (object o, EventArgs ev) =>
                     {
@@ -50,6 +51,11 @@ namespace CaresTracker
                 gvEventTypes.DataSource = new GetAllEventTypes().ExecuteCommand();
                 gvEventTypes.DataKeyNames = new string[] { "EventTypeID" };
                 gvEventTypes.DataBind();
+
+                // set up Race Options
+                gvRace.DataSource = new GetAllRaces().ExecuteCommand();
+                gvRace.DataKeyNames = new string[] { "RaceID" };
+                gvRace.DataBind();
             }
         }
 
@@ -193,6 +199,47 @@ namespace CaresTracker
                 lblAddServiceError.Visible = true;
             }
         }
+
+        protected void btnAddRace_Click(object sender, EventArgs e)
+        {
+            string strClean = txtRace.Text.Trim();
+            if (string.IsNullOrEmpty(strClean))
+            {
+                lblRaceError.Text = "Race option cannot be empty.";
+                lblRaceError.Visible = true;
+                return;
+            }
+
+            if (!IsNewValueUnique(gvRace, 0, strClean))
+            {
+                lblRaceError.Text = "This Race already exists.";
+                lblRaceError.Visible = true;
+                return;
+            }
+
+
+            lblRaceError.Text = string.Empty;
+            lblRaceError.Visible = false;
+
+            try
+            {
+                if (new InsertRace(strClean).ExecuteCommand() > 0)
+                {
+                    // insert success
+                    Response.Redirect("./AdminSettings.aspx", false);
+                }
+
+                lblRaceError.Text = "An unknown error occurred. Please try again later.";
+                lblRaceError.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                lblRaceError.Text = ex.Message;
+                lblRaceError.Visible = true;
+            }
+        }
+
+
 
         protected void btnEventTypeUpdate_Click(object sender, EventArgs e)
         {

@@ -29,6 +29,12 @@ namespace CaresTracker
                 ddlDevelopments.DataSource = developmentDT;
                 ddlDevelopments.DataValueField = "DevelopmentID";
                 ddlDevelopments.DataTextField = "DevelopmentName";
+
+                ddlRelationshipHOH.DataSource = new GetRelationships().RunCommand();
+                ddlRelationshipHOH.DataTextField = "Relationship";
+                ddlRelationshipHOH.DataValueField = "Relationship";
+                ddlRelationshipHOH.DataBind();
+
                 // Store list in session
                 Session["DevelopmentDT"] = developmentDT;
 
